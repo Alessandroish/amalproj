@@ -708,3 +708,113 @@ footer p { font-size: .7rem; color: var(--muted); letter-spacing: .06em; }
   0%,100% { transform: scaleY(1); }
   50%     { transform: scaleY(.85); }
 }
+
+/* ══════════════════════════════
+   NAV TOGGLE (бургер)
+══════════════════════════════ */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px; height: 42px;
+  padding: 0;
+  background: none;
+  border: none;
+  z-index: 600;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--fg);
+  margin: 0 auto;
+  transition: transform .3s ease, opacity .3s ease;
+}
+body.menu-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ══════════════════════════════
+   ТАЧ-УСТРОЙСТВА: вернуть обычный курсор
+══════════════════════════════ */
+@media (hover: none), (pointer: coarse) {
+  *, *::before, *::after { cursor: auto !important; }
+  #cursor-dot, #cursor-ring, .trail-particle { display: none !important; }
+  .contact-form .btn-primary { cursor: pointer; }
+}
+
+/* ══════════════════════════════
+   ПЛАНШЕТ  (≤ 900px)
+══════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  section:not(#hero) { padding: 5rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-number { font-size: clamp(4rem, 18vw, 7rem); }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════
+   МОБИЛЬНЫЙ  (≤ 640px)
+══════════════════════════════ */
+@media (max-width: 640px) {
+  /* — навигация в бургер — */
+  .nav-toggle { display: flex; }
+  /* backdrop-filter создаёт containing block для fixed-потомков —
+     убираем, чтобы оверлей меню позиционировался относительно экрана */
+  nav { padding: 1rem 1.2rem; mix-blend-mode: normal; backdrop-filter: none; }
+  nav ul {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(248,248,246,.97);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, visibility .35s ease;
+  }
+  body.menu-open nav ul { opacity: 1; visibility: visible; }
+  nav ul a { font-size: 1.4rem; color: var(--fg); }
+  nav ul a::after { display: none; }
+
+  /* — hero — */
+  #hero { padding: 0 1.3rem; }
+  .hero-title { font-size: clamp(2.6rem, 13vw, 3.6rem); line-height: 1.05; }
+  .hero-eyebrow { font-size: .62rem; }
+  .hero-desc { font-size: .85rem; max-width: 100%; }
+  .hero-blob { width: 320px; height: 320px; }
+  .scroll-badge { bottom: 1.5rem; }
+
+  /* — общие секции — */
+  section:not(#hero) { padding: 4.5rem 1.3rem; }
+  .section-label { margin-bottom: 2.5rem; }
+
+  /* — about — */
+  .about-text h2 { font-size: 1.6rem; }
+  .stat-row { gap: 1.5rem; flex-wrap: wrap; }
+  .stat strong { font-size: 1.6rem; }
+
+  /* — skills — */
+  .skill-row { flex-direction: column; align-items: flex-start; gap: .7rem; padding: 1.2rem 0; }
+  .skill-row:hover { padding-left: 0; }
+  .skill-tags { flex-wrap: wrap; }
+
+  /* — projects — */
+  .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .project-card { padding: 1.8rem; }
+  .project-num { margin-bottom: 1.2rem; }
+
+  /* — contact — */
+  .contact-title { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+  .contact-form { max-width: 100%; }
+  .social-row { gap: 1.2rem; flex-wrap: wrap; }
+
+  /* — marquee чуть компактнее — */
+  .marquee-track { gap: 1.8rem; }
+
+  /* — footer в столбик — */
+  footer { flex-direction: column; gap: .5rem; text-align: center; padding: 1.5rem 1.3rem; }
+}

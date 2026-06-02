@@ -65,6 +65,21 @@
   setTimeout(type, 400);
 })();
 
+/* ── МОБИЛЬНОЕ МЕНЮ (бургер) ── */
+const navToggle = document.querySelector('.nav-toggle');
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const open = document.body.classList.toggle('menu-open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // закрывать меню при клике по ссылке
+  document.querySelectorAll('#nav-menu a').forEach(a =>
+    a.addEventListener('click', () => {
+      document.body.classList.remove('menu-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+}
+
 /* ── CUSTOM CURSOR ── */
 const dot  = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
