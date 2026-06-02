@@ -117,11 +117,12 @@
   <div class="projects-grid">
     {% for p in projects %}
     <div class="project-card reveal{% if loop.index0 % 4 %} reveal-delay-{{ loop.index0 % 4 }}{% endif %}">
+      <span class="project-watermark">{{ p.num }}</span>
       <p class="project-num">{{ p.num }}</p>
       <span class="project-icon">{{ p.icon }}</span>
       <h3>{{ p.title }}</h3>
       <p>{{ p.description }}</p>
-      <a href="{{ p.link }}" class="project-link">Смотреть →</a>
+      <a href="{{ p.link }}" class="project-link">Смотреть <span class="arrow">→</span></a>
     </div>
     {% endfor %}
   </div>
