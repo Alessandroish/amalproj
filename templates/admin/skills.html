@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block title %}Навыки{% endblock %}
+{% block nav_skills %}active{% endblock %}
+{% block body %}
+  <h1>Навыки</h1>
+  <p class="muted">Строки в секции «Навыки». Теги перечисляйте через запятую.</p>
+
+  <div class="rows">
+    {% for sk in skills %}
+    <form class="row-card" method="post" action="/admin/skills/save">
+      <input type="hidden" name="id" value="{{ sk.id }}">
+      <div class="row-grid">
+        <label class="field small"><span class="field-label">№</span><input type="text" name="idx" value="{{ sk.idx }}"></label>
+        <label class="field"><span class="field-label">Название</span><input type="text" name="name" value="{{ sk.name }}"></label>
+        <label class="field"><span class="field-label">Теги (через запятую)</span><input type="text" name="tags" value="{{ sk.tags }}"></label>
+      </div>
+      <div class="row-actions">
+        <button type="submit">Сохранить</button>
+        <button type="submit" formaction="/admin/skills/delete" class="danger"
+                onclick="return confirm('Удалить навык?')">Удалить</button>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+
+  <h2 class="add-head">Добавить навык</h2>
+  <form class="row-card" method="post" action="/admin/skills/save">
+    <div class="row-grid">
+      <label class="field small"><span class="field-label">№</span><input type="text" name="idx" placeholder="06"></label>
+      <label class="field"><span class="field-label">Название</span><input type="text" name="name"></label>
+      <label class="field"><span class="field-label">Теги (через запятую)</span><input type="text" name="tags"></label>
+    </div>
+    <div class="row-actions"><button type="submit">Добавить</button></div>
+  </form>
+{% endblock %}

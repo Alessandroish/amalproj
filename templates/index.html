@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>{{ s.logo }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body
+  data-intro-greeting="{{ s.intro_greeting }}"
+  data-intro-name="{{ s.intro_name }}"
+  data-intro-middle="{{ s.intro_middle }}"
+  data-intro-specialty="{{ s.intro_specialty }}">
+
+<!-- INTRO TYPING OVERLAY -->
+<div id="intro">
+  <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+</div>
+
+<!-- INTRO COVER PANEL -->
+<div id="intro-cover"><span class="cover-logo">{{ s.logo }}</span></div>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">{{ s.logo }}</div>
+  <ul>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#skills">Навыки</a></li>
+    <li><a href="#projects">Проекты</a></li>
+    <li><a href="#contact">Контакт</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob"></div>
+
+  <p class="hero-eyebrow">{{ s.hero_eyebrow }}</p>
+
+  <h1 class="hero-title">
+    <span class="hero-title-line"><span class="split-chars">{{ s.hero_line1 }}</span></span>
+    <span class="hero-title-line"><span class="split-chars blue">{{ s.hero_line2 }}</span></span>
+    <span class="hero-title-line"><span class="split-chars">{{ s.hero_line3 }}</span></span>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-desc">{{ s.hero_desc | replace('\n', '<br>') | safe }}</p>
+    <a href="#projects" class="btn-primary">{{ s.hero_btn }}</a>
+  </div>
+
+  <a href="#about" class="scroll-badge" aria-label="{{ s.scroll_text }}">
+    <span>{{ s.scroll_text }}</span>
+    <span class="scroll-arrow">↓</span>
+  </a>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    {% for item in marquee %}<span>{{ item }}</span><span class="dot">·</span>{% endfor %}
+    {% for item in marquee %}<span>{{ item }}</span><span class="dot">·</span>{% endfor %}
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">{{ s.about_label }}</p>
+  <div class="about-grid">
+    <div class="about-number reveal">{{ s.about_number }}</div>
+    <div class="about-text">
+      <h2 class="reveal">{{ s.about_heading }}</h2>
+      <p class="reveal reveal-delay-1">{{ s.about_p1 }}</p>
+      <p class="reveal reveal-delay-2">{{ s.about_p2 }}</p>
+      <div class="stat-row reveal reveal-delay-3">
+        <div class="stat">
+          <strong data-target="{{ s.stat1_value }}" data-suffix="{{ s.stat1_suffix }}">0{{ s.stat1_suffix }}</strong>
+          <span>{{ s.stat1_label }}</span>
+        </div>
+        <div class="stat">
+          <strong data-target="{{ s.stat2_value }}" data-suffix="{{ s.stat2_suffix }}">0{{ s.stat2_suffix }}</strong>
+          <span>{{ s.stat2_label }}</span>
+        </div>
+        <div class="stat">
+          <strong data-target="{{ s.stat3_value }}" data-suffix="{{ s.stat3_suffix }}">0{{ s.stat3_suffix }}</strong>
+          <span>{{ s.stat3_label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">02 — Навыки</p>
+  <div class="skills-list">
+    {% for sk in skills %}
+    <div class="skill-row reveal{% if loop.index0 % 4 %} reveal-delay-{{ loop.index0 % 4 }}{% endif %}">
+      <div class="skill-row-left"><span class="skill-idx">{{ sk.idx }}</span><span class="skill-name">{{ sk.name }}</span></div>
+      <div class="skill-tags">{% for t in sk.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">03 — Проекты</p>
+  <div class="projects-grid">
+    {% for p in projects %}
+    <div class="project-card reveal{% if loop.index0 % 4 %} reveal-delay-{{ loop.index0 % 4 }}{% endif %}">
+      <p class="project-num">{{ p.num }}</p>
+      <span class="project-icon">{{ p.icon }}</span>
+      <h3>{{ p.title }}</h3>
+      <p>{{ p.description }}</p>
+      <a href="{{ p.link }}" class="project-link">Смотреть →</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">{{ s.contact_label }}</p>
+  <h2 class="contact-title reveal">
+    {{ s.contact_line1 }}<br>{{ s.contact_line2 }}<br><span>{{ s.contact_line3 }}</span>
+  </h2>
+
+  {% if request.query_params.get('sent') %}
+  <p class="contact-sent reveal">Спасибо! Сообщение отправлено — я скоро отвечу.</p>
+  {% endif %}
+
+  <form class="contact-form reveal reveal-delay-1" method="post" action="/contact">
+    <input type="text"  name="name"  placeholder="Ваше имя" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="body" rows="3" placeholder="Сообщение" required></textarea>
+    <button type="submit" class="btn-primary">Отправить</button>
+  </form>
+
+  <a href="mailto:{{ s.contact_email }}" class="contact-email reveal reveal-delay-2">{{ s.contact_email }}</a>
+  <div class="social-row reveal reveal-delay-2">
+    <a href="{{ s.social_github }}" class="social-link">GitHub</a>
+    <a href="{{ s.social_linkedin }}" class="social-link">LinkedIn</a>
+    <a href="{{ s.social_telegram }}" class="social-link">Telegram</a>
+    <a href="{{ s.social_twitter }}" class="social-link">Twitter</a>
+  </div>
+</section>
+
+<footer>
+  <p>{{ s.footer_left }}</p>
+  <p>{{ s.footer_right }}</p>
+</footer>
+
+<script src="/static/js/parallax.js"></script>
+</body>
+</html>

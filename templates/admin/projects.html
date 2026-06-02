@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% block title %}Проекты{% endblock %}
+{% block nav_projects %}active{% endblock %}
+{% block body %}
+  <h1>Проекты</h1>
+  <p class="muted">Карточки в секции «Проекты». Перетаскивать нельзя — порядок задаётся номером добавления.</p>
+
+  <div class="rows">
+    {% for p in projects %}
+    <form class="row-card" method="post" action="/admin/projects/save">
+      <input type="hidden" name="id" value="{{ p.id }}">
+      <div class="row-grid">
+        <label class="field small"><span class="field-label">№</span><input type="text" name="num" value="{{ p.num }}"></label>
+        <label class="field small"><span class="field-label">Иконка</span><input type="text" name="icon" value="{{ p.icon }}"></label>
+        <label class="field"><span class="field-label">Название</span><input type="text" name="title" value="{{ p.title }}"></label>
+        <label class="field"><span class="field-label">Ссылка</span><input type="text" name="link" value="{{ p.link }}"></label>
+      </div>
+      <label class="field"><span class="field-label">Описание</span><textarea name="description" rows="2">{{ p.description }}</textarea></label>
+      <div class="row-actions">
+        <button type="submit">Сохранить</button>
+        <button type="submit" formaction="/admin/projects/delete" class="danger"
+                onclick="return confirm('Удалить проект?')">Удалить</button>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+
+  <h2 class="add-head">Добавить проект</h2>
+  <form class="row-card" method="post" action="/admin/projects/save">
+    <div class="row-grid">
+      <label class="field small"><span class="field-label">№</span><input type="text" name="num" placeholder="004"></label>
+      <label class="field small"><span class="field-label">Иконка</span><input type="text" name="icon" placeholder="🚀"></label>
+      <label class="field"><span class="field-label">Название</span><input type="text" name="title"></label>
+      <label class="field"><span class="field-label">Ссылка</span><input type="text" name="link" value="#"></label>
+    </div>
+    <label class="field"><span class="field-label">Описание</span><textarea name="description" rows="2"></textarea></label>
+    <div class="row-actions"><button type="submit">Добавить</button></div>
+  </form>
+{% endblock %}

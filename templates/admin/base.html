@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Админка · {% block title %}{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">amalproj <span>admin</span></div>
+    <nav>
+      <a href="/admin"           class="{% block nav_dash %}{% endblock %}">Обзор</a>
+      <a href="/admin/content"   class="{% block nav_content %}{% endblock %}">Контент</a>
+      <a href="/admin/projects"  class="{% block nav_projects %}{% endblock %}">Проекты</a>
+      <a href="/admin/skills"    class="{% block nav_skills %}{% endblock %}">Навыки</a>
+      <a href="/admin/messages"  class="{% block nav_messages %}{% endblock %}">Заявки</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="/" target="_blank" class="view-site">Открыть сайт ↗</a>
+      <a href="/admin/logout" class="logout">Выйти</a>
+    </div>
+  </aside>
+
+  <main class="content">
+    {% block body %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

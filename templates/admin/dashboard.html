@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block title %}Обзор{% endblock %}
+{% block nav_dash %}active{% endblock %}
+{% block body %}
+  <h1>Обзор</h1>
+  <p class="muted">Управляйте содержимым сайта. Изменения видны на сайте сразу после сохранения.</p>
+
+  <div class="cards">
+    <a href="/admin/content" class="card">
+      <div class="card-label">Контент</div>
+      <div class="card-desc">Тексты, заголовки, контакты</div>
+    </a>
+    <a href="/admin/projects" class="card">
+      <div class="card-num">{{ counts.projects }}</div>
+      <div class="card-label">Проекты</div>
+    </a>
+    <a href="/admin/skills" class="card">
+      <div class="card-num">{{ counts.skills }}</div>
+      <div class="card-label">Навыки</div>
+    </a>
+    <a href="/admin/messages" class="card">
+      <div class="card-num">{{ counts.messages }}{% if counts.unread %}<span class="badge">{{ counts.unread }} новых</span>{% endif %}</div>
+      <div class="card-label">Заявки</div>
+    </a>
+  </div>
+{% endblock %}

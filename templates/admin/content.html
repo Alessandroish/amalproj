@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% block title %}Контент{% endblock %}
+{% block nav_content %}active{% endblock %}
+{% block body %}
+  <div class="page-head">
+    <h1>Контент</h1>
+    {% if saved %}<span class="saved-flash">Сохранено ✓</span>{% endif %}
+  </div>
+
+  <form method="post" action="/admin/content">
+    {% for gkey, group in groups.items() %}
+    <section class="fieldset">
+      <h2>{{ group.title }}</h2>
+      <div class="fields">
+        {% for f in group.fields %}
+        <label class="field">
+          <span class="field-label">{{ f.label }}</span>
+          {% if f.type == 'textarea' %}
+            <textarea name="{{ f.key }}" rows="3">{{ f.value }}</textarea>
+          {% else %}
+            <input type="{{ 'url' if f.type == 'url' else 'text' }}" name="{{ f.key }}" value="{{ f.value }}">
+          {% endif %}
+        </label>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+
+    <div class="form-actions">
+      <button type="submit">Сохранить изменения</button>
+    </div>
+  </form>
+{% endblock %}

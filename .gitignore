@@ -1,0 +1,23 @@
+# ── секреты и база (никогда не коммитим!) ──
+.env
+*.db
+*.sqlite
+*.sqlite3
+site.db
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ── локальные настройки инструментов ──
+.claude/settings.local.json
+
+# ── система / редакторы ──
+.DS_Store
+.idea/
+.vscode/
+*.log

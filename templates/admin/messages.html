@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% block title %}Заявки{% endblock %}
+{% block nav_messages %}active{% endblock %}
+{% block body %}
+  <h1>Заявки</h1>
+  <p class="muted">Сообщения, отправленные через форму контактов на сайте.</p>
+
+  {% if not messages %}
+    <div class="empty">Пока нет ни одной заявки.</div>
+  {% endif %}
+
+  <div class="messages">
+    {% for m in messages %}
+    <div class="message">
+      <div class="message-head">
+        <div>
+          <strong>{{ m.name or 'Без имени' }}</strong>
+          <a href="mailto:{{ m.email }}" class="msg-email">{{ m.email }}</a>
+        </div>
+        <div class="msg-meta">
+          <span>{{ m.created_at.strftime('%d.%m.%Y %H:%M') }}</span>
+          <form method="post" action="/admin/messages/delete" style="display:inline">
+            <input type="hidden" name="id" value="{{ m.id }}">
+            <button class="danger small" onclick="return confirm('Удалить заявку?')">Удалить</button>
+          </form>
+        </div>
+      </div>
+      <p class="message-body">{{ m.body }}</p>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
