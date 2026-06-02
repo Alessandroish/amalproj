@@ -5,14 +5,13 @@
 }
 
 :root {
-  --bg:      #f8f8f6;
-  --fg:      #0a0a0a;
-  --muted:   #8a8a8a;
-  --blue:    #1a56ff;
-  --blue-lt: #e8eeff;
-  --border:  rgba(0,0,0,0.08);
-  --crow-green: #00c87a;
-  --crow-red:   #ff3b3b;
+  --bg:      #0b0c10;          /* основной тёмный фон */
+  --panel:   #15171f;          /* карточки, поля ввода */
+  --fg:      #f1f2f5;          /* светлый текст */
+  --muted:   #8a8e9b;          /* приглушённый текст */
+  --blue:    #4d7cff;          /* акцент (ярче для контраста на тёмном) */
+  --blue-lt: rgba(77,124,255,0.14);
+  --border:  rgba(255,255,255,0.09);
 }
 
 html { scroll-behavior: smooth; }
@@ -91,7 +90,7 @@ body.intro-lock { overflow: hidden; }
 
 /* custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f0f0ee; }
+::-webkit-scrollbar-track { background: #14151b; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #00c87a, #1a56ff);
   border-radius: 9999px;
@@ -155,7 +154,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 3rem;
-  background: rgba(248,248,246,.85);
+  background: rgba(11,12,16,.7);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
@@ -301,7 +300,7 @@ nav ul a:hover::after { width: 100%; }
   padding: .6rem 1.3rem;
   border: 1px solid var(--border);
   border-radius: 9999px;
-  background: rgba(255,255,255,.6);
+  background: rgba(255,255,255,.04);
   backdrop-filter: blur(8px);
   text-decoration: none;
   opacity: 0;
@@ -331,7 +330,7 @@ nav ul a:hover::after { width: 100%; }
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: .9rem 0;
-  background: var(--fg);
+  background: var(--panel);
 }
 .marquee-track {
   display: flex; gap: 2.5rem;
@@ -341,7 +340,7 @@ nav ul a:hover::after { width: 100%; }
 .marquee-track span {
   font-size: .68rem; letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.45);
+  color: var(--muted);
   white-space: nowrap;
 }
 .marquee-track span.dot { color: var(--blue); font-size: .9rem; line-height: 1; }
@@ -479,7 +478,7 @@ section:not(#hero):not(#crow-section) {
   font-weight: 800; line-height: 1;
   letter-spacing: -.05em;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(0,0,0,.12);
+  -webkit-text-stroke: 1.5px rgba(255,255,255,.14);
 }
 .about-text h2 {
   font-size: 2rem; font-weight: 700;
@@ -543,7 +542,7 @@ section:not(#hero):not(#crow-section) {
   gap: 1.5rem;
 }
 .project-card {
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 2.2rem;
@@ -625,7 +624,7 @@ section:not(#hero):not(#crow-section) {
   font-family: inherit;
   font-size: .92rem;
   color: var(--fg);
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: .85rem 1.1rem;
@@ -796,7 +795,7 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotat
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    background: rgba(248,248,246,.97);
+    background: rgba(11,12,16,.97);
     backdrop-filter: blur(16px);
     opacity: 0;
     visibility: hidden;
