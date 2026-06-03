@@ -194,7 +194,7 @@ document.querySelectorAll('.split-chars').forEach(el => {
 
 /* ── HERO LETTERS — увеличение у курсора (волной по всему тексту) ── */
 const heroChars = () => document.querySelectorAll('.hero-title .char');
-const RADIUS = 95;     // зона влияния курсора, px
+const RADIUS = 70;     // горизонтальная зона влияния курсора, px
 const MAX_SCALE = 0.5; // насколько сильно растёт ближайшая буква (→ до 1.5x)
 
 document.addEventListener('mousemove', e => {
@@ -202,19 +202,21 @@ document.addEventListener('mousemove', e => {
     const r = ch.getBoundingClientRect();
     const cx = r.left + r.width / 2;
     const cy = r.top + r.height / 2;
-    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-    if (dist < RADIUS) {
-      const f = 1 - dist / RADIUS;            // 0..1
-      const scale = 1 + f * MAX_SCALE;        // ближе → больше
-      const lift  = -f * 10;                  // лёгкий подъём
-      ch.style.transform = `translateY(${lift}px) scale(${scale})`;
-      // синие буквы («цифровые») у курсора становятся белыми, остальные — синими
-      const isBlue = ch.closest('.blue') !== null;
-      ch.style.color = f > 0.55 ? (isBlue ? 'var(--fg)' : 'var(--blue)') : '';
-    } else {
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    // эффект только на строке под курсором: буквы других строк не трогаем
+    if (Math.abs(dy) > r.height * 0.5 || Math.abs(dx) >= RADIUS) {
       ch.style.transform = '';
       ch.style.color = '';
+      return;
     }
+    const f = 1 - Math.abs(dx) / RADIUS;     // 0..1 по горизонтали
+    const scale = 1 + f * MAX_SCALE;          // ближе → больше
+    const lift  = -f * 10;                    // лёгкий подъём
+    ch.style.transform = `translateY(${lift}px) scale(${scale})`;
+    // синие буквы («цифровые») у курсора становятся белыми, остальные — синими
+    const isBlue = ch.closest('.blue') !== null;
+    ch.style.color = f > 0.55 ? (isBlue ? 'var(--fg)' : 'var(--blue)') : '';
   });
 }, { passive: true });
 
