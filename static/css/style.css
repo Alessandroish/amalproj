@@ -194,7 +194,13 @@ nav {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(255,255,255,.5);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 4px 24px rgba(20,40,30,.04);
+  transition: transform .45s cubic-bezier(.5,0,.2,1), padding .35s ease;
+  will-change: transform;
 }
+/* шапка прячется при скролле вниз, появляется при скролле вверх */
+nav.nav-hidden { transform: translateY(-100%); }
+/* чуть компактнее после прокрутки */
+nav.nav-scrolled { padding-top: 1rem; padding-bottom: 1rem; }
 .logo {
   font-size: .9rem;
   font-weight: 800;
@@ -209,8 +215,9 @@ nav ul a {
   font-size: .78rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  transition: color .25s;
+  transition: color .2s ease, transform .25s cubic-bezier(.34,1.56,.64,1);
   position: relative;
+  display: inline-block;
 }
 nav ul a::after {
   content: '';
@@ -219,7 +226,8 @@ nav ul a::after {
   background: var(--blue);
   transition: width .3s ease;
 }
-nav ul a:hover { color: var(--fg); }
+/* увеличение + смена цвета при наведении */
+nav ul a:hover { color: var(--blue); transform: scale(1.18); }
 nav ul a:hover::after { width: 100%; }
 
 /* ══════════════════════════════
@@ -1013,26 +1021,56 @@ body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotat
    МОБИЛЬНЫЙ  (≤ 640px)
 ══════════════════════════════ */
 @media (max-width: 640px) {
-  /* — навигация в бургер — */
+  /* — навигация: бургер + выпадающий список — */
   .nav-toggle { display: flex; }
-  /* backdrop-filter создаёт containing block для fixed-потомков —
-     убираем, чтобы оверлей меню позиционировался относительно экрана */
-  nav { padding: 1rem 1.2rem; mix-blend-mode: normal; backdrop-filter: none; }
+  nav { padding: 1rem 1.2rem; mix-blend-mode: normal; }
   nav ul {
-    position: fixed;
-    inset: 0;
+    position: absolute;
+    top: calc(100% + .6rem);
+    right: 1.2rem;
+    left: auto;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    background: rgba(246,246,243,.97);
-    backdrop-filter: blur(16px);
+    align-items: stretch;
+    gap: .25rem;
+    width: 210px;
+    padding: .55rem;
+    /* стеклянная панель выпадающего меню */
+    background: rgba(255,255,255,.62);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 16px;
+    box-shadow: 0 14px 40px rgba(20,40,30,.14), inset 0 1px 0 rgba(255,255,255,.7);
+    /* скрыто — выпадает при открытии */
     opacity: 0;
+    transform: translateY(-12px) scale(.95);
+    transform-origin: top right;
     visibility: hidden;
-    transition: opacity .35s ease, visibility .35s ease;
+    transition: opacity .3s ease,
+                transform .32s cubic-bezier(.22,1,.36,1),
+                visibility .3s;
   }
-  body.menu-open nav ul { opacity: 1; visibility: visible; }
-  nav ul a { font-size: 1.4rem; color: var(--fg); }
+  body.menu-open nav ul {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+  nav ul li { width: 100%; }
+  nav ul a {
+    display: block;
+    padding: .75rem .9rem;
+    border-radius: 11px;
+    font-size: .92rem;
+    color: var(--fg);
+    transform: none;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+  }
+  /* увеличение + смена цвета при нажатии/наведении пункта */
+  nav ul a:hover, nav ul a:active {
+    background: var(--blue-lt);
+    color: var(--blue);
+    transform: scale(1.05);
+  }
   nav ul a::after { display: none; }
 
   /* — hero — */
