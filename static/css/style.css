@@ -19,84 +19,98 @@
 html { scroll-behavior: smooth; }
 
 /* ══════════════════════════════
-   INTRO — раздвижные 3D-двери
+   INTRO — 3D-портал с полётом сквозь экран
 ══════════════════════════════ */
 #opening {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  perspective: 1800px;
-  pointer-events: none;
-}
-
-/* две створки, вместе закрывают экран */
-#opening .door {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 50.2%;
-  background:
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-  backface-visibility: hidden;
-  will-change: transform;
-  transition: transform 1.9s cubic-bezier(.7, 0, .2, 1),
-              box-shadow 1.9s ease;
-}
-/* во время печати — чистый фон без шва (тени появятся только при распахивании) */
-#opening .door.left  { left: 0;  transform-origin: left center; }
-#opening .door.right { right: 0; transform-origin: right center; }
-
-/* распахивание в 3D */
-#opening.open .door.left  { transform: rotateY(108deg); box-shadow: 40px 0 80px rgba(0,0,0,.12); }
-#opening.open .door.right { transform: rotateY(-108deg); box-shadow: -40px 0 80px rgba(0,0,0,.12); }
-
-/* светящаяся линия-стык по центру */
-#opening .seam {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 2px; height: 0;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(var(--blue), var(--blue-2));
-  box-shadow: 0 0 18px 2px rgba(15,157,110,.55);
-  transition: height .55s cubic-bezier(.22,1,.36,1), opacity .4s ease;
-  z-index: 3;
-}
-#opening.seam-on .seam { height: 78vh; }
-#opening.open .seam    { opacity: 0; }
-
-/* вспышка света из стыка в момент открытия */
-#opening .flash {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 12px; height: 100vh;
-  transform: translate(-50%, -50%) scaleX(.2);
-  background: radial-gradient(ellipse 50% 50% at center,
-              rgba(255,255,255,.95) 0%,
-              rgba(20,201,138,.45) 38%,
-              transparent 72%);
-  opacity: 0;
-  z-index: 4;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-#opening.open .flash { animation: flashBloom 1.2s ease-out forwards; }
-@keyframes flashBloom {
-  0%   { opacity: 0; transform: translate(-50%, -50%) scaleX(.2); }
-  18%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, -50%) scaleX(70); }
-}
-
-/* текст заставки поверх дверей */
-.opening-content {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+  background: var(--bg);
+  perspective: 1100px;
+  perspective-origin: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  transition: opacity .5s ease, transform .8s ease;
+  overflow: hidden;
+  transition: opacity .9s ease;
 }
-#opening.seam-on .opening-content { opacity: 0; transform: scale(.96); }
+#opening.zoom { opacity: 0; pointer-events: none; }
+
+/* 3D-сцена, которая улетает к зрителю при переходе */
+.opening-stage {
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity, filter;
+  transition: transform 1.3s cubic-bezier(.7,0,.2,1),
+              opacity 1s ease,
+              filter 1.1s ease;
+}
+#opening.zoom .opening-stage {
+  transform: translateZ(780px) scale(1.7) rotateX(6deg);
+  opacity: 0;
+  filter: blur(6px);
+}
+
+/* орбитальные 3D-кольца — лёгкая глубина за текстом */
+.o-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.o-ring.r1 {
+  width: 360px; height: 360px;
+  border: 2px solid rgba(15,157,110,.20);
+  animation: oSpin 16s linear infinite;
+}
+.o-ring.r2 {
+  width: 540px; height: 540px;
+  border: 2px solid rgba(20,201,138,.12);
+  animation: oSpin 24s linear infinite reverse;
+}
+.o-ring.r3 {
+  width: 720px; height: 720px;
+  border: 1px solid rgba(15,157,110,.07);
+  animation: oSpin 34s linear infinite;
+}
+@keyframes oSpin {
+  from { transform: translate(-50%,-50%) rotateX(72deg) rotateZ(0deg); }
+  to   { transform: translate(-50%,-50%) rotateX(72deg) rotateZ(360deg); }
+}
+
+/* парящая точка-«ядро» за текстом */
+.o-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--blue-2), var(--blue));
+  box-shadow: 0 0 40px 10px rgba(15,157,110,.35);
+  transform: translate(-50%,-50%);
+  animation: coreFloat 4s ease-in-out infinite;
+}
+@keyframes coreFloat {
+  0%,100% { transform: translate(-50%,-50%) translateZ(60px) scale(1); }
+  50%     { transform: translate(-50%,-50%) translateZ(120px) scale(1.25); }
+}
+
+/* текст заставки */
+.opening-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  text-align: center;
+  transform: translateZ(40px);
+  animation: introFloat 5s ease-in-out infinite;
+}
+@keyframes introFloat {
+  0%,100% { transform: translateZ(40px) translateY(0) rotateX(0deg); }
+  50%     { transform: translateZ(40px) translateY(-8px) rotateX(3deg); }
+}
 
 #intro-text {
   font-size: clamp(1.4rem, 4vw, 3rem);
@@ -122,6 +136,13 @@ html { scroll-behavior: smooth; }
 
 /* блокируем скролл, пока идёт заставка */
 body.intro-lock { overflow: hidden; }
+
+/* hero «выезжает» из глубины при появлении сайта (dolly) */
+body.site-enter #hero { animation: heroDolly 1.4s cubic-bezier(.2,.7,.2,1); }
+@keyframes heroDolly {
+  0%   { transform: scale(1.09); filter: blur(7px); opacity: .35; }
+  100% { transform: scale(1);    filter: blur(0);   opacity: 1; }
+}
 
 /* custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
@@ -717,7 +738,6 @@ section:not(#hero):not(#crow-section) {
 }
 .project-card:hover .project-watermark {
   -webkit-text-stroke-color: rgba(15,157,110,.18);
-  transform: translateY(-4px);
 }
 .project-card > *:not(.project-watermark) { position: relative; z-index: 1; }
 .project-link .arrow { transition: transform .3s ease; display: inline-block; }

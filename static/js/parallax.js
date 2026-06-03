@@ -45,16 +45,13 @@
   function finish() {
     // 1. пауза, чтобы прочитать текст
     setTimeout(() => {
-      // 2. по центру прочерчивается светящаяся линия-стык, текст гаснет
-      overlay.classList.add('seam-on');
-      // 3. створки медленно распахиваются в 3D + вспышка света
-      setTimeout(() => {
-        overlay.classList.add('open');
-        document.body.classList.remove('intro-lock');
-        window.scrollTo(0, 0);
-        // 4. убираем двери из потока после завершения распахивания (1.9s)
-        setTimeout(() => overlay.remove(), 2100);
-      }, 850);
+      // 2. вся 3D-сцена улетает сквозь экран к зрителю, открывая первую страницу
+      overlay.classList.add('zoom');
+      document.body.classList.add('site-enter');   // hero делает dolly-settle
+      document.body.classList.remove('intro-lock');
+      window.scrollTo(0, 0);
+      // 3. убираем портал после полёта
+      setTimeout(() => overlay.remove(), 1500);
     }, 700);
   }
 
@@ -188,6 +185,29 @@ function updateProgress() {
 }
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
+
+/* ── PARALLAX между секциями (глубина при скролле) ── */
+const auroraLayer = document.querySelector('.aurora');
+const parallaxNodes = [...document.querySelectorAll('[data-parallax]')];
+let parallaxTicking = false;
+function parallaxTick() {
+  const y = window.scrollY;
+  const vh = window.innerHeight;
+  // фон-аврора движется медленнее контента
+  if (auroraLayer) auroraLayer.style.transform = `translate3d(0, ${y * 0.14}px, 0)`;
+  // декоративные слои дрейфуют относительно центра экрана
+  parallaxNodes.forEach(el => {
+    const speed = parseFloat(el.dataset.parallax) || 0;
+    const rect = el.getBoundingClientRect();
+    const offset = (rect.top + rect.height / 2) - vh / 2;
+    el.style.transform = `translate3d(0, ${(-offset * speed).toFixed(1)}px, 0)`;
+  });
+  parallaxTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!parallaxTicking) { requestAnimationFrame(parallaxTick); parallaxTicking = true; }
+}, { passive: true });
+parallaxTick();
 
 /* ── ПОЯВЛЕНИЕ БУКВ В МЕТКАХ СЕКЦИЙ ── */
 document.querySelectorAll('.section-label').forEach(label => {

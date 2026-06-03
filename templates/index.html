@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=18"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=19"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -14,14 +14,16 @@
   data-intro-middle="{{ s.intro_middle }}"
   data-intro-specialty="{{ s.intro_specialty }}">
 
-<!-- INTRO — раздвижные 3D-двери с печатающимся текстом -->
+<!-- INTRO — 3D-портал с печатающимся текстом -->
 <div id="opening">
-  <div class="door left"></div>
-  <div class="door right"></div>
-  <div class="seam"></div>
-  <div class="flash"></div>
-  <div class="opening-content">
-    <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+  <div class="opening-stage">
+    <div class="o-ring r1"></div>
+    <div class="o-ring r2"></div>
+    <div class="o-ring r3"></div>
+    <div class="o-core"></div>
+    <div class="opening-content">
+      <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+    </div>
   </div>
 </div>
 
@@ -85,7 +87,7 @@
   <p class="section-label">{{ s.about_label }}</p>
   <div class="about-grid">
     <div class="about-left">
-      <div class="about-number reveal">{{ s.about_number }}</div>
+      <div class="about-number" data-parallax="0.05">{{ s.about_number }}</div>
 
       <!-- АНИМИРОВАННЫЙ ГРАФИК ПРОДАЖ -->
       <div class="chart-card reveal reveal-delay-1">
@@ -167,7 +169,7 @@
   <div class="projects-grid">
     {% for p in projects %}
     <div class="project-card reveal{% if loop.index0 % 4 %} reveal-delay-{{ loop.index0 % 4 }}{% endif %}">
-      <span class="project-watermark">{{ p.num }}</span>
+      <span class="project-watermark" data-parallax="0.07">{{ p.num }}</span>
       <p class="project-num">{{ p.num }}</p>
       <span class="project-icon">{{ p.icon }}</span>
       <h3>{{ p.title }}</h3>
@@ -210,6 +212,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=18"></script>
+<script src="/static/js/parallax.js?v=19"></script>
 </body>
 </html>
