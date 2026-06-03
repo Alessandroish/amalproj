@@ -187,7 +187,24 @@ function updateProgress() {
 window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-/* ── ANIMATED SECTION LABEL UNDERLINE ── */
+/* ── ПОЯВЛЕНИЕ БУКВ В МЕТКАХ СЕКЦИЙ ── */
+document.querySelectorAll('.section-label').forEach(label => {
+  const text = label.textContent;
+  // обернуть текст в один flex-элемент, чтобы не ломать gap с линией ::after
+  const wrap = document.createElement('span');
+  wrap.className = 'label-text';
+  [...text].forEach((ch, i) => {
+    const s = document.createElement('span');
+    s.className = 'lchar';
+    s.textContent = ch === ' ' ? ' ' : ch;
+    s.style.transitionDelay = (i * 0.03) + 's';
+    wrap.appendChild(s);
+  });
+  label.textContent = '';
+  label.appendChild(wrap);
+});
+
+/* ── ANIMATED SECTION LABEL UNDERLINE + буквы ── */
 const labelObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible-label'); labelObs.unobserve(e.target); }
@@ -252,17 +269,19 @@ document.addEventListener('mousemove', e => {
   });
 }, { passive: true });
 
-/* ── COUNTERS ── */
+/* ── COUNTERS (плавный счёт с замедлением) ── */
 function runCounter(el) {
   const target = +el.dataset.target;
   const suffix = el.dataset.suffix || '';
-  let v = 0;
-  const step = target / 55;
-  const t = setInterval(() => {
-    v = Math.min(v + step, target);
-    el.textContent = Math.floor(v) + suffix;
-    if (v >= target) clearInterval(t);
-  }, 16);
+  const duration = 1500;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);   // easeOutCubic — замедление к концу
+    el.textContent = Math.round(eased * target) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 const statObs = new IntersectionObserver(entries => {
   entries.forEach(e => {

@@ -81,23 +81,64 @@
 <section id="about">
   <p class="section-label">{{ s.about_label }}</p>
   <div class="about-grid">
-    <div class="about-number reveal">{{ s.about_number }}</div>
+    <div class="about-left">
+      <div class="about-number reveal">{{ s.about_number }}</div>
+
+      <!-- АНИМИРОВАННЫЙ ГРАФИК ПРОДАЖ -->
+      <div class="chart-card reveal reveal-delay-1">
+        <div class="chart-head">
+          <span class="chart-title">Динамика продаж</span>
+          <span class="chart-growth">↑ 38%</span>
+        </div>
+        <svg class="chart" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"  stop-color="var(--blue)" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="var(--blue)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- сетка -->
+          <line class="grid" x1="0" y1="38"  x2="300" y2="38"/>
+          <line class="grid" x1="0" y1="75"  x2="300" y2="75"/>
+          <line class="grid" x1="0" y1="112" x2="300" y2="112"/>
+          <!-- область под линией -->
+          <path class="chart-area"
+            d="M0,120 L50,105 L100,110 L150,72 L200,80 L250,40 L300,25 L300,150 L0,150 Z"
+            fill="url(#chartFill)"/>
+          <!-- линия -->
+          <path class="chart-line"
+            d="M0,120 L50,105 L100,110 L150,72 L200,80 L250,40 L300,25"
+            fill="none" stroke="var(--blue)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- точки -->
+          <circle class="chart-dot" cx="50"  cy="105" r="3"/>
+          <circle class="chart-dot" cx="150" cy="72"  r="3"/>
+          <circle class="chart-dot" cx="250" cy="40"  r="3"/>
+          <circle class="chart-dot end" cx="300" cy="25" r="4.5"/>
+        </svg>
+        <div class="chart-axis"><span>Кв 1</span><span>Кв 2</span><span>Кв 3</span><span>Кв 4</span></div>
+      </div>
+    </div>
+
     <div class="about-text">
       <h2 class="reveal">{{ s.about_heading }}</h2>
       <p class="reveal reveal-delay-1">{{ s.about_p1 }}</p>
       <p class="reveal reveal-delay-2">{{ s.about_p2 }}</p>
       <div class="stat-row reveal reveal-delay-3">
         <div class="stat">
+          <span class="stat-icon">🎓</span>
           <strong data-target="{{ s.stat1_value }}" data-suffix="{{ s.stat1_suffix }}">0{{ s.stat1_suffix }}</strong>
-          <span>{{ s.stat1_label }}</span>
+          <span class="stat-label">{{ s.stat1_label }}</span>
         </div>
         <div class="stat">
+          <span class="stat-icon">📚</span>
           <strong data-target="{{ s.stat2_value }}" data-suffix="{{ s.stat2_suffix }}">0{{ s.stat2_suffix }}</strong>
-          <span>{{ s.stat2_label }}</span>
+          <span class="stat-label">{{ s.stat2_label }}</span>
         </div>
         <div class="stat">
+          <span class="stat-icon">🔥</span>
           <strong data-target="{{ s.stat3_value }}" data-suffix="{{ s.stat3_suffix }}">0{{ s.stat3_suffix }}</strong>
-          <span>{{ s.stat3_label }}</span>
+          <span class="stat-label">{{ s.stat3_label }}</span>
         </div>
       </div>
     </div>
