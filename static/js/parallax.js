@@ -225,6 +225,25 @@ document.addEventListener('mousemove', e => {
   blob.style.transform = `translate(${nx}px, ${ny}px)`;
 });
 
+/* ── 3D-СЦЕНА (cosmos.so): наклон поля карточек за курсором ── */
+const scene3d = document.querySelector('.scene3d');
+if (scene3d) {
+  let targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
+  document.addEventListener('mousemove', e => {
+    const nx = e.clientX / window.innerWidth  - 0.5;
+    const ny = e.clientY / window.innerHeight - 0.5;
+    targetRY = nx * 18;    // поворот вокруг вертикали
+    targetRX = -ny * 13;   // поворот вокруг горизонтали
+  });
+  (function tiltLoop() {
+    curRX += (targetRX - curRX) * 0.06;   // плавная инерция
+    curRY += (targetRY - curRY) * 0.06;
+    scene3d.style.transform =
+      `rotateX(${curRX.toFixed(2)}deg) rotateY(${curRY.toFixed(2)}deg)`;
+    requestAnimationFrame(tiltLoop);
+  })();
+}
+
 /* ── REVEAL ON SCROLL ── */
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
