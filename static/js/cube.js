@@ -12,6 +12,8 @@ if (hero) {
   const dummy = new THREE.Object3D();
   const rows = [];
   const rubiksCube = new THREE.Group();
+  let autoRotate = true;     // авто-вращение, когда кубик не держат
+  let velX = 0, velY = 0;    // инерция после перетаскивания
 
   const sizes = () => {
     const w = hero.clientWidth, h = hero.clientHeight;
@@ -97,10 +99,55 @@ if (hero) {
   }
 
   function render() {
-    rubiksCube.rotation.y += 0.0025;
-    rubiksCube.rotation.x += 0.005;
-    rubiksCube.rotation.z += 0.0025;
+    if (autoRotate) {
+      // мягкое авто-вращение, когда кубик не держат
+      rubiksCube.rotation.y += 0.0025;
+      rubiksCube.rotation.x += 0.005;
+      rubiksCube.rotation.z += 0.0025;
+    } else {
+      // инерция после броска
+      rubiksCube.rotation.y += velY;
+      rubiksCube.rotation.x += velX;
+      velX *= 0.93; velY *= 0.93;
+    }
     renderer.render(scene, camera);
+  }
+
+  /* ── управление перетаскиванием: тащишь — кубик крутится ── */
+  function enableDrag() {
+    canvas.style.pointerEvents = "auto";   // даём канвасу ловить мышь/тач
+    let dragging = false, px = 0, py = 0, resumeTimer = null;
+
+    const down = (e) => {
+      dragging = true; autoRotate = false;
+      if (resumeTimer) clearTimeout(resumeTimer);
+      const p = e.touches ? e.touches[0] : e;
+      px = p.clientX; py = p.clientY;
+      velX = velY = 0;
+    };
+    const move = (e) => {
+      if (!dragging) return;
+      const p = e.touches ? e.touches[0] : e;
+      const dx = p.clientX - px, dy = p.clientY - py;
+      velY = dx * 0.006;            // горизонталь → поворот вокруг Y
+      velX = dy * 0.006;            // вертикаль → поворот вокруг X
+      rubiksCube.rotation.y += velY;
+      rubiksCube.rotation.x += velX;
+      px = p.clientX; py = p.clientY;
+    };
+    const up = () => {
+      if (!dragging) return;
+      dragging = false;
+      // докрутить по инерции, затем вернуть авто-вращение
+      resumeTimer = setTimeout(() => { autoRotate = true; }, 2500);
+    };
+
+    canvas.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    canvas.addEventListener("touchstart", down, { passive: true });
+    window.addEventListener("touchmove", move, { passive: true });
+    window.addEventListener("touchend", up);
   }
 
   function animateRow() {
@@ -129,4 +176,5 @@ if (hero) {
   addLights();
   renderer.setAnimationLoop(render);
   animateRow();
+  enableDrag();
 }

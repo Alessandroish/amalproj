@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Stripe Press — Ideas for progress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fff;
+      --text: #0a0a0a;
+      --muted: #6b6b6b;
+      --border: #e5e5e5;
+      --stripe: #635bff;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-divider {
+      color: #bbb;
+      font-weight: 300;
+    }
+
+    .logo-tagline {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+
+    .header-stripe {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-stripe svg {
+      width: 44px;
+      height: 18px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 32px 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 680px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+    }
+
+    .hero-desc {
+      margin-top: 24px;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION LABEL ───────────────────────────────────── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* ── BOOKS SECTION ───────────────────────────────────── */
+    .books-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 32px;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 48px 32px;
+    }
+
+    .book-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: #f0ede8;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.06),
+        0 4px 16px rgba(0,0,0,0.08),
+        4px 4px 0 0 rgba(0,0,0,0.04);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .book-card:hover .book-cover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.08),
+        0 8px 24px rgba(0,0,0,0.12),
+        4px 4px 0 0 rgba(0,0,0,0.04);
+    }
+
+    .book-cover-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .book-cover-title {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: #1a1a1a;
+    }
+
+    .book-cover-author {
+      font-size: 0.65rem;
+      color: #888;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    .book-info {}
+
+    .book-title {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .book-title a:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .book-author {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .book-desc {
+      font-size: 0.82rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-price {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .buy-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .buy-btn {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      border-color: #aaa;
+      background: #fafafa;
+      text-decoration: none;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── FILM SECTION ────────────────────────────────────── */
+    .film-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .film-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .film-visual {
+      aspect-ratio: 4/3;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      background: #0d0d0d;
+    }
+
+    .film-shapes {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.85;
+    }
+
+    .shape-1 { width: 200px; height: 200px; background: #e8c84a; top: 10%; left: 5%; border-radius: 50%; }
+    .shape-2 { width: 160px; height: 160px; background: #d4522a; top: 30%; left: 40%; border-radius: 0; transform: rotate(15deg); }
+    .shape-3 { width: 180px; height: 180px; background: #4a7bc4; bottom: 10%; left: 15%; border-radius: 50%; }
+    .shape-4 { width: 120px; height: 120px; background: #3d9e6b; top: 5%; right: 10%; border-radius: 0; transform: rotate(-20deg); }
+    .shape-5 { width: 90px; height: 90px; background: #c45a8a; bottom: 20%; right: 15%; border-radius: 50%; }
+
+    .film-text .section-label { margin-bottom: 20px; }
+
+    .film-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .film-title em { font-style: italic; }
+
+    .film-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .film-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .film-meta p { margin-bottom: 4px; }
+
+    .cta-btn {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      background: var(--text);
+      color: #fff;
+      border-radius: 4px;
+      transition: opacity 0.15s;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    /* ── PODCAST SECTION ─────────────────────────────────── */
+    .podcast-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .podcast-header {
+      margin-bottom: 40px;
+    }
+
+    .podcast-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .podcast-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .episodes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .episode {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 20px;
+      align-items: start;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .episode:last-child { border-bottom: 1px solid var(--border); }
+
+    .episode-num {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .episode-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .episode-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .episode-listen {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 4px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 5px 12px;
+      transition: border-color 0.15s;
+    }
+
+    .episode-listen:hover {
+      border-color: #aaa;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    /* ── NEWSLETTER ──────────────────────────────────────── */
+    .newsletter-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-text h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .newsletter-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-form input {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      width: 260px;
+      transition: border-color 0.15s;
+    }
+
+    .newsletter-form input:focus {
+      border-color: #999;
+    }
+
+    .newsletter-form button {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .newsletter-form button:hover { opacity: 0.8; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-left a { color: var(--muted); }
+    .footer-left a:hover { color: var(--text); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ── BOOK COVER COLORS ───────────────────────────────── */
+    .cover-c1  { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+    .cover-c2  { background: linear-gradient(135deg, #2d4a3e 0%, #1a3328 100%); }
+    .cover-c3  { background: linear-gradient(135deg, #3d2b1f 0%, #5c3d2e 100%); }
+    .cover-c4  { background: linear-gradient(135deg, #1e2d40 0%, #2a4a6b 100%); }
+    .cover-c5  { background: linear-gradient(135deg, #2c1654 0%, #4a2880 100%); }
+    .cover-c6  { background: linear-gradient(135deg, #3d1a1a 0%, #6b2d2d 100%); }
+    .cover-c7  { background: linear-gradient(135deg, #0d3d2e 0%, #1a6b50 100%); }
+    .cover-c8  { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); }
+    .cover-c9  { background: linear-gradient(135deg, #3d3520 0%, #6b5c2e 100%); }
+    .cover-c10 { background: linear-gradient(135deg, #1e3a4a 0%, #2d5a70 100%); }
+    .cover-c11 { background: linear-gradient(135deg, #2a1f3d 0%, #4d3a6b 100%); }
+    .cover-c12 { background: linear-gradient(135deg, #1a2e1a 0%, #2d5c2d 100%); }
+    .cover-c13 { background: linear-gradient(135deg, #3d1f1f 0%, #6b3030 100%); }
+    .cover-c14 { background: linear-gradient(135deg, #1f2d3d 0%, #2d4a6b 100%); }
+    .cover-c15 { background: linear-gradient(135deg, #2d2d1a 0%, #5c5c2d 100%); }
+    .cover-c16 { background: linear-gradient(135deg, #1a1f2d 0%, #2d3352 100%); }
+    .cover-c17 { background: linear-gradient(135deg, #3d2d1a 0%, #6b4d2d 100%); }
+    .cover-c18 { background: linear-gradient(135deg, #1a2a1a 0%, #2d4d2d 100%); }
+    .cover-c19 { background: linear-gradient(135deg, #1f1a2d 0%, #3d2d5c 100%); }
+
+    .book-cover-title { color: rgba(255,255,255,0.9); }
+    .book-cover-author { color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .film-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .episode {
+        grid-template-columns: 36px 1fr;
+      }
+
+      .episode-listen {
+        display: none;
+      }
+
+      .newsletter-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .newsletter-form input { width: 100%; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 32px 20px;
+      }
+    }
+
+    /* ── HOVER UNDERLINE FOR BOOK TITLES ─────────────────── */
+    .book-title a {
+      text-decoration-color: transparent;
+      text-decoration-line: underline;
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s;
+    }
+
+    .book-title a:hover {
+      text-decoration-color: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span>Stripe Press</span>
+      <span class="logo-divider">—</span>
+      <span class="logo-tagline">Ideas for progress</span>
+    </div>
+    <div class="header-stripe">
+      <span>A division of</span>
+      <!-- Stripe wordmark SVG -->
+      <svg viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.45 9.77c0-.76.62-1.05 1.65-1.05 1.47 0 3.33.45 4.8 1.25V5.8C10.33 5.17 8.78 4.9 7.2 4.9 3.47 4.9 1 6.83 1 9.97c0 4.83 6.65 4.06 6.65 6.15 0 .9-.78 1.2-1.87 1.2-1.62 0-3.7-.67-5.34-1.57v4.22c1.82.78 3.65 1.1 5.34 1.1C9.67 21.07 12.27 19.2 12.27 15.97c-.02-5.22-6.82-4.28-6.82-6.2zM20.5 1.77l-4.42.95-.02 14.75c0 2.72 2.04 4.6 4.76 4.6 1.51 0 2.6-.28 3.2-.6v-3.6c-.58.23-3.46 1.07-3.46-1.63V8.94h3.46V5.17h-3.46l-.06-3.4zm10.46 4.57l-.28-1.17H26.5V21h4.68V10.32c1.1-1.44 2.97-1.17 3.55-.97V5.17c-.6-.22-2.8-.63-3.77 1.17zm7.55-1.17H34v15.82h4.7V5.17h-.19zm-.15-4.9a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2zM51.54 4.9c-1.78 0-2.93.84-3.57 1.42l-.24-1.15H43.6v20.85l4.7-1v-5.1c.65.48 1.62 1.16 3.22 1.16 3.26 0 6.23-2.62 6.23-8.4-.02-5.3-3.02-7.78-6.21-7.78zm-1.09 11.98c-1.07 0-1.7-.38-2.14-.85l-.03-6.7c.47-.52 1.13-.88 2.17-.88 1.66 0 2.8 1.86 2.8 4.2 0 2.38-1.12 4.23-2.8 4.23z" fill="#635bff"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section class="hero">
+  <h1>Books and <em>ideas</em><br>for curious people</h1>
+  <p class="hero-desc">Stripe Press highlights ideas that we think are important for the long-term health of the technology ecosystem and society broadly.</p>
+</section>
+
+<!-- ── BOOKS ───────────────────────────────────────────────── -->
+<section class="books-section">
+  <p class="section-label">Books</p>
+
+  <div class="books-grid">
+
+    <div class="book-card">
+      <div class="book-cover cover-c1">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Maintenance:<br>Of Everything,<br>Part One</div>
+          <div class="book-cover-author">Stewart Brand</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Maintenance: Of Everything, Part One</a></div>
+        <div class="book-author">Stewart Brand</div>
+        <div class="book-desc">An exploration of why maintenance — of infrastructure, institutions, and ideas — is the most underappreciated force shaping our civilization.</div>
+        <div class="book-price">$40</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c2">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Origins of Efficiency</div>
+          <div class="book-cover-author">Brian Potter</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Origins of Efficiency</a></div>
+        <div class="book-author">Brian Potter</div>
+        <div class="book-desc">How industrial processes and organizational structures emerged to do more with less — and what that means for modern innovation.</div>
+        <div class="book-price">$40</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c3">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Scaling Era</div>
+          <div class="book-cover-author">Dwarkesh Patel</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Scaling Era</a></div>
+        <div class="book-author">Dwarkesh Patel with Gavin Leech</div>
+        <div class="book-desc">A deep look at how artificial intelligence is reshaping scientific research, economic growth, and the trajectory of human civilization.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c4">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Boom: Bubbles and the End of Stagnation</div>
+          <div class="book-cover-author">Byrne Hobart</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Boom: Bubbles and the End of Stagnation</a></div>
+        <div class="book-author">Byrne Hobart and Tobias Huber</div>
+        <div class="book-desc">A contrarian argument that financial bubbles, far from being purely destructive, are often the engine of technological progress.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c5">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Poor Charlie's Almanack</div>
+          <div class="book-cover-author">Peter D. Kaufman, ed.</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Poor Charlie's Almanack</a></div>
+        <div class="book-author">Edited by Peter D. Kaufman</div>
+        <div class="book-desc">The wit and wisdom of Charlie Munger — speeches, essays, and mental models from one of the greatest investors and thinkers of our time.</div>
+        <div class="book-price">$30</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c6">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Scaling People</div>
+          <div class="book-cover-author">Claire Hughes Johnson</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Scaling People</a></div>
+        <div class="book-author">Claire Hughes Johnson</div>
+        <div class="book-desc">A practical guide to building high-performing teams and organizations, drawn from the author's experience scaling Stripe and Google.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c7">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Pieces of the Action</div>
+          <div class="book-cover-author">Vannevar Bush</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Pieces of the Action</a></div>
+        <div class="book-author">Vannevar Bush</div>
+        <div class="book-desc">The memoir of one of America's greatest scientific administrators — the man who organized wartime research and envisioned the internet decades early.</div>
+        <div class="book-price">$24</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c8">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Where Is My Flying Car?</div>
+          <div class="book-cover-author">J. Storrs Hall</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Where Is My Flying Car?</a></div>
+        <div class="book-author">J. Storrs Hall</div>
+        <div class="book-desc">An investigation into why the technological future we were promised never arrived — and what we can do to get it back on track.</div>
+        <div class="book-price">$24</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c9">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Big Score</div>
+          <div class="book-cover-author">Michael S. Malone</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Big Score</a></div>
+        <div class="book-author">Michael S. Malone</div>
+        <div class="book-desc">The definitive history of Silicon Valley — from the first microchip to the rise of the personal computer, told by a journalist who was there.</div>
+        <div class="book-price">$24</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c10">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Scientific Freedom</div>
+          <div class="book-cover-author">Donald W. Braben</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Scientific Freedom</a></div>
+        <div class="book-author">Donald W. Braben</div>
+        <div class="book-desc">A passionate defense of curiosity-driven research and an argument for why bureaucratic science funding is strangling transformative discovery.</div>
+        <div class="book-price">$23</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c11">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Working in Public</div>
+          <div class="book-cover-author">Nadia Eghbal</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Working in Public</a></div>
+        <div class="book-author">Nadia Eghbal</div>
+        <div class="book-desc">An intimate look at the lives of open source developers — how they build and maintain the software infrastructure that the world depends on.</div>
+        <div class="book-price">$22</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c12">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Art of Doing Science and Engineering</div>
+          <div class="book-cover-author">Richard Hamming</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Art of Doing Science and Engineering</a></div>
+        <div class="book-author">Richard W. Hamming</div>
+        <div class="book-desc">A legendary course on how to think about research and problem-solving, from the mathematician who created error-correcting codes.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c13">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Making of Prince of Persia</div>
+          <div class="book-cover-author">Jordan Mechner</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Making of Prince of Persia</a></div>
+        <div class="book-author">Jordan Mechner</div>
+        <div class="book-desc">The unfiltered journals of a young programmer building one of the most influential video games ever made — a creative and technical odyssey.</div>
+        <div class="book-price">$23</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c14">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">An Elegant Puzzle</div>
+          <div class="book-cover-author">Will Larson</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">An Elegant Puzzle</a></div>
+        <div class="book-author">Will Larson</div>
+        <div class="book-desc">Systems thinking for engineering managers — a collection of essays on how to build, scale, and sustain high-functioning engineering organizations.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c15">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Revolt of the Public</div>
+          <div class="book-cover-author">Martin Gurri</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Revolt of the Public</a></div>
+        <div class="book-author">Martin Gurri</div>
+        <div class="book-desc">A prescient analysis of how digital information networks have empowered citizens and destabilized every established institution of authority.</div>
+        <div class="book-price">$35</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c16">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Stubborn Attachments</div>
+          <div class="book-cover-author">Tyler Cowen</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Stubborn Attachments</a></div>
+        <div class="book-author">Tyler Cowen</div>
+        <div class="book-desc">A moral case for prioritizing long-run economic growth — arguing that wealth creation is the most powerful tool for improving human well-being.</div>
+        <div class="book-price">$17</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c17">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">The Dream Machine</div>
+          <div class="book-cover-author">M. Mitchell Waldrop</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">The Dream Machine</a></div>
+        <div class="book-author">M. Mitchell Waldrop</div>
+        <div class="book-desc">The biography of J.C.R. Licklider — the visionary psychologist-turned-computer scientist who first imagined the personal computer and the internet.</div>
+        <div class="book-price">$22</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c18">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">Get Together</div>
+          <div class="book-cover-author">Bailey Richardson et al.</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">Get Together</a></div>
+        <div class="book-author">Bailey Richardson, Kevin Huynh, Kai Elmer Sotto</div>
+        <div class="book-desc">A practical guide for building communities that people love — with lessons drawn from hundreds of thriving communities around the world.</div>
+        <div class="book-price">$23</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-cover cover-c19">
+        <div class="book-cover-inner">
+          <div class="book-cover-title">High Growth Handbook</div>
+          <div class="book-cover-author">Elad Gil</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-title"><a href="#">High Growth Handbook</a></div>
+        <div class="book-author">Elad Gil</div>
+        <div class="book-desc">Tactical advice on scaling startups from 10 to 10,000 employees — covering fundraising, hiring, managing a board, and building executive teams.</div>
+        <div class="book-price">$20</div>
+        <div class="buy-links">
+          <a class="buy-btn" href="#">Bookshop</a>
+          <a class="buy-btn" href="#">Amazon</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FILM ────────────────────────────────────────────────── -->
+<section class="film-section">
+  <div class="film-inner">
+    <div class="film-visual">
+      <div class="film-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+      </div>
+    </div>
+    <div class="film-text">
+      <p class="section-label">Film</p>
+      <h2 class="film-title"><em>We Are As Gods</em></h2>
+      <p class="film-desc">A documentary about Stewart Brand — the man behind the Whole Earth Catalog and one of the most influential thinkers of the last half century. The film explores Brand's lifelong conviction that technology and human ingenuity are the best tools for addressing our greatest challenges.</p>
+      <div class="film-meta">
+        <p>Directed by David Alvarado &amp; Jason Sussberg</p>
+        <p>Music by Brian Eno</p>
+        <p>Runtime: 96 minutes</p>
+      </div>
+      <a class="cta-btn" href="#">Request a screening</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PODCAST ─────────────────────────────────────────────── -->
+<section class="podcast-section">
+  <div class="podcast-header">
+    <p class="section-label">Podcast</p>
+    <h2 class="podcast-title">Beneath the Surface</h2>
+    <p class="podcast-subtitle">Conversations with the people building the infrastructure that the world runs on — payments, energy, logistics, and more.</p>
+  </div>
+
+  <div class="episodes-list">
+
+    <div class="episode">
+      <div class="episode-num">01</div>
+      <div>
+        <div class="episode-title">The Hidden Plumbing of Commerce</div>
+        <div class="episode-desc">A conversation about the invisible systems that move money around the world — and why they're harder to change than anyone expects.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">02</div>
+      <div>
+        <div class="episode-title">Building the Electrical Grid for a New Era</div>
+        <div class="episode-desc">How the electrical grid was built, why it's so fragile, and what it will take to make it reliable enough for a electrified future.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">03</div>
+      <div>
+        <div class="episode-title">The Containership That Changed Everything</div>
+        <div class="episode-desc">The story of how a single innovation — the standardized shipping container — rewired the global economy in a generation.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">04</div>
+      <div>
+        <div class="episode-title">Why Bridges Take So Long to Build</div>
+        <div class="episode-desc">A deep dive into the regulatory, financial, and engineering barriers that make infrastructure projects in the US take decades to complete.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">05</div>
+      <div>
+        <div class="episode-title">Water: The Infrastructure Crisis No One Talks About</div>
+        <div class="episode-desc">America's water infrastructure is crumbling. A look at the engineering challenges, political failures, and potential solutions.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">06</div>
+      <div>
+        <div class="episode-title">Satellites and the New Space Economy</div>
+        <div class="episode-desc">How low-earth orbit satellites are becoming critical infrastructure — for navigation, communication, and an increasingly connected world.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+    <div class="episode">
+      <div class="episode-num">07</div>
+      <div>
+        <div class="episode-title">The Internet's Physical Layer</div>
+        <div class="episode-desc">Thousands of miles of undersea cables carry the world's data. The story of the people who build and maintain them.</div>
+      </div>
+      <a class="episode-listen" href="#">Listen</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ──────────────────────────────────────────── -->
+<section class="newsletter-section">
+  <div class="newsletter-text">
+    <h2>Stay in touch</h2>
+    <p>Get notified about new books, films, and conversations from Stripe Press.</p>
+  </div>
+  <form class="newsletter-form" onsubmit="return false;">
+    <input type="email" placeholder="you@example.com"/>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      &copy; 2024 Stripe Press &mdash;
+      <a href="#">Privacy</a> &middot;
+      <a href="#">Cookie settings</a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+      <a href="#">press@stripe.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
