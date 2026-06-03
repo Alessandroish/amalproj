@@ -41,10 +41,9 @@ html { scroll-behavior: smooth; }
   transition: transform 1.9s cubic-bezier(.7, 0, .2, 1),
               box-shadow 1.9s ease;
 }
-#opening .door.left  { left: 0;  transform-origin: left center;
-  box-shadow: inset -1px 0 0 var(--border); }
-#opening .door.right { right: 0; transform-origin: right center;
-  box-shadow: inset  1px 0 0 var(--border); }
+/* во время печати — чистый фон без шва (тени появятся только при распахивании) */
+#opening .door.left  { left: 0;  transform-origin: left center; }
+#opening .door.right { right: 0; transform-origin: right center; }
 
 /* распахивание в 3D */
 #opening.open .door.left  { transform: rotateY(108deg); box-shadow: 40px 0 80px rgba(0,0,0,.12); }
