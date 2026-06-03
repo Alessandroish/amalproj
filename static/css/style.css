@@ -197,9 +197,7 @@ nav {
   transition: transform .45s cubic-bezier(.5,0,.2,1), padding .35s ease;
   will-change: transform;
 }
-/* шапка прячется при скролле вниз, появляется при скролле вверх */
-nav.nav-hidden { transform: translateY(-100%); }
-/* чуть компактнее после прокрутки */
+/* шапка всегда видна, лишь чуть уплотняется после прокрутки */
 nav.nav-scrolled { padding-top: 1rem; padding-bottom: 1rem; }
 .logo {
   font-size: .9rem;

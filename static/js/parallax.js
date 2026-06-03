@@ -76,20 +76,10 @@ if (navToggle) {
     }));
 }
 
-/* ── ДВИЖУЩАЯСЯ ШАПКА: прячется вниз, показывается вверх ── */
+/* ── ШАПКА: всегда видна, лишь чуть уплотняется после прокрутки ── */
 const navEl = document.querySelector('nav');
-let lastNavY = window.scrollY;
 window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  navEl.classList.toggle('nav-scrolled', y > 40);
-  if (document.body.classList.contains('menu-open') || y < 80) {
-    navEl.classList.remove('nav-hidden');           // у верха или меню открыто — видна
-  } else if (y > lastNavY + 6) {
-    navEl.classList.add('nav-hidden');              // скролл вниз — прячем
-  } else if (y < lastNavY - 6) {
-    navEl.classList.remove('nav-hidden');           // скролл вверх — показываем
-  }
-  lastNavY = y;
+  navEl.classList.toggle('nav-scrolled', window.scrollY > 40);
 }, { passive: true });
 
 /* ── CUSTOM CURSOR ── */
