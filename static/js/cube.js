@@ -6,8 +6,8 @@ import * as THREE from "three";
 import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
-const hero = document.getElementById("hero");
-if (hero) {
+const container = document.querySelector("[data-cube]");
+if (container) {
   let renderer, scene, camera, canvas;
   const dummy = new THREE.Object3D();
   const rows = [];
@@ -16,7 +16,7 @@ if (hero) {
   let velX = 0, velY = 0;    // инерция после перетаскивания
 
   const sizes = () => {
-    const w = hero.clientWidth, h = hero.clientHeight;
+    const w = container.clientWidth, h = container.clientHeight;
     return { w, h, aspect: w / h, pr: Math.min(window.devicePixelRatio, 2) };
   };
 
@@ -30,7 +30,7 @@ if (hero) {
     renderer.setSize(s.w, s.h);
     canvas = renderer.domElement;
     canvas.className = "cube-canvas";
-    hero.appendChild(canvas);
+    container.appendChild(canvas);
     scene = new THREE.Scene();
   }
 
@@ -95,7 +95,7 @@ if (hero) {
   function addCubes() {
     rows.forEach((r) => rubiksCube.add(r));
     scene.add(rubiksCube);
-    rubiksCube.position.x = -3.2;   // сдвиг вправо от центра (текст слева/по центру)
+    rubiksCube.position.x = 0;   // по центру страницы
   }
 
   function render() {
@@ -129,8 +129,9 @@ if (hero) {
       if (!dragging) return;
       const p = e.touches ? e.touches[0] : e;
       const dx = p.clientX - px, dy = p.clientY - py;
-      velY = dx * 0.006;            // горизонталь → поворот вокруг Y
-      velX = dy * 0.006;            // вертикаль → поворот вокруг X
+      // без инверсии: кубик крутится в ту же сторону, что и движение
+      velY = -dx * 0.006;           // тащишь вправо → крутится вправо
+      velX = dy * 0.006;            // тащишь вниз → наклон вниз
       rubiksCube.rotation.y += velY;
       rubiksCube.rotation.x += velX;
       px = p.clientX; py = p.clientY;

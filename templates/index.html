@@ -6,17 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=31"/>
-  <!-- Three.js (3D-кубик) -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
-    }
-  }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css?v=32"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -54,6 +44,7 @@
     <li><a href="#skills">Навыки</a></li>
     <li><a href="#projects">Проекты</a></li>
     <li><a href="#contact">Контакт</a></li>
+    <li><a href="/press">3D-куб</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Связаться</a>
   <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
@@ -222,7 +213,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=31"></script>
-<script type="module" src="/static/js/cube.js?v=31"></script>
+<script src="/static/js/parallax.js?v=32"></script>
 </body>
 </html>

@@ -82,6 +82,11 @@ def contact(name: str = Form(""), email: str = Form(""), body: str = Form("")):
 # ═══════════════════════════════════════════════════════════
 #  АВТОРИЗАЦИЯ В АДМИНКУ
 # ═══════════════════════════════════════════════════════════
+@app.get("/press", response_class=HTMLResponse)
+def press(request: Request):
+    return templates.TemplateResponse("press.html", {"request": request})
+
+
 @app.get("/admin/login", response_class=HTMLResponse)
 def login_form(request: Request, error: str = ""):
     if is_authed(request):

@@ -332,27 +332,6 @@ nav ul a:hover::after { width: 100%; }
 .scene3d .tile.far { opacity: .55; }
 .scene3d .tile.mid { opacity: .8; }
 
-/* лёгкое свечение за кубиком */
-#hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(closest-side at 76% 46%,
-              rgba(15,157,110,.10), transparent 70%);
-}
-/* 3D-кубик — фон hero */
-.cube-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-/* текст hero — поверх кубика (не трогаем position у scroll-badge!) */
-#hero .hero-eyebrow,
-#hero .hero-title,
-#hero .hero-bottom { position: relative; z-index: 2; }
-#hero .scroll-badge { z-index: 2; }   /* остаётся absolute + по центру */
 
 /* subtle grid lines */
 #hero::before {
