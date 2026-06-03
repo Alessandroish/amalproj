@@ -90,26 +90,52 @@ function playBell() {
 
     if (ci >= seg.t.length) { si++; ci = 0; }
 
-    // скорость печати (медленнее): паузы на знаках, лёгкая случайность
+    // скорость печати (средняя): паузы на знаках, лёгкая случайность
     const last = span.textContent.slice(-1);
-    const delay = /[.,»]/.test(last) ? 420 : 95 + Math.random() * 70;
+    const delay = /[.,»]/.test(last) ? 240 : 55 + Math.random() * 45;
     setTimeout(type, delay);
   }
 
   function finish() {
-    // 1. пауза, чтобы прочитать текст + звоночек «возврат каретки»
+    playBell();
+    // 1. пауза, затем текст уезжает вправо
     setTimeout(() => {
-      overlay.classList.add('prep');               // лёгкий 3D-«вдох» текста
-      playBell();
-      // 2. панель с текстом откидывается вверх в 3D, открывая первую страницу
+      overlay.classList.add('text-out');
+      // 2. появляется линия-загрузка с процентами
       setTimeout(() => {
-        overlay.classList.add('flip');
-        document.body.classList.add('site-enter');  // hero делает dolly-settle
-        document.body.classList.remove('intro-lock');
-        window.scrollTo(0, 0);
-        setTimeout(() => overlay.remove(), 1600);
-      }, 480);
-    }, 650);
+        overlay.classList.add('loading');
+        runLoader(() => {
+          // 3. загрузка готова — прячем её
+          overlay.classList.remove('loading');
+          // 4. по центру появляется зелёная линия-стык
+          setTimeout(() => {
+            overlay.classList.add('seam-on');
+            // 5. двери разъезжаются со свечением, открывая сайт
+            setTimeout(() => {
+              overlay.classList.add('doors-open');
+              document.body.classList.add('site-enter');
+              document.body.classList.remove('intro-lock');
+              window.scrollTo(0, 0);
+              setTimeout(() => overlay.remove(), 1300);
+            }, 520);
+          }, 260);
+        });
+      }, 650);
+    }, 450);
+  }
+
+  // имитация загрузки: заполнение линии 0 → 100% с процентами
+  function runLoader(done) {
+    const fill = overlay.querySelector('.load-fill');
+    const pct  = overlay.querySelector('.load-pct');
+    let p = 0;
+    const timer = setInterval(() => {
+      p += Math.random() * 9 + 4;
+      if (p >= 100) { p = 100; clearInterval(timer); }
+      if (fill) fill.style.width = p + '%';
+      if (pct)  pct.textContent = Math.floor(p) + '%';
+      if (p >= 100) setTimeout(done, 380);
+    }, 95);
   }
 
   setTimeout(type, 400);

@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=25"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=26"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -14,12 +14,17 @@
   data-intro-middle="{{ s.intro_middle }}"
   data-intro-specialty="{{ s.intro_specialty }}">
 
-<!-- INTRO — печать на чистом фоне, затем 3D-откидывание панели -->
+<!-- INTRO — печать → загрузка → раздвижные двери -->
 <div id="opening">
-  <div class="opening-panel">
-    <div class="opening-content">
-      <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
-    </div>
+  <div class="door left"></div>
+  <div class="door right"></div>
+  <div class="seam"></div>
+  <div class="opening-content">
+    <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+  </div>
+  <div class="load-wrap">
+    <div class="load-bar"><div class="load-fill"></div></div>
+    <div class="load-pct">0%</div>
   </div>
 </div>
 
@@ -222,6 +227,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=25"></script>
+<script src="/static/js/parallax.js?v=26"></script>
 </body>
 </html>

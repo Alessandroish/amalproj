@@ -19,50 +19,91 @@
 html { scroll-behavior: smooth; }
 
 /* ══════════════════════════════
-   INTRO — печать на чистом фоне, затем 3D-откидывание панели
+   INTRO — печать → загрузка → раздвижные двери со свечением
 ══════════════════════════════ */
 #opening {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  perspective: 1500px;
-  perspective-origin: 50% 0%;
   pointer-events: none;
+  overflow: hidden;
 }
 
-/* панель с текстом — закрывает экран, потом откидывается вверх в 3D */
-.opening-panel {
+/* две створки (светлый фон), вместе закрывают экран; в конце разъезжаются */
+.door {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50.5%;
+  background: var(--bg);
+  will-change: transform;
+  transition: transform 1.15s cubic-bezier(.76,0,.24,1), box-shadow 1.15s ease;
+}
+.door.left  { left: 0; }
+.door.right { right: 0; }
+#opening.doors-open .door.left  { transform: translateX(-100%); box-shadow: 36px 0 70px rgba(15,157,110,.28); }
+#opening.doors-open .door.right { transform: translateX(100%);  box-shadow: -36px 0 70px rgba(15,157,110,.28); }
+
+/* зелёная светящаяся линия-стык по центру */
+.seam {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px; height: 0;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(var(--blue), var(--blue-2));
+  box-shadow: 0 0 20px 3px rgba(15,157,110,.6);
+  transition: height .5s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+  z-index: 5;
+}
+#opening.seam-on .seam { height: 82vh; }
+#opening.doors-open .seam { opacity: 0; }
+
+/* слой с текстом */
+.opening-content {
   position: absolute;
   inset: 0;
-  background: var(--bg);
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-origin: center top;
-  backface-visibility: hidden;
-  will-change: transform, opacity;
-  transition: transform 1.3s cubic-bezier(.7,0,.2,1), opacity .9s ease .25s;
+  padding: 2rem;
+  transition: transform .7s cubic-bezier(.7,0,.2,1), opacity .5s ease;
 }
-/* после печати панель откидывается вверх (как поднимающаяся крышка) */
-#opening.flip .opening-panel {
-  transform: rotateX(-93deg) translateZ(50px);
+/* текст уезжает вправо */
+#opening.text-out .opening-content {
+  transform: translateX(65vw);
   opacity: 0;
 }
 
-/* текст заставки */
-.opening-content {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
+/* линия-загрузка с процентами */
+.load-wrap {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scaleX(.4);
+  width: min(440px, 72vw);
+  z-index: 4;
+  opacity: 0;
+  transition: opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1);
+}
+#opening.loading .load-wrap { opacity: 1; transform: translate(-50%, -50%) scaleX(1); }
+.load-bar {
+  height: 2px;
+  background: rgba(0,0,0,.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.load-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-2));
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(15,157,110,.5);
+}
+.load-pct {
+  margin-top: .9rem;
   text-align: center;
-}
-/* лёгкий 3D-«вдох» текста перед откидыванием */
-#opening.prep .opening-content {
-  animation: introPop .5s ease forwards;
-}
-@keyframes introPop {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.06); }
+  font-size: .72rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 #intro-text {
