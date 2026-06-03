@@ -177,6 +177,38 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+/* ── SCROLL PROGRESS BAR ── */
+const progress = document.getElementById('progress');
+function updateProgress() {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const p = h > 0 ? window.scrollY / h : 0;
+  if (progress) progress.style.transform = `scaleX(${p})`;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+/* ── ANIMATED SECTION LABEL UNDERLINE ── */
+const labelObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible-label'); labelObs.unobserve(e.target); }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('section').forEach(sec => {
+  if (sec.querySelector('.section-label')) labelObs.observe(sec);
+});
+
+/* ── 3D TILT карточек проектов ── */
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width  - 0.5;
+    const py = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.transform =
+      `translateY(-6px) rotateX(${-py * 7}deg) rotateY(${px * 7}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
 /* ── HERO CHAR SPLIT + появление ── */
 document.querySelectorAll('.split-chars').forEach(el => {
   const html = [...el.textContent].map((ch, i) =>
