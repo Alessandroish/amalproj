@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=19"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=20"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -14,13 +14,9 @@
   data-intro-middle="{{ s.intro_middle }}"
   data-intro-specialty="{{ s.intro_specialty }}">
 
-<!-- INTRO — 3D-портал с печатающимся текстом -->
+<!-- INTRO — печать на чистом фоне, затем 3D-откидывание панели -->
 <div id="opening">
-  <div class="opening-stage">
-    <div class="o-ring r1"></div>
-    <div class="o-ring r2"></div>
-    <div class="o-ring r3"></div>
-    <div class="o-core"></div>
+  <div class="opening-panel">
     <div class="opening-content">
       <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
     </div>
@@ -212,6 +208,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=19"></script>
+<script src="/static/js/parallax.js?v=20"></script>
 </body>
 </html>

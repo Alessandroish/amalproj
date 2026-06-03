@@ -1,10 +1,58 @@
 /* ══════════════════════════════════
+   ЗВУК ПЕЧАТНОЙ МАШИНКИ (Web Audio, без файлов)
+══════════════════════════════════ */
+let _audioCtx = null;
+function getAudio() {
+  if (!_audioCtx) {
+    try { _audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    catch (e) { return null; }
+  }
+  if (_audioCtx.state === 'suspended') _audioCtx.resume();
+  return _audioCtx;
+}
+// аудио в браузере разблокируется только после действия пользователя
+['pointerdown','keydown','mousemove','touchstart','click'].forEach(ev =>
+  window.addEventListener(ev, getAudio, { once: true }));
+
+// щелчок клавиши — короткий отфильтрованный шум
+function playKey() {
+  const ctx = _audioCtx;
+  if (!ctx || ctx.state !== 'running') return;
+  const t = ctx.currentTime, dur = 0.035;
+  const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++)
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 2.5);
+  const src = ctx.createBufferSource(); src.buffer = buf;
+  const bp = ctx.createBiquadFilter(); bp.type = 'bandpass';
+  bp.frequency.value = 1500 + Math.random() * 900; bp.Q.value = 0.9;
+  const g = ctx.createGain(); g.gain.value = 0.16;
+  src.connect(bp); bp.connect(g); g.connect(ctx.destination);
+  src.start(t); src.stop(t + dur);
+}
+
+// звоночек «возврат каретки» в конце строки
+function playBell() {
+  const ctx = getAudio();
+  if (!ctx || ctx.state !== 'running') return;
+  const t = ctx.currentTime;
+  const osc = ctx.createOscillator(); osc.type = 'sine'; osc.frequency.value = 1180;
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.22, t + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+  osc.connect(g); g.connect(ctx.destination);
+  osc.start(t); osc.stop(t + 0.5);
+}
+
+/* ══════════════════════════════════
    INTRO — печатающийся текст при заходе
 ══════════════════════════════════ */
 (function intro() {
   const overlay = document.getElementById('opening');
   const typed   = document.getElementById('intro-typed');
   if (!overlay || !typed) return;
+  getAudio();  // попытка разблокировать аудио сразу
 
   document.body.classList.add('intro-lock');
   window.scrollTo(0, 0);
@@ -31,8 +79,10 @@
       typed.appendChild(span);
     }
 
-    span.textContent += seg.t[ci];
+    const ch = seg.t[ci];
+    span.textContent += ch;
     ci++;
+    if (ch !== ' ') playKey();   // звук клавиши на каждый символ
 
     if (ci >= seg.t.length) { si++; ci = 0; }
 
@@ -43,16 +93,19 @@
   }
 
   function finish() {
-    // 1. пауза, чтобы прочитать текст
+    // 1. пауза, чтобы прочитать текст + звоночек «возврат каретки»
     setTimeout(() => {
-      // 2. вся 3D-сцена улетает сквозь экран к зрителю, открывая первую страницу
-      overlay.classList.add('zoom');
-      document.body.classList.add('site-enter');   // hero делает dolly-settle
-      document.body.classList.remove('intro-lock');
-      window.scrollTo(0, 0);
-      // 3. убираем портал после полёта
-      setTimeout(() => overlay.remove(), 1500);
-    }, 700);
+      overlay.classList.add('prep');               // лёгкий 3D-«вдох» текста
+      playBell();
+      // 2. панель с текстом откидывается вверх в 3D, открывая первую страницу
+      setTimeout(() => {
+        overlay.classList.add('flip');
+        document.body.classList.add('site-enter');  // hero делает dolly-settle
+        document.body.classList.remove('intro-lock');
+        window.scrollTo(0, 0);
+        setTimeout(() => overlay.remove(), 1600);
+      }, 480);
+    }, 650);
   }
 
   setTimeout(type, 400);
