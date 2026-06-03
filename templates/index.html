@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=23"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=24"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -36,15 +36,16 @@
 <!-- NAV -->
 <nav>
   <div class="logo">{{ s.logo }}</div>
-  <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
   <ul id="nav-menu">
     <li><a href="#about">Обо мне</a></li>
     <li><a href="#skills">Навыки</a></li>
     <li><a href="#projects">Проекты</a></li>
     <li><a href="#contact">Контакт</a></li>
   </ul>
+  <a href="#contact" class="nav-cta">Связаться</a>
+  <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -221,6 +222,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=23"></script>
+<script src="/static/js/parallax.js?v=24"></script>
 </body>
 </html>
