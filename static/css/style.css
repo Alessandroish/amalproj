@@ -937,6 +937,7 @@ footer p { font-size: .7rem; color: var(--muted); letter-spacing: .06em; }
    AURORA — мягкие плавающие пятна на фоне
 ══════════════════════════════ */
 .aurora {
+  display: none;   /* зелёное фоновое свечение убрано */
   position: fixed;
   inset: 0;
   z-index: 0;
