@@ -19,114 +19,68 @@
 html { scroll-behavior: smooth; }
 
 /* ══════════════════════════════
-   INTRO — печать → загрузка → раздвижные двери со свечением
+   INTRO — ретро CRT-загрузка (в стиле edh.dev / Commodore)
 ══════════════════════════════ */
-#opening {
+#boot {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* две створки (светлый фон), вместе закрывают экран; в конце разъезжаются */
-.door {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 50.5%;
-  background: var(--bg);
-  will-change: transform;
-  transition: transform 1.15s cubic-bezier(.76,0,.24,1), box-shadow 1.15s ease;
-}
-.door.left  { left: 0; }
-.door.right { right: 0; }
-#opening.doors-open .door.left  { transform: translateX(-100%); box-shadow: 36px 0 70px rgba(15,157,110,.28); }
-#opening.doors-open .door.right { transform: translateX(100%);  box-shadow: -36px 0 70px rgba(15,157,110,.28); }
-
-/* зелёная светящаяся линия-стык по центру */
-.seam {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 2px; height: 0;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(var(--blue), var(--blue-2));
-  box-shadow: 0 0 20px 3px rgba(15,157,110,.6);
-  transition: height .5s cubic-bezier(.22,1,.36,1), opacity .4s ease;
-  z-index: 5;
-}
-#opening.seam-on .seam { height: 82vh; }
-#opening.doors-open .seam { opacity: 0; }
-
-/* слой с текстом (колонка: текст → линия → проценты) */
-.opening-content {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
+  background: #07120c;                 /* тёмный экран CRT */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2.2rem;
-  padding: 2rem;
-  transition: opacity .5s ease;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 9vh 8vw;
+  overflow: hidden;
+  font-family: "Courier New", ui-monospace, monospace;
+  transform-origin: center center;
 }
-/* в конце текст с линией исчезают перед открытием дверей */
-#opening.text-fade .opening-content { opacity: 0; }
+#boot-log {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #46ff9b;                       /* фосфорно-зелёный */
+  font-size: clamp(12px, 2.3vw, 19px);
+  line-height: 1.65;
+  letter-spacing: .04em;
+  white-space: pre-wrap;
+  text-shadow: 0 0 6px rgba(70,255,155,.55);
+}
+#boot-cursor {
+  color: #46ff9b;
+  text-shadow: 0 0 6px rgba(70,255,155,.7);
+  animation: bootBlink 1s steps(1) infinite;
+}
+@keyframes bootBlink { 50% { opacity: 0; } }
 
-/* линия-загрузка: растёт в длину с каждым процентом (из точки) */
-.load-line {
-  width: min(620px, 84vw);
-  height: 5px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, var(--blue), var(--blue-2));
-  box-shadow: 0 0 16px rgba(15,157,110,.55);
-  transform: scaleX(0);
-  transform-origin: left center;
-  opacity: 0;
-  transition: opacity .4s ease;
+/* CRT-развёртка (тонкие строки) */
+#boot::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 2; pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.28) 2px 4px);
 }
-.load-pct {
-  font-size: .8rem;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0;
-  transition: opacity .4s ease;
+/* виньетка + мерцание экрана */
+#boot::after {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: 3; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(0,0,0,.6) 100%);
+  animation: crtFlicker .12s infinite;
 }
-#opening.loading .load-line,
-#opening.loading .load-pct { opacity: 1; }
+@keyframes crtFlicker { 0%{opacity:.92} 50%{opacity:1} 100%{opacity:.96} }
 
-#intro-text {
-  font-size: clamp(1.4rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  line-height: 1.3;
-  max-width: 900px;
-  text-align: center;
-  color: var(--fg);
-}
-#intro-typed .accent { color: var(--blue); }
-#intro-caret {
-  display: inline-block;
-  color: var(--blue);
-  font-weight: 400;
-  margin-left: 2px;
-  animation: caretBlink .8s step-end infinite;
-}
-@keyframes caretBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+/* выключение CRT: схлопывание в линию, затем в точку */
+#boot.off { animation: crtOff .6s ease forwards; }
+@keyframes crtOff {
+  0%   { transform: scale(1, 1);     opacity: 1; filter: brightness(1); }
+  45%  { transform: scale(1, .015);  opacity: 1; filter: brightness(2.6); }
+  70%  { transform: scale(.5, .008); opacity: 1; filter: brightness(3); }
+  100% { transform: scale(0, .002);  opacity: 0; filter: brightness(4); }
 }
 
 /* блокируем скролл, пока идёт заставка */
 body.intro-lock { overflow: hidden; }
-
-/* hero «выезжает» из глубины при появлении сайта (dolly) */
-body.site-enter #hero { animation: heroDolly 1.4s cubic-bezier(.2,.7,.2,1); }
-@keyframes heroDolly {
-  0%   { transform: scale(1.09); filter: blur(7px); opacity: .35; }
-  100% { transform: scale(1);    filter: blur(0);   opacity: 1; }
-}
 
 /* custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }

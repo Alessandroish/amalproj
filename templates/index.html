@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=32"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=33"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -14,17 +14,8 @@
   data-intro-middle="{{ s.intro_middle }}"
   data-intro-specialty="{{ s.intro_specialty }}">
 
-<!-- INTRO — печать → загрузка → раздвижные двери -->
-<div id="opening">
-  <div class="door left"></div>
-  <div class="door right"></div>
-  <div class="seam"></div>
-  <div class="opening-content">
-    <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
-    <div class="load-line"></div>
-    <div class="load-pct">0%</div>
-  </div>
-</div>
+<!-- INTRO — ретро CRT-загрузка (в стиле edh.dev) -->
+<div id="boot"><pre id="boot-log"></pre></div>
 
 <!-- AURORA BACKGROUND -->
 <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
@@ -213,6 +204,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js?v=32"></script>
+<script src="/static/js/parallax.js?v=33"></script>
 </body>
 </html>

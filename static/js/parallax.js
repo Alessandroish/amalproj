@@ -14,128 +14,75 @@ function getAudio() {
 ['pointerdown','keydown','mousemove','touchstart','click'].forEach(ev =>
   window.addEventListener(ev, getAudio, { once: true }));
 
-// мягкий «тук» клавиши — глухой шум с плавной атакой (не резкий)
-function playKey() {
+// короткий ретро-бип (квадратная волна) — звук старого компьютера
+function blip(freq) {
   const ctx = _audioCtx;
   if (!ctx || ctx.state !== 'running') return;
-  const t = ctx.currentTime, dur = 0.07;
-  const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
-  const data = buf.getChannelData(0);
-  for (let i = 0; i < data.length; i++)
-    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
-  const src = ctx.createBufferSource(); src.buffer = buf;
-  // низкочастотный фильтр убирает резкие верха
-  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass';
-  lp.frequency.value = 850 + Math.random() * 250; lp.Q.value = 0.6;
+  const t = ctx.currentTime, dur = 0.05;
+  const osc = ctx.createOscillator(); osc.type = 'square';
+  osc.frequency.value = freq || 520;
   const g = ctx.createGain();
   g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.09, t + 0.008);  // плавная атака
-  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);  // мягкий спад
-  src.connect(lp); lp.connect(g); g.connect(ctx.destination);
-  src.start(t); src.stop(t + dur);
-}
-
-// звоночек «возврат каретки» в конце строки
-function playBell() {
-  const ctx = getAudio();
-  if (!ctx || ctx.state !== 'running') return;
-  const t = ctx.currentTime;
-  const osc = ctx.createOscillator(); osc.type = 'sine'; osc.frequency.value = 1180;
-  const g = ctx.createGain();
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.15, t + 0.012);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
+  g.gain.exponentialRampToValueAtTime(0.05, t + 0.004);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
   osc.connect(g); g.connect(ctx.destination);
-  osc.start(t); osc.stop(t + 0.5);
+  osc.start(t); osc.stop(t + dur);
 }
 
 /* ══════════════════════════════════
-   INTRO — печатающийся текст при заходе
+   INTRO — ретро-загрузка CRT (в стиле edh.dev / Commodore PET)
 ══════════════════════════════════ */
-(function intro() {
-  const overlay = document.getElementById('opening');
-  const typed   = document.getElementById('intro-typed');
-  if (!overlay || !typed) return;
-  getAudio();  // попытка разблокировать аудио сразу
+(function boot() {
+  const overlay = document.getElementById('boot');
+  const log = document.getElementById('boot-log');
+  if (!overlay || !log) return;
+  getAudio();
 
   document.body.classList.add('intro-lock');
   window.scrollTo(0, 0);
 
-  // сегменты берутся из data-атрибутов body (задаются в админке)
-  const d = document.body.dataset;
-  const segments = [
-    { t: d.introGreeting  || 'Привет, я ' },
-    { t: d.introName      || 'Амаль', accent: true },
-    { t: d.introMiddle    || ', учусь на специальности ' },
-    { t: d.introSpecialty || '«Торговое дело»', accent: true },
-    { t: '.' },   // точка в конце — из неё «вырастает» линия загрузки
+  const cursor = document.createElement('span');
+  cursor.id = 'boot-cursor';
+  cursor.textContent = '█';   // блок-курсор
+
+  const lines = [
+    '*** AMALPROJ SYSTEM v1.0 ***',
+    'COMMODORE-STYLE BOOT LOADER',
+    '64K RAM SYSTEM',
+    '',
+    'MEMORY TEST ........ 65536 BYTES OK',
+    'LOADING KERNEL ............... DONE',
+    'MOUNTING MODULES ............. DONE',
+    'CHECKING DISK ................ DONE',
+    '',
+    'BOOTING ...',
+    'STARTING ...',
+    'READY.',
   ];
 
-  let si = 0, ci = 0;
-  let span = null;
-
-  function type() {
-    if (si >= segments.length) { finish(); return; }
-    const seg = segments[si];
-
-    if (ci === 0) {
-      span = document.createElement('span');
-      if (seg.accent) span.className = 'accent';
-      typed.appendChild(span);
+  let i = 0;
+  function printLine() {
+    if (i >= lines.length) {
+      log.appendChild(cursor);
+      setTimeout(powerOff, 850);
+      return;
     }
-
-    const ch = seg.t[ci];
-    span.textContent += ch;
-    ci++;
-    if (ch !== ' ') playKey();   // звук клавиши на каждый символ
-
-    if (ci >= seg.t.length) { si++; ci = 0; }
-
-    // скорость печати (средняя): паузы на знаках, лёгкая случайность
-    const last = span.textContent.slice(-1);
-    const delay = /[.,»]/.test(last) ? 240 : 55 + Math.random() * 45;
-    setTimeout(type, delay);
+    log.textContent += lines[i] + '\n';
+    if (lines[i]) blip(480 + Math.random() * 160);
+    const empty = lines[i] === '';
+    i++;
+    setTimeout(printLine, empty ? 110 : 300 + Math.random() * 220);
   }
 
-  function finish() {
-    playBell();
-    // 1. пауза после точки → из неё начинает расти линия-загрузка
-    setTimeout(() => {
-      overlay.classList.add('loading');
-      runLoader(() => {
-        // 2. загрузка готова — текст с линией плавно исчезают
-        overlay.classList.add('text-fade');
-        // 3. по центру появляется зелёная светящаяся линия-стык
-        setTimeout(() => {
-          overlay.classList.add('seam-on');
-          // 4. двери разъезжаются со свечением, открывая сайт
-          setTimeout(() => {
-            overlay.classList.add('doors-open');
-            document.body.classList.add('site-enter');
-            document.body.classList.remove('intro-lock');
-            window.scrollTo(0, 0);
-            setTimeout(() => overlay.remove(), 1300);
-          }, 540);
-        }, 450);
-      });
-    }, 550);
+  function powerOff() {
+    // выключение монитора → открывается сайт
+    overlay.classList.add('off');
+    document.body.classList.remove('intro-lock');
+    window.scrollTo(0, 0);
+    setTimeout(() => overlay.remove(), 1000);
   }
 
-  // загрузка: линия растёт в длину 0 → 100% (медленно), с процентами
-  function runLoader(done) {
-    const line = overlay.querySelector('.load-line');
-    const pct  = overlay.querySelector('.load-pct');
-    let p = 0;
-    const timer = setInterval(() => {
-      p += Math.random() * 4 + 1.8;          // мелкие шаги → медленнее
-      if (p >= 100) { p = 100; clearInterval(timer); }
-      if (line) line.style.transform = `scaleX(${(p / 100).toFixed(3)})`;
-      if (pct)  pct.textContent = Math.floor(p) + '%';
-      if (p >= 100) setTimeout(done, 500);
-    }, 110);
-  }
-
-  setTimeout(type, 400);
+  setTimeout(printLine, 500);
 })();
 
 /* ── МОБИЛЬНОЕ МЕНЮ (бургер) ── */
