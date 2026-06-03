@@ -57,54 +57,44 @@ html { scroll-behavior: smooth; }
 #opening.seam-on .seam { height: 82vh; }
 #opening.doors-open .seam { opacity: 0; }
 
-/* слой с текстом */
+/* слой с текстом (колонка: текст → линия → проценты) */
 .opening-content {
   position: absolute;
   inset: 0;
   z-index: 4;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2.2rem;
   padding: 2rem;
-  transition: transform .7s cubic-bezier(.7,0,.2,1), opacity .5s ease;
+  transition: opacity .5s ease;
 }
-/* текст уезжает вправо */
-#opening.text-out .opening-content {
-  transform: translateX(65vw);
-  opacity: 0;
-}
+/* в конце текст с линией исчезают перед открытием дверей */
+#opening.text-fade .opening-content { opacity: 0; }
 
-/* линия-загрузка с процентами */
-.load-wrap {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scaleX(.4);
-  width: min(440px, 72vw);
-  z-index: 4;
-  opacity: 0;
-  transition: opacity .45s ease, transform .6s cubic-bezier(.22,1,.36,1);
-}
-#opening.loading .load-wrap { opacity: 1; transform: translate(-50%, -50%) scaleX(1); }
-.load-bar {
-  height: 2px;
-  background: rgba(0,0,0,.08);
+/* линия-загрузка: растёт в длину с каждым процентом (из точки) */
+.load-line {
+  width: min(620px, 84vw);
+  height: 5px;
   border-radius: 9999px;
-  overflow: hidden;
-}
-.load-fill {
-  height: 100%; width: 0%;
   background: linear-gradient(90deg, var(--blue), var(--blue-2));
-  border-radius: 9999px;
-  box-shadow: 0 0 12px rgba(15,157,110,.5);
+  box-shadow: 0 0 16px rgba(15,157,110,.55);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity .4s ease;
 }
 .load-pct {
-  margin-top: .9rem;
-  text-align: center;
-  font-size: .72rem;
+  font-size: .8rem;
   letter-spacing: .25em;
   text-transform: uppercase;
   color: var(--muted);
+  opacity: 0;
+  transition: opacity .4s ease;
 }
+#opening.loading .load-line,
+#opening.loading .load-pct { opacity: 1; }
 
 #intro-text {
   font-size: clamp(1.4rem, 4vw, 3rem);
@@ -211,12 +201,13 @@ nav {
   gap: 1rem;
   padding: .55rem .6rem .55rem 1.6rem;
   border-radius: 9999px;
-  background: rgba(255,255,255,.5);
-  backdrop-filter: blur(22px) saturate(190%);
-  -webkit-backdrop-filter: blur(22px) saturate(190%);
-  border: 1px solid rgba(255,255,255,.65);
-  box-shadow: 0 10px 35px rgba(20,40,30,.10),
-              inset 0 1px 0 rgba(255,255,255,.75);
+  /* матовое жидкое стекло (iOS): плотнее, не прозрачная */
+  background: rgba(248,249,247,.78);
+  backdrop-filter: blur(28px) saturate(135%);
+  -webkit-backdrop-filter: blur(28px) saturate(135%);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 10px 35px rgba(20,40,30,.12),
+              inset 0 1px 0 rgba(255,255,255,.85);
   transition: padding .35s ease, box-shadow .35s ease, max-width .4s ease;
   will-change: transform;
 }

@@ -68,6 +68,7 @@ function playBell() {
     { t: d.introName      || 'Амаль', accent: true },
     { t: d.introMiddle    || ', учусь на специальности ' },
     { t: d.introSpecialty || '«Торговое дело»', accent: true },
+    { t: '.' },   // точка в конце — из неё «вырастает» линия загрузки
   ];
 
   let si = 0, ci = 0;
@@ -98,44 +99,40 @@ function playBell() {
 
   function finish() {
     playBell();
-    // 1. пауза, затем текст уезжает вправо
+    // 1. пауза после точки → из неё начинает расти линия-загрузка
     setTimeout(() => {
-      overlay.classList.add('text-out');
-      // 2. появляется линия-загрузка с процентами
-      setTimeout(() => {
-        overlay.classList.add('loading');
-        runLoader(() => {
-          // 3. загрузка готова — прячем её
-          overlay.classList.remove('loading');
-          // 4. по центру появляется зелёная линия-стык
+      overlay.classList.add('loading');
+      runLoader(() => {
+        // 2. загрузка готова — текст с линией плавно исчезают
+        overlay.classList.add('text-fade');
+        // 3. по центру появляется зелёная светящаяся линия-стык
+        setTimeout(() => {
+          overlay.classList.add('seam-on');
+          // 4. двери разъезжаются со свечением, открывая сайт
           setTimeout(() => {
-            overlay.classList.add('seam-on');
-            // 5. двери разъезжаются со свечением, открывая сайт
-            setTimeout(() => {
-              overlay.classList.add('doors-open');
-              document.body.classList.add('site-enter');
-              document.body.classList.remove('intro-lock');
-              window.scrollTo(0, 0);
-              setTimeout(() => overlay.remove(), 1300);
-            }, 520);
-          }, 260);
-        });
-      }, 650);
-    }, 450);
+            overlay.classList.add('doors-open');
+            document.body.classList.add('site-enter');
+            document.body.classList.remove('intro-lock');
+            window.scrollTo(0, 0);
+            setTimeout(() => overlay.remove(), 1300);
+          }, 540);
+        }, 450);
+      });
+    }, 550);
   }
 
-  // имитация загрузки: заполнение линии 0 → 100% с процентами
+  // загрузка: линия растёт в длину 0 → 100% (медленно), с процентами
   function runLoader(done) {
-    const fill = overlay.querySelector('.load-fill');
+    const line = overlay.querySelector('.load-line');
     const pct  = overlay.querySelector('.load-pct');
     let p = 0;
     const timer = setInterval(() => {
-      p += Math.random() * 9 + 4;
+      p += Math.random() * 4 + 1.8;          // мелкие шаги → медленнее
       if (p >= 100) { p = 100; clearInterval(timer); }
-      if (fill) fill.style.width = p + '%';
+      if (line) line.style.transform = `scaleX(${(p / 100).toFixed(3)})`;
       if (pct)  pct.textContent = Math.floor(p) + '%';
-      if (p >= 100) setTimeout(done, 380);
-    }, 95);
+      if (p >= 100) setTimeout(done, 500);
+    }, 110);
   }
 
   setTimeout(type, 400);
