@@ -95,7 +95,7 @@ body {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   background: var(--bg);
   color: var(--fg);
-  overflow-x: hidden;
+  overflow-x: clip;   /* clip (не hidden) — иначе ломается position: sticky */
 }
 
 /* ── глобальный CRT-эффект: скан-линии + виньетка поверх всего ── */
@@ -156,14 +156,14 @@ body.cursor-click #cursor-dot { transform: translate(-50%,-50%) scale(.5); }
 ══════════════════════════════ */
 /* плавающая «пилюля» (как lunchbox.io) в liquid glass */
 nav {
-  /* absolute → шапка прокручивается ВМЕСТЕ со страницей (не залипает) */
-  position: absolute;
+  position: fixed;
   top: 1.1rem;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 2.4rem);
   max-width: 1160px;
   z-index: 500;
+  transition: transform .45s cubic-bezier(.5,0,.2,1), opacity .35s ease;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -175,6 +175,12 @@ nav {
   box-shadow: 0 0 0 1px rgba(70,255,155,.05),
               0 10px 30px rgba(0,0,0,.4),
               inset 0 0 18px rgba(70,255,155,.05);
+}
+/* спрятанная шапка (уезжает вверх) */
+nav.nav-away {
+  transform: translateX(-50%) translateY(-170%);
+  opacity: 0;
+  pointer-events: none;
 }
 .logo {
   flex-shrink: 0;
@@ -975,6 +981,34 @@ footer p { font-size: .7rem; color: var(--muted); letter-spacing: .06em; }
 }
 /* контент над авророй */
 section, .marquee-wrap, footer { position: relative; z-index: 1; }
+
+/* ══════════════════════════════
+   СТЕК-ПЕРЕХОД: секции накладываются друг на друга при скролле
+   (как колода карт / страницы книги — каждая «восходит» поверх предыдущей)
+══════════════════════════════ */
+#hero, #about, #skills, #projects, #contact {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+/* секции после hero — «карты» с краем и тенью сверху, накладываются непрозрачно */
+#about, #skills, #projects, #contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -26px 60px rgba(0,0,0,.6),
+              0 -1px 0 rgba(70,255,155,.18);
+}
+/* непрозрачные фоны + порядок наложения (каждая следующая выше) */
+#hero     { background: var(--bg); z-index: 1; }
+#about    { background: #0a1810;  z-index: 2; }
+#skills   { background: #07140d;  z-index: 3; }
+#projects { background: #0a1810;  z-index: 4; }
+#contact  { background: #07140d;  z-index: 5; }
+/* подвал — поверх последней секции, обычным потоком */
+footer { position: relative; z-index: 6; background: var(--bg); }
 
 /* ══════════════════════════════
    SCROLL PROGRESS BAR

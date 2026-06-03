@@ -100,11 +100,24 @@ if (navToggle) {
     }));
 }
 
-/* ── ШАПКА: всегда видна, лишь чуть уплотняется после прокрутки ── */
+/* ── ШАПКА: видна вверху и на последней секции, прячется между ── */
 const navEl = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  navEl.classList.toggle('nav-scrolled', window.scrollY > 40);
-}, { passive: true });
+const lastSection = document.getElementById('contact');
+let lastVisible = false;
+if (lastSection) {
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { lastVisible = e.isIntersecting; });
+    updateNav();
+  }, { threshold: 0.12 }).observe(lastSection);
+}
+function updateNav() {
+  // показываем у самого верха ИЛИ когда видна последняя секция (контакты)
+  const atTop = window.scrollY < window.innerHeight * 0.55;
+  const show = atTop || lastVisible || document.body.classList.contains('menu-open');
+  navEl.classList.toggle('nav-away', !show);
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
 /* ── CUSTOM CURSOR ── */
 const dot  = document.getElementById('cursor-dot');
@@ -372,40 +385,8 @@ document.querySelectorAll('.btn-primary').forEach(btn => {
   btn.addEventListener('mouseleave', () => btn.style.transform = '');
 });
 
-/* ══════════════════════════════════
-   PAGE RISE — плавный подъём каждой секции при скролле.
-   Непрерывный переход между всеми экранами: следующая страница
-   всплывает снизу, слегка увеличиваясь и проявляясь.
-══════════════════════════════════ */
-const risePages = [
-  document.getElementById('crow-section'),
-  document.getElementById('about'),
-  document.getElementById('skills'),
-  document.getElementById('projects'),
-  document.getElementById('contact'),
-].filter(Boolean);
-
-function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-function risePagesUpdate() {
-  const vh = window.innerHeight;
-  risePages.forEach(sec => {
-    const rect = sec.getBoundingClientRect();
-    // окно появления — средняя скорость: ~0.55 экрана прокрутки.
-    // старт, когда верх секции на 0.92 экрана; финиш — на 0.35 экрана.
-    let p = (vh * 0.92 - rect.top) / (vh * 0.55);
-    p = Math.max(0, Math.min(1, p));
-    const e = easeOutCubic(p);
-    const ty    = (1 - e) * 70;          // всплывает снизу на 70px
-    const scale = 0.92 + e * 0.08;       // 0.92 → 1
-    sec.style.transform = `translateY(${ty}px) scale(${scale})`;
-    sec.style.opacity   = e;
-  });
-}
-
-window.addEventListener('scroll', risePagesUpdate, { passive: true });
-window.addEventListener('resize', risePagesUpdate);
-risePagesUpdate();
+/* Стек-переход секций реализован чисто на CSS (position: sticky),
+   старый JS-«подъём» отключён, чтобы не конфликтовать с наложением. */
 
 /* ══════════════════════════════════
    CROW ANIMATION
