@@ -38,8 +38,8 @@ html { scroll-behavior: smooth; }
     linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 1.25s cubic-bezier(.76, 0, .24, 1),
-              box-shadow 1.25s ease;
+  transition: transform 1.9s cubic-bezier(.7, 0, .2, 1),
+              box-shadow 1.9s ease;
 }
 #opening .door.left  { left: 0;  transform-origin: left center;
   box-shadow: inset -1px 0 0 var(--border); }
@@ -63,6 +63,28 @@ html { scroll-behavior: smooth; }
 }
 #opening.seam-on .seam { height: 78vh; }
 #opening.open .seam    { opacity: 0; }
+
+/* вспышка света из стыка в момент открытия */
+#opening .flash {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px; height: 100vh;
+  transform: translate(-50%, -50%) scaleX(.2);
+  background: radial-gradient(ellipse 50% 50% at center,
+              rgba(255,255,255,.95) 0%,
+              rgba(20,201,138,.45) 38%,
+              transparent 72%);
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+#opening.open .flash { animation: flashBloom 1.2s ease-out forwards; }
+@keyframes flashBloom {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scaleX(.2); }
+  18%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scaleX(70); }
+}
 
 /* текст заставки поверх дверей */
 .opening-content {

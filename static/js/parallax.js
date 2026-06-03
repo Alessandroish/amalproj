@@ -47,14 +47,14 @@
     setTimeout(() => {
       // 2. по центру прочерчивается светящаяся линия-стык, текст гаснет
       overlay.classList.add('seam-on');
-      // 3. створки распахиваются в 3D, открывая первую страницу
+      // 3. створки медленно распахиваются в 3D + вспышка света
       setTimeout(() => {
         overlay.classList.add('open');
         document.body.classList.remove('intro-lock');
         window.scrollTo(0, 0);
-        // 4. убираем двери из потока после анимации
-        setTimeout(() => overlay.remove(), 1400);
-      }, 750);
+        // 4. убираем двери из потока после завершения распахивания (1.9s)
+        setTimeout(() => overlay.remove(), 2100);
+      }, 850);
     }, 700);
   }
 
