@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=13"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -14,13 +14,15 @@
   data-intro-middle="{{ s.intro_middle }}"
   data-intro-specialty="{{ s.intro_specialty }}">
 
-<!-- INTRO TYPING OVERLAY -->
-<div id="intro">
-  <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+<!-- INTRO — раздвижные 3D-двери с печатающимся текстом -->
+<div id="opening">
+  <div class="door left"></div>
+  <div class="door right"></div>
+  <div class="seam"></div>
+  <div class="opening-content">
+    <p id="intro-text"><span id="intro-typed"></span><span id="intro-caret">|</span></p>
+  </div>
 </div>
-
-<!-- INTRO COVER PANEL -->
-<div id="intro-cover"><span class="cover-logo">{{ s.logo }}</span></div>
 
 <!-- AURORA BACKGROUND -->
 <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
@@ -207,6 +209,6 @@
   <p>{{ s.footer_right }}</p>
 </footer>
 
-<script src="/static/js/parallax.js"></script>
+<script src="/static/js/parallax.js?v=13"></script>
 </body>
 </html>

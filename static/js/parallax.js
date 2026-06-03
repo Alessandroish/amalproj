@@ -2,7 +2,7 @@
    INTRO — печатающийся текст при заходе
 ══════════════════════════════════ */
 (function intro() {
-  const overlay = document.getElementById('intro');
+  const overlay = document.getElementById('opening');
   const typed   = document.getElementById('intro-typed');
   if (!overlay || !typed) return;
 
@@ -43,23 +43,19 @@
   }
 
   function finish() {
-    const cover = document.getElementById('intro-cover');
     // 1. пауза, чтобы прочитать текст
     setTimeout(() => {
-      // 2. синяя панель въезжает снизу, закрывая текст
-      cover.classList.add('in');
-      // 3. как только панель закрыла экран — прячем текст под ней
+      // 2. по центру прочерчивается светящаяся линия-стык, текст гаснет
+      overlay.classList.add('seam-on');
+      // 3. створки распахиваются в 3D, открывая первую страницу
       setTimeout(() => {
-        overlay.remove();
+        overlay.classList.add('open');
         document.body.classList.remove('intro-lock');
         window.scrollTo(0, 0);
-        // 4. панель уезжает вверх, открывая первую страницу
-        cover.classList.remove('in');
-        cover.classList.add('out');
-        // 5. убираем панель из потока
-        setTimeout(() => cover.remove(), 800);
-      }, 850);
-    }, 800);
+        // 4. убираем двери из потока после анимации
+        setTimeout(() => overlay.remove(), 1400);
+      }, 750);
+    }, 700);
   }
 
   setTimeout(type, 400);

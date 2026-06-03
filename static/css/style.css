@@ -19,23 +19,64 @@
 html { scroll-behavior: smooth; }
 
 /* ══════════════════════════════
-   INTRO TYPING OVERLAY
+   INTRO — раздвижные 3D-двери
 ══════════════════════════════ */
-#intro {
+#opening {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: var(--bg);
+  perspective: 1800px;
+  pointer-events: none;
+}
+
+/* две створки, вместе закрывают экран */
+#opening .door {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50.2%;
+  background:
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: transform 1.25s cubic-bezier(.76, 0, .24, 1),
+              box-shadow 1.25s ease;
+}
+#opening .door.left  { left: 0;  transform-origin: left center;
+  box-shadow: inset -1px 0 0 var(--border); }
+#opening .door.right { right: 0; transform-origin: right center;
+  box-shadow: inset  1px 0 0 var(--border); }
+
+/* распахивание в 3D */
+#opening.open .door.left  { transform: rotateY(108deg); box-shadow: 40px 0 80px rgba(0,0,0,.12); }
+#opening.open .door.right { transform: rotateY(-108deg); box-shadow: -40px 0 80px rgba(0,0,0,.12); }
+
+/* светящаяся линия-стык по центру */
+#opening .seam {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px; height: 0;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(var(--blue), var(--blue-2));
+  box-shadow: 0 0 18px 2px rgba(15,157,110,.55);
+  transition: height .55s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+  z-index: 3;
+}
+#opening.seam-on .seam { height: 78vh; }
+#opening.open .seam    { opacity: 0; }
+
+/* текст заставки поверх дверей */
+.opening-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  transition: opacity .8s ease, visibility .8s ease;
+  transition: opacity .5s ease, transform .8s ease;
 }
-#intro.hide {
-  opacity: 0;
-  visibility: hidden;
-}
+#opening.seam-on .opening-content { opacity: 0; transform: scale(.96); }
+
 #intro-text {
   font-size: clamp(1.4rem, 4vw, 3rem);
   font-weight: 700;
@@ -56,35 +97,6 @@ html { scroll-behavior: smooth; }
 @keyframes caretBlink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
-}
-
-/* панель-перекрытие, которая закрывает текст и уезжает вверх */
-#intro-cover {
-  position: fixed;
-  inset: 0;
-  z-index: 10001;
-  background: var(--blue);
-  transform: translateY(100%);
-  transition: transform .75s cubic-bezier(.76, 0, .24, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#intro-cover.in  { transform: translateY(0); }
-#intro-cover.out { transform: translateY(-100%); }
-
-#intro-cover .cover-logo {
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -.03em;
-  color: #fff;
-  opacity: 0;
-  transform: scale(.85);
-  transition: opacity .4s ease, transform .5s ease;
-}
-#intro-cover.in .cover-logo {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* блокируем скролл, пока идёт заставка */
