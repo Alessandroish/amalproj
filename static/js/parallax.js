@@ -14,20 +14,24 @@ function getAudio() {
 ['pointerdown','keydown','mousemove','touchstart','click'].forEach(ev =>
   window.addEventListener(ev, getAudio, { once: true }));
 
-// щелчок клавиши — короткий отфильтрованный шум
+// мягкий «тук» клавиши — глухой шум с плавной атакой (не резкий)
 function playKey() {
   const ctx = _audioCtx;
   if (!ctx || ctx.state !== 'running') return;
-  const t = ctx.currentTime, dur = 0.035;
+  const t = ctx.currentTime, dur = 0.07;
   const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
   const data = buf.getChannelData(0);
   for (let i = 0; i < data.length; i++)
-    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 2.5);
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
   const src = ctx.createBufferSource(); src.buffer = buf;
-  const bp = ctx.createBiquadFilter(); bp.type = 'bandpass';
-  bp.frequency.value = 1500 + Math.random() * 900; bp.Q.value = 0.9;
-  const g = ctx.createGain(); g.gain.value = 0.16;
-  src.connect(bp); bp.connect(g); g.connect(ctx.destination);
+  // низкочастотный фильтр убирает резкие верха
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass';
+  lp.frequency.value = 850 + Math.random() * 250; lp.Q.value = 0.6;
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.09, t + 0.008);  // плавная атака
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);  // мягкий спад
+  src.connect(lp); lp.connect(g); g.connect(ctx.destination);
   src.start(t); src.stop(t + dur);
 }
 
@@ -39,8 +43,8 @@ function playBell() {
   const osc = ctx.createOscillator(); osc.type = 'sine'; osc.frequency.value = 1180;
   const g = ctx.createGain();
   g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.22, t + 0.01);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+  g.gain.exponentialRampToValueAtTime(0.15, t + 0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
   osc.connect(g); g.connect(ctx.destination);
   osc.start(t); osc.stop(t + 0.5);
 }
@@ -86,9 +90,9 @@ function playBell() {
 
     if (ci >= seg.t.length) { si++; ci = 0; }
 
-    // скорость печати: чуть медленнее на знаках для естественности
+    // скорость печати (медленнее): паузы на знаках, лёгкая случайность
     const last = span.textContent.slice(-1);
-    const delay = /[.,»]/.test(last) ? 170 : 34 + Math.random() * 30;
+    const delay = /[.,»]/.test(last) ? 420 : 95 + Math.random() * 70;
     setTimeout(type, delay);
   }
 
