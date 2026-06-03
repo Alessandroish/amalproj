@@ -208,7 +208,9 @@ document.addEventListener('mousemove', e => {
       const scale = 1 + f * MAX_SCALE;        // ближе → больше
       const lift  = -f * 10;                  // лёгкий подъём
       ch.style.transform = `translateY(${lift}px) scale(${scale})`;
-      ch.style.color = f > 0.55 ? 'var(--blue)' : '';
+      // синие буквы («цифровые») у курсора становятся белыми, остальные — синими
+      const isBlue = ch.closest('.blue') !== null;
+      ch.style.color = f > 0.55 ? (isBlue ? 'var(--fg)' : 'var(--blue)') : '';
     } else {
       ch.style.transform = '';
       ch.style.color = '';
