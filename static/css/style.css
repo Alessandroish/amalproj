@@ -201,13 +201,13 @@ nav {
   gap: 1rem;
   padding: .55rem .6rem .55rem 1.6rem;
   border-radius: 9999px;
-  /* матовое жидкое стекло (iOS): плотнее, не прозрачная */
-  background: rgba(248,249,247,.78);
-  backdrop-filter: blur(28px) saturate(135%);
-  -webkit-backdrop-filter: blur(28px) saturate(135%);
-  border: 1px solid rgba(255,255,255,.7);
+  /* матовое жидкое стекло (iOS): плотный молочный фон, почти не прозрачная */
+  background: rgba(252,253,251,.92);
+  backdrop-filter: blur(30px) saturate(130%);
+  -webkit-backdrop-filter: blur(30px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.8);
   box-shadow: 0 10px 35px rgba(20,40,30,.12),
-              inset 0 1px 0 rgba(255,255,255,.85);
+              inset 0 1px 0 rgba(255,255,255,.9);
   transition: padding .35s ease, box-shadow .35s ease, max-width .4s ease;
   will-change: transform;
 }
@@ -332,14 +332,14 @@ nav ul a:hover::after { width: 100%; }
 .scene3d .tile.far { opacity: .55; }
 .scene3d .tile.mid { opacity: .8; }
 
-/* мягкая подложка под кубик — чтобы белый кубик читался на светлом фоне */
+/* лёгкое свечение за кубиком */
 #hero::after {
   content: '';
   position: absolute; inset: 0;
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(closest-side at 76% 46%,
-              rgba(15,157,110,.12), rgba(0,0,0,.05) 45%, transparent 72%);
+              rgba(15,157,110,.10), transparent 70%);
 }
 /* 3D-кубик — фон hero */
 .cube-canvas {
@@ -348,11 +348,11 @@ nav ul a:hover::after { width: 100%; }
   z-index: 1;
   pointer-events: none;
 }
-/* текст hero — поверх кубика */
+/* текст hero — поверх кубика (не трогаем position у scroll-badge!) */
 #hero .hero-eyebrow,
 #hero .hero-title,
-#hero .hero-bottom,
-#hero .scroll-badge { position: relative; z-index: 2; }
+#hero .hero-bottom { position: relative; z-index: 2; }
+#hero .scroll-badge { z-index: 2; }   /* остаётся absolute + по центру */
 
 /* subtle grid lines */
 #hero::before {

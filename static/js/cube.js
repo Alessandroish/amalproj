@@ -57,15 +57,15 @@ if (hero) {
 
   function generateCubeInstances() {
     const geo = new RoundedBoxGeometry(1, 1, 1);
-    // БЕЛЫЙ перламутрово-глянцевый материал (противоположность чёрному оригиналу)
+    // ЧЁРНЫЙ глянцевый материал с переливами (как в оригинале resend.com)
     const mat = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      roughness: 0.12,
-      metalness: 0.85,
+      color: 0x0a0a0a,
+      roughness: 0.1,
+      metalness: 0.9,
       iridescence: 1,
-      iridescenceIOR: 1.3,
+      iridescenceIOR: 1.35,
       clearcoat: 1,
-      clearcoatRoughness: 0.15,
+      clearcoatRoughness: 0.12,
     });
     for (let i = 0; i < 3; i++) {
       const m = new THREE.InstancedMesh(geo, mat, 9);
