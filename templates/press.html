@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>3D-куб · amalproj</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <!-- Three.js -->
   <script type="importmap">
   {
@@ -19,23 +19,30 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #f6f6f3; --fg: #16181d; --muted: #82858f;
-      --blue: #0f9d6e; --blue-2: #14c98a;
+      --bg: #07120c; --fg: #54ff97; --muted: #3f9e6c;
+      --blue: #46ff9b; --blue-2: #9bffcb;
     }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
       background: var(--bg);
       color: var(--fg);
       min-height: 100vh;
       overflow: hidden;
     }
 
-    /* мягкое свечение по центру за кубом */
+    /* свечение за кубом (чтобы чёрный куб читался на тёмном) */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: radial-gradient(closest-side at 50% 50%,
-                  rgba(15,157,110,.10), transparent 65%);
+                  rgba(70,255,155,.18), transparent 62%);
+    }
+    /* CRT скан-линии */
+    body .crt {
+      position: fixed; inset: 0; z-index: 50; pointer-events: none;
+      background:
+        repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,20,8,.16) 2px 4px),
+        radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,.45) 100%);
     }
 
     /* контейнер для куба на весь экран */
@@ -51,20 +58,18 @@
       z-index: 10;
       display: flex; align-items: center; justify-content: space-between;
       padding: .7rem .7rem .7rem 1.6rem;
-      border-radius: 9999px;
-      background: rgba(252,253,251,.92);
-      backdrop-filter: blur(30px) saturate(130%);
-      -webkit-backdrop-filter: blur(30px) saturate(130%);
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: 0 10px 35px rgba(20,40,30,.12), inset 0 1px 0 rgba(255,255,255,.9);
+      border-radius: 12px;
+      background: rgba(13,28,19,.88);
+      border: 1px solid var(--border, rgba(70,255,155,.26));
+      box-shadow: 0 10px 30px rgba(0,0,0,.4), inset 0 0 18px rgba(70,255,155,.05);
     }
     nav .logo { font-size: .9rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
     nav a.back {
-      padding: .62rem 1.4rem; border-radius: 9999px;
+      padding: .62rem 1.4rem; border-radius: 8px;
       background: linear-gradient(135deg, var(--blue), var(--blue-2));
-      color: #fff; text-decoration: none;
-      font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-      box-shadow: 0 4px 14px rgba(15,157,110,.3);
+      color: #062012; text-decoration: none;
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(70,255,155,.35);
       transition: transform .2s, box-shadow .25s, filter .2s;
     }
     nav a.back:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(15,157,110,.45); filter: brightness(1.06); }
@@ -103,6 +108,7 @@
 
   <!-- сюда рендерится куб -->
   <div class="cube-stage" data-cube></div>
+  <div class="crt"></div>
 
   <div class="stage-caption">
     <h1>Покрути <span>куб</span></h1>
