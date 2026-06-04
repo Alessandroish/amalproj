@@ -100,23 +100,21 @@ if (navToggle) {
     }));
 }
 
-/* ── ШАПКА: видна вверху и на последней секции, прячется между ── */
+/* ── ШАПКА: видна вверху и на последней секции (контакты), прячется между ──
+   Определяем по позиции скролла относительно низа документа — надёжно
+   при sticky-вёрстке (IntersectionObserver срабатывал бы слишком рано). */
 const navEl = document.querySelector('nav');
-const lastSection = document.getElementById('contact');
-let lastVisible = false;
-if (lastSection) {
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => { lastVisible = e.isIntersecting; });
-    updateNav();
-  }, { threshold: 0.12 }).observe(lastSection);
-}
 function updateNav() {
-  // показываем у самого верха ИЛИ когда видна последняя секция (контакты)
-  const atTop = window.scrollY < window.innerHeight * 0.55;
-  const show = atTop || lastVisible || document.body.classList.contains('menu-open');
+  const vh = window.innerHeight;
+  const docH = document.documentElement.scrollHeight;
+  const atTop = window.scrollY < vh * 0.5;               // первый экран
+  // нижняя кромка вьюпорта вошла в зону последней секции
+  const nearBottom = (window.scrollY + vh) > (docH - vh * 1.1);
+  const show = atTop || nearBottom || document.body.classList.contains('menu-open');
   navEl.classList.toggle('nav-away', !show);
 }
 window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('resize', updateNav);
 updateNav();
 
 /* ── CUSTOM CURSOR ── */
