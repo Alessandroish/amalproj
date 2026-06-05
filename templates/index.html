@@ -6,7 +6,7 @@
   <title>{{ s.logo }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/static/css/style.css?v=37"/>
+  <link rel="stylesheet" href="/static/css/style.css?v=39"/>
 </head>
 <body
   data-intro-greeting="{{ s.intro_greeting }}"
@@ -144,13 +144,21 @@
 <!-- SKILLS -->
 <section id="skills">
   <p class="section-label">02 — Навыки</p>
-  <div class="skills-list">
-    {% for sk in skills %}
-    <div class="skill-row reveal{% if loop.index0 % 4 %} reveal-delay-{{ loop.index0 % 4 }}{% endif %}">
-      <div class="skill-row-left"><span class="skill-idx">{{ sk.idx }}</span><span class="skill-name">{{ sk.name }}</span></div>
-      <div class="skill-tags">{% for t in sk.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+  <div class="dc-wrapper">
+    <div class="dc-stack">
+      {% for sk in skills %}
+      <div class="dc-card" style="--i:{{ loop.index0 }}">
+        <div class="dc-top">
+          <span class="dc-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <p class="dc-title">{{ sk.name }}</p>
+        </div>
+        <p class="dc-desc">{% for t in sk.tags %}{{ t }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+        <p class="dc-date">{{ sk.idx }}</p>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </section>
 
