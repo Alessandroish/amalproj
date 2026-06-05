@@ -68,7 +68,7 @@ def index(request: Request):
             "marquee":  [m.strip() for m in
                          db.get_settings(s).get("marquee", "").split(",") if m.strip()],
         }
-    return templates.TemplateResponse("index.html", ctx)
+    return templates.TemplateResponse(request, "index.html", ctx)
 
 
 @app.post("/contact")
@@ -88,8 +88,8 @@ def contact(name: str = Form(""), email: str = Form(""), body: str = Form("")):
 def login_form(request: Request, error: str = ""):
     if is_authed(request):
         return RedirectResponse("/admin", status_code=303)
-    return templates.TemplateResponse("admin/login.html",
-                                      {"request": request, "error": error})
+    return templates.TemplateResponse(request, "admin/login.html",
+                                      {"error": error})
 
 
 @app.post("/admin/login")
@@ -126,8 +126,8 @@ def admin_dashboard(request: Request):
             "messages": len(db.get_messages(s)),
             "unread":   unread,
         }
-    return templates.TemplateResponse("admin/dashboard.html",
-                                      {"request": request, "counts": counts})
+    return templates.TemplateResponse(request, "admin/dashboard.html",
+                                      {"counts": counts})
 
 
 # ── Контент (настройки) ──────────────────────────────────
@@ -144,8 +144,8 @@ def admin_content(request: Request, saved: int = 0):
         groups[gkey]["fields"].append(
             {"key": key, "label": label, "type": ftype, "value": values.get(key, "")})
     return templates.TemplateResponse(
-        "admin/content.html",
-        {"request": request, "groups": groups, "saved": saved})
+        request, "admin/content.html",
+        {"groups": groups, "saved": saved})
 
 
 @app.post("/admin/content")
@@ -172,8 +172,8 @@ def admin_projects(request: Request):
         return r
     with db.SessionLocal() as s:
         projects = db.get_projects(s)
-    return templates.TemplateResponse("admin/projects.html",
-                                      {"request": request, "projects": projects})
+    return templates.TemplateResponse(request, "admin/projects.html",
+                                      {"projects": projects})
 
 
 @app.post("/admin/projects/save")
@@ -213,8 +213,8 @@ def admin_skills(request: Request):
         return r
     with db.SessionLocal() as s:
         skills = db.get_skills(s)
-    return templates.TemplateResponse("admin/skills.html",
-                                      {"request": request, "skills": skills})
+    return templates.TemplateResponse(request, "admin/skills.html",
+                                      {"skills": skills})
 
 
 @app.post("/admin/skills/save")
@@ -257,8 +257,8 @@ def admin_messages(request: Request):
             m.is_read = True
         s.commit()
         messages = db.get_messages(s)
-    return templates.TemplateResponse("admin/messages.html",
-                                      {"request": request, "messages": messages})
+    return templates.TemplateResponse(request, "admin/messages.html",
+                                      {"messages": messages})
 
 
 @app.post("/admin/messages/delete")
