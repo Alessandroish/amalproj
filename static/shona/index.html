@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Для Шоны</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marck+Script&family=Great+Vibes&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: тихий, нежный, личный — как записка, которую кладут под подушку
+   IDEA: запечатанный конверт, который в полночь открывается с салютом; прокрутка ныряет внутрь письма
+   PICTURE: большой конверт с сургучной печатью-сердцем; потом полароиды на нитке
+   COLOUR and TYPE: румяно-розовый фон, сливовые чернила, печать цвета розы; Marck Script, Cormorant, Nunito
+   LAYOUT: экран ожидания → салют → погружение в письмо → приветствие → «Наш год» → письмо → финал */
+:root{color-scheme:light;--bg:#f7e4e3;--bg2:#f1d4d4;--bg3:#e6c3c4;--ink:#4b2533;--mute:#8a5c67;--paper:#fffaf8;--sheet:#fffaf5;--vign:rgba(170,110,100,.10);--env:#efc9c9;--env2:#e4b4b6;--env3:#f6d9d8;--rose:#b5475a;--rose55:rgba(181,71,90,.55);--rose30:rgba(181,71,90,.3);--rose18:rgba(181,71,90,.18);--line:#d9a8ad}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#24131b;--bg2:#2e1822;--bg3:#1d0f16;--ink:#f6e0e2;--mute:#c9a3ab;--paper:#3a2430;--sheet:#34202a;--vign:rgba(0,0,0,.25);--env:#5a3343;--env2:#4a2836;--env3:#6a3d4f;--rose:#e0748a;--rose55:rgba(224,116,138,.55);--rose30:rgba(224,116,138,.3);--rose18:rgba(224,116,138,.18);--line:#6b4252}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#24131b;--bg2:#2e1822;--bg3:#1d0f16;--ink:#f6e0e2;--mute:#c9a3ab;--paper:#3a2430;--sheet:#34202a;--vign:rgba(0,0,0,.25);--env:#5a3343;--env2:#4a2836;--env3:#6a3d4f;--rose:#e0748a;--rose55:rgba(224,116,138,.55);--rose30:rgba(224,116,138,.3);--rose18:rgba(224,116,138,.18);--line:#6b4252}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Nunito",system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(40px,6vw,88px) max(5vw,18px)}
+.wrap{max-width:1040px;margin:0 auto}
+h2{font:600 clamp(34px,5vw,50px)/1.05 "Cormorant Garamond",Georgia,serif;margin:0 0 8px;text-wrap:balance;text-align:center}
+.sub{color:var(--mute);text-align:center;margin:0 auto 40px;max-width:34em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+/* вступление: ожидание + погружение */
+#intro{height:100vh;height:100svh;position:relative}
+#intro.tall{height:360vh;height:360svh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;text-align:center;padding:24px 18px;
+ background:radial-gradient(120% 70% at 50% 40%,var(--bg) 40%,var(--bg2))}
+.lay{position:absolute;inset:-50px;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(30px);opacity:.5}
+.front{position:relative}
+.opened .tilt{transition:transform .8s}
+.deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.deco>*{position:absolute}
+.bk{border-radius:50%;background:radial-gradient(circle,var(--rose),transparent 70%)}
+.dh{color:var(--rose)}
+#year,#letter{position:relative}
+.hero>.rv,#year>.wrap,#letter>.paper,.end>.big,.end>.hrt,.end>.back{position:relative;z-index:1}
+.px{justify-self:end;width:100%;max-width:340px}
+.item:nth-child(even) .px{order:2;justify-self:start}
+.spark{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--rose);opacity:0;animation:tw 4s infinite ease-in-out}
+.spark.g{background:#e8b86a}
+@keyframes tw{50%{opacity:.8;transform:scale(1.8)}}
+.fade{transition:opacity .8s}
+.opened .fade{opacity:0;pointer-events:none}
+.date{font:500 italic 20px "Cormorant Garamond",serif;color:var(--mute);margin:0}
+.for{font:400 clamp(44px,9vw,72px)/1 "Marck Script",cursive;margin:4px 0 6px;color:var(--rose)}
+.env{width:min(360px,82vw);height:auto;display:block;margin:6px auto 0;overflow:visible;cursor:pointer;transform-origin:50% 39.3%;filter:drop-shadow(0 18px 24px rgb(120 50 70/.18))}
+.diving .env{filter:none;cursor:default}
+.env .part{opacity:var(--ep,1)}
+.env .flapC{transform-box:fill-box;transform-origin:50% 0;transition:transform .45s .35s ease-in}
+.env .flapO{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .45s .8s ease-out}
+.env .letter{transition:transform 1.1s 1.25s cubic-bezier(.2,.8,.2,1)}
+.env .seal{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s infinite ease-in-out;transition:transform .35s,opacity .35s}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.opened .env .seal{animation:none;transform:scale(1.6);opacity:0}
+.opened .env .flapC{transform:scaleY(0)}
+.opened .env .flapO{transform:scaleY(1)}
+.opened .env .letter{transform:translateY(-92px)}
+.shake{animation:shake .5s}
+@keyframes shake{25%{transform:translateX(-6px) rotate(-1deg)}75%{transform:translateX(6px) rotate(1deg)}}
+.timer{display:flex;justify-content:center;gap:clamp(8px,2.5vw,18px);margin:26px 0 10px}
+.cell{background:var(--paper);border-radius:14px;padding:12px 6px 8px;width:clamp(68px,19vw,92px);box-shadow:0 6px 18px rgb(120 50 70/.10)}
+.cell b{display:block;font:600 clamp(30px,7vw,42px)/1 "Cormorant Garamond",serif;font-variant-numeric:tabular-nums}
+.cell span{font-size:13px;color:var(--mute)}
+.hint{min-height:1.6em;color:var(--mute);margin:6px 0 0;font-style:italic}
+.demo{margin-top:26px;background:none;border:1px dashed var(--line);border-radius:999px;padding:10px 18px;min-height:44px;font-size:14px;color:var(--mute)}
+.cue{position:absolute;left:0;right:0;bottom:max(28px,4vh);margin:0;color:var(--mute);font-style:italic;opacity:0;transition:opacity .8s;pointer-events:none}
+.cue i{display:block;width:22px;height:22px;margin:8px auto 0;border-right:2px solid var(--rose);border-bottom:2px solid var(--rose);transform:rotate(45deg);animation:bob 1.4s infinite}
+@keyframes bob{50%{translate:0 8px}}
+.veil{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none}
+
+/* после письма */
+#open{display:none}
+#open.show{display:block}
+.hero{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:40px 18px;position:relative;cursor:pointer;
+ background:linear-gradient(var(--paper) 0 30%,var(--bg))}
+.hero p{margin:0}
+.hb{font:500 italic clamp(22px,3.6vw,30px) "Cormorant Garamond",serif;color:var(--mute)}
+.name{font:400 clamp(84px,20vw,170px)/1.1 "Marck Script",cursive;margin:6px 0 10px!important;
+ background:linear-gradient(100deg,var(--rose) 30%,#f0b37e 50%,var(--rose) 70%);background-size:250% 100%;
+ -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s infinite linear}
+@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
+.hero .lead{max-width:26em;margin:0 auto!important}
+.tap{font-size:13px;color:var(--mute);margin-top:12px!important}
+.down{display:inline-block;margin-top:28px;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:12px 22px}
+
+/* лента-гирлянда */
+.line{position:relative;display:grid;gap:clamp(28px,4vw,48px);padding:10px 0}
+.line::before,.prog{content:"";position:absolute;left:50%;top:0;width:2px;margin-left:-1px}
+.line::before{bottom:0;background:repeating-linear-gradient(var(--line) 0 8px,transparent 8px 14px)}
+.prog{height:0;background:var(--rose);border-radius:2px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;position:relative}
+.item::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 6px var(--bg);transform:scale(0);transition:transform .5s .3s cubic-bezier(.3,1.8,.5,1)}
+.item.in::after{transform:scale(1)}
+.pol{background:var(--paper);padding:12px 12px 16px;border-radius:4px;box-shadow:0 10px 26px rgb(110 40 60/.14);margin:0;
+ transform:rotate(0) translateY(40px) scale(.92);opacity:0;transition:transform 1s cubic-bezier(.2,.9,.3,1.2),opacity .8s}
+.in .pol{transform:rotate(var(--r));opacity:1}
+.in .pol:hover{transform:rotate(0) scale(1.04)}
+.ph{aspect-ratio:4/3;border-radius:2px;display:grid;place-items:center;background:linear-gradient(135deg,var(--env3),var(--env2));color:var(--mute)}
+.ph svg{width:38px;height:38px;opacity:.6}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.pol .cap{font:400 22px "Marck Script",cursive;margin:10px 4px 0;text-align:center}
+.txt{opacity:0;translate:0 20px;transition:opacity .8s .2s,translate .8s .2s}
+.in .txt{opacity:1;translate:0 0}
+.txt .when{font:600 italic 20px "Cormorant Garamond",serif;color:var(--rose);margin:0}
+.txt h3{font:600 30px/1.1 "Cormorant Garamond",serif;margin:2px 0 8px;text-wrap:balance}
+.txt p{margin:0;max-width:24em}
+.item:nth-child(even) .txt{text-align:right;justify-self:end}
+.item:nth-child(even) .txt p{margin-left:auto}
+.rv{opacity:0;translate:0 24px;transition:opacity .9s,translate .9s}
+.rv.in{opacity:1;translate:0 0}
+
+/* письмо */
+#letter{background:radial-gradient(80% 60% at 50% 40%,var(--bg2),var(--bg3));padding-bottom:clamp(80px,10vw,120px)}
+.paper{max-width:680px;margin:0 auto;position:relative;border-radius:3px;padding:clamp(44px,8vw,84px) clamp(28px,8vw,88px) clamp(56px,9vw,96px);
+ background:
+  radial-gradient(120% 90% at 50% 45%,transparent 55%,var(--vign)),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .28 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+  var(--sheet);
+ box-shadow:0 1px 2px rgb(60 20 30/.08),0 14px 30px rgb(110 40 60/.12),0 44px 90px rgb(110 40 60/.16)}
+.paper::before,.paper::after{content:"";position:absolute;pointer-events:none;border:1px solid var(--rose30)}
+.paper::before{inset:14px}.paper::after{inset:19px;border-width:.5px;border-color:var(--rose18)}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--rose);margin:0 0 26px}
+.orn i{height:1px;width:min(90px,22%);background:linear-gradient(90deg,transparent,currentColor)}
+.orn i:last-child{transform:scaleX(-1)}
+.orn svg{width:16px;height:16px}
+.paper p{margin:0 0 .9em;font:500 clamp(19px,2.3vw,22px)/1.62 "Cormorant Garamond",Georgia,serif;color:var(--ink);text-wrap:pretty}
+.paper .rv:nth-child(2){transition-delay:.25s}.paper .rv:nth-child(3){transition-delay:.5s}.paper .rv:nth-child(4){transition-delay:.75s}
+.paper .rv:nth-child(5){transition-delay:1s}.paper .rv:nth-child(6){transition-delay:1.25s}.paper .rv:nth-child(7){transition-delay:1.5s}.paper .rv:nth-child(8){transition-delay:1.8s}
+.paper .verse{font:500 italic clamp(21px,2.6vw,25px)/1.55 "Cormorant Garamond",Georgia,serif;color:var(--rose);text-align:center;margin:1.4em 0 1.2em;letter-spacing:.01em}
+.paper .verse::before,.paper .verse::after{content:"";display:block;width:56px;height:1px;margin:0 auto .9em;background:var(--rose55)}
+.paper .verse::after{margin:.9em auto 0}
+.wax{position:absolute;left:50%;bottom:-34px;width:72px;height:72px;margin-left:-36px;rotate:-8deg;filter:drop-shadow(0 6px 8px rgb(90 20 40/.3))}
+.paper .hi{font:400 clamp(44px,6vw,56px)/1.1 "Great Vibes","Marck Script",cursive;color:var(--rose);margin-bottom:.35em}
+.paper .sign{font:400 clamp(40px,5.5vw,50px)/1.2 "Great Vibes","Marck Script",cursive;text-align:right;margin:.6em 0 0;color:var(--ink)}
+.end{text-align:center;min-height:70vh;display:grid;place-content:center;position:relative;overflow:hidden}
+.end .big{font:400 clamp(48px,10vw,80px)/1.1 "Marck Script",cursive;color:var(--rose);margin:0}
+.end .hrt{width:64px;height:64px;margin:14px auto 0;display:block;animation:beat 1.8s infinite}
+@keyframes beat{0%,60%,100%{transform:scale(1)}30%{transform:scale(1.14)}}
+.back{display:block;margin:30px auto 0}
+
+/* эффекты */
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:8}
+.petal{position:fixed;top:-30px;width:14px;height:18px;border-radius:70% 0 70% 0;opacity:.75;pointer-events:none;z-index:9;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot));opacity:.2}}
+.fh{position:absolute;bottom:-40px;width:22px;height:22px;pointer-events:none;animation:rise linear forwards}
+@keyframes rise{to{transform:translate(var(--dx),-80vh) rotate(var(--rot));opacity:0}}
+
+@media(max-width:700px){
+ .line::before,.prog{left:14px}
+ .item{grid-template-columns:minmax(0,1fr);gap:16px;padding-left:40px}
+ .item::after{left:14px;top:22px}
+ .px,.item:nth-child(even) .px{order:0;justify-self:start;max-width:100%}
+ .item:nth-child(even) .txt{text-align:left;justify-self:start}
+ .item:nth-child(even) .txt p{margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.pol,.txt{opacity:1!important;translate:0 0!important}}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<section id="intro">
+ <div class="stage" id="stage">
+  <div class="lay" id="far" aria-hidden="true"></div>
+  <div class="lay" id="mid" aria-hidden="true"></div>
+  <div class="front">
+   <div id="head">
+    <p class="date fade">24 декабря · 00:00</p>
+    <p class="for fade">Для Шоны</p>
+   </div>
+   <div class="tilt" id="tilt">
+   <svg class="env" id="env" viewBox="0 -70 320 290" role="img" aria-label="Запечатанный конверт">
+    <rect class="part" x="20" y="60" width="280" height="150" rx="10" style="fill:var(--env2)"/>
+    <polygon class="flapO part" points="20,62 300,62 160,-14" style="fill:var(--env2)"/>
+    <g class="letter">
+     <rect x="42" y="72" width="236" height="128" rx="6" style="fill:var(--paper)"/>
+     <text x="160" y="104" text-anchor="middle" style="font:30px 'Marck Script',cursive;fill:var(--rose)">С днём рождения</text>
+     <rect x="80" y="122" width="160" height="3" rx="1.5" style="fill:var(--line)"/>
+     <rect x="100" y="134" width="120" height="3" rx="1.5" style="fill:var(--line)"/>
+    </g>
+    <g class="part">
+     <path d="M20 70 L160 145 L300 70 V200 a10 10 0 0 1 -10 10 H30 a10 10 0 0 1 -10 -10Z" style="fill:var(--env)"/>
+     <path d="M20 200 L130 128 M300 200 L190 128" style="stroke:var(--env2);stroke-width:2;fill:none"/>
+    </g>
+    <path class="flapC" d="M20 70 a10 10 0 0 1 10 -10 H290 a10 10 0 0 1 10 10 L160 150Z" style="fill:var(--env3)"/>
+    <g class="seal">
+     <circle cx="160" cy="146" r="21" style="fill:var(--rose)"/>
+     <circle cx="160" cy="146" r="16" style="fill:none;stroke:#fff;stroke-opacity:.35;stroke-width:1.5"/>
+     <path d="M160 156 c-9-6-13-10-13-15 a6 6 0 0 1 13-2 a6 6 0 0 1 13 2 c0 5-4 9-13 15z" style="fill:#fff;fill-opacity:.85"/>
+    </g>
+   </svg>
+   </div>
+   <div class="timer fade" aria-label="Обратный отсчёт">
+    <div class="cell"><b id="d">00</b><span id="dl">дней</span></div>
+    <div class="cell"><b id="h">00</b><span id="hl">часов</span></div>
+    <div class="cell"><b id="m">00</b><span id="ml">минут</span></div>
+    <div class="cell"><b id="s">00</b><span id="sl">секунд</span></div>
+   </div>
+   <p class="hint fade" id="hint" aria-live="polite">Кое-что откроется ровно в полночь…</p>
+   <button class="demo fade" id="demo">Посмотреть сюрприз (демо — уберём в финале)</button>
+  </div>
+  <p class="cue" id="cue">Листай вниз — открой письмо<i></i></p>
+  <div class="veil" id="veil"></div>
+ </div>
+</section>
+
+<main id="open">
+ <section class="hero" id="hero">
+  <div class="rv">
+   <p class="hb" data-s="-.35">С днём рождения,</p>
+   <p class="name" data-s="-.22">Шона</p>
+   <p class="lead" data-s="-.1">Я долго ждал этой минуты. Листай дальше — тут немного нашего года.</p>
+   <p class="tap">нажми на экран — будет салют</p>
+   <a class="down" href="#year">Смотреть</a>
+  </div>
+ </section>
+
+ <section class="band" id="year">
+  <div class="wrap">
+   <h2 class="rv">Наш год</h2>
+   <p class="sub rv">Моменты, которые я храню</p>
+   <div class="line" id="line"><div class="prog" id="prog"></div></div>
+  </div>
+ </section>
+
+ <section class="band" id="letter">
+  <div class="paper" data-s="-.06">
+   <div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24"><path d="M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z" fill="currentColor"/></svg><i></i></div>
+   <p class="hi rv">Шона,</p>
+   <p class="rv">я люблю тебя. Очень сильно — сильнее, чем могу говорить словами.</p>
+   <p class="rv">Хочу быть с тобой честным. В последнее время я стал злиться так, как раньше со мной никогда не бывало. Я сам ещё толком не понимаю, как с этим справляться, но я учусь — ради нас.</p>
+   <p class="rv">И одно я знаю точно: никакая злость не меняет главного. Я не хочу, чтобы за ней потерялись наши чувства. Я тебя люблю — и это не утихнет.</p>
+   <p class="rv">Пусть этот год будет для тебя тёплым, лёгким и счастливым. А я буду рядом. Как я люблю говорить:</p>
+   <p class="verse rv">День за днём, за годом год.<br>Солнце греет небосвод.<br>Как твой свет мои мечты,<br>Где есть только я и ты...</p>
+   <p class="sign rv">Твой Амаль</p>
+   <svg class="wax" viewBox="0 0 72 72" aria-hidden="true">
+    <path d="M36 3c6 0 8 4 13 5s10 0 13 5-1 9 1 14 6 8 4 14-7 6-9 11-1 10-6 13-9-1-14 1-7 6-12 5-6-5-11-7-10 1-12-4 2-9 0-14-6-8-4-13 7-6 9-11 0-10 5-13 9 1 14-1 6-5 11-5z" style="fill:var(--rose)"/>
+    <circle cx="36" cy="36" r="21" style="fill:none;stroke:#fff;stroke-opacity:.3;stroke-width:1.5"/>
+    <path d="M36 47c-10-7-14-11-14-16.5a7 7 0 0 1 14-2.5a7 7 0 0 1 14 2.5c0 5.5-4 9.5-14 16.5z" style="fill:#fff;fill-opacity:.82"/>
+   </svg>
+  </div>
+ </section>
+
+ <section class="band end" id="end">
+  <p class="big" data-s="-.18">Люблю тебя</p>
+  <svg class="hrt" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z" style="fill:var(--rose)"/></svg>
+  <button class="demo back" id="back">↺ Начать сначала (демо)</button>
+ </section>
+</main>
+
+<script>
+{
+const TARGET = new Date('2026-12-24T00:00:00+03:00').getTime();
+const DEMO = false;
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+scrollTo(0, 0);
+
+const moments = [
+ {when:'Весна',   title:'Как всё началось', cap:'тот самый день', text:'Тот день, когда я впервые тебя увидел. Тогда я ещё не знал, что всё только начинается.', r:-2},
+ {when:'Весна',   title:'Первое свидание',  cap:'я волновался',   text:'Я переживал больше, чем показывал. А ты просто улыбнулась — и всё стало легко.', r:2},
+ {when:'Лето',    title:'Наша прогулка',    cap:'до рассвета',    text:'Мы гуляли до темноты и говорили обо всём на свете. Мне хотелось, чтобы этот вечер не заканчивался.', r:-1.5},
+ {when:'Лето',    title:'Тот смешной случай', cap:'до слёз',      text:'Мы до сих пор смеёмся, когда вспоминаем. Только ты понимаешь, почему это так смешно.', r:2.5},
+ {when:'Осень',   title:'Самый тёплый день', cap:'просто рядом',  text:'Ничего особенного не случилось — мы просто были вместе. Именно такие дни я люблю больше всего.', r:-2},
+ {when:'Сегодня', title:'Твой день',        cap:'24 декабря',     text:'И вот ты здесь, читаешь это. С днём рождения, моя любимая.', r:1.5}
+];
+const HEART = 'M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z';
+const $ = id => document.getElementById(id);
+$('line').insertAdjacentHTML('beforeend', moments.map((m, i) => `
+ <div class="item">
+  <div class="px" data-s="${i % 2 ? .07 : -.05}"><figure class="pol" style="--r:${m.r}deg">
+   <div class="ph">${m.img ? `<img src="${m.img}" alt="">` : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${HEART}" fill="currentColor"/></svg>`}</div>
+   <figcaption class="cap">${m.cap}</figcaption>
+  </figure></div>
+  <div class="txt"><p class="when">${m.when}</p><h3>${m.title}</h3><p>${m.text}</p></div>
+ </div>`).join(''));
+
+const intro = $('intro'), stage = $('stage'), env = $('env'), open = $('open'), cue = $('cue'), veil = $('veil');
+
+/* слои экрана ожидания: дальние пятна света и ближние искорки */
+const far = $('far'), mid = $('mid'), tilt = $('tilt'), head = $('head');
+far.innerHTML = [['12%','18%',260,'var(--rose)'],['70%','10%',220,'#f0b37e'],['80%','62%',300,'#cdb4db'],['8%','70%',240,'#f4a3b4'],['45%','45%',180,'var(--env2)']]
+ .map(([l, t, s, c]) => `<span class="blob" style="left:${l};top:${t};width:${s}px;height:${s}px;background:${c}"></span>`).join('');
+for (let i = 0; i < 30; i++) {
+ const s = document.createElement('span');
+ s.className = 'spark' + (i % 3 ? '' : ' g');
+ s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%';
+ s.style.animationDelay = (Math.random() * 4) + 's';
+ mid.appendChild(s);
+}
+/* слой ожидания следует за пальцем/курсором, а без касаний покачивается сам */
+let nx = 0, ny = 0, tx = 0, ty = 0, lastP = 0;
+addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; lastP = Date.now(); }, {passive: true});
+function sway(t){
+ if (Date.now() - lastP > 3000) { tx = Math.sin(t / 2600) * .55; ty = Math.cos(t / 3300) * .45; }
+ nx += (tx - nx) * .06; ny += (ty - ny) * .06;
+ if (intro.getBoundingClientRect().bottom > 0) {
+  far.style.transform = `translate3d(${nx * -16}px,${ny * -12}px,0)`;
+  mid.style.transform = `translate3d(${nx * -34}px,${ny * -24}px,0)`;
+  head.style.transform = `translate3d(${nx * 8}px,${ny * 6}px,0)`;
+  tilt.style.transform = stage.classList.contains('opened') ? '' : `perspective(900px) rotateY(${nx * 9}deg) rotateX(${ny * -7}deg) translate3d(${nx * 10}px,${ny * 8}px,0)`;
+ }
+ requestAnimationFrame(sway);
+}
+
+/* глубина при прокрутке: сердечки и блики на разных «слоях» */
+const svgNS = 'http://www.w3.org/2000/svg';
+function deco(sec, n){
+ const d = document.createElement('div'); d.className = 'deco'; d.setAttribute('aria-hidden', 'true');
+ for (let i = 0; i < n; i++) {
+  const z = Math.random(), k = Math.random();
+  let el;
+  if (k < .4) {
+   el = document.createElement('span'); el.className = 'bk';
+   const sz = 40 + (1 - z) * 140; el.style.width = el.style.height = sz + 'px';
+   el.style.opacity = (.10 + z * .12).toFixed(2); el.style.filter = `blur(${((1 - z) * 14 + 2).toFixed(1)}px)`;
+  } else {
+   el = document.createElementNS(svgNS, 'svg'); el.setAttribute('viewBox', '0 0 24 24'); el.setAttribute('class', 'dh');
+   const sz = Math.round(10 + z * 28); el.setAttribute('width', sz); el.setAttribute('height', sz);
+   el.innerHTML = k < .75 ? `<path d="${HEART}" fill="none" stroke="currentColor" stroke-width="1.5"/>` : `<path d="${HEART}" fill="currentColor"/>`;
+   el.style.opacity = (.15 + z * .35).toFixed(2); if (z < .4) el.style.filter = 'blur(2px)';
+  }
+  el.style.left = Math.random() * 96 + '%'; el.style.top = Math.random() * 96 + '%';
+  el.dataset.s = ((z - .5) * .7).toFixed(3);
+  el.dataset.r = (Math.random() * 40 - 20).toFixed(1);
+  d.appendChild(el);
+ }
+ sec.prepend(d);
+}
+deco($('hero'), 16); deco($('year'), 26); deco($('letter'), 14); deco($('end'), 12);
+let pxEls = [];
+function parallax(){
+ if (calm || !opened) return;
+ const vh = innerHeight / 2;
+ for (const el of pxEls) {
+  const r = el.parentElement.getBoundingClientRect();
+  if (r.bottom < -300 || r.top > innerHeight + 300) continue;
+  const y = (r.top + r.height / 2 - vh) * +el.dataset.s;
+  el.style.transform = `translate3d(0,${y.toFixed(1)}px,0)` + (el.dataset.r ? ` rotate(${el.dataset.r}deg)` : '');
+ }
+}
+if (!calm) requestAnimationFrame(sway);
+
+/* салют */
+const cv = $('fx'), cx = cv.getContext('2d');
+const COLORS = ['#ff8fab','#ffb3c6','#ffd6a5','#f4a261','#e05a7a','#cdb4db','#fff1f2','#ffc8dd','#b5475a'];
+let parts = [], rockets = [], raf = 0, W = 0, H = 0;
+function size(){ const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); }
+size(); addEventListener('resize', size);
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function burst(x, y, heart){
+ const c1 = pick(COLORS), c2 = pick(COLORS), n = heart ? 90 : 70 + Math.random() * 30;
+ for (let i = 0; i < n; i++) {
+  let vx, vy;
+  if (heart) { const t = i / n * Math.PI * 2; vx = 16 * Math.sin(t) ** 3 * .24; vy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * .24; }
+  else { const a = Math.random() * Math.PI * 2, sp = 1.2 + Math.random() * 4.2; vx = Math.cos(a) * sp; vy = Math.sin(a) * sp; }
+  const life = 60 + Math.random() * 50;
+  parts.push({x, y, vx, vy, life, max: life, c: i % 2 ? c1 : c2, r: 1.4 + Math.random() * 1.8, tw: Math.random() < .3});
+ }
+ loop();
+}
+function launch(){
+ const x = W * (.15 + Math.random() * .7);
+ rockets.push({x, y: H + 10, vx: (Math.random() - .5) * 1.5, vy: -(H * .011 + 6 + Math.random() * 3), ty: H * (.15 + Math.random() * .35), heart: Math.random() < .3});
+ loop();
+}
+function loop(){ if (!raf) raf = requestAnimationFrame(frame); }
+function frame(){
+ raf = 0; cx.clearRect(0, 0, W, H);
+ rockets = rockets.filter(r => {
+  r.x += r.vx; r.y += r.vy; r.vy += .12;
+  cx.fillStyle = '#ffe3c2'; cx.beginPath(); cx.arc(r.x, r.y, 2.2, 0, 7); cx.fill();
+  cx.fillStyle = 'rgba(255,200,170,.35)'; cx.beginPath(); cx.arc(r.x - r.vx * 2, r.y - r.vy * 2, 1.6, 0, 7); cx.fill();
+  if (r.y <= r.ty || r.vy >= -1) { burst(r.x, r.y, r.heart); return false; }
+  return true;
+ });
+ parts = parts.filter(p => {
+  p.x += p.vx; p.y += p.vy; p.vx *= .985; p.vy = p.vy * .985 + .045; p.life--;
+  const a = Math.max(p.life / p.max, 0) * (p.tw && Math.random() < .3 ? .3 : 1);
+  cx.globalAlpha = a; cx.fillStyle = p.c; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill();
+  return p.life > 0;
+ });
+ cx.globalAlpha = 1;
+ if (parts.length || rockets.length) loop();
+}
+function fireworks(ms){
+ if (calm) return;
+ const end = Date.now() + ms;
+ const go = () => { if (Date.now() > end) return; launch(); if (Math.random() < .4) launch(); setTimeout(go, 280 + Math.random() * 420); };
+ go();
+}
+function petals(n){
+ if (calm) return;
+ for (let i = 0; i < n; i++) {
+  const p = document.createElement('span');
+  p.className = 'petal';
+  p.style.background = pick(['var(--rose)','#f4a3b4','#f7c6cf','#e8b86a']);
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
+  p.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+  p.style.animationDuration = (5 + Math.random() * 5) + 's';
+  p.style.animationDelay = (Math.random() * 3) + 's';
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 13500);
+ }
+}
+function hearts(box, n){
+ if (calm) return;
+ for (let i = 0; i < n; i++) {
+  const h = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  h.setAttribute('viewBox', '0 0 24 24'); h.setAttribute('class', 'fh');
+  h.innerHTML = `<path d="${HEART}" fill="${pick(['#e05a7a','#ff8fab','#f4a3b4','#e8b86a'])}"/>`;
+  h.style.left = Math.random() * 100 + '%';
+  h.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+  h.style.setProperty('--rot', (Math.random() * 90 - 45) + 'deg');
+  h.style.animationDuration = (4 + Math.random() * 4) + 's';
+  h.style.animationDelay = (Math.random() * 2.5) + 's';
+  box.appendChild(h);
+  setTimeout(() => h.remove(), 9000);
+ }
+}
+
+/* таймер */
+const pl = (n, a) => { const t = n % 100, o = n % 10; return (t > 10 && t < 20) ? a[2] : o === 1 ? a[0] : (o > 1 && o < 5) ? a[1] : a[2]; };
+const pad = n => String(n).padStart(2, '0');
+let opened = false, ready = false, tick;
+function update(){
+ const left = TARGET - Date.now();
+ if (left <= 0) { clearInterval(tick); ['d','h','m','s'].forEach(k => $(k).textContent = '00'); if (!ready) { ready = true; reveal(); } return; }
+ const s = Math.floor(left / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+ $('d').textContent = pad(d); $('h').textContent = pad(h); $('m').textContent = pad(m); $('s').textContent = pad(sec);
+ $('dl').textContent = pl(d, ['день','дня','дней']); $('hl').textContent = pl(h, ['час','часа','часов']);
+ $('ml').textContent = pl(m, ['минута','минуты','минут']); $('sl').textContent = pl(sec, ['секунда','секунды','секунд']);
+ $('hint').textContent = s < 60 ? 'Закрой глаза… и открой.' : s < 3600 ? 'Осталось меньше часа' : s < 86400 ? 'Уже совсем скоро…' : 'Кое-что откроется ровно в полночь…';
+}
+
+/* открытие конверта */
+function reveal(){
+ if (opened) return; opened = true; clearInterval(tick);
+ env.classList.remove('shake');
+ stage.classList.add('opened');
+ setTimeout(() => { fireworks(6500); }, 250);
+ setTimeout(() => petals(36), 1300);
+ setTimeout(() => {
+  intro.classList.add('tall'); open.classList.add('show');
+  cue.style.opacity = 1; measure(); dive(); watch();
+  pxEls = [...document.querySelectorAll('[data-s]')]; parallax();
+ }, 2500);
+}
+
+/* погружение в письмо при прокрутке */
+let fy = 0, dy = 0;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const map = (v, a, b) => clamp((v - a) / (b - a));
+function measure(){
+ const t = env.style.transform; env.style.transform = 'none';
+ const r = env.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+ fy = r.top - sr.top + r.height * .393; dy = innerHeight / 2 - fy;
+ env.style.transform = t;
+}
+function dive(){
+ if (!intro.classList.contains('tall')) return;
+ const r = intro.getBoundingClientRect();
+ const p = clamp(-r.top / (r.height - innerHeight));
+ if (calm) { veil.style.opacity = map(p, .2, .6); return; }
+ const e = map(p, .03, .9), ez = e * e * (3 - 2 * e);
+ stage.classList.toggle('diving', p > 0.01);
+ env.style.transform = p > 0.01 ? `translateY(${dy * map(p, 0, .5)}px) scale(${18 ** ez})` : '';
+ env.style.setProperty('--ep', 1 - map(p, .08, .38));
+ cue.style.opacity = 1 - map(p, 0, .08);
+ veil.style.opacity = map(p, .58, .9);
+}
+let qd = 0;
+addEventListener('scroll', () => { if (!qd) qd = requestAnimationFrame(() => { qd = 0; dive(); thread(); parallax(); }); }, {passive: true});
+addEventListener('resize', () => { if (opened) { measure(); dive(); } });
+
+/* появление блоков, нитка, финал */
+function watch(){
+ const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .2});
+ document.querySelectorAll('.rv,.item').forEach(el => io.observe(el));
+ let done = false;
+ new IntersectionObserver(es => { if (es[0].isIntersecting && !done) { done = true; fireworks(4000); hearts($('end'), 24); } }, {threshold: .5}).observe($('end'));
+}
+function thread(){
+ const l = $('line'), r = l.getBoundingClientRect();
+ $('prog').style.height = clamp((innerHeight * .6 - r.top) / r.height) * 100 + '%';
+}
+
+$('hero').addEventListener('click', e => { if (e.target.closest('a')) return; if (calm) return; burst(e.clientX, e.clientY, Math.random() < .4); });
+
+env.addEventListener('click', () => {
+ if (opened) return;
+ if (ready) { reveal(); return; }
+ env.classList.remove('shake'); void env.getBBox(); env.classList.add('shake');
+ $('hint').textContent = 'Ещё не время. Потерпи немного…';
+});
+
+if (!DEMO) { $('demo')?.remove(); $('back')?.remove(); }
+$('demo')?.addEventListener('click', () => reveal());
+$('back')?.addEventListener('click', () => { try { location.reload(); } catch (e) { scrollTo(0, 0); } });
+
+if (Date.now() >= TARGET) {
+ ready = true;
+ document.querySelector('.timer').style.display = 'none';
+ $('hint').textContent = 'Нажми на конверт — он для тебя';
+} else { update(); tick = setInterval(update, 1000); }
+}
+</script>
+</body>
+</html>

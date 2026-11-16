@@ -9,7 +9,7 @@ import hmac
 import os
 
 from fastapi import FastAPI, Form, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
@@ -53,6 +53,12 @@ def require_auth(request: Request):
 # ═══════════════════════════════════════════════════════════
 #  ПУБЛИЧНЫЙ САЙТ
 # ═══════════════════════════════════════════════════════════
+@app.get("/shona", include_in_schema=False)
+def shona_birthday():
+    """Поздравление для Шоны (статическая страница с таймером до 24.12)."""
+    return FileResponse("static/shona/index.html", media_type="text/html")
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     with db.SessionLocal() as s:
