@@ -62,6 +62,26 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
 .opened .env .flapC{transform:scaleY(0)}
 .opened .env .flapO{transform:scaleY(1)}
 .opened .env .letter{transform:translateY(-92px)}
+/* замочек: висит под печатью, в полночь отпирается и падает */
+.lock{transform-box:fill-box;transform-origin:50% 0}
+.lock .shackle{transform-box:fill-box;transform-origin:0 100%}
+.lock .glint{transform:skewX(-20deg);animation:glint 4.5s 1s infinite ease-in-out}
+@keyframes glint{0%,70%{translate:0 0}100%{translate:66px 0}}
+.lock .kglow,.lock .ring{transform-box:fill-box;transform-origin:center;opacity:0}
+.soon .lock .kglow{animation:kpulse 1s infinite ease-in-out}
+@keyframes kpulse{50%{opacity:.85}}
+.shake .lock{animation:rattle .5s}
+@keyframes rattle{20%{transform:rotate(-9deg)}45%{transform:rotate(7deg)}70%{transform:rotate(-4deg)}}
+.unlocking .lock{animation:lockgo 1.7s forwards cubic-bezier(.45,0,.55,1)}
+@keyframes lockgo{0%{transform:none}7%{transform:rotate(-7deg)}14%{transform:rotate(6deg)}21%{transform:rotate(-3deg)}28%,58%{transform:none;opacity:1}100%{transform:translateY(80px) rotate(28deg) scale(.85);opacity:0}}
+.unlocking .lock .kglow{animation:kburst 1s .15s forwards}
+@keyframes kburst{0%{opacity:0;transform:scale(.6)}35%{opacity:1;transform:scale(1.6)}100%{opacity:0;transform:scale(2.4)}}
+.unlocking .lock .kh{transition:fill .3s .3s;fill:#fff1c4}
+.unlocking .lock .shackle{animation:unhook .75s .45s forwards cubic-bezier(.3,1.7,.5,1)}
+@keyframes unhook{0%{transform:none}35%{transform:translateY(-10px)}55%{transform:translateY(-8px)}100%{transform:translateY(-9px) rotate(-42deg)}}
+.unlocking .lock .ring{animation:ring .9s .5s forwards ease-out}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(5.5)}}
+.opened .lock{opacity:0}
 .shake{animation:shake .5s}
 @keyframes shake{25%{transform:translateX(-6px) rotate(-1deg)}75%{transform:translateX(6px) rotate(1deg)}}
 .timer{display:flex;justify-content:center;gap:clamp(8px,2.5vw,18px);margin:26px 0 10px}
@@ -190,6 +210,21 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
      <path d="M20 200 L130 128 M300 200 L190 128" style="stroke:var(--env2);stroke-width:2;fill:none"/>
     </g>
     <path class="flapC" d="M20 70 a10 10 0 0 1 10 -10 H290 a10 10 0 0 1 10 10 L160 150Z" style="fill:var(--env3)"/>
+    <defs>
+     <linearGradient id="lkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe3a0"/><stop offset=".45" stop-color="#e2ad4d"/><stop offset="1" stop-color="#a8711f"/></linearGradient>
+     <linearGradient id="lkS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b98432"/><stop offset=".5" stop-color="#f7d98c"/><stop offset="1" stop-color="#a8711f"/></linearGradient>
+     <radialGradient id="lkL"><stop offset="0" stop-color="#fff6d6"/><stop offset=".4" stop-color="#ffd977" stop-opacity=".7"/><stop offset="1" stop-color="#ffd977" stop-opacity="0"/></radialGradient>
+     <clipPath id="lkC"><rect x="141" y="176" width="38" height="28" rx="7"/></clipPath>
+    </defs>
+    <g class="lock" id="lock" aria-hidden="true">
+     <path class="shackle" d="M149.5 180 V158 a10.5 10.5 0 0 1 21 0 V180" style="fill:none;stroke:url(#lkS);stroke-width:5;stroke-linecap:round"/>
+     <rect x="141" y="176" width="38" height="28" rx="7" style="fill:url(#lkG)"/>
+     <rect x="144" y="178.5" width="32" height="2" rx="1" style="fill:#fff;fill-opacity:.45"/>
+     <g clip-path="url(#lkC)"><rect class="glint" x="128" y="170" width="8" height="40" style="fill:#fff;fill-opacity:.55"/></g>
+     <circle class="kglow" cx="160" cy="188" r="12" style="fill:url(#lkL)"/>
+     <path class="kh" d="M160 183.5 a3.4 3.4 0 0 1 1.9 6.2 l1 5.3 h-5.8 l1-5.3 a3.4 3.4 0 0 1 1.9 -6.2z" style="fill:#6b3d1c"/>
+     <circle class="ring" cx="160" cy="188" r="9" style="fill:none;stroke:#ffd977;stroke-width:2"/>
+    </g>
     <g class="seal">
      <circle cx="160" cy="146" r="21" style="fill:var(--rose)"/>
      <circle cx="160" cy="146" r="16" style="fill:none;stroke:#fff;stroke-opacity:.35;stroke-width:1.5"/>
@@ -438,13 +473,29 @@ function update(){
  $('d').textContent = pad(d); $('h').textContent = pad(h); $('m').textContent = pad(m); $('s').textContent = pad(sec);
  $('dl').textContent = pl(d, ['день','дня','дней']); $('hl').textContent = pl(h, ['час','часа','часов']);
  $('ml').textContent = pl(m, ['минута','минуты','минут']); $('sl').textContent = pl(sec, ['секунда','секунды','секунд']);
+ stage.classList.toggle('soon', s < 10);
  $('hint').textContent = s < 60 ? 'Закрой глаза… и открой.' : s < 3600 ? 'Осталось меньше часа' : s < 86400 ? 'Уже совсем скоро…' : 'Кое-что откроется ровно в полночь…';
 }
 
 /* открытие конверта */
+function sparkle(){
+ if (calm) return;
+ const k = document.querySelector('#lock .kh').getBoundingClientRect(), x = k.left + k.width / 2, y = k.top + k.height / 2;
+ const gold = ['#fff6d6','#ffe08a','#f6c453','#e8b86a','#fff'];
+ for (let i = 0; i < 70; i++) {
+  const a = Math.random() * Math.PI * 2, sp = .6 + Math.random() * 3.4, life = 40 + Math.random() * 45;
+  parts.push({x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1.2, life, max: life, c: pick(gold), r: .9 + Math.random() * 1.6, tw: Math.random() < .6});
+ }
+ loop();
+}
 function reveal(){
  if (opened) return; opened = true; clearInterval(tick);
- env.classList.remove('shake');
+ env.classList.remove('shake'); stage.classList.remove('soon');
+ stage.classList.add('unlocking');
+ setTimeout(sparkle, 520);
+ setTimeout(openEnv, calm ? 0 : 1500);
+}
+function openEnv(){
  stage.classList.add('opened');
  setTimeout(() => { fireworks(6500); }, 250);
  setTimeout(() => petals(36), 1300);
