@@ -21,6 +21,13 @@
 ### Текущий постер `poster-law-statue.html`
 - Статуя Августа из Прима-Порта. Фото Till Niermann, Wikimedia Commons, **общественное достояние** (`Statue-Augustus.jpg`, 1500×2250). Вырезана и тонирована в красный скриптом `relight_augustus.py` (ожидает `aug.jpg` рядом с собой). Результат: `statue-augustus.png`, 2740×3720.
 - В HTML: CSS-класс `.statue` (положение и размер), фон из размытого купола и колонн на SVG, лучи (SVG, `mix-blend-mode: screen`), пыль, зерно, звёзды-вспышки.
+
+### Парный постер `poster-networking-statue.html` (деловая игра)
+- Тот же стиль и фон, что у `poster-law-statue`. Заголовок «ТОЧКА / КОННЕКТА», звезда над «А» обыгрывает «точку».
+- Статуя: Гермес Ингенуи (Ватикан, Пио-Клементино), `File:Hermes_Ingenui_Pio-Clementino_Inv544.jpg`, общественное достояние. Обрезана по пояс (статуя обнажённая), низ растворён в тени.
+- Скрипт `relight_hermes.py <исходник.jpg> statue-hermes.png`: контур обведён вручную многоугольником (стена ниши такая же светлая, как мрамор), тонировка как у Августа. Результат `statue-hermes.png`, 3200×3128.
+- Wikimedia: превью (thumb) упорно отдавали 429, а оригинал по прямому пути `upload.wikimedia.org/wikipedia/commons/<md5[0]>/<md5[:2]>/<имя>` скачался сразу.
+
 - Прежние варианты статуи: `statue-justitia.png` (Фемида, Breandan Fischer, CC BY-SA 4.0) и `relight_statue.py`. Сейчас не используются.
 
 ## Рендер
@@ -40,8 +47,8 @@ const { chromium } = require('playwright');
 ## Среда
 - Для сессии создана личная облачная среда «amalproj» с доступом к `commons.wikimedia.org` и `upload.wikimedia.org`. Wikimedia часто отвечает 429 (лимит запросов): делай паузы 4–8 с, для превью бери стандартные размеры 960/1280/1920px. Хост `thumb.wikimedia.org` не разрешён, используй пути `upload.wikimedia.org/.../thumb/...`.
 - Нет scipy и cv2, есть PIL и numpy. Замкнутые дыры в масках заполняй через `ImageDraw.floodfill`.
-- Коммить в ветку `claude/hopeful-gates-kp1u96` и пушь туда же. PR не создавать без просьбы.
+- Работа продолжена в ветке `claude/gallant-bohr-mqqqd4` (ответвлена от `claude/hopeful-gates-kp1u96`). PR не создавать без просьбы.
 
 ## Возможные следующие шаги
 - Доработка `poster-law-statue` по замечаниям пользователя.
-- Парный постер в том же стиле для деловой игры (например, статуя Гермеса, покровителя общения и торговли).
+- Доработка `poster-networking-statue` по замечаниям пользователя.
