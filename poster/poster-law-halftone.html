@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Право на труд — растр</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
   @page { size: 297mm 420mm; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,8 +21,8 @@
 
   .statue { position: absolute; left: -12mm; top: 76mm; width: 360mm; }
 
-  .left { position: absolute; left: 9mm; top: 188mm; }
-  .left .big { color: var(--red); font-weight: 800; font-size: 10.5mm; line-height: 1.02; text-transform: uppercase; }
+  .left { position: absolute; left: 9mm; top: 192mm; }
+  .left .big { color: var(--ink); font-weight: 800; font-size: 10.5mm; line-height: 1.02; text-transform: uppercase; }
   .left .small { margin-top: 2.2mm; font-size: 4mm; line-height: 1.18; font-weight: 400; text-transform: uppercase; }
 
   .right { position: absolute; right: 9mm; top: 150mm; text-align: right; }
@@ -35,6 +35,9 @@
   .reg .c { font-weight: 400; font-size: 3.6mm; margin-top: 2.2mm; letter-spacing: .03em; color: rgba(241,237,230,.8); }
 
   .star { position: absolute; }
+  .cite { position: absolute; left: 9mm; top: 133mm; width: 74mm; font-size: 3.3mm; line-height: 1.35; }
+  .cite .k { display: block; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 2.9mm; padding-bottom: 1.6mm; margin-bottom: 1.8mm; border-bottom: .3mm solid var(--ink); }
+  .cite q { font-family: 'Playfair Display', serif; font-style: italic; font-size: 4.4mm; line-height: 1.25; quotes: '«' '»'; }
   .credit { position: absolute; right: 9mm; bottom: 5mm; font-size: 2.2mm; color: rgba(241,237,230,.55); }
 </style>
 </head>
@@ -92,7 +95,7 @@
   <svg class="star" style="left:24mm; top:11mm; width:12mm; height:12mm" viewBox="-10 -10 20 20"><path d="M0 -10 Q .9 -.9 10 0 Q .9 .9 0 10 Q -.9 .9 -10 0 Q -.9 -.9 0 -10Z" fill="#1a1717"/></svg>
   <svg class="star" style="right:24mm; top:11mm; width:12mm; height:12mm" viewBox="-10 -10 20 20"><path d="M0 -10 Q .9 -.9 10 0 Q .9 .9 0 10 Q -.9 .9 -10 0 Q -.9 -.9 0 -10Z" fill="#1a1717"/></svg>
   <svg class="star" id="ostar" style="width:18mm; height:30mm" viewBox="-6 -10 12 20"><path d="M0 -10 Q .55 -.55 6 0 Q .55 .55 0 10 Q -.55 .55 -6 0 Q -.55 -.55 0 -10Z" fill="#1a1717"/></svg>
-  <svg class="star" style="left:11mm; top:150mm; width:12mm; height:22mm" viewBox="-6 -11 12 22"><path d="M0 -11 Q .5 -.5 6 0 Q .5 .5 0 11 Q -.5 .5 -6 0 Q -.5 -.5 0 -11Z" fill="#b3141b"/></svg>
+  <svg class="star" style="left:11mm; top:166mm; width:9mm; height:16mm" viewBox="-6 -11 12 22"><path d="M0 -11 Q .5 -.5 6 0 Q .5 .5 0 11 Q -.5 .5 -6 0 Q -.5 -.5 0 -11Z" fill="#1a1717"/></svg>
   <svg class="star" style="right:14mm; top:366mm; width:13mm; height:20mm" viewBox="-6 -10 12 20"><path d="M0 -10 Q .55 -.55 6 0 Q .55 .55 0 10 Q -.55 .55 -6 0 Q -.55 -.55 0 -10Z" fill="#f1ede6"/></svg>
 
   <div class="right">
@@ -100,6 +103,8 @@
     <div class="big">28 ноября<br>13:25</div>
     <div class="small">Аудитория 609</div>
   </div>
+
+  <div class="cite"><span class="k">§ Ст. 37 Конституции РФ</span><q>Труд свободен. Каждый имеет право свободно распоряжаться своими способностями к&nbsp;труду</q></div>
 
   <div class="left">
     <div class="big">Реальные<br>кейсы</div>
