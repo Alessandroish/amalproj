@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Два события 28.11 — блокнот</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Caveat:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Caveat:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
   /* FreeMono (GNU FreeFont, GPL + font exception): Courier-like typewriter face that has Cyrillic */
   @font-face { font-family: 'Typewriter'; src: url('fonts/FreeMonoBold.ttf'); font-weight: 700; }
@@ -26,11 +26,11 @@
   .book .under2 { position: absolute; left: 4mm; right: -4.2mm; top: 4mm; bottom: -4.6mm; background: #8d6a42; border-radius: 1.2mm 4mm 2mm 1.2mm; }
   .book .spiral { position: absolute; left: -9mm; top: 0; width: 24mm; height: 286mm; }
 
-  .hl { position: absolute; color: var(--ink); font-weight: 700; line-height: .86; white-space: nowrap; }
-  .hl1 { left: 22mm; top: 14mm; font-size: 43mm; letter-spacing: -.02em; transform: rotate(-7deg); transform-origin: 0 100%; }
-  .hl2 { left: 26mm; top: 52mm; font-size: 43mm; letter-spacing: -.03em; transform: rotate(-5deg); transform-origin: 0 100%; }
+  .hl { position: absolute; color: var(--ink); font-family: 'Playfair Display', Georgia, serif; font-weight: 600; line-height: .86; white-space: nowrap; }
+  .hl1 { left: 22mm; top: 16mm; font-size: 39mm; letter-spacing: -.01em; transform: rotate(-7deg); transform-origin: 0 100%; }
+  .hl2 { left: 26mm; top: 53mm; font-size: 39mm; letter-spacing: -.01em; transform: rotate(-5deg); transform-origin: 0 100%; }
   .ul { position: absolute; left: 26mm; top: 89mm; width: 120mm; height: 12mm; }
-  .hl3 { left: 34mm; top: 108mm; font-size: 24mm; font-weight: 700; letter-spacing: -.03em; transform: rotate(-3deg); }
+  .hl3 { left: 34mm; top: 106mm; font-size: 26mm; font-style: italic; font-weight: 500; letter-spacing: 0; word-spacing: .18em; transform: rotate(-3deg); }
   .circle { position: absolute; left: 22mm; top: 96mm; width: 62mm; height: 40mm; }
 
   .stamp { position: absolute; left: 112mm; top: 144mm; padding: 1.6mm 4.5mm 1.2mm; border: 1.3mm solid var(--red); color: var(--red); border-radius: 1.4mm;
@@ -40,10 +40,13 @@
   /* ---------- sticky note with date ---------- */
   .sticky { position: absolute; left: 36mm; top: 232mm; width: 92mm; height: 82mm; background: linear-gradient(170deg, #eff0e6, #dfe2d6 70%, #d2d5c8);
     transform: rotate(1.5deg); box-shadow: 0 .25mm .4mm rgba(0,0,0,.5), .8mm 1.6mm 1.8mm rgba(8,18,14,.32), 3mm 6.5mm 8mm rgba(8,18,14,.38); }
-  .sticky .d { position: absolute; left: 6mm; top: 14mm; font-size: 44mm; font-weight: 700; line-height: .8; color: var(--ink); letter-spacing: -.06em; }
-  .sticky .m { position: absolute; left: 58mm; top: 17mm; font-size: 8.2mm; font-weight: 700; line-height: 1.05; color: var(--ink); }
+  .sticky .d, .sticky .m, .sticky .t { font-family: 'Playfair Display', Georgia, serif; font-variant-numeric: lining-nums; }
+  .sticky .d { position: absolute; left: 7mm; top: 13mm; font-size: 46mm; font-weight: 600; line-height: .8; color: var(--ink); letter-spacing: -.02em; }
+  .sticky .m { position: absolute; left: 56mm; top: 15mm; font-size: 9mm; font-style: italic; font-weight: 500; line-height: 1.1; color: var(--ink); }
+  .sticky .m b { font-style: normal; font-weight: 600; }
   .sticky .m u { text-decoration: none; border-bottom: .8mm solid var(--red); }
-  .sticky .t { position: absolute; left: 9mm; bottom: 9mm; font-size: 9mm; font-weight: 700; color: var(--ink); line-height: 1; }
+  .sticky .t { position: absolute; left: 9mm; bottom: 9mm; font-size: 9.5mm; font-style: italic; font-weight: 500; color: var(--ink); line-height: 1; }
+  .sticky .t span { font-style: normal; font-weight: 600; margin-left: 1.5mm; }
   .sticky .t span { color: var(--red); }
   .pin { position: absolute; left: 74mm; top: 222mm; width: 16mm; height: 22mm; }
 
@@ -95,6 +98,14 @@
       <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="9" result="g"/>
       <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -16 12.6" result="holes"/>
       <feComposite in="fat" in2="holes" operator="in"/>
+    </filter>
+    <!-- light print texture for the serif headline: no spread, faint wear -->
+    <filter id="inkH" x="-5%" y="-10%" width="110%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".2" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="9" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -10 9" result="holes"/>
+      <feComposite in="d" in2="holes" operator="in"/>
     </filter>
     <filter id="inkS" x="-5%" y="-10%" width="110%" height="120%">
       <feTurbulence type="fractalNoise" baseFrequency=".2" numOctaves="2" seed="2" result="n"/>
@@ -161,18 +172,18 @@
   <div class="book" data-name="Блокнот" data-raster="box">
     <div class="under2"></div><div class="under"></div><div class="sheet"></div>
     <svg class="spiral" id="spiral" viewBox="0 0 24 286" preserveAspectRatio="none"></svg>
-    <div class="hl hl1 tw" style="filter:url(#ink)">СОВСЕМ</div>
-    <div class="hl hl2 tw" style="filter:url(#ink)">СКОРО!!</div>
+    <div class="hl hl1" style="filter:url(#inkH)">СОВСЕМ</div>
+    <div class="hl hl2" style="filter:url(#inkH)">СКОРО!!</div>
     <svg class="ul" viewBox="0 0 120 12" preserveAspectRatio="none" style="filter:url(#marker)"><path d="M2 9 C 30 6, 70 3.5, 118 1.5" stroke="#d8231f" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M8 10.5 C 40 8, 80 5, 112 4" stroke="#d8231f" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".8"/></svg>
-    <div class="hl hl3 tw" style="filter:url(#ink)">два события</div>
+    <div class="hl hl3" style="filter:url(#inkH)">два события</div>
     <svg class="circle" viewBox="0 0 62 40" style="filter:url(#marker)"><path d="M48 6 C 30 0, 6 4, 4 19 C 2 33, 26 38, 42 35 C 58 32, 61 18, 54 10 C 49 5, 38 3, 26 5" stroke="#d8231f" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
     <div class="stamp" style="filter:url(#stamp)"><small>СУББОТА</small>АУД. 609</div>
   </div>
 
   <div class="sticky tw" data-name="Стикер с датой" data-raster="box">
-    <div class="d" style="filter:url(#ink)">28</div>
-    <div class="m" style="filter:url(#inkS)"><u>ноября</u><br>2026</div>
-    <div class="t" style="filter:url(#inkS)">начало <span>13:25</span></div>
+    <div class="d" style="filter:url(#inkH)">28</div>
+    <div class="m" style="filter:url(#inkH)"><u>ноября</u><br><b>2026</b></div>
+    <div class="t" style="filter:url(#inkH)">начало <span>13:25</span></div>
   </div>
   <svg class="pin" viewBox="0 0 16 22" data-name="Кнопка" data-raster="box">
     <defs><radialGradient id="pinr" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ff8a7a"/><stop offset=".35" stop-color="#e2342b"/><stop offset="1" stop-color="#7a0f0b"/></radialGradient></defs>
