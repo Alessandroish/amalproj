@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Постер 28 ноября</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  :root {
+    --wine: #8e2b2f;
+    --wine-dark: #6f1f23;
+    --ink: #2b2b2b;
+    --paper: #f4f2ef;
+    --cream: #fbe9dc;
+    --orange: #e9783e;
+    --orange-2: #f2a15f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: var(--paper); }
+  body { font-family: 'Montserrat', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: var(--paper); }
+
+  /* ---------- top (white) ---------- */
+  .top { position: relative; height: 150mm; padding: 20mm 22mm 0; }
+  .top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 4mm;
+    font-weight: 700; font-size: 4.2mm; letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+  }
+  .tag i { display:block; width: 9mm; height: 9mm; background: var(--wine); border-radius: 1.5mm; position: relative; }
+  .tag i::after { content:""; position:absolute; inset: 2.2mm 2.2mm 2.2mm 4.4mm; background: var(--paper); clip-path: polygon(0 50%, 100% 0, 100% 100%); }
+  .badge { text-align: right; font-weight: 600; font-size: 4mm; line-height: 1.35; color: #6b6b6b; text-transform: uppercase; letter-spacing: .08em; }
+  .badge b { display:block; color: var(--wine); font-size: 5mm; font-weight: 800; }
+
+  .kicker { margin-top: 18mm; font-size: 13mm; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: #3a3a3a; }
+  .title { margin-top: 3mm; font-size: 25mm; line-height: .98; font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; color: var(--ink); }
+  .script {
+    position: absolute; right: 22mm; top: 122mm; transform: rotate(-4deg);
+    font-family: 'Segoe Script', 'Brush Script MT', cursive; font-style: italic; font-weight: 400;
+    font-size: 10mm; color: rgba(142,43,47,.45); white-space: nowrap;
+  }
+
+  /* ---------- bottom (wine) ---------- */
+  .bottom {
+    position: absolute; left: 0; right: 0; top: 150mm; bottom: 0;
+    background: linear-gradient(180deg, var(--wine) 0%, var(--wine) 30%, var(--wine-dark) 100%);
+    color: #fff; padding: 16mm 22mm 0;
+  }
+  .event { position: relative; display: grid; grid-template-columns: 34mm 1fr 52mm; column-gap: 6mm; }
+  .event + .event { margin-top: 13mm; padding-top: 13mm; border-top: .5mm solid rgba(255,255,255,.22); }
+  .num { font-size: 22mm; line-height: .85; font-weight: 700; color: #fff; }
+  .day { margin-top: 3mm; font-size: 3.1mm; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); opacity: .8; }
+
+  .kind { display: inline-block; font-size: 3.6mm; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wine-dark); background: var(--cream); padding: 1.4mm 3mm; border-radius: 1mm; }
+  .ev-title { margin-top: 4mm; font-size: 10.5mm; line-height: 1.06; font-weight: 700; }
+  .ev-sub { margin-top: 2mm; font-size: 5mm; font-weight: 600; color: var(--orange-2); }
+  .ev-text { margin-top: 4mm; font-size: 4.3mm; line-height: 1.45; font-weight: 500; color: rgba(255,255,255,.86); max-width: 150mm; }
+
+  .meta { text-align: right; padding-top: 1mm; }
+  .time { font-size: 13mm; font-weight: 700; line-height: 1; }
+  .time small { display:block; font-size: 3.4mm; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: 1.5mm; }
+  .place { margin-top: 5mm; font-size: 4.2mm; line-height: 1.35; font-weight: 600; color: var(--cream); }
+  .place b { display:block; font-size: 9mm; color: #fff; font-weight: 700; }
+
+  .footer {
+    position: absolute; left: 22mm; right: 22mm; bottom: 18mm;
+    display: flex; align-items: flex-end; gap: 10mm; z-index: 2;
+  }
+  .reg {
+    background: var(--paper); color: var(--ink); border-radius: 3mm;
+    padding: 6mm 8mm; display: flex; align-items: center; gap: 7mm;
+  }
+  .reg .lbl { font-size: 3.6mm; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wine); }
+  .reg .val { font-size: 7.5mm; font-weight: 800; line-height: 1.1; margin-top: 1mm; }
+  .reg .sep { width: .5mm; align-self: stretch; background: rgba(0,0,0,.12); }
+  .reg .where { font-size: 4.2mm; font-weight: 600; line-height: 1.4; color: #555; }
+  .free { margin-bottom: 6mm; font-size: 4.2mm; line-height: 1.4; font-weight: 600; color: rgba(255,255,255,.75); max-width: 60mm; }
+
+  /* wavy transition like the reference */
+  .wave { position: absolute; left: 0; top: 140mm; width: 297mm; height: 22mm; z-index: 1; }
+
+  .deco { position: absolute; z-index: 1; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <section class="top">
+    <div class="top-row">
+      <div class="tag"><i></i>Студентам</div>
+      <div class="badge">Карьерный<b>трек</b>суббота</div>
+    </div>
+    <div class="kicker">28 ноября 2026</div>
+    <h1 class="title">Расписание<br>мероприятий</h1>
+    <div class="script">карьера начинается здесь</div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 297 22" preserveAspectRatio="none">
+    <path d="M0 10 C 60 0, 110 20, 170 10 S 260 2, 297 9 L297 22 L0 22 Z" fill="#8e2b2f"/>
+  </svg>
+
+  <section class="bottom">
+    <article class="event">
+      <div>
+        <div class="num">01</div>
+        <div class="day">Суббота</div>
+      </div>
+      <div>
+        <span class="kind">Мастер-класс</span>
+        <h2 class="ev-title">Основы трудового права для&nbsp;успешного трудоустройства</h2>
+        <p class="ev-text">Важные юридические аспекты трудовых отношений с&nbsp;работодателем. Разберём реальные кейсы и&nbsp;судебную практику.</p>
+      </div>
+      <div class="meta">
+        <div class="time"><small>Начало</small>13:25</div>
+        <div class="place"><b>609</b>аудитория</div>
+      </div>
+    </article>
+
+    <article class="event">
+      <div>
+        <div class="num">02</div>
+        <div class="day">Суббота</div>
+      </div>
+      <div>
+        <span class="kind">Деловая игра</span>
+        <h2 class="ev-title">The Hustle Hub: Networking&nbsp;Quest</h2>
+        <div class="ev-sub">Точка коннекта: Нетворкинг-квест</div>
+        <p class="ev-text">Прокачай навыки коммуникации, найди идеальное совпадение для&nbsp;взаимовыгодного сотрудничества. Игровой формат с&nbsp;юмором, спонтанные реакции и&nbsp;никакого языкового барьера.</p>
+      </div>
+      <div class="meta">
+        <div class="time"><small>Начало</small>13:25</div>
+        <div class="place"><b>609</b>аудитория</div>
+      </div>
+    </article>
+
+    <div class="footer">
+      <div class="reg">
+        <div>
+          <div class="lbl">Регистрация</div>
+          <div class="val">603 кабинет</div>
+        </div>
+        <div class="sep"></div>
+        <div class="where">6 этаж<br>до начала мероприятий</div>
+      </div>
+      <div class="free">Приглашаем всех студентов!</div>
+    </div>
+  </section>
+
+  <!-- decorative autumn elements, bottom-right like the reference -->
+  <svg class="deco" style="right:-6mm; bottom:-8mm; width:120mm; height:95mm" viewBox="0 0 120 95">
+    <g opacity=".95">
+      <path d="M70 95 C 60 60, 85 35, 120 30 L120 95 Z" fill="#e9783e"/>
+      <path d="M98 95 C 92 72, 102 55, 120 52 L120 95 Z" fill="#f2a15f"/>
+      <!-- leaf 1 -->
+      <g transform="translate(46 58) rotate(-35)">
+        <path d="M0 0 C 8 -14, 22 -14, 30 0 C 22 14, 8 14, 0 0 Z" fill="#f2a15f"/>
+        <path d="M0 0 L30 0" stroke="#8e2b2f" stroke-width=".8"/>
+      </g>
+      <!-- leaf 2 -->
+      <g transform="translate(82 18) rotate(25)">
+        <path d="M0 0 C 6 -10, 16 -10, 22 0 C 16 10, 6 10, 0 0 Z" fill="#e9783e"/>
+        <path d="M0 0 L22 0" stroke="#6f1f23" stroke-width=".7"/>
+      </g>
+      <!-- flower -->
+      <g transform="translate(30 30)" fill="#fbe9dc">
+        <ellipse cx="0" cy="-6" rx="3.4" ry="6"/>
+        <ellipse cx="0" cy="-6" rx="3.4" ry="6" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-6" rx="3.4" ry="6" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-6" rx="3.4" ry="6" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-6" rx="3.4" ry="6" transform="rotate(288)"/>
+        <circle r="2.4" fill="#e9783e"/>
+      </g>
+      <!-- dots -->
+      
+      <circle cx="60" cy="12" r="1.3" fill="#f2a15f"/>
+    </g>
+  </svg>
+
+  <!-- small leaves along right edge of events -->
+  <svg class="deco" style="right:8mm; top:205mm; width:22mm; height:40mm" viewBox="0 0 22 40">
+    <g transform="translate(4 30) rotate(-60)"><path d="M0 0 C 5 -8, 13 -8, 18 0 C 13 8, 5 8, 0 0 Z" fill="#e9783e" opacity=".55"/></g>
+  </svg>
+</div>
+</body>
+</html>
