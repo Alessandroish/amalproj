@@ -40,7 +40,8 @@
 
 ## Как работать
 - **Рендер:** Playwright + Chromium уже установлены. Viewport 1123×1587, `deviceScaleFactor: 3`, `waitUntil: 'networkidle'`, затем `document.fonts.ready`. Снимок → `<имя>.png`, `pdf({width:'297mm', height:'420mm', printBackground:true})` → `<имя>.pdf`. После каждой правки сам смотри превью и только потом отправляй пользователю.
-- **Экспорт в Figma:** `node poster/export_figma.js <имя-без-расширения>` создаёт `<имя>.figma.svg`: слоистый SVG, растры + редактируемый текст.
+- **Figma:** первый постер лежит в https://www.figma.com/design/8XR2sLAtOInOkfYw3M0B63. Второй собери там же, отдельным фреймом справа, тем же способом: `node poster/figma_data.js <имя> <папка>`, затем через коннектор Figma (`use_figma` + `upload_assets`) — подробности в разделе «Figma» файла `poster/HANDOFF.md`.
+- **Экспорт в SVG (запасной путь):** `node poster/export_figma.js <имя-без-расширения>` создаёт `<имя>.figma.svg`: слоистый SVG, растры + редактируемый текст.
   - Скрипт ищет текстовые блоки по классам `.top .right .left .cite .reg .credit` и заголовки по id `t1 t2a t2b`. Сохрани эти имена или поправь скрипт.
   - Слои при снимке скрываются через `display:none`. `visibility:hidden` не годится: SVG-фильтры всё равно дорисовываются.
 - **Wikimedia** часто отвечает 429. Превью `thumb` иногда блокируются, оригиналы по прямому пути `upload.wikimedia.org` обычно отдаются. Делай паузы 5–20 с. Хост `thumb.wikimedia.org` закрыт сетью.
