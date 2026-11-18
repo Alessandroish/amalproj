@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Точка коннекта — гравюра</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Jost:wght@400;500;600&family=Bad+Script&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #e4ad2c; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Jost', sans-serif; color: #1c1710; }
+  :root { --ink: #1c1710; --brown: #3d2a12; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #e4ad2c; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .caps { text-transform: uppercase; }
+
+  .top { left: 0; right: 0; top: 8.6mm; text-align: center; text-transform: uppercase; font-weight: 500; font-size: 5mm; letter-spacing: .3em; }
+  .list { left: 9.5mm; top: 22mm; font-weight: 500; font-size: 2.75mm; line-height: 5.6mm; letter-spacing: .08em; }
+  .yr { left: 9.5mm; top: 74mm; font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 8.4mm; line-height: 1; letter-spacing: .06em; padding-bottom: 3mm; border-bottom: .45mm solid var(--ink); }
+  .yr small { display: block; font-family: 'Jost'; font-size: 2.6mm; letter-spacing: .2em; margin-top: 1.4mm; }
+  .side { right: 9mm; text-align: center; font-weight: 500; font-size: 2.8mm; letter-spacing: .14em; line-height: 1.5; padding: 2mm 0; border-top: .3mm solid var(--ink); border-bottom: .3mm solid var(--ink); }
+  .vert { writing-mode: vertical-rl; font-weight: 500; font-size: 2.5mm; letter-spacing: .22em; }
+  .quote { left: 9.5mm; top: 207mm; width: 38mm; padding-top: 3mm; border-top: .3mm solid var(--ink); font-size: 3.05mm; line-height: 1.32; }
+  .quote .qm { font-family: 'Oswald'; font-size: 7mm; line-height: .6; display: block; height: 4mm; }
+  .quote .who { margin-top: 3mm; padding-bottom: 3mm; border-bottom: .3mm solid var(--ink); font-weight: 600; font-size: 2.7mm; letter-spacing: .1em; }
+
+  .title { left: 0; top: 0; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; white-space: nowrap; line-height: 1; transform-origin: 0 0; color: var(--ink); letter-spacing: -.005em; }
+  .sub { left: 0; right: 0; top: 384.5mm; text-align: center; font-weight: 600; font-size: 7.4mm; letter-spacing: .32em; text-transform: uppercase; }
+  .dateline { left: 0; right: 0; top: 397mm; display: flex; align-items: center; justify-content: center; gap: 5mm; font-weight: 500; font-size: 4.6mm; letter-spacing: .14em; text-transform: uppercase; }
+  .dateline::before, .dateline::after { content: ''; width: 46mm; height: .3mm; background: var(--ink); }
+  .tagline { left: 0; right: 0; top: 407mm; text-align: center; font-weight: 500; font-size: 3.9mm; letter-spacing: .2em; text-transform: uppercase; }
+  .photo-credit { left: 0; right: 0; top: 414.2mm; text-align: center; font-size: 1.9mm; color: rgba(28,23,16,.55); letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- mustard paper with notes and diagrams printed on it -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Бумага, записи и схемы" data-raster="full">
+    <defs>
+      <radialGradient id="pv" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#ebb734"/><stop offset=".7" stop-color="#e2a92a"/><stop offset="1" stop-color="#c88c1c"/></radialGradient>
+      <filter id="mot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="21"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .36  0 0 0 0 .05  0 0 0 1.4 -.55"/></filter>
+      <filter id="lite" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .86  0 0 0 0 .45  0 0 0 1.6 -.85"/></filter>
+      <filter id="grn" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="7"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .3  0 0 0 0 .05  0 0 0 8 -5.2"/></filter>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="9"/><feDisplacementMap in="SourceGraphic" scale=".35"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="url(#pv)"/>
+    <rect width="297" height="420" filter="url(#lite)" opacity=".5"/>
+    <rect width="297" height="420" filter="url(#mot)" opacity=".55"/>
+    <rect width="297" height="420" filter="url(#grn)" opacity=".5"/>
+
+    <!-- frame: crosshairs and hairlines -->
+    <g stroke="#1c1710" stroke-width=".3" fill="none">
+      <path d="M9 12h6M12 9v6 M282 12h6M285 9v6 M9 190h6M12 187v6 M282 283h6M285 280v6 M9 409h6M12 406v6 M282 409h6M285 406v6"/>
+      <path d="M265 16 V142" stroke-width=".22"/>
+      <path d="M49 402.5 H96 M201 402.5 H248" stroke-width="0"/>
+    </g>
+
+    <g fill="#3d2a12" stroke="#3d2a12" filter="url(#ink)" opacity=".82">
+      <!-- A: phrasebook page, top right -->
+      <g stroke="none" font-family="Bad Script" font-size="5.2">
+        <text x="140" y="62">Hello! My name is…</text>
+        <text x="146" y="72">Nice to meet you.</text>
+        <text x="140" y="82">What do you do?</text>
+        <text x="190" y="57" font-size="4.6">— Привет! Меня зовут…</text>
+      </g>
+      <text x="160" y="94" stroke="none" font-family="Cormorant Garamond" font-style="italic" font-size="4.2">Глава I. О первом слове</text>
+      <!-- Venn: my goals / partner's goals -->
+      <g fill="none" stroke-width=".35"><circle cx="218" cy="88" r="15"/><circle cx="237" cy="88" r="15"/></g>
+      <g stroke="none" font-family="Cormorant Garamond" font-style="italic" font-size="3.3">
+        <text x="203" y="70">мои цели</text><text x="233" y="70">цели партнёра</text>
+        <text x="219.5" y="109">совпадение</text>
+      </g>
+      <path d="M227.5 79 l.7 6.3 6.3 .7 -6.3 .7 -.7 6.3 -.7 -6.3 -6.3 -.7 6.3 -.7z" stroke="none"/>
+      <path d="M227.5 92.5 V104" stroke-width=".25" stroke-dasharray="1 1"/>
+
+      <!-- B: network of contacts, below the hole -->
+      <text x="118" y="219" stroke="none" font-family="Bad Script" font-size="4.6">Сеть контактов</text>
+      <g stroke-width=".3" fill="none">
+        <path d="M122 247 L136 232 L152 240 L168 226 L184 236 L196 222 M136 232 L150 226 L168 226 M152 240 L160 252 L184 236 M150 226 L160 252 M122 247 L160 252 M184 236 L196 250"/>
+      </g>
+      <g stroke="none">
+        <circle cx="122" cy="247" r="1.3"/><circle cx="136" cy="232" r="1.3"/><circle cx="150" cy="226" r="1.1"/><circle cx="168" cy="226" r="1.3"/>
+        <circle cx="184" cy="236" r="1.6"/><circle cx="196" cy="222" r="1.1"/><circle cx="160" cy="252" r="1.3"/><circle cx="196" cy="250" r="1.1"/>
+        <circle cx="152" cy="240" r="2.6"/>
+      </g>
+      <circle cx="152" cy="240" r="4.4" fill="none" stroke-width=".3"/>
+      <g stroke="none" font-family="Cormorant Garamond" font-style="italic" font-size="3.2">
+        <text x="147" y="248.5" font-size="3.6">ты</text><text x="114" y="252">партнёр</text><text x="128" y="229">идея</text>
+        <text x="162" y="222">команда</text><text x="187" y="241.5">ментор</text><text x="155" y="258">проект</text>
+      </g>
+
+      <!-- C: small-talk note, right -->
+      <g stroke="none" font-family="Bad Script" font-size="4.3">
+        <text x="207" y="204" font-size="5">Small talk</text>
+        <text x="209" y="214">начни с имени,</text><text x="209" y="221.5">спроси о деле,</text>
+        <text x="209" y="229">найди общее —</text><text x="209" y="236.5">и предложи</text><text x="209" y="244">сотрудничество.</text>
+      </g>
+      <path d="M207 206 q12 -1.2 23 .4" fill="none" stroke-width=".3"/>
+
+      <!-- D: the connect formula -->
+      <g stroke="none" font-family="Cormorant Garamond" font-style="italic">
+        <text x="114" y="270" font-size="5.6">К = И + Д + Ю − Б</text>
+        <text x="116" y="278" font-size="3.3">К = Коннект</text><text x="116" y="283.5" font-size="3.3">И = Интерес к собеседнику</text>
+        <text x="116" y="289" font-size="3.3">Д = Диалог</text><text x="116" y="294.5" font-size="3.3">Ю = Юмор</text>
+        <text x="116" y="300" font-size="3.3">Б = Языковой барьер</text>
+      </g>
+      <!-- E: request meets offer -->
+      <g fill="none" stroke-width=".3">
+        <path d="M178 266 V304 H232"/><path d="M182 270 L228 300 M182 300 L228 270" stroke-width=".4"/>
+        <path d="M205 285 V304 M178 285 H205" stroke-width=".22" stroke-dasharray="1 1"/>
+      </g>
+      <g stroke="none" font-family="Cormorant Garamond" font-style="italic" font-size="3.1">
+        <text x="196" y="263">Точка коннекта</text><text x="229" y="270">запрос</text><text x="229" y="301">предложение</text>
+        <text x="202" y="308.5">✶</text><text x="170" y="286">E</text><text x="227" y="308.5">время</text>
+      </g>
+      <circle cx="205" cy="285" r="1" stroke="none"/>
+    </g>
+  </svg>
+
+  <!-- the torn hole: engraving of Hermes looking through, torn rim, curled flap -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Рваная дыра с гравюрой Гермеса" data-raster="full">
+    <defs>
+      <clipPath id="hc"><path id="holeclip"/></clipPath>
+      <filter id="fib" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.6 1.1" numOctaves="3" seed="2"/><feDisplacementMap in="SourceGraphic" scale="1.3"/></filter>
+      <filter id="b2"><feGaussianBlur stdDeviation="2"/></filter>
+      <filter id="b1"><feGaussianBlur stdDeviation="1"/></filter>
+      <linearGradient id="roll" gradientUnits="userSpaceOnUse" x1="33" y1="0" x2="67" y2="0">
+        <stop offset="0" stop-color="#8f5f12"/><stop offset=".14" stop-color="#cf9a30"/><stop offset=".34" stop-color="#f7d680"/><stop offset=".52" stop-color="#e9b546"/>
+        <stop offset=".78" stop-color="#c48a22"/><stop offset=".93" stop-color="#93610f"/><stop offset="1" stop-color="#6e470a"/>
+      </linearGradient>
+      <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7d57a"/><stop offset="1" stop-color="#c9901f"/></linearGradient>
+      <linearGradient id="lipb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b47a18"/><stop offset=".5" stop-color="#f3cd6c"/><stop offset="1" stop-color="#e2a92a"/></linearGradient>
+    </defs>
+    <!-- shadow of the hole on the paper under the lifted rim -->
+    <path id="holeshadow" fill="#5a3606" opacity=".45" filter="url(#b2)"/>
+    <g clip-path="url(#hc)">
+      <rect x="40" y="80" width="260" height="140" fill="#efe2c4"/>
+      <image href="engraving-hermes.png" x="52" y="86" width="244" height="126" preserveAspectRatio="xMidYMid slice"/>
+      <!-- inner shadow cast by the paper edge -->
+      <path id="innershadow" fill="none" stroke="#1a1006" stroke-width="7" opacity=".55" filter="url(#b2)"/>
+    </g>
+    <path id="rimfill" fill="#f9e7b0" filter="url(#fib)"/>
+    <path id="liptop" fill="url(#lip)" filter="url(#fib)"/>
+    <path id="lipbot" fill="url(#lipb)" filter="url(#fib)"/>
+    <!-- the curled flap on the left -->
+    <path id="flapshadow" fill="#4a2c05" opacity=".38" filter="url(#b2)"/>
+    <path id="flap" fill="url(#roll)"/>
+    <path id="flapedge" fill="none" stroke="#fbeec4" stroke-width="1" filter="url(#fib)"/>
+  </svg>
+
+  <div class="abs top" data-name="Текст: шапка">Деловая игра · The Hustle Hub</div>
+  <div class="abs list caps txt" data-name="Текст: список">Коммуникация<br>Партнёрство<br>Совпадение<br>Диалог<br>Юмор<br>Без барьеров</div>
+  <div class="abs yr" data-name="Дата 28/11" data-raster="box">28<br>11<small>2026</small></div>
+
+  <svg class="abs" id="barcode" style="right:8.5mm; top:22mm; width:15mm; height:42mm" viewBox="0 0 15 42" data-name="Штрихкод" data-raster="box"></svg>
+  <div class="abs side caps" style="top:80mm" data-name="Ауд. 609" data-raster="box">Ауд.<br>609</div>
+  <div class="abs side caps" style="top:367mm" data-name="Каб. 603" data-raster="box">Каб.<br>603</div>
+  <div class="abs vert caps" data-name="Вертикальный текст справа" data-raster="box" style="right:10.5mm; top:205mm">Каждый коннект — возможность</div>
+  <div class="abs vert caps" data-name="Вертикальный текст слева" data-raster="box" style="left:10.5mm; top:296mm; transform: rotate(180deg)">Любопытство · диалог · понимание · дело</div>
+
+  <div class="abs quote" data-name="Цитата Карнеги" data-raster="box"><span class="qm">“</span>Вы можете за&nbsp;два месяца приобрести больше друзей, если будете интересоваться другими людьми, чем приобретёте за&nbsp;два года, если будете стараться заинтересовать других людей собой.<div class="who">— Дейл Карнеги</div></div>
+
+  <div class="abs title" id="title" data-name="Заголовок ТОЧКА КОННЕКТА" data-raster="box">Точка коннекта</div>
+  <div class="abs sub txt" data-name="Текст: Networking Quest">Networking Quest 2026</div>
+  <div class="abs dateline" data-name="Строка с датой" data-raster="box">Суббота &nbsp;•&nbsp; 28 ноября &nbsp;•&nbsp; 13:25</div>
+  <div class="abs tagline txt" data-name="Текст: аудитория и регистрация">Аудитория 609 · регистрация: 6 этаж, 603 кабинет</div>
+
+  <div class="abs photo-credit" data-name="Подпись фото" data-raster="box">Гермес Ингенуи, Музеи Ватикана · фото Marie-Lan Nguyen, общественное достояние</div>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  // title: tall condensed, full measure (after the webfont is in, or the width is wrong)
+  document.fonts.ready.then(function () {
+    const t = document.getElementById('title'); t.style.fontSize = '100px';
+    const r = t.getBoundingClientRect(); const sx = mm(256) / r.width, sy = sx * 1.95;
+    t.style.transform = `scale(${sx}, ${sy})`;
+    t.style.left = mm(20.5) + 'px';
+    // cap height of Oswald ≈ .81em of the 1.0 line box top offset ≈ .16em
+    t.style.top = (mm(379) - 100 * .985 * sy) + 'px';
+  });
+
+  // barcode: digits are the date and time of the game
+  (function () {
+    let s = 11; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const b = document.getElementById('barcode'); let y = 0, out = '';
+    while (y < 42) { const w = .25 + rnd() * 1.1; if (rnd() > .42) out += `<rect x="0" y="${y.toFixed(2)}" width="9.5" height="${w.toFixed(2)}" fill="#1c1710"/>`; y += w + .25 + rnd() * .5; }
+    out += `<text transform="translate(13.6 1) rotate(90)" font-family="Jost" font-size="2.6" letter-spacing=".25" fill="#1c1710">9 202611 281325 6</text>`;
+    b.innerHTML = out;
+  })();
+
+  // torn hole geometry (mm): jagged outline, rim, lips, inner shadow and a curled flap on the left
+  (function () {
+    let s = 3; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const base = [[60,176],[63,140],[68,116],[88,104],[118,104],[150,107],[180,110],[206,116],[228,124],[252,133],[274,143],[293,157],
+                  [276,164],[252,171],[228,177],[206,190],[188,201],[168,207],[148,206],[124,197],[100,190],[80,184]];
+    const pts = [];
+    for (let i = 0; i < base.length; i++) {
+      const a = base[i], b = base[(i + 1) % base.length];
+      const n = Math.max(2, Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) / 1.6));
+      for (let k = 0; k < n; k++) { const t = k / n; const nx = -(b[1] - a[1]), ny = b[0] - a[0], l = Math.hypot(nx, ny) || 1;
+        const j = (rnd() - .5) * 2.4 + Math.sin((i * 7 + k) * .9) * .9;
+        pts.push([a[0] + (b[0] - a[0]) * t + nx / l * j, a[1] + (b[1] - a[1]) * t + ny / l * j, i]); }
+    }
+    const P = a => 'M' + a.map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L') + ' Z';
+    const hole = P(pts);
+    document.getElementById('holeclip').setAttribute('d', hole);
+    document.getElementById('innershadow').setAttribute('d', hole);
+    // rim: the outline pushed outward 1.5–3 mm (cream fibres of the torn paper)
+    const cx = 175, cy = 155;
+    const grow = (a, k) => a.map(p => { const dx = p[0] - cx, dy = (p[1] - cy) * 2.2, l = Math.hypot(dx, dy) || 1; const g = k(p); return [p[0] + dx / l * g, p[1] + dy / l * g / 2.2 * 2.2]; });
+    const rim = grow(pts, () => 1.4 + rnd() * 1.8);
+    document.getElementById('rimfill').setAttribute('d', P(rim) + ' ' + P(pts).replace(/M/, 'M'));
+    document.getElementById('rimfill').setAttribute('fill-rule', 'evenodd');
+    document.getElementById('holeshadow').setAttribute('d', P(grow(pts, () => 4)));
+    // lifted lips: along the top edge a narrow strip bent up, along the bottom a strip curling toward us
+    const topIdx = pts.filter(p => p[2] >= 2 && p[2] <= 10), botIdx = pts.filter(p => p[2] >= 12 && p[2] <= 20);
+    const band = (arr, w0, w1, sgn) => { const o = arr.map((p, i) => [p[0], p[1] + sgn * (w0 + (w1 - w0) * Math.sin(Math.PI * i / arr.length) + rnd() * 1.6)]);
+      return 'M' + arr.map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L') + ' L' + o.reverse().map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L') + ' Z'; };
+    document.getElementById('liptop').setAttribute('d', band(topIdx, 1.2, 6.5, -1));
+    document.getElementById('lipbot').setAttribute('d', band(botIdx, 1.5, 9, 1));
+    // curled flap: rolled paper on the left of the hole
+    const L = pts.filter(p => p[2] <= 2 || p[2] >= 20).sort((a, b) => a[1] - b[1]);
+    const jag = (x0, y0, x1, y1) => { const o = []; const n = Math.round(Math.hypot(x1 - x0, y1 - y0) / 1.3);
+      for (let k = 1; k < n; k++) { const t = k / n; o.push([x0 + (x1 - x0) * t + (rnd() - .5) * .6, y0 + (y1 - y0) * t + (rnd() - .5) * 2.2]); } return o; };
+    const roll = [];
+    for (let y = 192; y >= 100; y -= 1.4) { const t = (y - 100) / 92; roll.push([36 - Math.sin(t * Math.PI) * 3 + t * 3 + (rnd() - .5) * .6, y]); }
+    const Lf = L.map(p => [p[0] + .5, p[1]]);
+    const bot = jag(Lf[Lf.length - 1][0], Lf[Lf.length - 1][1], roll[0][0], roll[0][1] + 1);
+    const topE = jag(roll[roll.length - 1][0], roll[roll.length - 1][1], Lf[0][0], Lf[0][1]);
+    const fp = [...Lf, ...bot, ...roll, ...topE];
+    const f = 'M' + fp.map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L') + ' Z';
+    const edgeArr = [...bot, ...roll, ...topE];
+    document.getElementById('flap').setAttribute('d', f);
+    document.getElementById('flapshadow').setAttribute('d', f);
+    document.getElementById('flapshadow').setAttribute('transform', 'translate(3 3)');
+    document.getElementById('flapedge').setAttribute('d', 'M' + edgeArr.map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L'));
+  })();
+</script>
+</body>
+</html>
