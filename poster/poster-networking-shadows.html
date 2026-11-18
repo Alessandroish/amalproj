@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Точка коннекта — тени</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #8e1513; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; }
+  :root { --cream: #ecdcb6; --gold: #f0cf86; --red: #d22a1f; --ink: #161111; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #8e1513; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+
+  /* huge distressed condensed letters on a wall that recedes to the right (as in the reference) */
+  .stage { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; perspective: 520mm; perspective-origin: 80% 45%; }
+  .plane { position: absolute; left: 14mm; top: 46mm; transform-origin: 0 50%; transform: rotateY(27deg); }
+  .word { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; line-height: .82; white-space: nowrap; display: block; transform-origin: 0 0;
+          color: transparent; -webkit-background-clip: text; background-clip: text; background-color: var(--cream); background-size: 90mm 90mm;
+          -webkit-mask-size: 70mm 70mm; mask-size: 70mm 70mm; }
+  .pre { position: absolute; font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--ink); text-transform: uppercase; white-space: nowrap; letter-spacing: .02em; }
+
+  .fig { position: absolute; }
+  .fig img { display: block; width: 100%; height: 100%; }
+  .shadow { position: absolute; pointer-events: none; mix-blend-mode: multiply; opacity: .82; }
+  .shadow img { display: block; width: 100%; height: 100%; filter: url(#silhouette); }
+  .flip { transform: scaleX(-1); }
+
+  .dot { position: absolute; width: 17mm; height: 26mm; }
+
+  .head { position: absolute; left: 0; right: 0; top: 12mm; text-align: center; color: var(--cream); font-weight: 600; font-size: 3.9mm; letter-spacing: .3em; text-transform: uppercase; }
+  .info { position: absolute; left: 0; right: 0; top: 343mm; text-align: center; color: var(--cream); text-transform: uppercase; }
+  .info .tag { font-family: 'Oswald', sans-serif; font-weight: 600; color: var(--gold); font-size: 8.4mm; letter-spacing: .06em; line-height: 1; }
+  .info .date { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 12.5mm; line-height: 1; margin-top: 3.4mm; letter-spacing: .02em; }
+  .info .line { font-weight: 600; font-size: 3.7mm; letter-spacing: .06em; margin-top: 2.6mm; line-height: 1.35; }
+  .info .desc { font-weight: 400; font-size: 3.1mm; letter-spacing: .05em; margin-top: 2.2mm; line-height: 1.35; color: rgba(236,220,182,.82); }
+  .photo-credit { position: absolute; left: 0; right: 0; bottom: 3.5mm; text-align: center; font-size: 2.1mm; color: rgba(236,220,182,.5); letter-spacing: .03em; }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute"><filter id="silhouette" color-interpolation-filters="sRGB"><feFlood flood-color="#2a0504"/><feComposite in2="SourceAlpha" operator="in"/><feGaussianBlur stdDeviation="2"/></filter></svg>
+<div class="poster">
+
+  <!-- red plaster wall: mottled, scratched, two spotlights low left and low right (they cast the shadows) -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Стена" data-raster="full">
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="46%" r="62%"><stop offset="0" stop-color="#b5221b"/><stop offset=".6" stop-color="#8e1513"/><stop offset="1" stop-color="#4c0807"/></radialGradient>
+      <radialGradient id="spotL" cx="6%" cy="104%" r="55%"><stop offset="0" stop-color="#e2452f" stop-opacity=".55"/><stop offset="1" stop-color="#e2452f" stop-opacity="0"/></radialGradient>
+      <radialGradient id="spotR" cx="96%" cy="100%" r="50%"><stop offset="0" stop-color="#e2452f" stop-opacity=".45"/><stop offset="1" stop-color="#e2452f" stop-opacity="0"/></radialGradient>
+      <filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".016" numOctaves="5" seed="12"/><feColorMatrix values="0 0 0 0 .18  0 0 0 0 .02  0 0 0 0 .02  0 0 0 1.8 -.7"/></filter>
+      <filter id="scratch" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9 .012" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .15  0 0 0 0 .02  0 0 0 0 .02  0 0 0 9 -6.4"/></filter>
+      <filter id="grit" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="1" seed="6"/><feColorMatrix values="0 0 0 0 .12  0 0 0 0 .01  0 0 0 0 .01  0 0 0 8 -5"/></filter>
+      <filter id="lightgrit" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="41"/><feColorMatrix values="0 0 0 0 .85  0 0 0 0 .5  0 0 0 0 .42  0 0 0 10 -8.6"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="url(#glow)"/>
+    <rect width="297" height="420" fill="url(#spotL)"/>
+    <rect width="297" height="420" fill="url(#spotR)"/>
+    <rect width="297" height="420" filter="url(#mottle)" opacity=".75"/>
+    <rect width="297" height="420" filter="url(#scratch)" opacity=".5"/>
+    <rect width="297" height="420" filter="url(#grit)" opacity=".6"/>
+    <rect width="297" height="420" filter="url(#lightgrit)" opacity=".25"/>
+  </svg>
+
+  <div class="head txt" data-name="Текст: шапка">Деловая игра · The Hustle Hub</div>
+
+  <div class="stage" data-name="Заголовок ТОЧКА КОННЕКТА в перспективе" data-raster="full">
+    <div class="plane" id="plane">
+      <div class="word" id="w1">Точка</div>
+      <div class="word" id="w2">Коннекта</div>
+      <div class="pre" id="pre">Networking quest:</div>
+    </div>
+  </div>
+
+  <!-- shadows of both figures on the wall and letters: the raised hands meet at one point -->
+  <div class="shadow" id="sL" data-name="Тень слева" data-raster="full"><img class="flip" src="figure-augustus.png" alt=""></div>
+  <div class="shadow" id="sR" data-name="Тень справа" data-raster="full"><img src="figure-augustus.png" alt=""></div>
+
+  <svg class="dot" id="dot" viewBox="-6 -10 12 20" data-name="Точка коннекта" data-raster="box"><path d="M0 -10 Q .55 -.55 6 0 Q .55 .55 0 10 Q -.55 .55 -6 0 Q -.55 -.55 0 -10Z" fill="#d22a1f"/></svg>
+
+  <div class="fig" id="fL" data-name="Фигура слева" data-raster="box"><img class="flip" src="figure-augustus.png" alt=""></div>
+  <div class="fig" id="fR" data-name="Фигура справа" data-raster="box"><img src="figure-augustus.png" alt=""></div>
+
+  <div class="info txt" data-name="Текст: слоган и данные">
+    <div class="tag">Протяни руку первым</div>
+    <div class="date">28 ноября · 13:25</div>
+    <div class="line">Суббота · аудитория 609<br>Регистрация: 6 этаж, 603 кабинет</div>
+    <div class="desc">Коммуникация с разными партнёрами · поиск совпадений<br>игровой формат с юмором · без языкового барьера</div>
+  </div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none" data-name="Потёртость" data-raster="full">
+    <defs><filter id="wear" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="31"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .03  0 0 0 0 .03  0 0 0 14 -10.8"/></filter></defs>
+    <rect width="297" height="420" filter="url(#wear)" opacity=".45"/>
+  </svg>
+
+  <div class="photo-credit" data-name="Подпись фото" data-raster="box">Август из Прима-Порта, Музеи Ватикана · фото Till Niermann, Wikimedia Commons, общественное достояние</div>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  // grungy cream fill + eroded holes for the letters (SVG noise as CSS images)
+  const enc = s => 'url("data:image/svg+xml,' + encodeURIComponent(s) + '")';
+  const tex = enc(`<svg xmlns="http://www.w3.org/2000/svg" width="340" height="340"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="5" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .26  0 0 0 0 .17  0 0 0 0 .1  0 0 0 7 -4.9"/></filter><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="8" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .3  0 0 0 2 -1.25"/></filter><rect width="340" height="340" fill="#ecdcb6"/><rect width="340" height="340" filter="url(#g)" opacity=".7"/><rect width="340" height="340" filter="url(#f)"/></svg>`);
+  const holes = enc(`<svg xmlns="http://www.w3.org/2000/svg" width="265" height="265"><filter id="h"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="19" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -12 9.4"/></filter><rect width="265" height="265" filter="url(#h)"/></svg>`);
+  document.querySelectorAll('.word').forEach(w => { w.style.backgroundImage = tex; w.style.webkitMaskImage = w.style.maskImage = holes; });
+
+  // fit the two words: ТОЧКА tall and stretched, КОННЕКТА the same width, lower
+  (function () {
+    const w1 = document.getElementById('w1'), w2 = document.getElementById('w2'), pre = document.getElementById('pre');
+    w1.style.fontSize = w2.style.fontSize = '100px';
+    const W = mm(310);
+    const a = W / w1.getBoundingClientRect().width, b = W / w2.getBoundingClientRect().width;
+    w1.style.transform = `scale(${a}, ${a * 1.35})`;
+    w2.style.transform = `scale(${b}, ${b * 1.45})`;
+    w1.style.position = w2.style.position = 'absolute'; w1.style.left = w2.style.left = '0';
+    const h1 = 100 * .82 * a * 1.35;
+    w1.style.top = '0px'; w2.style.top = (h1 + mm(4)) + 'px';
+    pre.style.fontSize = mm(8.5) + 'px'; pre.style.left = mm(118) + 'px'; pre.style.top = -mm(12) + 'px';
+    const plane = document.getElementById('plane');
+    plane.style.width = W + 'px'; plane.style.height = (h1 + mm(4) + 100 * .82 * b * 1.45) + 'px';
+  })();
+
+  // figures and their shadows: shadow = silhouette, scaled from the feet and sheared so the raised hands meet at the dot
+  (function () {
+    const R = 4128 / 2572;                    // figure aspect (h / w)
+    const tip = [.0051, .0044];               // raised index finger in normalized coordinates (unflipped)
+    const meet = [mm(152), mm(126)];          // the «точка коннекта»
+    function place(id, sid, x, bottom, h, flip) {
+      const w = h / R, f = document.getElementById(id), s = document.getElementById(sid);
+      for (const el of [f, s]) Object.assign(el.style, { left: x + 'px', top: (bottom - h) + 'px', width: w + 'px', height: h + 'px' });
+      const tx = flip ? w * (1 - tip[0]) : w * tip[0], ty = h * tip[1];
+      const foot = [x + w * (flip ? .58 : .42), bottom];        // feet, the shadow's anchor
+      const dx = x + tx - foot[0], dy = (bottom - h + ty) - foot[1];
+      const dxt = meet[0] - foot[0], dyt = meet[1] - foot[1];
+      const sc = dyt / dy, k = (dxt - sc * dx) / (sc * dy);
+      s.style.transformOrigin = `${foot[0] - x}px ${h}px`;
+      s.style.transform = `matrix(${sc}, 0, ${k * sc}, ${sc}, 0, 0)`;
+    }
+    place('fL', 'sL', mm(-6), mm(408), mm(178), true);
+    place('fR', 'sR', mm(196), mm(404), mm(160), false);
+    const d = document.getElementById('dot');
+    d.style.left = (meet[0] - mm(8.5)) + 'px'; d.style.top = (meet[1] - mm(13)) + 'px';
+  })();
+</script>
+</body>
+</html>
