@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Два события 28.11 — блокнот</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  /* FreeMono (GNU FreeFont, GPL + font exception): Courier-like typewriter face that has Cyrillic */
+  @font-face { font-family: 'Typewriter'; src: url('fonts/FreeMonoBold.ttf'); font-weight: 700; }
+  @font-face { font-family: 'Typewriter'; src: url('fonts/FreeMono.ttf'); font-weight: 400; }
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #07120d; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #e9e6df; }
+  :root { --red: #d8231f; --ink: #1b1a19; --paper: #ecebe6; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #0b1f16; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .tw { font-family: 'Typewriter', 'Courier New', monospace; }
+
+  /* ---------- notebook ---------- */
+  .book { position: absolute; left: 30mm; top: 58mm; width: 226mm; height: 286mm; transform: rotate(-3.2deg); transform-origin: 50% 50%; }
+  .book .sheet { position: absolute; inset: 0; background: linear-gradient(160deg, #f3f2ee 0%, #e7e6e1 55%, #d9d8d2 100%); border-radius: 1.2mm 4mm 2mm 1.2mm;
+    box-shadow: 0 0 0 .3mm rgba(0,0,0,.08), 4mm 7mm 9mm rgba(0,0,0,.55), 1mm 2mm 2mm rgba(0,0,0,.35); }
+  .book .under { position: absolute; left: 2mm; right: -2.2mm; top: 2mm; bottom: -2.6mm; background: #c9c7c0; border-radius: 1.2mm 4mm 2mm 1.2mm; box-shadow: 3mm 6mm 8mm rgba(0,0,0,.5); }
+  .book .under2 { position: absolute; left: 4mm; right: -4.2mm; top: 4mm; bottom: -4.6mm; background: #8d6a42; border-radius: 1.2mm 4mm 2mm 1.2mm; }
+  .book .spiral { position: absolute; left: -9mm; top: 0; width: 24mm; height: 286mm; }
+
+  .hl { position: absolute; color: var(--ink); font-weight: 700; line-height: .86; white-space: nowrap; }
+  .hl1 { left: 22mm; top: 14mm; font-size: 43mm; letter-spacing: -.02em; transform: rotate(-7deg); transform-origin: 0 100%; }
+  .hl2 { left: 26mm; top: 52mm; font-size: 43mm; letter-spacing: -.03em; transform: rotate(-5deg); transform-origin: 0 100%; }
+  .ul { position: absolute; left: 26mm; top: 89mm; width: 120mm; height: 12mm; }
+  .hl3 { left: 34mm; top: 108mm; font-size: 24mm; font-weight: 700; letter-spacing: -.03em; transform: rotate(-3deg); }
+  .circle { position: absolute; left: 22mm; top: 96mm; width: 62mm; height: 40mm; }
+
+  .stamp { position: absolute; left: 112mm; top: 144mm; padding: 1.6mm 4.5mm 1.2mm; border: 1.3mm solid var(--red); color: var(--red); border-radius: 1.4mm;
+    font-family: 'Montserrat'; font-weight: 800; font-size: 11.5mm; line-height: 1; letter-spacing: .01em; transform: rotate(-2deg); opacity: .92; }
+  .stamp small { display: block; font-size: 3.1mm; letter-spacing: .32em; font-weight: 700; text-align: center; margin-bottom: .6mm; }
+
+  /* ---------- sticky note with date ---------- */
+  .sticky { position: absolute; left: 36mm; top: 232mm; width: 92mm; height: 82mm; background: linear-gradient(170deg, #eff0e6, #dfe2d6 70%, #d2d5c8);
+    transform: rotate(1.5deg); box-shadow: 1.6mm 3mm 4mm rgba(0,0,0,.45); }
+  .sticky .d { position: absolute; left: 6mm; top: 14mm; font-size: 44mm; font-weight: 700; line-height: .8; color: var(--ink); letter-spacing: -.06em; }
+  .sticky .m { position: absolute; left: 58mm; top: 17mm; font-size: 8.2mm; font-weight: 700; line-height: 1.05; color: var(--ink); }
+  .sticky .m u { text-decoration: none; border-bottom: .8mm solid var(--red); }
+  .sticky .t { position: absolute; left: 9mm; bottom: 9mm; font-size: 9mm; font-weight: 700; color: var(--ink); line-height: 1; }
+  .sticky .t span { color: var(--red); }
+  .pin { position: absolute; left: 74mm; top: 222mm; width: 16mm; height: 22mm; }
+
+  /* ---------- clipped notes ---------- */
+  .note { position: absolute; background: linear-gradient(175deg, #f1f0eb, #e2e1db); box-shadow: 1.6mm 3mm 5mm rgba(0,0,0,.5); color: var(--ink); padding: 9mm 7mm 7mm 8mm; }
+  .note h3 { font-family: 'Typewriter'; font-weight: 700; font-size: 8.4mm; line-height: 1; letter-spacing: -.02em; }
+  .note h3 + .sub { margin-top: 2.2mm; }
+  .note .sub { font-family: 'Typewriter'; font-weight: 700; font-size: 4.2mm; line-height: 1.15; color: #3a3836; }
+  .note ul { list-style: none; margin-top: 3.6mm; font-family: 'Typewriter'; font-weight: 700; font-size: 4.6mm; line-height: 1.38; }
+  .note li::before { content: '•'; margin-right: 2mm; }
+  .note li u { text-decoration: none; background: linear-gradient(transparent 82%, var(--red) 82%, var(--red) 92%, transparent 92%); }
+  .note1 { left: 150mm; top: 236mm; width: 100mm; transform: rotate(-4deg); }
+  .note2 { left: 176mm; top: 292mm; width: 108mm; transform: rotate(3deg); }
+  .clip { position: absolute; width: 9mm; height: 26mm; }
+
+  /* ---------- props ---------- */
+  .prop { position: absolute; }
+  .badge { position: absolute; border-radius: 2mm; overflow: hidden; background: #b9312d; text-align: center; color: #f1ece4; font-weight: 800; box-shadow: 0 3mm 7mm rgba(0,0,0,.6); }
+  .badge .h { font-size: 1em; letter-spacing: .02em; line-height: 1; padding-top: .28em; }
+  .badge .m { font-size: .3em; letter-spacing: .12em; line-height: 1; margin-top: .12em; }
+  .badge .w { position: absolute; left: 0; right: 0; top: 46%; bottom: 13%; background: #efebe4; display: flex; align-items: center; justify-content: center; }
+  .badge .w b { font-family: 'Caveat', cursive; font-weight: 700; color: #1a1818; font-size: 1.35em; transform: rotate(-4deg); text-transform: uppercase; }
+  .codex { position: absolute; background: linear-gradient(90deg, #5a1512, #7a201b 8%, #6a1a16); border-radius: 1mm 2.5mm 2.5mm 1mm; color: #e6c98a; text-align: center; box-shadow: 0 4mm 9mm rgba(0,0,0,.6); }
+  .codex .a { font-weight: 800; letter-spacing: .14em; font-size: 6mm; margin-top: 22mm; line-height: 1.2; }
+  .codex .b { font-weight: 500; letter-spacing: .3em; font-size: 3mm; margin-top: 4mm; }
+  .codex .r { position: absolute; left: 10mm; right: 10mm; height: .6mm; background: #c9a960; }
+
+  .top { left: 0; right: 0; top: 14mm; display: flex; justify-content: center; align-items: center; gap: 7mm; }
+  .top .lg { display: flex; align-items: center; gap: 2.6mm; }
+  .top .t1 { font-weight: 800; font-size: 5.2mm; letter-spacing: .02em; line-height: 1; }
+  .top .t2 { font-weight: 500; font-size: 2.5mm; letter-spacing: .3em; margin-top: 1.2mm; opacity: .85; }
+  .top .sep { width: .35mm; height: 11mm; background: rgba(233,230,223,.6); }
+  .top svg { width: 10mm; height: 10mm; }
+
+  .foot { left: 30mm; right: 30mm; top: 376mm; text-align: center; font-style: italic; font-weight: 500; font-size: 3.6mm; line-height: 1.42; color: rgba(240,237,230,.92); }
+  .foot b { font-style: normal; font-weight: 700; }
+  .tag { left: 0; right: 0; top: 399mm; text-align: center; font-weight: 500; font-size: 4.6mm; letter-spacing: .02em; color: #f0ede6; }
+  .tag i { font-style: normal; margin: 0 2.4mm; opacity: .7; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- typewriter ink: ragged edges, ink spread, worn holes -->
+    <filter id="ink" x="-5%" y="-10%" width="110%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feMorphology in="d" operator="dilate" radius="1.4" result="fat"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="9" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -16 12.6" result="holes"/>
+      <feComposite in="fat" in2="holes" operator="in"/>
+    </filter>
+    <filter id="inkS" x="-5%" y="-10%" width="110%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".2" numOctaves="2" seed="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feMorphology in="d" operator="dilate" radius=".35" result="fat"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="5" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -14 11.6" result="holes"/>
+      <feComposite in="fat" in2="holes" operator="in"/>
+    </filter>
+    <!-- rubber stamp -->
+    <filter id="stamp" x="-5%" y="-10%" width="110%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="3" seed="21" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -6 4.3" result="holes"/>
+      <feComposite in="SourceGraphic" in2="holes" operator="in" result="c"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="1" seed="3" result="n"/>
+      <feDisplacementMap in="c" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- marker stroke -->
+    <filter id="marker"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="2" seed="7" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -4 3.6" result="h"/><feComposite in="SourceGraphic" in2="h" operator="in"/></filter>
+    <radialGradient id="face" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#f4f2ec"/><stop offset=".8" stop-color="#d9d6cf"/><stop offset="1" stop-color="#9e9b94"/></radialGradient>
+    <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6d6f6e"/><stop offset=".45" stop-color="#1c1d1d"/><stop offset=".7" stop-color="#3b3d3c"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient>
+    <g id="clock">
+      <circle cx="0" cy="0" r="50" fill="url(#bezel)"/>
+      <circle cx="0" cy="0" r="43" fill="url(#face)"/>
+      <circle cx="0" cy="0" r="43" fill="none" stroke="#0004" stroke-width="2"/>
+      <g fill="#2a2a2a" font-family="Montserrat" font-weight="600" font-size="8" text-anchor="middle">
+        <text x="0" y="-30">12</text><text x="17" y="-25.5">1</text><text x="28.5" y="-13">2</text><text x="33" y="3">3</text><text x="28.5" y="19">4</text><text x="17" y="31">5</text>
+        <text x="0" y="36">6</text><text x="-17" y="31">7</text><text x="-28.5" y="19">8</text><text x="-33" y="3">9</text><text x="-28.5" y="-13">10</text><text x="-17" y="-25.5">11</text>
+      </g>
+      <!-- 13:25 -->
+      <line x1="0" y1="4" x2="0" y2="-22" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" transform="rotate(42.5)"/>
+      <line x1="0" y1="6" x2="0" y2="-33" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" transform="rotate(150)"/>
+      <line x1="0" y1="8" x2="0" y2="-36" stroke="#b42420" stroke-width=".8" transform="rotate(230)"/>
+      <circle r="2.4" fill="#1a1a1a"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="poster">
+  <!-- desk: deep green, light pool in the middle -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Стол" data-raster="full">
+    <defs>
+      <radialGradient id="pool" cx="52%" cy="46%" r="62%"><stop offset="0" stop-color="#245c42"/><stop offset=".45" stop-color="#17432f"/><stop offset=".8" stop-color="#0b2419"/><stop offset="1" stop-color="#040b07"/></radialGradient>
+      <filter id="felt"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .7  0 0 0 0 .6  0 0 0 .18 0"/></filter>
+      <filter id="mottle"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.3"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="url(#pool)"/>
+    <rect width="297" height="420" filter="url(#mottle)" opacity=".55"/>
+    <rect width="297" height="420" filter="url(#felt)" opacity=".5"/>
+  </svg>
+
+  <!-- out-of-focus props behind the notebook -->
+  <div class="badge prop" data-name="Бейдж AMAL" data-raster="box" style="left:-20mm; top:24mm; width:88mm; height:62mm; font-size:17mm; transform:rotate(-18deg); filter: blur(5px) brightness(.62);">
+    <div class="h">HELLO</div><div class="m">MY NAME IS</div><div class="w"><b>Amal</b></div></div>
+  <div class="codex prop" data-name="Трудовой кодекс" data-raster="box" style="left:232mm; top:296mm; width:80mm; height:112mm; transform:rotate(-16deg); filter: blur(6px) brightness(.62);">
+    <div class="r" style="top:12mm"></div><div class="a">ТРУДОВОЙ<br>КОДЕКС</div><div class="b">РОССИЙСКОЙ ФЕДЕРАЦИИ</div><div class="r" style="bottom:12mm"></div></div>
+
+  <div class="book" data-name="Блокнот" data-raster="box" data-ftext="1">
+    <div class="under2"></div><div class="under"></div><div class="sheet"></div>
+    <svg class="spiral" id="spiral" viewBox="0 0 24 286" preserveAspectRatio="none"></svg>
+    <div class="hl hl1 tw" style="filter:url(#ink)">СОВСЕМ</div>
+    <div class="hl hl2 tw" style="filter:url(#ink)">СКОРО!!</div>
+    <svg class="ul" viewBox="0 0 120 12" preserveAspectRatio="none" style="filter:url(#marker)"><path d="M2 9 C 30 6, 70 3.5, 118 1.5" stroke="#d8231f" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M8 10.5 C 40 8, 80 5, 112 4" stroke="#d8231f" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".8"/></svg>
+    <div class="hl hl3 tw" style="filter:url(#ink)">два события</div>
+    <svg class="circle" viewBox="0 0 62 40" style="filter:url(#marker)"><path d="M48 6 C 30 0, 6 4, 4 19 C 2 33, 26 38, 42 35 C 58 32, 61 18, 54 10 C 49 5, 38 3, 26 5" stroke="#d8231f" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    <div class="stamp" style="filter:url(#stamp)"><small>СУББОТА</small>АУД. 609</div>
+  </div>
+
+  <div class="sticky tw" data-name="Стикер с датой" data-raster="box">
+    <div class="d" style="filter:url(#ink)">28</div>
+    <div class="m" style="filter:url(#inkS)"><u>ноября</u><br>2026</div>
+    <div class="t" style="filter:url(#inkS)">начало <span>13:25</span></div>
+  </div>
+  <svg class="pin" viewBox="0 0 16 22" data-name="Кнопка" data-raster="box">
+    <defs><radialGradient id="pinr" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ff8a7a"/><stop offset=".35" stop-color="#e2342b"/><stop offset="1" stop-color="#7a0f0b"/></radialGradient></defs>
+    <ellipse cx="10" cy="19" rx="5" ry="2" fill="#000" opacity=".35"/>
+    <path d="M8 12 L9.5 19" stroke="#9a9a9a" stroke-width=".9"/>
+    <path d="M3 9.5 C 3 7, 13 7, 13 9.5 L 12 11.5 C 10 13, 6 13, 4 11.5 Z" fill="url(#pinr)"/>
+    <rect x="5.4" y="3.5" width="5.2" height="5" rx="1.2" fill="url(#pinr)"/>
+    <ellipse cx="8" cy="3.8" rx="4.2" ry="2.6" fill="url(#pinr)"/>
+    <ellipse cx="6.8" cy="3.2" rx="1.4" ry=".7" fill="#fff" opacity=".55"/>
+  </svg>
+
+  <div class="note note1" data-name="Заметка: мастер-класс" data-raster="box" style="filter:url(#inkS)">
+    <h3>мастер-класс</h3>
+    <div class="sub">«Основы трудового права для&nbsp;успешного трудоустройства»</div>
+    <ul><li><u>трудовые отношения</u></li><li>реальные кейсы</li><li><u>судебная практика</u></li></ul>
+  </div>
+  <svg class="clip" data-name="Скрепка 1" data-raster="box" viewBox="0 0 9 26" style="left:222mm; top:226mm; transform:rotate(-4deg)">
+    <path d="M6.5 8 L6.5 21 C6.5 24.5 1.8 24.5 1.8 21 L1.8 4 C1.8 .8 7.7 .8 7.7 4 L7.7 19 C7.7 20.5 5.2 20.5 5.2 19 L5.2 7" fill="none" stroke="#8f9496" stroke-width=".8" stroke-linecap="round"/>
+    <path d="M1.8 4 C1.8 .8 7.7 .8 7.7 4" fill="none" stroke="#e4e8ea" stroke-width=".35"/></svg>
+
+  <div class="note note2" data-name="Заметка: деловая игра" data-raster="box" style="filter:url(#inkS)">
+    <h3>деловая игра</h3>
+    <div class="sub">«The Hustle Hub: Networking&nbsp;Quest» — Точка коннекта</div>
+    <ul><li><u>общение с партнёрами</u></li><li>поиск совпадений</li><li><u>игра и юмор</u></li><li>без языкового барьера</li></ul>
+  </div>
+  <svg class="clip" data-name="Скрепка 2" data-raster="box" viewBox="0 0 9 26" style="left:262mm; top:287mm; transform:rotate(3deg)">
+    <path d="M6.5 8 L6.5 21 C6.5 24.5 1.8 24.5 1.8 21 L1.8 4 C1.8 .8 7.7 .8 7.7 4 L7.7 19 C7.7 20.5 5.2 20.5 5.2 19 L5.2 7" fill="none" stroke="#8f9496" stroke-width=".8" stroke-linecap="round"/>
+    <path d="M1.8 4 C1.8 .8 7.7 .8 7.7 4" fill="none" stroke="#e4e8ea" stroke-width=".35"/></svg>
+
+  <!-- out-of-focus clocks in front (13:25) -->
+  <svg class="prop" data-name="Часы справа сверху" data-raster="box" viewBox="-55 -55 110 110" style="left:224mm; top:40mm; width:124mm; height:124mm; filter: blur(9px) brightness(.55);"><use href="#clock"/></svg>
+  <svg class="prop" data-name="Часы слева снизу" data-raster="box" viewBox="-55 -55 110 110" style="left:-62mm; top:300mm; width:170mm; height:170mm; transform: rotate(-12deg); filter: blur(10px) brightness(.4);"><use href="#clock"/></svg>
+
+  <!-- window-blind light and shadow -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:multiply" data-name="Тени жалюзи" data-raster="full">
+    <defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.2"/></filter></defs>
+    <rect width="297" height="420" fill="url(#vig)"/>
+    <g filter="url(#soft)" fill="#16211b" opacity=".55">
+      <path d="M-40 150 L140 -40 L185 -40 L-40 200 Z"/>
+      <path d="M-40 268 L255 -40 L300 -40 L-40 318 Z"/>
+      <path d="M-10 420 L340 54 L340 104 L38 420 Z"/>
+      <path d="M128 440 L340 218 L340 270 L176 440 Z"/>
+    </g>
+    <defs><radialGradient id="vig" cx="50%" cy="48%" r="72%"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#5a5a5a"/></radialGradient></defs>
+  </svg>
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:soft-light" data-name="Свет" data-raster="full">
+    <g filter="url(#soft)" fill="#fff" opacity=".55"><path d="M60 300 L280 40 L300 70 L100 320 Z"/><path d="M0 220 L180 10 L196 22 L10 240 Z" opacity=".7"/></g>
+  </svg>
+
+  <div class="abs top txt" data-name="Логотипы" data-raster="box" data-ftext="1">
+    <div class="lg"><svg viewBox="0 0 20 20"><g fill="none" stroke="#e9e6df" stroke-width="1.3" stroke-linecap="round"><path d="M10 3 V17 M5 17 H15 M4 6 H16"/><path d="M4 6 L1.5 11.5 H6.5 Z M16 6 L13.5 11.5 H18.5 Z"/></g></svg>
+      <div><div class="t1">ПРАВО НА ТРУД</div><div class="t2">МАСТЕР-КЛАСС</div></div></div>
+    <div class="sep"></div>
+    <div class="lg"><svg viewBox="0 0 20 20"><g fill="none" stroke="#e9e6df" stroke-width="1.3"><circle cx="7" cy="10" r="5"/><circle cx="13" cy="10" r="5"/></g><circle cx="10" cy="10" r="1.6" fill="#d8231f"/></svg>
+      <div><div class="t1">THE HUSTLE HUB</div><div class="t2">ДЕЛОВАЯ ИГРА</div></div></div>
+  </div>
+
+  <div class="abs foot txt" data-name="Сноска">*Один день — два события: мастер-класс по трудовому праву и деловая игра-нетворкинг.
+    <b>28 ноября 2026, суббота, 13:25, аудитория 609.</b> Регистрация — 6&nbsp;этаж, 603&nbsp;кабинет.</div>
+  <div class="abs tag txt" data-name="Слоган">Знай свои права<i>|</i>Находи партнёров<i>|</i>Говори смело</div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none; mix-blend-mode:overlay" data-name="Зерно" data-raster="full">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .5 0"/></filter>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".5"/>
+  </svg>
+</div>
+
+<script>
+  // spiral binding: punched holes in the sheet + wire loops over the left edge
+  (function () {
+    const s = document.getElementById('spiral'); let h = '';
+    for (let y = 9; y < 282; y += 8.2) {
+      h += `<ellipse cx="13.6" cy="${y + 1.8}" rx="1.5" ry="1.3" fill="#1a1a1a"/>`;
+      h += `<path d="M13.6 ${y + 1.8} C 6 ${y + 1.6}, 3.2 ${y - .4}, 3.4 ${y - 2.8} C 3.6 ${y - 4.6}, 7 ${y - 4.2}, 9 ${y - 2.4}" fill="none" stroke="#161616" stroke-width="1.5" stroke-linecap="round" opacity=".55" transform="translate(.6 1)"/>`;
+      h += `<path d="M13.6 ${y + 1.8} C 6 ${y + 1.6}, 3.2 ${y - .4}, 3.4 ${y - 2.8} C 3.6 ${y - 4.6}, 7 ${y - 4.2}, 9 ${y - 2.4}" fill="none" stroke="#4a4c4d" stroke-width="1.3" stroke-linecap="round"/>`;
+      h += `<path d="M12 ${y + 1.4} C 6.5 ${y + 1.2}, 4.2 ${y - .2}, 4.1 ${y - 2.4}" fill="none" stroke="#c9cdcf" stroke-width=".4" stroke-linecap="round"/>`;
+    }
+    s.innerHTML = h;
+  })();
+</script>
+</body>
+</html>
