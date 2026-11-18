@@ -1,0 +1,25 @@
+@page { size: 297mm 420mm; margin: 0; }
+:root { --wine: #6a1515; --wine-2: #4e0e0e; --cream: #ece5d8; --cream-2: #f6f1e8; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 297mm; height: 420mm; background: var(--wine); }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; }
+.poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: var(--wine); }
+.art { position: absolute; inset: 0; width: 297mm; height: 420mm; }
+.box { position: absolute; z-index: 2; }
+
+.big { display: inline-block; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; color: var(--cream); line-height: 1; white-space: nowrap; transform-origin: left top; letter-spacing: -.01em; }
+.date { text-align: right; font-family: 'Oswald', sans-serif; font-weight: 500; color: var(--wine); font-size: 17mm; line-height: .98; }
+.date small { display: block; margin-top: 3mm; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 8mm; }
+
+.text { color: var(--wine); text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8mm 7mm; }
+.text .kind { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 7mm; margin-bottom: 3mm; }
+.text h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 5.2mm; line-height: 1.22; text-transform: uppercase; letter-spacing: .02em; }
+.text p { margin-top: 5mm; font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 4.3mm; line-height: 1.4; color: #3b0d0d; }
+.text .tags { margin-top: 6mm; font-family: 'Oswald', sans-serif; font-size: 4.2mm; letter-spacing: .06em; }
+
+.small-word { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; color: var(--cream); font-size: 17mm; line-height: 1; }
+.place { position: absolute; z-index: 2; color: var(--wine); font-family: 'Oswald', sans-serif; text-align: center; }
+.place b { display: block; font-weight: 600; font-size: 11mm; line-height: 1; }
+.place span { font-size: 3.8mm; letter-spacing: .14em; text-transform: uppercase; }
+
+.foot { position: absolute; left: 0; right: 0; bottom: 7mm; z-index: 2; text-align: center; color: var(--cream); font-family: 'Oswald', sans-serif; font-size: 4.6mm; line-height: 1.55; letter-spacing: .03em; text-transform: uppercase; }
