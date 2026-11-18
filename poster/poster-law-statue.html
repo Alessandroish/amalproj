@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Право на труд</title>
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #2a0505; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #fff4ee; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden;
+    background:
+      radial-gradient(60% 45% at 60% 38%, #8a1d14 0%, rgba(120,22,14,.6) 40%, rgba(40,4,4,0) 75%),
+      radial-gradient(90% 70% at 50% 100%, #5a0d09 0%, #2a0505 70%),
+      #2a0505; }
+  .layer { position: absolute; inset: 0; width: 297mm; height: 420mm; }
+  .statue { position: absolute; left: 52mm; top: 62mm; height: 470mm; filter: drop-shadow(0 0 18mm rgba(255,90,60,.25)); }
+  .glow { text-shadow: 0 0 6mm rgba(255,170,140,.45); }
+
+  .top { position: absolute; left: 0; right: 0; top: 18mm; text-align: center; font-size: 5.2mm; line-height: 1.35; font-weight: 500; }
+  .rule { position: absolute; height: 0; border-top: .35mm solid rgba(255,235,225,.75); }
+
+  .title { position: absolute; left: 14mm; top: 52mm; font-family: 'Poiret One', sans-serif; font-size: 44mm; line-height: .98; text-transform: uppercase; letter-spacing: -.01em; }
+  .title .small { font-size: 26mm; display: block; margin: 2mm 0 1mm 3mm; }
+  .spark { position: absolute; }
+
+  .date { position: absolute; right: 16mm; top: 68mm; text-align: right; font-family: 'Poiret One', sans-serif; font-size: 20mm; line-height: 1.12; text-transform: uppercase; letter-spacing: .02em; }
+  .date .t { font-size: 24mm; }
+
+  .info { position: absolute; left: 16mm; top: 178mm; width: 60mm; font-size: 4.1mm; line-height: 1.38; font-weight: 500; }
+  .info b { font-weight: 600; }
+  .info p + p { margin-top: 4mm; }
+
+  .bottom { position: absolute; left: 16mm; bottom: 20mm; font-size: 5.4mm; line-height: 1.38; font-weight: 500; }
+  .bottom b { font-weight: 600; }
+  .credit { position: absolute; right: 12mm; bottom: 8mm; font-size: 2.3mm; color: rgba(255,230,220,.55); }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- background architecture: blurred colonnade -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="col" x1="0" x2="1">
+        <stop offset="0" stop-color="#3a0707"/><stop offset=".35" stop-color="#9a2a1c"/><stop offset=".55" stop-color="#c9452c"/><stop offset=".8" stop-color="#5e0f0a"/><stop offset="1" stop-color="#2a0505"/>
+      </linearGradient>
+      <filter id="b6"><feGaussianBlur stdDeviation="3.5"/></filter>
+      <filter id="b2"><feGaussianBlur stdDeviation="1.2"/></filter>
+    </defs>
+    <g filter="url(#b6)" opacity=".75">
+      <rect x="-14" y="40" width="44" height="400" fill="url(#col)"/>
+      <rect x="-20" y="30" width="56" height="12" fill="#7a1c13"/>
+      <rect x="250" y="70" width="40" height="370" fill="url(#col)" opacity=".7"/>
+      <rect x="244" y="60" width="52" height="11" fill="#6a160f" opacity=".7"/>
+      <!-- dome ribs -->
+      <path d="M-20 60 Q 148 -60 320 60" fill="none" stroke="#7d1a12" stroke-width="8" opacity=".6"/>
+      <path d="M-20 20 Q 148 -90 320 20" fill="none" stroke="#5c120c" stroke-width="5" opacity=".6"/>
+      <g fill="#6d160f" opacity=".55">
+        <rect x="60" y="8" width="12" height="18" rx="2"/><rect x="92" y="2" width="12" height="18" rx="2"/><rect x="124" y="0" width="12" height="18" rx="2"/>
+        <rect x="160" y="0" width="12" height="18" rx="2"/><rect x="192" y="2" width="12" height="18" rx="2"/><rect x="224" y="8" width="12" height="18" rx="2"/>
+      </g>
+    </g>
+  </svg>
+
+  <img class="statue" src="statue-justitia.png" alt="">
+
+  <!-- light rays + dust -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode: screen">
+    <defs>
+      <linearGradient id="ray" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3ea" stop-opacity=".95"/><stop offset=".45" stop-color="#ffd8c8" stop-opacity=".35"/><stop offset="1" stop-color="#ffd8c8" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="rb"><feGaussianBlur stdDeviation="2.4"/></filter>
+      <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="2"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .85  0 0 0 0 .8  0 0 0 .6 -.25"/></filter>
+    </defs>
+    <g filter="url(#rb)">
+      <polygon points="-30,40 330,250 330,300 -30,62" fill="url(#ray)" opacity=".55"/>
+      <polygon points="-30,70 300,420 250,420 -30,82" fill="url(#ray)" opacity=".45"/>
+      <polygon points="-30,20 330,170 330,186 -30,28" fill="url(#ray)" opacity=".4"/>
+      <polygon points="-30,100 220,420 190,420 -30,106" fill="url(#ray)" opacity=".35"/>
+      <polygon points="-30,52 330,330 330,345 -30,57" fill="url(#ray)" opacity=".3"/>
+    </g>
+    <g fill="#fff0e6" opacity=".55">
+      <circle cx="70" cy="120" r=".35"/><circle cx="96" cy="150" r=".5"/><circle cx="122" cy="168" r=".3"/><circle cx="150" cy="210" r=".45"/>
+      <circle cx="178" cy="230" r=".3"/><circle cx="210" cy="262" r=".4"/><circle cx="60" cy="160" r=".3"/><circle cx="110" cy="230" r=".35"/>
+      <circle cx="188" cy="300" r=".3"/><circle cx="140" cy="290" r=".4"/><circle cx="235" cy="320" r=".3"/><circle cx="84" cy="96" r=".4"/>
+    </g>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".35"/>
+  </svg>
+
+  <!-- rules -->
+  <div class="rule" style="left:16mm; right:16mm; top:36mm;"></div>
+  <div class="rule" style="left:190mm; right:16mm; top:120mm;"></div>
+  <div class="rule" style="left:16mm; right:16mm; top:170mm;"></div>
+
+  <div class="top glow">Мастер-класс для студентов<br>о трудовом праве и трудоустройстве</div>
+
+  <div class="title glow">Право<span class="small">на</span>Труд</div>
+
+  <!-- sparkles / starbursts -->
+  <svg class="spark" style="left:52mm; top:70mm; width:16mm; height:16mm" viewBox="-10 -10 20 20">
+    <path d="M0 -9 Q .6 -.6 9 0 Q .6 .6 0 9 Q -.6 .6 -9 0 Q -.6 -.6 0 -9 Z" fill="#fff6f0"/>
+  </svg>
+  <svg class="spark" style="right:16mm; top:44mm; width:24mm; height:24mm" viewBox="-12 -12 24 24">
+    <g stroke="#fff6f0" stroke-width=".35">
+      <line x1="-12" y1="0" x2="12" y2="0"/><line x1="0" y1="-12" x2="0" y2="12"/>
+      <line x1="-8" y1="-8" x2="8" y2="8"/><line x1="-8" y1="8" x2="8" y2="-8"/>
+      <line x1="-4" y1="-11" x2="4" y2="11"/><line x1="-11" y1="-4" x2="11" y2="4"/><line x1="-4" y1="11" x2="4" y2="-11"/><line x1="-11" y1="4" x2="11" y2="-4"/>
+    </g>
+    <circle r="2.6" fill="none" stroke="#fff6f0" stroke-width=".35"/><circle r="1.2" fill="#fff6f0"/>
+  </svg>
+  <svg class="spark" style="left:6mm; top:292mm; width:70mm; height:70mm" viewBox="-35 -35 70 70">
+    <g stroke="#fff6f0" stroke-width=".3" opacity=".9">
+      <line x1="0" y1="-34" x2="0" y2="34"/><line x1="-34" y1="0" x2="34" y2="0"/>
+      <line x1="-22" y1="-26" x2="22" y2="26"/><line x1="-26" y1="-14" x2="26" y2="14"/>
+      <line x1="-14" y1="-30" x2="14" y2="30"/><line x1="-30" y1="10" x2="30" y2="-10"/>
+      <line x1="-20" y1="24" x2="20" y2="-24"/><line x1="-8" y1="30" x2="8" y2="-30"/>
+    </g>
+    <path d="M0 -4 Q .4 -.4 4 0 Q .4 .4 0 4 Q -.4 .4 -4 0 Q -.4 -.4 0 -4 Z" fill="#fff6f0"/>
+  </svg>
+
+  <div class="date glow">28 ноября<br><span class="t">13.25</span><br><span style="display:block; margin-top:4mm">Ауд. 609</span></div>
+
+  <div class="info glow">
+    <p><b>«Основы трудового права для&nbsp;успешного трудоустройства»</b></p>
+    <p>Важные юридические аспекты трудовых отношений с&nbsp;работодателем. Разберём реальные кейсы и&nbsp;судебную практику.</p>
+  </div>
+
+  <div class="bottom glow"><b>Регистрация:</b><br>6 этаж, 603 кабинет<br>Суббота, 28 ноября 2026</div>
+
+  <div class="credit">Фото статуи: Breandan Fischer, Wikimedia Commons, CC BY-SA 4.0</div>
+</div>
+</body>
+</html>
