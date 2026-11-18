@@ -2,7 +2,7 @@
 # Source: File:Hermes_Ingenui_Pio-Clementino_Inv544.jpg (Marie-Lan Nguyen, 2009, public domain), 1600x3500.
 # Close crop: hat brim, curls, eyes, nose (the "eyes through the torn paper" of the reference).
 # Lines follow the form (phase displaced by blurred luminance); crosshatching in the deep shadows.
-# Usage: python3 engrave_hermes.py hermes.jpg [engraving-hermes.png]
+# Usage: python3 engrave_hermes.py hermes.jpg [engraving-hermes.png] [line period px, default 13]
 import sys
 from PIL import Image, ImageFilter
 import numpy as np
@@ -21,13 +21,14 @@ lo, hi = np.percentile(T, [2, 98]); T = np.clip((T - lo)/(hi - lo), 0, 1) ** 1.1
 dark = 1 - T
 H, W = T.shape; yy, xx = np.mgrid[0:H, 0:W]
 G = blur(L, 40)
-p = 13.0
-ph = yy + 70*G + 6*np.sin(xx/260.)                      # contour-following waves
+p = float(sys.argv[3]) if len(sys.argv) > 3 else 13.0
+q = p * 11 / 13                                        # crosshatch period
+ph = yy + 70*G*p/13 + 6*np.sin(xx/260.)                      # contour-following waves
 d1 = np.abs((ph % p) - p/2)
 ink = np.clip(p/2*np.clip(dark*1.05, 0, 1)**.85 - d1 + .9, 0, 1)
 ph2 = (xx*.5 + yy*.87) + 40*G                           # crosshatch at 60 degrees in the shadows
-d2 = np.abs((ph2 % 11) - 5.5)
-ink2 = np.clip(5.5*np.clip((dark - .55)/.45, 0, 1) - d2 + .6, 0, 1) * np.clip((dark - .55)/.08, 0, 1)
+d2 = np.abs((ph2 % q) - q/2)
+ink2 = np.clip(q/2*np.clip((dark - .55)/.45, 0, 1) - d2 + .6, 0, 1) * np.clip((dark - .55)/.08, 0, 1)
 ink = np.maximum(ink, ink2)
 stip = (np.random.default_rng(3).random(T.shape) < .015*dark)   # a little stipple, as in banknote portraits
 ink = np.maximum(ink, stip*.8)

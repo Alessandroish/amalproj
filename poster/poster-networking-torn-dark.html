@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Точка коннекта — тёмная</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #0d0c0c; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #ece7e0; }
+  :root { --red: #e0261f; --white: #ece7e0; --ink: #141111; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #0d0c0c; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+
+  .portrait { position: absolute; left: -64mm; top: 44mm; width: 404mm; filter: grayscale(1) contrast(1.08) brightness(1.04); }
+
+  /* floating name badges and business cards, out of focus (the banknotes of the reference) */
+  .card { position: absolute; border-radius: 1.6mm; overflow: hidden; box-shadow: 0 3mm 7mm rgba(0,0,0,.6); }
+  .badge { background: #8d8a86; text-align: center; color: #e9e6e1; font-weight: 800; }
+  .badge .h { font-size: 1em; letter-spacing: .02em; line-height: 1; padding-top: .28em; }
+  .badge .m { font-size: .3em; letter-spacing: .12em; line-height: 1; margin-top: .12em; }
+  .badge .w { position: absolute; left: 0; right: 0; top: 46%; bottom: 13%; background: #dcd8d1; display: flex; align-items: center; justify-content: center; }
+  .badge .w b { font-family: 'Caveat', cursive; font-weight: 700; color: #1a1818; font-size: 1.35em; transform: rotate(-4deg); text-transform: uppercase; -webkit-text-stroke: .02em #1a1818; }
+  .vcard { background: #d9d5ce; color: #2a2727; padding: .5em .6em; font-size: 1em; }
+  .vcard .n { font-weight: 800; font-size: .62em; letter-spacing: .06em; text-transform: uppercase; }
+  .vcard .r { font-weight: 500; font-size: .32em; letter-spacing: .1em; text-transform: uppercase; margin-top: .25em; color: #555; }
+  .vcard .l { position: absolute; left: .6em; right: .6em; bottom: .55em; border-top: .02em solid #777; padding-top: .2em; font-size: .26em; letter-spacing: .08em; color: #555; }
+  .vcard .lg { position: absolute; right: .6em; top: .5em; width: .9em; height: .9em; border: .08em solid #2a2727; border-radius: 50%; }
+
+  .brand { left: 22mm; top: 33mm; display: flex; align-items: center; gap: 3.4mm; }
+  .brand .t1 { font-weight: 800; font-size: 5.6mm; letter-spacing: .02em; line-height: 1; }
+  .brand .t2 { font-weight: 500; font-size: 2.7mm; letter-spacing: .32em; margin-top: 1.2mm; color: rgba(236,231,224,.85); }
+  .quote { left: 196mm; top: 32mm; width: 82mm; font-weight: 500; font-size: 4.3mm; line-height: 1.22; }
+  .quote em { font-style: normal; color: var(--red); font-weight: 600; }
+
+  .hl1 { left: 0; right: 0; top: 236mm; text-align: center; font-weight: 900; font-size: 18.2mm; line-height: 1; color: var(--ink); letter-spacing: -.005em; text-transform: uppercase; }
+  .hl2 { left: 0; right: 0; top: 252mm; text-align: center; font-weight: 900; line-height: 1; color: var(--white); text-transform: uppercase; letter-spacing: -.01em; }
+  .hl3 { left: 0; right: 0; top: 296mm; text-align: center; font-family: 'Caveat', cursive; font-weight: 700; font-size: 31mm; line-height: 1; color: var(--ink); text-transform: uppercase;
+         -webkit-text-stroke: .9mm var(--ink); transform: rotate(-4deg) skewX(-6deg); letter-spacing: .02em; }
+  .spark { left: 45mm; top: 226mm; width: 16mm; height: 14mm; }
+  .pillars { left: 0; right: 0; top: 338mm; text-align: center; font-weight: 500; font-size: 6.4mm; letter-spacing: .01em; }
+  .pillars i { font-style: normal; color: var(--red); font-weight: 400; margin: 0 3.2mm; }
+  .left-note { left: 49mm; top: 362mm; font-weight: 500; font-size: 5.2mm; line-height: 1.24; }
+  .left-note .r { color: var(--red); font-weight: 600; }
+  .box { left: 162mm; top: 357mm; border: .45mm solid var(--red); padding: 2mm 13mm 2mm 4mm; font-weight: 600; font-size: 5mm; letter-spacing: .01em; }
+  .box svg { position: absolute; right: -4mm; top: -5.5mm; width: 15mm; height: 12mm; }
+  .rows { left: 162mm; top: 372mm; font-weight: 500; font-size: 4.4mm; line-height: 1; }
+  .rows div { display: flex; align-items: center; gap: 3.2mm; margin-bottom: 3.3mm; }
+  .rows svg { width: 4.4mm; height: 4.4mm; flex: none; }
+  .photo-credit { right: 7mm; bottom: 3.5mm; font-size: 1.9mm; color: rgba(236,231,224,.4); }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <img class="portrait" src="engraving-hermes-fine.png" alt="" data-name="Гравюра Гермеса" data-raster="full">
+
+  <!-- shading on the portrait: vignette and darkness at the sides -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Затемнение портрета" data-raster="full">
+    <defs><radialGradient id="pv" cx="50%" cy="34%" r="58%"><stop offset=".35" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#050404" stop-opacity=".85"/></radialGradient></defs>
+    <rect width="297" height="420" fill="url(#pv)"/>
+  </svg>
+
+  <!-- blurred cards behind the papers -->
+  <div class="card badge" data-name="Бейдж за бумагой" data-raster="box" style="left:244mm; top:96mm; width:78mm; height:54mm; font-size:15mm; transform:rotate(-26deg); filter: blur(2.2px) brightness(.58) contrast(.9);">
+    <div class="h">HELLO</div><div class="m">MY NAME IS</div><div class="w"><b>Max</b></div></div>
+
+  <!-- torn papers: dark one on top, red one at the bottom -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Рваные листы: тёмный и красный" data-raster="full">
+    <defs>
+      <filter id="fib" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.7 1.2" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="1.5"/></filter>
+      <filter id="fib2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="3" seed="15"/><feDisplacementMap in="SourceGraphic" scale="1"/></filter>
+      <filter id="sh"><feGaussianBlur stdDeviation="2.4"/></filter>
+      <filter id="redtex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="5" seed="8"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .01  0 0 0 0 .02  0 0 0 1.6 -.6"/></filter>
+      <filter id="redlite" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="4" seed="27"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .3  0 0 0 0 .26  0 0 0 1.8 -1.05"/></filter>
+      <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="5"/><feColorMatrix values="0 0 0 0 .05  0 0 0 0 0  0 0 0 0 0  0 0 0 6 -3.6"/></filter>
+      <filter id="lgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="51"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 .8  0 0 0 0 .78  0 0 0 8 -6.7"/></filter>
+      <filter id="darktex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="5" seed="33"/><feColorMatrix values="0 0 0 0 .32  0 0 0 0 .3  0 0 0 0 .29  0 0 0 1.4 -.62"/></filter>
+      <filter id="crease" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008 .05" numOctaves="3" seed="61"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .48  0 0 0 0 .46  0 0 0 4 -2.6"/></filter>
+      <linearGradient id="redshade" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity=".1"/><stop offset="1" stop-color="#060202" stop-opacity=".72"/></linearGradient>
+      <radialGradient id="redvig" cx="50%" cy="48%" r="70%"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".62"/></radialGradient>
+      <clipPath id="redclip"><path id="redc"/></clipPath>
+      <clipPath id="darkclip"><path id="darkc"/></clipPath>
+    </defs>
+    <!-- dark top sheet -->
+    <path id="darkshadow" fill="#000" opacity=".8" filter="url(#sh)"/>
+    <path id="darkrim" fill="#7f7a75" filter="url(#fib)"/>
+    <path id="darkrim2" fill="#4b4744" filter="url(#fib2)"/>
+    <path id="darkbody" fill="#1a1918"/>
+    <g clip-path="url(#darkclip)">
+      <rect width="297" height="130" filter="url(#darktex)" opacity=".55"/>
+      <rect width="297" height="130" filter="url(#crease)" opacity=".32"/>
+      <rect width="297" height="130" filter="url(#lgrain)" opacity=".12"/>
+    </g>
+    <!-- red bottom sheet -->
+    <path id="redshadow" fill="#000" opacity=".85" filter="url(#sh)"/>
+    <path id="redrim" fill="#efe9e1" filter="url(#fib)"/>
+    <path id="redrim2" fill="#cfc6bd" filter="url(#fib2)"/>
+    <path id="redbody" fill="#b8171c"/>
+    <g clip-path="url(#redclip)">
+      <rect width="297" height="420" filter="url(#redlite)" opacity=".45"/>
+      <rect width="297" height="420" filter="url(#redtex)" opacity=".9"/>
+      <rect width="297" height="420" filter="url(#crease)" opacity=".12"/>
+      <rect width="297" height="420" filter="url(#grain)" opacity=".7"/>
+      <rect width="297" height="420" filter="url(#lgrain)" opacity=".18"/>
+      <rect width="297" height="420" fill="url(#redshade)"/>
+      <rect width="297" height="420" fill="url(#redvig)"/>
+    </g>
+  </svg>
+
+  <!-- blurred cards in front (depth of field) -->
+  <div class="card vcard" data-name="Визитка слева сверху" data-raster="box" style="left:-26mm; top:-8mm; width:84mm; height:48mm; font-size:15mm; transform:rotate(-14deg); filter: blur(7px) brightness(.5);">
+    <div class="lg"></div><div class="n">Анна Ли</div><div class="r">Product manager</div><div class="l">+7 · @anna · Let's talk</div></div>
+  <div class="card badge" data-name="Бейдж слева снизу" data-raster="box" style="left:-36mm; top:300mm; width:96mm; height:66mm; font-size:19mm; transform:rotate(28deg); filter: blur(9px) brightness(.55);">
+    <div class="h">HELLO</div><div class="m">MY NAME IS</div><div class="w"><b>Тимур</b></div></div>
+  <div class="card vcard" data-name="Визитка справа" data-raster="box" style="left:256mm; top:178mm; width:80mm; height:46mm; font-size:14mm; transform:rotate(-58deg); filter: blur(6px) brightness(.58);">
+    <div class="lg"></div><div class="n">Lisa Brown</div><div class="r">Startup founder</div><div class="l">lisa@ · Partnerships</div></div>
+  <div class="card badge" data-name="Бейдж снизу" data-raster="box" style="left:122mm; top:404mm; width:60mm; height:42mm; font-size:12mm; transform:rotate(-8deg); filter: blur(8px) brightness(.45);">
+    <div class="h">HELLO</div><div class="m">MY NAME IS</div><div class="w"><b>Ты</b></div></div>
+  <div class="card vcard" data-name="Визитка сверху справа" data-raster="box" style="left:262mm; top:-14mm; width:66mm; height:38mm; font-size:11mm; transform:rotate(22deg); filter: blur(9px) brightness(.4);">
+    <div class="lg"></div><div class="n">Олег К.</div><div class="r">Маркетинг</div><div class="l">Давай созвонимся</div></div>
+
+  <div class="abs brand" data-name="Логотип" data-raster="box">
+    <svg style="width:12mm;height:12mm" viewBox="0 0 12 12"><rect width="12" height="12" fill="#ece7e0"/><path d="M0 12 L12 0 L12 3 L3 12Z" fill="#1a1918"/></svg>
+    <div><div class="t1">THE HUSTLE HUB</div><div class="t2">ДЕЛОВАЯ ИГРА</div></div>
+  </div>
+  <div class="abs quote" data-name="Цитата" data-raster="box">Не жди, пока заговорят с&nbsp;тобой —<br><em>подойди первым</em> и&nbsp;скажи «Hello».</div>
+
+  <svg class="abs spark" viewBox="0 0 16 14" data-name="Штрихи" data-raster="box"><g stroke="#ece7e0" stroke-width="1.1" stroke-linecap="round"><path d="M9 9 L13.5 3"/><path d="M6 9.6 L5.4 2.6"/><path d="M3.4 11 L.8 8.2"/></g></svg>
+  <div class="abs hl1" data-name="Заголовок ТВОЯ ТОЧКА" data-raster="box">Твоя точка</div>
+  <div class="abs hl2" id="hl2" data-name="Заголовок КОННЕКТА" data-raster="box">Коннекта</div>
+  <div class="abs hl3" data-name="Надпись ЖДЁТ ТЕБЯ" data-raster="box">ждёт тебя.</div>
+
+  <div class="abs pillars" data-name="Общайся / Находи / Договаривайся" data-raster="box">Общайся<i>|</i>Находи<i>|</i>Договаривайся</div>
+  <div class="abs left-note txt" data-name="Текст: слева внизу">Деловая игра.<br>С юмором.<br><span class="r">Без языкового барьера.</span></div>
+
+  <div class="abs box" data-name="Плашка с датой" data-raster="box">28 ноября · 13:25
+    <svg viewBox="0 0 15 12"><path d="M1 11 L5 7 L7.5 9 L13 3" fill="none" stroke="#e0261f" stroke-width="1.1"/><path d="M10 2.6 L13.6 2.4 L13.4 6" fill="none" stroke="#e0261f" stroke-width="1.1"/></svg></div>
+  <div class="abs rows" data-name="Строки с иконками" data-raster="box">
+    <div><svg viewBox="0 0 16 16"><path d="M8 0.5C4.7 0.5 2.2 3 2.2 6.2 2.2 10.5 8 15.5 8 15.5s5.8-5 5.8-9.3C13.8 3 11.3 .5 8 .5z" fill="#e0261f"/><circle cx="8" cy="6.2" r="2.2" fill="#140f0f"/></svg>Аудитория 609</div>
+    <div><svg viewBox="0 0 16 16"><rect x="1.5" y="3" width="13" height="11.5" rx="1.5" fill="#e0261f"/><rect x="1.5" y="3" width="13" height="3.2" fill="#9e1510"/><rect x="4" y="1" width="1.6" height="3.6" fill="#e0261f"/><rect x="10.4" y="1" width="1.6" height="3.6" fill="#e0261f"/></svg>Суббота, 28.11.2026</div>
+    <div><svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3.4" fill="#e0261f"/><path d="M1.6 15.5c.4-4 3.1-6 6.4-6s6 2 6.4 6z" fill="#e0261f"/></svg>Регистрация: 6 этаж, 603 каб.</div>
+  </div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none" data-name="Зерно" data-raster="full">
+    <defs><filter id="g2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="77"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 5 -3.4"/></filter></defs>
+    <rect width="297" height="420" filter="url(#g2)" opacity=".18"/>
+  </svg>
+
+  <div class="abs photo-credit" data-name="Подпись фото" data-raster="box">Гермес Ингенуи, Музеи Ватикана · фото Marie-Lan Nguyen, общественное достояние</div>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  const enc = s => 'url("data:image/svg+xml,' + encodeURIComponent(s) + '")';
+  // distressed white headline: noise holes as a mask
+  const holes = enc(`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="h"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="4" seed="12" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -10 7.2"/></filter><rect width="300" height="300" filter="url(#h)"/></svg>`);
+  document.fonts.ready.then(() => {
+    const h = document.getElementById('hl2');
+    h.style.fontSize = '100px';
+    const w = h.scrollWidth, r = document.createRange(); r.selectNodeContents(h); const tw = r.getBoundingClientRect().width;
+    const fs = 100 * mm(232) / tw; h.style.fontSize = fs + 'px';
+    for (const el of [h, document.querySelector('.hl1')]) { el.style.webkitMaskImage = el.style.maskImage = holes; el.style.webkitMaskSize = el.style.maskSize = '60mm 60mm'; }
+  });
+
+  // torn edges
+  (function () {
+    let s = 9; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    function edge(y0, y1, ph, amp) {
+      const p = [];
+      for (let x = -4; x <= 301; x += .7 + rnd() * 1.3) {
+        const y = y0 + (y1 - y0) * x / 297 + Math.sin(x / 26 + ph) * amp + Math.sin(x / 8.3 + ph * 3) * amp * .35 + (rnd() - .5) * 1.4;
+        p.push([x, y, 1.6 + Math.max(0, Math.sin(x / 14 + ph * 2)) * 3.4 + rnd() * 1.8]);
+      }
+      return p;
+    }
+    const S = a => a.map(q => q[0].toFixed(2) + ' ' + q[1].toFixed(2)).join(' L');
+    // dark sheet: everything above its torn lower edge
+    const d = edge(78, 100, .3, 3);
+    const dark = (k) => 'M-5 -5 L302 -5 L' + S(d.map(q => [q[0], q[1] + k(q)]).reverse()) + ' Z';
+    document.getElementById('darkbody').setAttribute('d', dark(() => 0));
+    document.getElementById('darkc').setAttribute('d', dark(() => 0));
+    document.getElementById('darkrim').setAttribute('d', dark(q => q[2]));
+    document.getElementById('darkrim2').setAttribute('d', dark(q => q[2] * .5));
+    document.getElementById('darkshadow').setAttribute('d', dark(q => q[2] + 3.5));
+    // red sheet: everything below its torn upper edge
+    const r = edge(198, 212, 1.7, 3.6);
+    const red = (k) => 'M' + S(r.map(q => [q[0], q[1] - k(q)])) + ' L302 425 L-5 425 Z';
+    document.getElementById('redbody').setAttribute('d', red(() => 0));
+    document.getElementById('redc').setAttribute('d', red(() => 0));
+    document.getElementById('redrim').setAttribute('d', red(q => q[2]));
+    document.getElementById('redrim2').setAttribute('d', red(q => q[2] * .45));
+    document.getElementById('redshadow').setAttribute('d', red(q => q[2] + 3));
+  })();
+</script>
+</body>
+</html>
