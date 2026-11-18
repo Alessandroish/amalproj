@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Право на труд — растр</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
   @page { size: 297mm 420mm; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
   :root { --red: #b3141b; --ink: #1a1717; --paper: #f1ede6; }
 
   .top { position: absolute; left: 0; right: 0; top: 13mm; text-align: center; font-weight: 800; font-size: 5mm; line-height: 1.28; letter-spacing: .01em; text-transform: uppercase; }
-  .serif { font-family: 'Playfair Display', serif; font-weight: 500; text-transform: uppercase; line-height: 1; white-space: nowrap; position: absolute; transform-origin: 0 0; }
+  .serif { font-family: 'Playfair Display', serif; font-weight: 600; text-transform: uppercase; line-height: 1; white-space: nowrap; position: absolute; transform-origin: 0 0; }
   .t1 { left: 8mm; top: 26mm; color: var(--ink); }
   .t1 .r { color: var(--red); }
   .t2 { left: 7mm; color: var(--paper); text-shadow: 0 0 6px rgba(18,6,6,.55); }
@@ -45,11 +45,12 @@
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none">
     <defs>
       <filter id="blot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .44  0 0 0 1.4 -.62"/></filter>
+      <filter id="fibre" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02 .9" numOctaves="2" seed="21"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .34  0 0 0 6 -3.7"/></filter>
       <filter id="speck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="3"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .18  0 0 0 0 .16  0 0 0 9 -5.6"/></filter>
     </defs>
     <rect width="297" height="420" fill="#ebe6dd"/>
-    <rect width="297" height="420" filter="url(#blot)" opacity=".55"/>
-    <rect width="297" height="420" filter="url(#speck)" opacity=".7"/>
+    <rect width="297" height="420" filter="url(#blot)" opacity=".32"/>
+    <rect width="297" height="420" filter="url(#speck)" opacity=".45"/>
   </svg>
 
   <!-- top title -->
@@ -63,15 +64,18 @@
       <radialGradient id="rg2" cx="88%" cy="62%" r="45%"><stop offset="0" stop-color="#5a090c" stop-opacity=".9"/><stop offset="1" stop-color="#1c0505" stop-opacity="0"/></radialGradient>
       <filter id="rspeck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 0  0 0 0 0 0  0 0 0 3 -1.6"/></filter>
       <filter id="soft"><feGaussianBlur stdDeviation=".35"/></filter>
+      <filter id="shadowb"><feGaussianBlur stdDeviation="1.6"/></filter>
+      <filter id="crimson" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues=".1 .5 .78 .93 1"/><feFuncG type="table" tableValues=".02 .05 .13 .32 .68"/><feFuncB type="table" tableValues=".02 .06 .14 .3 .6"/></feComponentTransfer></filter>
     </defs>
-    <path id="tedge" fill="#d9d2c6" filter="url(#soft)"/>
+    <path id="tedge" fill="#f7f3eb" filter="url(#soft)"/>
     <g clip-path="url(#tc)">
       <rect width="297" height="420" fill="url(#rg1)"/>
       <rect width="297" height="420" fill="url(#rg2)"/>
-      <image href="statue-justitia.png" x="-40" y="246" width="170" height="376" opacity=".85" preserveAspectRatio="xMidYMid meet"/>
-      <g transform="translate(297 0) scale(-1 1)"><image href="statue-justitia.png" x="-34" y="200" width="150" height="332" opacity=".75"/></g>
+      <image href="statue-justitia.png" x="-40" y="246" width="170" height="376" opacity="1" filter="url(#crimson)" preserveAspectRatio="xMidYMid meet"/>
+      <g transform="translate(297 0) scale(-1 1)"><image href="statue-justitia.png" x="-34" y="200" width="150" height="332" opacity=".95" filter="url(#crimson)"/></g>
       <rect width="297" height="420" fill="#2a0506" opacity=".28" style="mix-blend-mode:multiply"/>
       <rect width="297" height="420" filter="url(#rspeck)" opacity=".7"/>
+      <path id="tshadow" fill="none" stroke="#000" stroke-width="3.2" opacity=".75" filter="url(#shadowb)"/>
     </g>
   </svg>
 
@@ -108,8 +112,14 @@
   <div class="reg">
     <div class="a"><svg style="width:6.4mm;height:8mm" viewBox="0 0 16 20"><path d="M8 0C3.6 0 0 3.5 0 7.9 0 13.6 8 20 8 20s8-6.4 8-12.1C16 3.5 12.4 0 8 0z" fill="#f1ede6"/><circle cx="8" cy="7.8" r="3" fill="#2a0909"/></svg>Регистрация</div>
     <div class="b">6 этаж, каб. 603</div>
-    <div class="c">Перед началом мероприятия</div>
   </div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none">
+    <defs><filter id="wear" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="31"/><feColorMatrix values="0 0 0 0 .93  0 0 0 0 .91  0 0 0 0 .87  0 0 0 16 -11.6"/></filter>
+    <filter id="wear2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".18" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 .93  0 0 0 0 .91  0 0 0 0 .87  0 0 0 18 -13.2"/></filter></defs>
+    <rect width="297" height="420" filter="url(#wear)" opacity=".6"/>
+    <rect width="297" height="420" filter="url(#wear2)" opacity=".5"/>
+  </svg>
 
   <div class="credit">Фемида: фото Breandan Fischer, Wikimedia Commons, CC BY-SA 4.0</div>
 </div>
@@ -155,7 +165,8 @@
     const top = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L');
     document.getElementById('tp').setAttribute('d', top + ' L299 422 L-2 422 Z');
     // paper fibre edge: slightly higher jagged strip under the tear
-    const e = pts.map(p => [p[0], p[1] - 1.2 - rnd() * 1.6]);
+    const e = pts.map(p => [p[0], p[1] - 1.4 - rnd() * 2.6]);
+    document.getElementById('tshadow').setAttribute('d', 'M' + pts.map(p => p[0].toFixed(1) + ' ' + (p[1] + 1.4).toFixed(1)).join(' L'));
     document.getElementById('tedge').setAttribute('d', 'M' + e.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + ' L299 422 L-2 422 Z');
   })();
 </script>
