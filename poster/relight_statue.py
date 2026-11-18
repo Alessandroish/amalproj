@@ -17,6 +17,7 @@ mask = Image.fromarray((filled*255).astype(np.uint8)).filter(ImageFilter.MinFilt
 box = (600,400,1440,2260)
 mask = mask.crop(box); im = im.crop(box)
 A = np.asarray(mask).astype(float)/255
+src = im.copy(); src.putalpha(mask); src.save('/home/user/amalproj/poster/statue-source-cutout.png')
 
 L = np.asarray(im.convert('L')).astype(float)/255
 def blur(x, r): return np.asarray(Image.fromarray((np.clip(x,0,1)*255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(r))).astype(float)/255
@@ -30,13 +31,13 @@ lam = np.clip(-(gx*lx + gy*ly) * 22, -1, 1)
 D = D + 0.30*lam
 # global light falloff: lit upper-left, deep shadow lower-right
 H, W = L.shape; yy, xx = np.mgrid[0:H, 0:W]
-fall = np.clip(1.28 - 0.95*np.clip(xx/W*.75 + yy/H*.65 - .2, 0, 1.2), .25, 1.25)
-D = np.clip((D - .28) / .64, 0, 1.2) * fall
+fall = np.clip(1.10 - 0.95*np.clip(xx/W*.75 + yy/H*.65 - .2, 0, 1.2), .25, 1.25)
+D = np.clip((D - .30) / .68, 0, 1.2) * fall
 # rim light along left/top silhouette edge
 edge = np.clip(A - blur(A, 9), 0, 1)
-rim = edge * np.clip(1.2 - xx/W*1.6, 0, 1) * 1.1
+rim = edge * np.clip(1.2 - xx/W*1.6, 0, 1) * 0.7
 D = np.clip(D + rim, 0, 1)
-D = np.clip(D,0,1)**1.2
+D = np.clip(D,0,1)**1.45
 stops = [(0,(10,1,1)),(.18,(52,6,5)),(.40,(132,20,12)),(.62,(214,62,34)),(.80,(250,150,100)),(.92,(255,214,170)),(1,(255,246,232))]
 out = np.zeros(D.shape+(3,))
 for (p0,c0),(p1,c1) in zip(stops, stops[1:]):
