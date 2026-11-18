@@ -14,7 +14,7 @@
   .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
   .abs { position: absolute; }
 
-  .portrait { position: absolute; left: -2mm; top: 24mm; width: 301mm; filter: grayscale(1) contrast(1.05); }
+  .portrait { position: absolute; left: -64mm; top: 44mm; width: 404mm; filter: grayscale(1) contrast(1.08) brightness(1.04); }
 
   /* floating name badges and business cards, out of focus (the banknotes of the reference) */
   .card { position: absolute; border-radius: 1.6mm; overflow: hidden; box-shadow: 0 3mm 7mm rgba(0,0,0,.6); }
@@ -55,7 +55,7 @@
 <body>
 <div class="poster">
 
-  <img class="portrait" src="engraving-hermes-venice.png" alt="" data-name="Гравюра Гермеса" data-raster="full">
+  <img class="portrait" src="engraving-hermes-fine.png" alt="" data-name="Гравюра Гермеса" data-raster="full">
 
   <!-- shading on the portrait: vignette and darkness at the sides -->
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Затемнение портрета" data-raster="full">
@@ -149,7 +149,7 @@
     <rect width="297" height="420" filter="url(#g2)" opacity=".18"/>
   </svg>
 
-  <div class="abs photo-credit" data-name="Подпись фото" data-raster="box" data-ftext="only">Голова Гермеса, Национальный археологический музей Венеции · фото Didier Descouens, Wikimedia Commons, общественное достояние</div>
+  <div class="abs photo-credit" data-name="Подпись фото" data-raster="box" data-ftext="only">Гермес Ингенуи, Музеи Ватикана · фото Marie-Lan Nguyen, общественное достояние</div>
 </div>
 
 <script>
