@@ -34,7 +34,8 @@
 - Статуя: Фемида с повязкой, `File:Statue_Justitia.jpg` (Breandan Fischer, CC BY-SA 4.0). Взят превью 3840px (`.../thumb/<h>/<hh>/Statue_Justitia.jpg/3840px-Statue_Justitia.jpg`), оригинал отдавал 429.
 - `halftone_justitia.py <3840px.jpg>` вырезает бюст (трава отделяется по «зелёности» g−(r+b)/2 < 30), поднимает локальный контраст, затемняет низ и растрирует точками под 45° (шаг 15px). Результат `statue-justitia-halftone.png`.
 - Красные фигуры в нижней полосе: `statue-justitia.png` (старая красная Фемида), слева и зеркально справа.
-- Скилла «Open design poster hero», о котором просил пользователь, в среде нет; постер сделан вручную.
+- Доработки по скиллам OpenDesign: красный только у «ВО» и даты (правило акцента из craft/color.md); сноска «§ Ст. 37 Конституции РФ» под «ПРАВО»; по методике creative-director добавлена фраза «Фемиде повязка положена. Тебе — нет.» (пользователь выбрал её из трёх вариантов).
+- Скиллы OpenDesign ставит setup-скрипт окружения (~/.claude/skills). Большинство из них — заглушки со ссылкой на апстрим. В этой сессии вручную поставлены полные версии creative-director (smixs/creative-director-skill) и color-expert (meodai/skill.color-expert); plan-design-review и design-review из gstack завязаны на рантайм gstack и не ставились, из них взята только шкала 0–10.
 
 - Прежние варианты статуи: `statue-justitia.png` (Фемида, Breandan Fischer, CC BY-SA 4.0) и `relight_statue.py`. Сейчас не используются.
 
