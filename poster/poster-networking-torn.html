@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Точка коннекта — рваная полоса</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Arimo:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #ebe9e4; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Arimo', sans-serif; color: #1a1717; }
+  :root { --red: #c4231b; --ink: #1a1717; --paper: #ebe9e4; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #b51f18; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+
+  /* Gropius-style geometric sans title, cut by a vertical rule */
+  .title { position: absolute; font-family: 'Jost', sans-serif; font-weight: 400; color: var(--ink); line-height: 1; white-space: nowrap; letter-spacing: -.01em; }
+  #t1 { left: 121mm; top: 128mm; font-size: 47mm; }
+  #t2a { left: 103mm; top: 166mm; font-size: 47mm; }
+  .rule { position: absolute; left: 226mm; top: 58mm; width: 1.15mm; height: 210mm; background: var(--ink); }
+
+  .info { position: absolute; left: 82mm; top: 226mm; width: 112mm; }
+  .info .date { color: var(--red); font-weight: 700; font-size: 8.4mm; line-height: 1.1; letter-spacing: -.005em; }
+  .info .lead { margin-top: 5mm; font-size: 5.6mm; line-height: 1.15; }
+  .info .small { margin-top: 2.2mm; font-size: 3mm; line-height: 1.3; }
+  .info .org { margin-top: 6mm; font-weight: 700; font-size: 3.4mm; line-height: 1.25; }
+  .info .org span { font-weight: 700; display: block; font-size: 4.6mm; margin-top: 1mm; color: var(--ink); }
+  .logo { position: absolute; left: 82mm; top: 289mm; background: var(--ink); color: var(--paper); font-family: 'Arimo', sans-serif; font-weight: 700; font-size: 5.2mm; letter-spacing: .02em;
+          padding: 1.1mm 1.6mm .9mm; outline: .45mm solid var(--paper); outline-offset: -1mm; text-transform: uppercase; line-height: 1; }
+
+  /* HELLO / MY NAME IS name tags (the red chair of the reference) */
+  .tag { position: absolute; background: #d3261d; border-radius: 3.2mm; color: #f6f2ec; text-align: center; font-family: 'Arimo', sans-serif;
+         box-shadow: .8mm 1.6mm 2.2mm rgba(15,5,5,.45), inset 0 0 0 .3mm rgba(255,255,255,.08); overflow: hidden; }
+  .tag .h { font-weight: 700; letter-spacing: .01em; line-height: 1; }
+  .tag .m { font-weight: 700; letter-spacing: .04em; line-height: 1; text-transform: uppercase; }
+  .tag .w { position: absolute; left: 0; right: 0; background: #f4f1eb; display: flex; align-items: center; justify-content: center; }
+  .tag .w b { font-family: 'Caveat', cursive; font-weight: 700; color: #151212; line-height: .8; -webkit-text-stroke: .5mm #151212; letter-spacing: .01em; transform: rotate(-3deg); display: block; }
+  .tag .shine { position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.18) 0, rgba(255,255,255,0) 22%, rgba(0,0,0,0) 70%, rgba(0,0,0,.12) 100%); pointer-events: none; }
+  .tag .curl { position: absolute; right: 0; top: 0; width: 9%; height: 13%; background: linear-gradient(225deg, #b51f18 0 49%, #f4efe7 50%, #cfc8bd 100%); border-bottom-left-radius: 2mm; box-shadow: -.4mm .6mm 1mm rgba(0,0,0,.25); }
+
+  .big-tag { left: 10mm; top: 304mm; width: 140mm; height: 97mm; transform: rotate(-8deg); }
+  .big-tag .h { font-size: 20mm; margin-top: 5mm; }
+  .big-tag .m { font-size: 7.4mm; margin-top: 1.6mm; }
+  .big-tag .w { top: 37mm; bottom: 8.5mm; }
+  .big-tag .w b { font-size: 25mm; text-transform: uppercase; }
+
+  .small-tag { left: 8mm; top: 140mm; width: 58mm; height: 40mm; transform: rotate(9deg); border-radius: 1.8mm; }
+  .small-tag .h { font-size: 8.4mm; margin-top: 2.2mm; }
+  .small-tag .m { font-size: 2.9mm; margin-top: .7mm; }
+  .small-tag .w { top: 15.5mm; bottom: 3.6mm; }
+  .small-tag .w b { text-transform: uppercase; font-size: 11mm; -webkit-text-stroke: .25mm #151212; }
+
+  .photo-credit { position: absolute; right: 4.2mm; top: 12mm; writing-mode: vertical-rl; font-size: 2.2mm; color: rgba(26,23,23,.55); letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- 1. the red "poster" underneath: two Hermes busts facing each other -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Красный фон и Гермесы" data-raster="full">
+    <defs>
+      <filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="4" seed="4"/><feColorMatrix values="0 0 0 0 .25  0 0 0 0 .03  0 0 0 0 .02  0 0 0 1.5 -.55"/></filter>
+      <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="1" seed="9"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .02  0 0 0 0 .02  0 0 0 7 -4.2"/></filter>
+      <linearGradient id="dk" x1="0" y1="0" x2=".35" y2="1"><stop offset=".45" stop-color="#1a0605" stop-opacity="0"/><stop offset=".75" stop-color="#1a0605" stop-opacity=".55"/><stop offset="1" stop-color="#120404" stop-opacity=".8"/></linearGradient>
+      <radialGradient id="hot" cx="32%" cy="18%" r="45%"><stop offset="0" stop-color="#e0362a" stop-opacity=".55"/><stop offset="1" stop-color="#e0362a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="297" height="420" fill="#b51f18"/>
+    <rect width="297" height="420" fill="url(#hot)"/>
+    <rect width="297" height="420" filter="url(#mottle)" opacity=".7"/>
+    <image href="statue-hermes-dots.png" x="-92" y="-4" width="380" height="304"/>
+    <g transform="translate(297 0) scale(-1 1)"><image href="statue-hermes-dots.png" x="-118" y="262" width="380" height="304"/></g>
+    <rect width="297" height="420" fill="url(#dk)"/>
+    <g font-family="Arimo" font-weight="700" fill="#c92e24" opacity=".85">
+      <text x="2" y="398" font-size="9.6" textLength="293" lengthAdjust="spacingAndGlyphs">Коммуникация–Партнёрство–Юмор–Совпадение</text>
+      <text x="2" y="413" font-size="9.6" textLength="293" lengthAdjust="spacingAndGlyphs">Знакомство–Разговор–Без языкового барьера</text>
+    </g>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".55"/>
+  </svg>
+
+  <!-- 2. torn paper strip glued diagonally over it -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Бумажная полоса с рваными краями" data-raster="full">
+    <defs>
+      <filter id="fibre" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.4 .9" numOctaves="3" seed="2"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter>
+      <filter id="fibre2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="2" seed="13"/><feDisplacementMap in="SourceGraphic" scale="1.1"/></filter>
+      <filter id="sh"><feGaussianBlur stdDeviation="1.3"/></filter>
+      <filter id="pspeck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="1" seed="5"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .28  0 0 0 0 .26  0 0 0 9 -6"/></filter>
+      <filter id="pblot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="3" seed="17"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .52  0 0 0 0 .48  0 0 0 1.2 -.6"/></filter>
+      <clipPath id="bandclip"><path id="bandc"/></clipPath>
+    </defs>
+    <path id="shadow" fill="#120404" opacity=".55" filter="url(#sh)"/>
+    <path id="rim" fill="#fbfaf7" filter="url(#fibre)"/>
+    <path id="rim2" fill="#ffffff" opacity=".85" filter="url(#fibre2)"/>
+    <path id="band" fill="#ebe9e4"/>
+    <g clip-path="url(#bandclip)">
+      <rect width="297" height="420" filter="url(#pblot)" opacity=".22"/>
+      <rect width="297" height="420" filter="url(#pspeck)" opacity=".35"/>
+    </g>
+  </svg>
+
+  <div class="rule" data-name="Вертикальная линия" data-raster="box"></div>
+  <div class="title" id="t1" data-name="Заголовок Точка" data-raster="box">Точка</div>
+  <div class="title" id="t2a" data-name="Заголовок коннекта" data-raster="box">коннекта</div>
+
+  <div class="info txt" data-name="Текст: дата и описание">
+    <div class="date">28 ноября · 13:25</div>
+    <div class="lead">Деловая игра в субботу,<br>аудитория 609</div>
+    <div class="small">Прокачаем навыки коммуникации с&nbsp;разными<br>партнёрами и&nbsp;найдём совпадение для сотрудничества.<br>Игровой формат с&nbsp;юмором снимает языковой барьер</div>
+    <div class="org">The Hustle Hub: Networking Quest<span>Регистрация: 6 этаж, 603 кабинет</span></div>
+  </div>
+  <div class="logo" data-name="Плашка Нетворкинг-квест" data-raster="box">Нетворкинг-квест</div>
+
+  <div class="tag small-tag" data-name="Бейдж ГЕРМЕС" data-raster="box">
+    <div class="h">HELLO</div><div class="m">my name is</div>
+    <div class="w"><b>Гермес</b></div><div class="shine"></div>
+  </div>
+
+  <div class="tag big-tag" data-name="Бейдж HELLO" data-raster="box">
+    <div class="h">HELLO</div><div class="m">my name is</div>
+    <div class="w"><b>Твоё имя</b></div><div class="shine"></div><div class="curl"></div>
+  </div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none" data-name="Потёртость печати" data-raster="full">
+    <defs><filter id="wear" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="31"/><feColorMatrix values="0 0 0 0 .93  0 0 0 0 .91  0 0 0 0 .87  0 0 0 16 -12.4"/></filter></defs>
+    <rect width="297" height="420" filter="url(#wear)" opacity=".45"/>
+  </svg>
+
+  <div class="photo-credit" data-name="Подпись фото" data-raster="box">Гермес Ингенуи, Музеи Ватикана · фото Marie-Lan Nguyen, Wikimedia Commons, общественное достояние</div>
+</div>
+
+<script>
+  // two torn edges crossing the poster from lower-left to upper-right (as in the Gropius reference)
+  (function () {
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    function tear(y0, y1, ph) {                         // centre line of a tear + its fibrous rim width
+      const pts = [];
+      for (let x = -4; x <= 301; x += .8 + rnd() * 1.6) {
+        const y = y0 + (y1 - y0) * (x / 297) + Math.sin(x / 31 + ph) * 3.2 + Math.sin(x / 9.7 + ph * 2) * 1.2 + (rnd() - .5) * 1.3;
+        const w = 1.8 + Math.max(0, Math.sin(x / 17 + ph * 3)) * 4.6 + rnd() * 2.2;   // white torn rim: wide and narrow stretches
+        pts.push([x, y, w]);
+      }
+      return pts;
+    }
+    const top = tear(232, -6, .4), bot = tear(428, 212, 2.1);
+    const P = a => a.map(p => p[0].toFixed(2) + ' ' + p[1].toFixed(2)).join(' L');
+    const shift = (a, k) => a.map(p => [p[0], p[1] + k(p)]);
+    // band body: between the inner edges
+    const tIn = shift(top, () => 0), bIn = shift(bot, () => 0).reverse();
+    const body = 'M' + P(tIn) + ' L' + P(bIn) + ' Z';
+    // white rim: pushed outward (up for the top tear, down for the bottom one)
+    const tOut = shift(top, p => -p[2]), bOut = shift(bot, p => p[2]).reverse();
+    const rim = 'M' + P(tOut) + ' L' + P(bOut) + ' Z';
+    const tOut2 = shift(top, p => -p[2] * .55 - .3), bOut2 = shift(bot, p => p[2] * .55 + .3).reverse();
+    const rim2 = 'M' + P(tOut2) + ' L' + P(bOut2) + ' Z';
+    const tSh = shift(top, p => -p[2] + 1.2), bSh = shift(bot, p => p[2] + 2.4).reverse();
+    const sh = 'M' + P(tSh) + ' L' + P(bSh) + ' Z';
+    document.getElementById('band').setAttribute('d', body);
+    document.getElementById('bandc').setAttribute('d', body);
+    document.getElementById('rim').setAttribute('d', rim);
+    document.getElementById('rim2').setAttribute('d', rim2);
+    document.getElementById('shadow').setAttribute('d', sh);
+  })();
+</script>
+</body>
+</html>

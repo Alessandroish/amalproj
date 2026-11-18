@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Точка коннекта — растр</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #e8e3da; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #161414; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #e8e3da; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  :root { --red: #b3141b; --ink: #1a1717; --paper: #f1ede6; }
+
+  .top { position: absolute; left: 0; right: 0; top: 13mm; text-align: center; font-weight: 800; font-size: 5mm; line-height: 1.28; letter-spacing: .01em; text-transform: uppercase; }
+  .serif { font-family: 'Playfair Display', serif; font-weight: 600; text-transform: uppercase; line-height: 1; white-space: nowrap; position: absolute; transform-origin: 0 0; }
+  .t1 { left: 8mm; top: 26mm; color: var(--ink); }
+  .t1 .r { color: var(--red); }
+  .t2 { left: 7mm; color: var(--paper); text-shadow: 0 0 6px rgba(18,6,6,.55); }
+
+  .statue { position: absolute; left: 27mm; top: 99mm; width: 296mm; }
+
+  .left { position: absolute; left: 9mm; top: 190mm; }
+  .left .big { color: var(--ink); font-weight: 800; font-size: 8.6mm; line-height: 1.04; text-transform: uppercase; }
+  .left .small { margin-top: 2.6mm; font-size: 3.6mm; line-height: 1.18; font-weight: 400; text-transform: uppercase; }
+
+  .right { position: absolute; right: 9mm; top: 150mm; text-align: right; }
+  .right .small { font-size: 4.2mm; font-weight: 400; text-transform: uppercase; line-height: 1.2; }
+  .right .big { color: var(--red); font-weight: 800; font-size: 11mm; line-height: 1.04; text-transform: uppercase; margin: 1.5mm 0 1.6mm; }
+
+  .reg { position: absolute; right: 9mm; top: 312mm; color: var(--paper); text-align: left; text-transform: uppercase; text-shadow: 0 0 3mm rgba(20,6,6,.9), 0 0 1mm rgba(20,6,6,.8); }
+  .reg .a { font-weight: 800; font-size: 8.4mm; line-height: 1; display: flex; align-items: center; gap: 2mm; }
+  .reg .b { font-weight: 400; font-size: 8.4mm; line-height: 1.1; margin-top: .6mm; }
+  .reg .c { font-weight: 400; font-size: 3.6mm; margin-top: 2.2mm; letter-spacing: .03em; color: rgba(241,237,230,.8); }
+
+  .star { position: absolute; }
+  .cite { position: absolute; left: 9mm; top: 133mm; width: 74mm; font-size: 3.3mm; line-height: 1.35; }
+  .cite .k { display: block; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 2.9mm; padding-bottom: 1.6mm; margin-bottom: 1.8mm; border-bottom: .3mm solid var(--ink); }
+  .cite q { font-family: 'Playfair Display', serif; font-style: italic; font-size: 4.4mm; line-height: 1.25; quotes: '«' '»'; }
+  .credit { position: absolute; right: 9mm; bottom: 5mm; font-size: 2.2mm; color: rgba(241,237,230,.55); }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- paper texture -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none">
+    <defs>
+      <filter id="blot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .44  0 0 0 1.4 -.62"/></filter>
+      <filter id="fibre" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02 .9" numOctaves="2" seed="21"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .34  0 0 0 6 -3.7"/></filter>
+      <filter id="speck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="3"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .18  0 0 0 0 .16  0 0 0 9 -5.6"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="#ebe6dd"/>
+    <rect width="297" height="420" filter="url(#blot)" opacity=".32"/>
+    <rect width="297" height="420" filter="url(#speck)" opacity=".45"/>
+  </svg>
+
+  <!-- top title -->
+  <div class="serif t1" id="t1">Точ<span class="r">ка</span></div>
+
+  <!-- torn dark-red band with red statues -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" id="torn">
+    <defs>
+      <clipPath id="tc"><path id="tp"/></clipPath>
+      <radialGradient id="rg1" cx="15%" cy="78%" r="60%"><stop offset="0" stop-color="#6d0b0e"/><stop offset="1" stop-color="#1c0505"/></radialGradient>
+      <radialGradient id="rg2" cx="88%" cy="62%" r="45%"><stop offset="0" stop-color="#5a090c" stop-opacity=".9"/><stop offset="1" stop-color="#1c0505" stop-opacity="0"/></radialGradient>
+      <filter id="rspeck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 0  0 0 0 0 0  0 0 0 3 -1.6"/></filter>
+      <filter id="soft"><feGaussianBlur stdDeviation=".35"/></filter>
+      <filter id="shadowb"><feGaussianBlur stdDeviation="1.6"/></filter>
+      <filter id="crimson" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues=".1 .5 .78 .93 1"/><feFuncG type="table" tableValues=".02 .05 .13 .32 .68"/><feFuncB type="table" tableValues=".02 .06 .14 .3 .6"/></feComponentTransfer></filter>
+    </defs>
+    <path id="tedge" fill="#f7f3eb" filter="url(#soft)"/>
+    <g clip-path="url(#tc)">
+      <rect width="297" height="420" fill="url(#rg1)"/>
+      <rect width="297" height="420" fill="url(#rg2)"/>
+      <image href="statue-hermes.png" x="-120" y="252" width="250" height="244" opacity="1" filter="url(#crimson)"/>
+      <g transform="translate(297 0) scale(-1 1)"><image href="statue-hermes.png" x="-112" y="206" width="244" height="238" opacity=".95" filter="url(#crimson)"/></g>
+      <rect width="297" height="420" fill="#2a0506" opacity=".28" style="mix-blend-mode:multiply"/>
+      <rect width="297" height="420" filter="url(#rspeck)" opacity=".7"/>
+      <path id="tshadow" fill="none" stroke="#000" stroke-width="3.2" opacity=".75" filter="url(#shadowb)"/>
+    </g>
+  </svg>
+
+  <img class="statue" src="statue-hermes-halftone.png" alt="">
+
+  <!-- bottom shade for legibility -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none">
+    <defs><linearGradient id="bs" x1="0" y1="0" x2="0" y2="1"><stop offset=".6" stop-color="#120707" stop-opacity="0"/><stop offset=".85" stop-color="#120707" stop-opacity=".45"/><stop offset="1" stop-color="#120707" stop-opacity=".75"/></linearGradient></defs>
+    <rect width="297" height="420" fill="url(#bs)"/>
+  </svg>
+
+  <div class="top">Деловая игра «The Hustle Hub:<br>Networking Quest»</div>
+
+  <svg class="star" style="left:24mm; top:11mm; width:12mm; height:12mm" viewBox="-10 -10 20 20"><path d="M0 -10 Q .9 -.9 10 0 Q .9 .9 0 10 Q -.9 .9 -10 0 Q -.9 -.9 0 -10Z" fill="#1a1717"/></svg>
+  <svg class="star" style="right:24mm; top:11mm; width:12mm; height:12mm" viewBox="-10 -10 20 20"><path d="M0 -10 Q .9 -.9 10 0 Q .9 .9 0 10 Q -.9 .9 -10 0 Q -.9 -.9 0 -10Z" fill="#1a1717"/></svg>
+  <svg class="star" id="ostar" style="width:13mm; height:22mm" viewBox="-6 -10 12 20"><path d="M0 -10 Q .55 -.55 6 0 Q .55 .55 0 10 Q -.55 .55 -6 0 Q -.55 -.55 0 -10Z" fill="#1a1717"/></svg>
+  <svg class="star" style="left:11mm; top:166mm; width:9mm; height:16mm" viewBox="-6 -11 12 22"><path d="M0 -11 Q .5 -.5 6 0 Q .5 .5 0 11 Q -.5 .5 -6 0 Q -.5 -.5 0 -11Z" fill="#1a1717"/></svg>
+  <svg class="star" style="right:14mm; top:366mm; width:13mm; height:20mm" viewBox="-6 -10 12 20"><path d="M0 -10 Q .55 -.55 6 0 Q .55 .55 0 10 Q -.55 .55 -6 0 Q -.55 -.55 0 -10Z" fill="#f1ede6"/></svg>
+
+  <div class="right">
+    <div class="small">Суббота</div>
+    <div class="big">28 ноября<br>13:25</div>
+    <div class="small">Аудитория 609</div>
+  </div>
+
+  <div class="cite"><span class="k">§ Кадуцей Гермеса</span><q>Жезл в&nbsp;руке статуи — керикион, «жезл глашатая». С&nbsp;ним послы входили в&nbsp;лагерь противника и&nbsp;начинали переговоры</q></div>
+
+  <div class="left">
+    <div class="big">Гермес<br>из мрамора.<br>Ему молчать<br>можно.<br>Тебе — нет.</div>
+    <div class="small">Прокачаем коммуникацию,<br>найдём партнёров<br>для сотрудничества<br>и снимем языковой барьер.<br>Игра, юмор, живой разговор</div>
+  </div>
+
+  <div class="serif t2" id="t2a">коннекта</div>
+  <div class="serif t2" id="t2b">Квест</div>
+
+  <div class="reg">
+    <div class="a"><svg style="width:6.4mm;height:8mm" viewBox="0 0 16 20"><path d="M8 0C3.6 0 0 3.5 0 7.9 0 13.6 8 20 8 20s8-6.4 8-12.1C16 3.5 12.4 0 8 0z" fill="#f1ede6"/><circle cx="8" cy="7.8" r="3" fill="#2a0909"/></svg>Регистрация</div>
+    <div class="b">6 этаж, каб. 603</div>
+  </div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none">
+    <defs><filter id="wear" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="31"/><feColorMatrix values="0 0 0 0 .93  0 0 0 0 .91  0 0 0 0 .87  0 0 0 16 -11.6"/></filter>
+    <filter id="wear2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".18" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 .93  0 0 0 0 .91  0 0 0 0 .87  0 0 0 18 -13.2"/></filter></defs>
+    <rect width="297" height="420" filter="url(#wear)" opacity=".6"/>
+    <rect width="297" height="420" filter="url(#wear2)" opacity=".5"/>
+  </svg>
+
+  <div class="credit">Гермес Ингенуи, Музеи Ватикана: фото Marie-Lan Nguyen, Wikimedia Commons, общественное достояние</div>
+</div>
+
+<script>
+  // fit the huge serif words: scale X to a target width, stretch Y for the tall condensed look
+  const mm = v => v * 96 / 25.4;
+  // ТОЧКА: tall letters, full width
+  (function () {
+    const t = document.getElementById('t1');
+    t.style.fontSize = '100px';
+    const w = t.getBoundingClientRect().width;
+    const sx = mm(281) / w, sy = sx * 1.3;
+    t.style.transform = `scale(${sx}, ${sy})`;
+    // star inside the final А (the «точка» itself)
+    const o = t.querySelector('.r');
+    const range = document.createRange(); range.setStart(o.firstChild, 1); range.setEnd(o.firstChild, 2);
+    const rb = range.getBoundingClientRect(), pb = document.querySelector('.poster').getBoundingClientRect();
+    const st = document.getElementById('ostar');
+    st.style.left = (rb.left - pb.left + rb.width * .38 - mm(6.5)) + 'px';
+    st.style.top = (rb.top - pb.top + rb.height * .76 - mm(11)) + 'px';
+  })();
+  (function () {
+    const a = document.getElementById('t2a'), b = document.getElementById('t2b');
+    a.style.fontSize = b.style.fontSize = '100px';
+    const wb = b.getBoundingClientRect().width;
+    const sb = mm(196) / wb;
+    b.style.transform = `scale(${sb}, ${sb * 1.5})`;
+    b.style.top = (mm(412) - 100 * .86 * sb * 1.5) + 'px';
+    const sa = sb * .5;
+    a.style.transform = `scale(${sa}, ${sa * 1.5})`;
+    a.style.top = (mm(412) - 100 * .86 * sb * 1.5 - 100 * .80 * sa * 1.5) + 'px';
+  })();
+
+  // torn edge: jagged line from left (y≈262mm) to right (y≈198mm)
+  (function () {
+    let seed = 5; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const pts = [];
+    for (let x = -2; x <= 299; x += 1.6 + rnd() * 2.4) {
+      const base = 262 - (x / 297) * 64 + Math.sin(x / 23) * 5 + Math.sin(x / 7.3) * 1.6;
+      pts.push([x, base + (rnd() - .5) * 3.2]);
+    }
+    const top = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L');
+    document.getElementById('tp').setAttribute('d', top + ' L299 422 L-2 422 Z');
+    // paper fibre edge: slightly higher jagged strip under the tear
+    const e = pts.map(p => [p[0], p[1] - 1.4 - rnd() * 2.6]);
+    document.getElementById('tshadow').setAttribute('d', 'M' + pts.map(p => p[0].toFixed(1) + ' ' + (p[1] + 1.4).toFixed(1)).join(' L'));
+    document.getElementById('tedge').setAttribute('d', 'M' + e.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + ' L299 422 L-2 422 Z');
+  })();
+</script>
+</body>
+</html>

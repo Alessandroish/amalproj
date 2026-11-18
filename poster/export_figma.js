@@ -17,7 +17,7 @@ const W = 1123, H = 1587, S = 2;
   // tag every top-level layer of the poster
   const layers = await page.evaluate(() => {
     const kids = [...document.querySelector('.poster').children];
-    return kids.map((el, i) => { el.dataset.fx = i; return { i, tag: el.tagName.toLowerCase(), cls: el.getAttribute('class') || '', id: el.id || '' }; });
+    return kids.map((el, i) => { el.dataset.fx = i; return { i, tag: el.tagName.toLowerCase(), cls: el.getAttribute('class') || '', id: el.id || '', name: el.dataset.name || '', raster: el.dataset.raster || '' }; });
   });
 
   async function shot(i, full, opaque) {
@@ -45,7 +45,7 @@ const W = 1123, H = 1587, S = 2;
   const texts = await page.evaluate(() => {
     const metrics = { 'Montserrat': [968, 251], 'Playfair Display': [1082, 251] };
     const out = [];
-    const blocks = document.querySelectorAll('.top, .right, .left, .cite, .reg, .credit');
+    const blocks = document.querySelectorAll('.top, .right, .left, .cite, .reg, .credit, .txt');
     blocks.forEach(block => {
       const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
       const items = [];
@@ -75,7 +75,7 @@ const W = 1123, H = 1587, S = 2;
         let text = ln.words.join('').trimEnd();
         if (cs.textTransform === 'uppercase') text = text.toUpperCase();
         out.push({ text, x: ln.rect.l, y: ln.rect.t + h * a / (a + d), family: fam, size: parseFloat(cs.fontSize), weight: cs.fontWeight,
-                   style: cs.fontStyle, fill: cs.color, ls: cs.letterSpacing === 'normal' ? 0 : parseFloat(cs.letterSpacing), block: block.className });
+                   style: cs.fontStyle, fill: cs.color, ls: cs.letterSpacing === 'normal' ? 0 : parseFloat(cs.letterSpacing), block: block.dataset.name || block.className });
       });
     });
     return out;
@@ -93,7 +93,9 @@ const W = 1123, H = 1587, S = 2;
     parts.push(`<g id="${label}"><image x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" href="${href}"/></g>`); };
 
   for (const L of layers) {
-    if (L.cls === 'layer' && L.i === 0) await raster(L.i, 'Бумага', true, true);
+    // generic posters: <… data-name="Слой" data-raster="full|box"> marks a raster layer
+    if (L.raster) await raster(L.i, L.name || ('Слой ' + L.i), L.raster === 'full', L.i === 0);
+    else if (L.cls === 'layer' && L.i === 0) await raster(L.i, 'Бумага', true, true);
     else if (L.id === 't1') await raster(L.i, 'Заголовок ПРАВО', false);
     else if (L.id === 'torn') await raster(L.i, 'Рваный край и красные фигуры', true);
     else if (L.cls === 'statue') await raster(L.i, 'Статуя растр', true);
