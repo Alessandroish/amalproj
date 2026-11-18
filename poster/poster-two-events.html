@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Два события 28.11 — блокнот</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Caveat:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   /* FreeMono (GNU FreeFont, GPL + font exception): Courier-like typewriter face that has Cyrillic */
   @font-face { font-family: 'Typewriter'; src: url('fonts/FreeMonoBold.ttf'); font-weight: 700; }
@@ -48,15 +48,15 @@
   .pin { position: absolute; left: 74mm; top: 222mm; width: 16mm; height: 22mm; }
 
   /* ---------- clipped notes ---------- */
-  .note { position: absolute; background: linear-gradient(175deg, #f1f0eb, #e2e1db 70%, #d3d2cb); box-shadow: 0 .25mm .4mm rgba(0,0,0,.5), .8mm 1.6mm 1.8mm rgba(8,18,14,.32), 3.4mm 7mm 9mm rgba(8,18,14,.4); color: var(--ink); padding: 8mm 6mm 6mm 7mm; }
-  .note h3 { font-family: 'Typewriter'; font-weight: 700; font-size: 9.6mm; line-height: 1; letter-spacing: -.02em; }
-  .note h3 + .sub { margin-top: 2.2mm; }
-  .note .sub { font-family: 'Typewriter'; font-weight: 400; font-size: 4.9mm; line-height: 1.18; color: #1b1a19; }
-  .note ul { list-style: none; margin-top: 3.4mm; font-family: 'Typewriter'; font-weight: 400; font-size: 5.7mm; line-height: 1.32; letter-spacing: -.02em; }
+  .note { position: absolute; background: linear-gradient(175deg, #f1f0eb, #e2e1db 70%, #d3d2cb); box-shadow: 0 .25mm .4mm rgba(0,0,0,.5), .8mm 1.6mm 1.8mm rgba(8,18,14,.32), 3.4mm 7mm 9mm rgba(8,18,14,.4); color: var(--ink); padding: 6.5mm 6mm 5mm 7mm; }
+  .note h3 { font-family: 'Caveat', cursive; font-weight: 700; font-size: 11.2mm; line-height: .9; }
+  .note h3 + .sub { margin-top: 1.6mm; }
+  .note .sub { font-family: 'Caveat', cursive; font-weight: 500; font-size: 6mm; line-height: 1.02; color: #2a2826; }
+  .note ul { list-style: none; margin-top: 2.6mm; font-family: 'Caveat', cursive; font-weight: 500; font-size: 7.2mm; line-height: 1.06; }
   .note li::before { content: '•'; margin-right: 2mm; }
   .note li u { text-decoration: none; background: linear-gradient(transparent 88%, var(--red) 88%, var(--red) 97%, transparent 97%); }
-  .note1 { left: 146mm; top: 232mm; width: 110mm; transform: rotate(-4deg); }
-  .note2 { left: 170mm; top: 292mm; width: 120mm; transform: rotate(3deg); }
+  .note1 { left: 146mm; top: 228mm; width: 110mm; transform: rotate(-4deg); }
+  .note2 { left: 170mm; top: 297mm; width: 120mm; transform: rotate(3deg); }
   .clip { position: absolute; width: 9mm; height: 26mm; }
 
   /* ---------- props ---------- */
@@ -184,21 +184,21 @@
     <ellipse cx="6.8" cy="3.2" rx="1.4" ry=".7" fill="#fff" opacity=".55"/>
   </svg>
 
-  <div class="note note1" data-name="Заметка: мастер-класс" data-raster="box" style="filter:url(#inkN)">
+  <div class="note note1" data-name="Заметка: мастер-класс" data-raster="box">
     <h3>мастер-класс</h3>
     <div class="sub">«Основы трудового права для&nbsp;успешного трудоустройства»</div>
     <ul><li><u>трудовые отношения</u></li><li>реальные кейсы</li><li><u>судебная практика</u></li></ul>
   </div>
-  <svg class="clip" data-name="Скрепка 1" data-raster="box" viewBox="0 0 9 26" style="left:226mm; top:222mm; transform:rotate(-4deg)">
+  <svg class="clip" data-name="Скрепка 1" data-raster="box" viewBox="0 0 9 26" style="left:226mm; top:218mm; transform:rotate(-4deg)">
     <path d="M6.5 8 L6.5 21 C6.5 24.5 1.8 24.5 1.8 21 L1.8 4 C1.8 .8 7.7 .8 7.7 4 L7.7 19 C7.7 20.5 5.2 20.5 5.2 19 L5.2 7" fill="none" stroke="#8f9496" stroke-width=".8" stroke-linecap="round"/>
     <path d="M1.8 4 C1.8 .8 7.7 .8 7.7 4" fill="none" stroke="#e4e8ea" stroke-width=".35"/></svg>
 
-  <div class="note note2" data-name="Заметка: деловая игра" data-raster="box" style="filter:url(#inkN)">
+  <div class="note note2" data-name="Заметка: деловая игра" data-raster="box">
     <h3>деловая игра</h3>
     <div class="sub">«The Hustle Hub: Networking&nbsp;Quest» — Точка коннекта</div>
     <ul><li><u>общение с партнёрами</u></li><li>поиск совпадений</li><li><u>игра и юмор</u></li><li>без языкового барьера</li></ul>
   </div>
-  <svg class="clip" data-name="Скрепка 2" data-raster="box" viewBox="0 0 9 26" style="left:272mm; top:287mm; transform:rotate(3deg)">
+  <svg class="clip" data-name="Скрепка 2" data-raster="box" viewBox="0 0 9 26" style="left:272mm; top:292mm; transform:rotate(3deg)">
     <path d="M6.5 8 L6.5 21 C6.5 24.5 1.8 24.5 1.8 21 L1.8 4 C1.8 .8 7.7 .8 7.7 4 L7.7 19 C7.7 20.5 5.2 20.5 5.2 19 L5.2 7" fill="none" stroke="#8f9496" stroke-width=".8" stroke-linecap="round"/>
     <path d="M1.8 4 C1.8 .8 7.7 .8 7.7 4" fill="none" stroke="#e4e8ea" stroke-width=".35"/></svg>
 
