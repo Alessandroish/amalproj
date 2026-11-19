@@ -7,57 +7,66 @@
 <meta name="description" content="Письмо для Шоны. Откроется 24 декабря ровно в полночь.">
 <meta property="og:title" content="Для Шоны">
 <meta property="og:description" content="Письмо, которое откроется 24 декабря ровно в полночь.">
-<meta name="theme-color" content="#f7e4e3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#24131b" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z' fill='%23b5475a'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#6a0e1a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2c060c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z' fill='%238c1a2b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marck+Script&family=Great+Vibes&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Marck+Script&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-/* VOICE: тихий, нежный, личный — как записка, которую кладут под подушку
-   IDEA: запечатанный конверт, который в полночь открывается с салютом; прокрутка ныряет внутрь письма
-   PICTURE: большой конверт с сургучной печатью-сердцем; потом полароиды на нитке
-   COLOUR and TYPE: румяно-розовый фон, сливовые чернила, печать цвета розы; Marck Script, Cormorant, Nunito
-   LAYOUT: экран ожидания → салют → погружение в письмо → приветствие → «Наш год» → письмо → финал */
-:root{color-scheme:light;--bg:#f7e4e3;--bg2:#f1d4d4;--bg3:#e6c3c4;--ink:#4b2533;--mute:#7c4e5a;--paper:#fffaf8;--sheet:#fffaf5;--vign:rgba(170,110,100,.10);--env:#efc9c9;--env2:#e4b4b6;--env3:#f6d9d8;--rose:#b5475a;--rose55:rgba(181,71,90,.55);--rose30:rgba(181,71,90,.3);--rose18:rgba(181,71,90,.18);--line:#d9a8ad}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#24131b;--bg2:#2e1822;--bg3:#1d0f16;--ink:#f6e0e2;--mute:#c9a3ab;--paper:#3a2430;--sheet:#34202a;--vign:rgba(0,0,0,.25);--env:#5a3343;--env2:#4a2836;--env3:#6a3d4f;--rose:#e0748a;--rose55:rgba(224,116,138,.55);--rose30:rgba(224,116,138,.3);--rose18:rgba(224,116,138,.18);--line:#6b4252}}
-:root[data-theme=dark]{color-scheme:dark;--bg:#24131b;--bg2:#2e1822;--bg3:#1d0f16;--ink:#f6e0e2;--mute:#c9a3ab;--paper:#3a2430;--sheet:#34202a;--vign:rgba(0,0,0,.25);--env:#5a3343;--env2:#4a2836;--env3:#6a3d4f;--rose:#e0748a;--rose55:rgba(224,116,138,.55);--rose30:rgba(224,116,138,.3);--rose18:rgba(224,116,138,.18);--line:#6b4252}
+/* VOICE: тихо и торжественно, как приглашение на бумаге с сургучом
+   IDEA: бордовый бархат, кремовая бумага с рваным краем, золото и сургуч; моменты висят на бечёвке на прищепках
+   TYPE: Great Vibes для имён и заголовков, Cormorant Garamond для текста и капса, Marck Script для подписей от руки
+   LAYOUT: бархат с конвертом и билетом → нырок в письмо → бумажный лист «С днём рождения» → «Наш год» на бечёвке → письмо с бантом и печатью → финал */
+:root{color-scheme:light;
+ --wine:#6a0e1a;--wine2:#560b15;--wine3:#3d0710;--wineHi:#93202f;
+ --paper:#faf4ea;--paper2:#efe3cf;--ink:#3b0b14;--ink2:#6b3640;--accent:#8c1a2b;
+ --onw:#f6eadb;--onw2:#e2cbb9;--gold:#d4ad55;--goldHi:#f3dc9a;--goldLo:#9a7428;
+ --env:#8a1626;--env2:#5e0d18;--env3:#a01e31;--line:#c9a1a0;--sheet:var(--paper);--vign:rgba(120,60,40,.14);
+ --rose:var(--accent);--rose55:rgba(140,26,43,.55);--rose30:rgba(212,173,85,.55);--rose18:rgba(212,173,85,.3);--mute:var(--ink2);--bg:var(--wine);
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .28 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");--tt:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='18' preserveAspectRatio='none'%3E%3Cpath d='M0 18 L0 8.1 L10 9.1 L20 10.1 L30 3.6 L40 6.4 L50 5.6 L60 14.6 L70 11.8 L80 8.6 L90 7.2 L100 5.3 L110 8.4 L120 7.6 L130 14.2 L140 3.7 L150 4.6 L160 3.3 L170 13.1 L180 11.0 L190 6.7 L200 12.3 L210 7.7 L220 5.9 L230 8.2 L240 13.2 L250 7.7 L260 12.7 L270 11.6 L280 12.9 L290 3.9 L300 9.5 L310 13.6 L320 5.8 L330 5.1 L340 14.2 L350 14.2 L360 14.7 L370 4.7 L380 4.9 L390 9.2 L400 6.2 L410 9.2 L420 3.4 L430 4.6 L440 5.6 L450 12.5 L460 10.4 L470 7.8 L480 12.7 L490 10.0 L500 11.5 L510 4.3 L520 11.0 L530 4.6 L540 4.1 L550 8.8 L560 13.7 L570 6.5 L580 4.4 L590 10.2 L600 8.1 L600 18Z'/%3E%3C/svg%3E");--tb:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='18' preserveAspectRatio='none'%3E%3Cpath d='M0 0 L0 11.7 L10 8.0 L20 12.1 L30 3.7 L40 13.3 L50 12.9 L60 13.9 L70 3.5 L80 12.4 L90 5.7 L100 5.8 L110 6.8 L120 3.0 L130 8.7 L140 4.4 L150 11.7 L160 13.8 L170 4.8 L180 13.2 L190 9.8 L200 13.2 L210 10.4 L220 9.2 L230 6.4 L240 4.0 L250 6.3 L260 8.5 L270 11.0 L280 14.1 L290 9.6 L300 7.5 L310 8.5 L320 9.8 L330 10.4 L340 8.0 L350 14.7 L360 11.4 L370 9.4 L380 9.3 L390 4.5 L400 6.5 L410 13.2 L420 11.1 L430 14.6 L440 13.0 L450 14.9 L460 9.9 L470 4.4 L480 12.4 L490 5.9 L500 4.3 L510 12.6 L520 5.9 L530 7.9 L540 13.1 L550 6.3 L560 14.1 L570 10.5 L580 4.5 L590 7.8 L600 11.7 L600 0Z'/%3E%3C/svg%3E");
+ --out:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);--fast:.18s}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;
+ --wine:#2c060c;--wine2:#24050a;--wine3:#170307;--wineHi:#4c0d18;--paper:#ebdfcc;--paper2:#dccfb9;
+ --env:#55101b;--env2:#33070f;--env3:#681422;--onw2:#d6bca9;--vign:rgba(60,20,10,.2);--bg:var(--wine)}}
+:root[data-theme=dark]{color-scheme:dark;
+ --wine:#2c060c;--wine2:#24050a;--wine3:#170307;--wineHi:#4c0d18;--paper:#ebdfcc;--paper2:#dccfb9;
+ --env:#55101b;--env2:#33070f;--env3:#681422;--onw2:#d6bca9;--vign:rgba(60,20,10,.2);--bg:var(--wine)}
 *{box-sizing:border-box;min-width:0}
-/* движение: одна пара кривых на всю страницу; отклик 160–200 мс, появления 0.7 с */
-:root{--out:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);--fast:.18s}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Nunito",system-ui,sans-serif;overflow-x:hidden;overflow-x:clip;-webkit-tap-highlight-color:transparent}
-.band{padding:clamp(40px,6vw,88px) max(5vw,18px)}
-.wrap{max-width:1040px;margin:0 auto}
-h2{font:600 clamp(34px,5vw,50px)/1.05 "Cormorant Garamond",Georgia,serif;margin:0 0 8px;text-wrap:balance;text-align:center}
-.sub{color:var(--mute);text-align:center;margin:0 auto 40px;max-width:34em}
+html{scroll-behavior:smooth;background:var(--wine)}
+body{margin:0;background:var(--wine);color:var(--onw);font:500 19px/1.6 "Cormorant Garamond",Georgia,serif;overflow-x:hidden;overflow-x:clip;-webkit-tap-highlight-color:transparent}
 button{font:inherit;color:inherit;cursor:pointer}
-button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.band{padding:clamp(56px,8vw,104px) max(5vw,18px)}
+.wrap{max-width:1040px;margin:0 auto}
+.lbl{font:600 13px/1.4 "Cormorant Garamond",Georgia,serif;letter-spacing:.24em;text-transform:uppercase}
+.script{font-family:"Great Vibes","Marck Script",cursive;font-weight:400}
+.goldtext{background:linear-gradient(100deg,var(--goldLo) 0%,var(--goldHi) 35%,var(--gold) 55%,var(--goldHi) 75%,var(--goldLo) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.velvet{background:radial-gradient(80% 55% at 50% 38%,rgba(255,196,150,.12),transparent 70%),radial-gradient(150% 110% at 50% 45%,transparent 45%,rgba(0,0,0,.5)),var(--grain),var(--wine)}
+h2{font:400 clamp(58px,9vw,84px)/1 "Great Vibes","Marck Script",cursive;margin:0 0 10px;text-align:center}
+.sub{color:var(--onw2);text-align:center;margin:0 auto 56px}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:0 0 18px}
+.orn i{height:1px;width:min(90px,22%);background:linear-gradient(90deg,transparent,currentColor)}
+.orn i:last-child{transform:scaleX(-1)}
+.orn svg{width:14px;height:14px}
 
-/* вступление: ожидание + погружение */
+/* вступление: бархат, конверт, билет */
 #intro{height:100vh;height:100svh;position:relative}
 #intro.tall{height:360vh;height:360svh}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;text-align:center;padding:24px 18px;
- background:radial-gradient(120% 70% at 50% 40%,var(--bg) 40%,var(--bg2))}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;text-align:center;padding:24px 18px}
 .lay{position:absolute;top:-50px;right:-50px;bottom:-50px;left:-50px;pointer-events:none}
-.blob{position:absolute;border-radius:50%;filter:blur(30px);opacity:.5}
+.curtain{position:absolute;top:0;right:0;bottom:0;left:0;opacity:.85;filter:blur(7px);
+ background:repeating-linear-gradient(90deg,rgba(0,0,0,.26) 0,rgba(255,220,200,.05) 46px,rgba(0,0,0,.08) 70px,rgba(0,0,0,.3) 118px)}
+.spot{position:absolute;left:50%;top:48%;width:130vmin;height:130vmin;margin:-65vmin 0 0 -65vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,206,150,.2),transparent 62%)}
 .front{position:relative}
 .opened .tilt{transition:transform .8s var(--out)}
-.deco{position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden;pointer-events:none;z-index:0}
-.deco>*{position:absolute}
-.bk{border-radius:50%;background:radial-gradient(circle,var(--rose),transparent 70%)}
-.dh{color:var(--rose)}
-#year,#letter{position:relative}
-.hero>.rv,#year>.wrap,#letter>.paper,.end>.big,.end>.hrt,.end>.back{position:relative;z-index:1}
-.px{justify-self:end;width:100%;max-width:340px}
-.item:nth-child(even) .px{order:2;justify-self:start}
-.spark{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--rose);opacity:0;animation:tw 4s infinite ease-in-out}
-.spark.g{background:#e8b86a}
-@keyframes tw{50%{opacity:.8;transform:scale(1.8)}}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--goldHi);opacity:0;animation:tw 4s infinite ease-in-out}
+.spark.g{background:#fff1d0}
+@keyframes tw{50%{opacity:.75;transform:scale(1.8)}}
 .fade{transition:opacity .6s var(--out)}
 .opened .fade{opacity:0;pointer-events:none}
-.date{font:500 italic 20px "Cormorant Garamond",serif;color:var(--mute);margin:0}
-.for{font:400 clamp(44px,9vw,72px)/1 "Marck Script",cursive;margin:4px 0 6px;color:var(--rose)}
+.date{color:var(--gold);margin:0}
+.for{font:400 clamp(60px,14vw,96px)/1.05 "Great Vibes","Marck Script",cursive;margin:2px 0 4px;padding:0 .1em}
 .env{width:min(360px,82vw);height:auto;display:block;margin:6px auto 0;overflow:visible;cursor:pointer;transform-origin:50% 39.3%;filter:drop-shadow(0 18px 24px rgb(120 50 70/.18))}
 .diving .env{filter:none;cursor:default}
 .env .part{opacity:var(--ep,1)}
@@ -96,105 +105,128 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
 .cell b.tk{animation:tk .2s var(--out)}
 @keyframes tk{from{opacity:.35;transform:translateY(-5px)}}
 @keyframes shake{25%{transform:translateX(-6px) rotate(-1deg)}75%{transform:translateX(6px) rotate(1deg)}}
-.timer{display:flex;justify-content:center;gap:clamp(8px,2.5vw,18px);margin:26px 0 10px}
-.cell{background:var(--paper);border-radius:14px;padding:12px 6px 8px;width:clamp(68px,19vw,92px);box-shadow:0 6px 18px rgb(120 50 70/.10)}
-.cell b{display:block;font:600 clamp(30px,7vw,42px)/1 "Cormorant Garamond",serif;font-variant-numeric:tabular-nums}
-.cell span{font-size:13px;color:var(--mute)}
-.hint{min-height:1.6em;color:var(--mute);margin:6px 0 0;font-style:italic}
-.demo{margin-top:26px;background:none;border:1px dashed var(--line);border-radius:999px;padding:10px 18px;min-height:44px;font-size:14px;color:var(--mute)}
-.cue{position:absolute;left:0;right:0;bottom:max(28px,4vh);margin:0;color:var(--mute);font-style:italic;opacity:0;transition:opacity .6s var(--out);pointer-events:none}
-.cue i{display:block;width:22px;height:22px;margin:8px auto 0;border-right:2px solid var(--rose);border-bottom:2px solid var(--rose);transform:rotate(45deg);animation:bob 1.4s infinite}
+.env{width:min(360px,84vw);filter:drop-shadow(0 26px 30px rgba(0,0,0,.45))}
+.env .dots{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:0 7;opacity:.85}
+.timer{margin:30px auto 8px;width:min(400px,92vw);filter:drop-shadow(0 14px 22px rgba(0,0,0,.35))}
+.ticket{background:var(--grain),var(--paper);color:var(--ink);padding:16px 10px 14px;border-radius:3px;
+ -webkit-mask:radial-gradient(circle at 9px 0,transparent 5.5px,#000 6px) 0 0/18px 51% repeat-x,radial-gradient(circle at 9px 100%,transparent 5.5px,#000 6px) 0 100%/18px 51% repeat-x;
+ mask:radial-gradient(circle at 9px 0,transparent 5.5px,#000 6px) 0 0/18px 51% repeat-x,radial-gradient(circle at 9px 100%,transparent 5.5px,#000 6px) 0 100%/18px 51% repeat-x}
+.ticket .lbl{display:block;color:var(--accent);font-size:11px;margin:0 0 8px}
+.cells{display:flex}
+.cell{flex:1;padding:2px 4px}
+.cell+.cell{border-left:1px solid rgba(59,11,20,.22)}
+.cell b{display:block;font:600 clamp(32px,8.5vw,46px)/1 "Cormorant Garamond",serif;font-variant-numeric:tabular-nums}
+.cell span{display:block;font:600 11px/1.6 "Cormorant Garamond",serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.cell b.tk{animation:tk .2s var(--out)}
+@keyframes tk{from{opacity:.35;transform:translateY(-5px)}}
+.hint{min-height:1.6em;color:var(--onw2);margin:10px 0 0;font-style:italic;font-size:20px}
+.demo{margin-top:26px;background:none;border:1px dashed var(--gold);border-radius:2px;padding:10px 18px;min-height:44px;color:var(--onw2)}
+.cue{position:absolute;left:0;right:0;bottom:max(28px,4vh);margin:0;color:var(--onw2);font-style:italic;opacity:0;transition:opacity .6s var(--out);pointer-events:none}
+.cue i{display:block;width:20px;height:20px;margin:8px auto 0;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg);animation:bob 1.4s infinite}
 @keyframes bob{50%{translate:0 8px}}
 .veil{position:absolute;top:0;right:0;bottom:0;left:0;background:var(--paper);opacity:0;pointer-events:none}
+.env:focus{outline:none}
+.env:focus-visible{outline:2px solid var(--gold);outline-offset:8px;border-radius:12px}
 
-/* после письма */
+/* лист «С днём рождения» */
 #open{display:none}
 #open.show{display:block}
-.hero{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:40px 18px;position:relative;cursor:pointer;
- background:linear-gradient(var(--paper) 0 30%,var(--bg))}
+.hero{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:48px 18px 80px;position:relative;cursor:pointer;color:var(--ink);
+ background:radial-gradient(120% 90% at 50% 40%,transparent 55%,var(--vign)),var(--grain),var(--paper);
+ -webkit-mask:linear-gradient(#000,#000) 0 0/100% calc(100% - 17px) no-repeat,var(--tb) 0 100%/600px 18px repeat-x;
+ mask:linear-gradient(#000,#000) 0 0/100% calc(100% - 17px) no-repeat,var(--tb) 0 100%/600px 18px repeat-x}
 .hero p{margin:0}
-.hb{font:500 italic clamp(22px,3.6vw,30px) "Cormorant Garamond",serif;color:var(--mute)}
-.name{font:400 clamp(84px,20vw,170px)/1.1 "Marck Script",cursive;margin:6px 0 10px!important;
- background:linear-gradient(100deg,var(--rose) 30%,#f0b37e 50%,var(--rose) 70%);background-size:250% 100%;
+.hero .orn{color:var(--accent)}
+.hero .lbl{color:var(--accent)}
+.hb{font:400 clamp(34px,6vw,48px)/1.2 "Great Vibes","Marck Script",cursive;color:var(--accent);margin-top:14px!important}
+.name{font:400 clamp(104px,26vw,200px)/1.05 "Great Vibes","Marck Script",cursive;margin:0 0 6px!important;padding:0 .12em;
+ background:linear-gradient(100deg,var(--accent) 30%,var(--gold) 50%,var(--accent) 70%);background-size:250% 100%;
  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3.2s .6s 2 var(--out) both}
 @keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
-.hero .lead{max-width:26em;margin:0 auto!important}
-.tap{font-size:13px;color:var(--mute);margin-top:12px!important}
-.down{display:inline-block;margin-top:28px;color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:12px 22px}
-
-/* лента-гирлянда */
-.line{position:relative;display:grid;gap:clamp(28px,4vw,48px);padding:10px 0}
-.line::before,.prog{content:"";position:absolute;left:50%;top:0;width:2px;margin-left:-1px}
-.line::before{bottom:0;background:repeating-linear-gradient(var(--line) 0 8px,transparent 8px 14px)}
-.prog{bottom:0;transform:scaleY(0);transform-origin:50% 0;background:var(--rose);border-radius:2px}
-.item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;position:relative}
-.item::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 6px var(--bg);transform:scale(0);transition:transform .45s .25s var(--spring)}
-.item.in::after{transform:scale(1)}
-.pol{background:var(--paper);padding:12px 12px 16px;border-radius:4px;box-shadow:0 10px 26px rgb(110 40 60/.14);margin:0;
- transform:rotate(var(--r));opacity:0}
-.in .pol{opacity:1;animation:polIn .9s var(--spring) backwards;transition:transform .2s var(--out),box-shadow .2s var(--out)}
-@keyframes polIn{from{transform:rotate(0) translateY(32px) scale(.94);opacity:0}}
-@media(hover:hover) and (pointer:fine){.in .pol:hover{transform:rotate(0) scale(1.03);box-shadow:0 16px 34px rgb(110 40 60/.18)}.down:hover{background:var(--paper);border-color:var(--rose55)}}
-.down{transition:background var(--fast) var(--out),border-color var(--fast) var(--out),transform .16s var(--out)}
+.hero .lead{max-width:24em;margin:0 auto!important;font-style:italic;font-size:clamp(20px,2.6vw,24px)}
+.bow{display:block;width:120px;height:auto;margin:22px auto 4px;filter:drop-shadow(0 6px 6px rgba(80,40,10,.25))}
+.tap{color:var(--ink2);margin-top:6px!important;font-size:11px}
+.down{display:inline-block;margin-top:22px;background:var(--accent);color:var(--onw);text-decoration:none;padding:14px 30px;border-radius:2px;font:600 13px/1 "Cormorant Garamond",serif;letter-spacing:.24em;text-transform:uppercase;
+ box-shadow:0 8px 18px rgba(90,10,20,.25);transition:background var(--fast) var(--out),transform .16s var(--out)}
 .down:active{transform:scale(.97)}
-.env:focus{outline:none}
-.env:focus-visible{outline:2px solid var(--rose);outline-offset:8px;border-radius:12px}
-.ph{aspect-ratio:4/3;border-radius:2px;display:grid;place-items:center;background:linear-gradient(135deg,var(--env3),var(--env2));color:var(--mute)}
-.ph svg{width:38px;height:38px;opacity:.6}
-.ph img{width:100%;height:100%;object-fit:cover;border-radius:2px}
-.pol .cap{font:400 22px "Marck Script",cursive;margin:10px 4px 0;text-align:center}
+
+/* «Наш год»: бечёвка и прищепки */
+#year{position:relative;overflow:hidden}
+#year h2{color:var(--goldHi)}
+.line{position:relative;display:grid;gap:clamp(56px,7vw,88px);padding:10px 0}
+.prog{display:none}
+.item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;position:relative}
+.px{justify-self:end;width:100%;max-width:340px;position:relative;padding-top:34px}
+.item:nth-child(even) .px{order:2;justify-self:start}
+.px::before{content:"";position:absolute;left:-28%;right:-28%;top:-8px;height:44px;border-bottom:1.5px solid rgba(230,200,160,.5);border-radius:0 0 50% 50%/0 0 100% 100%}
+.pol{position:relative;background:var(--grain),var(--paper);padding:12px 12px 18px;border-radius:2px;margin:0;color:var(--ink);
+ box-shadow:0 2px 3px rgba(0,0,0,.25),0 22px 34px rgba(0,0,0,.38);transform-origin:50% 0;transform:rotate(var(--r));opacity:0}
+.in .pol{opacity:1;animation:polIn 1s var(--spring) backwards;transition:transform .2s var(--out)}
+@keyframes polIn{from{transform:rotate(-9deg) translateY(-26px);opacity:0}}
+@media(hover:hover) and (pointer:fine){.in .pol:hover{transform:rotate(0) scale(1.02)}.down:hover{background:var(--wineHi)}}
+.pin{position:absolute;left:50%;top:-30px;width:16px;height:48px;margin-left:-8px;z-index:2;filter:drop-shadow(0 3px 2px rgba(0,0,0,.35))}
+.ph{aspect-ratio:4/3;border-radius:1px;display:grid;place-items:center;background:linear-gradient(135deg,#efd9cf,#d7aab0);color:var(--accent)}
+.ph svg{width:34px;height:34px;opacity:.55}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:1px}
+.pol .cap{font:400 24px "Marck Script",cursive;margin:10px 4px 0;text-align:center;color:var(--accent)}
 .txt{opacity:0;translate:0 16px;transition:opacity .7s .12s var(--out),translate .7s .12s var(--out)}
 .in .txt{opacity:1;translate:0 0}
-.txt .when{font:600 italic 20px "Cormorant Garamond",serif;color:var(--rose);margin:0}
-.txt h3{font:600 30px/1.1 "Cormorant Garamond",serif;margin:2px 0 8px;text-wrap:balance}
-.txt p{margin:0;max-width:24em}
+.txt .when{color:var(--gold);margin:0}
+.txt h3{font:600 clamp(30px,3.6vw,36px)/1.1 "Cormorant Garamond",serif;margin:6px 0 10px;text-wrap:balance;color:var(--onw)}
+.txt p{margin:0;max-width:24em;color:var(--onw2)}
 .item:nth-child(even) .txt{text-align:right;justify-self:end}
 .item:nth-child(even) .txt p{margin-left:auto}
 .rv{opacity:0;translate:0 16px;transition:opacity .7s var(--out),translate .7s var(--out)}
 .rv.in{opacity:1;translate:0 0}
 
-/* письмо */
-#letter{background:radial-gradient(80% 60% at 50% 40%,var(--bg2),var(--bg3));padding-bottom:clamp(80px,10vw,120px)}
-.paper{max-width:680px;margin:0 auto;position:relative;border-radius:3px;padding:clamp(44px,8vw,84px) clamp(28px,8vw,88px) clamp(56px,9vw,96px);
- background:
-  radial-gradient(120% 90% at 50% 45%,transparent 55%,var(--vign)),
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .28 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-  var(--sheet);
- box-shadow:0 1px 2px rgb(60 20 30/.08),0 14px 30px rgb(110 40 60/.12),0 44px 90px rgb(110 40 60/.16)}
+/* письмо: бумага с рваным краем, бант, золотая печать */
+#letter{position:relative;padding-bottom:clamp(96px,12vw,140px)}
+.paper{max-width:680px;margin:0 auto;position:relative;isolation:isolate;padding:clamp(96px,14vw,120px) clamp(28px,8vw,88px) clamp(80px,11vw,104px);color:var(--ink);filter:drop-shadow(0 30px 40px rgba(0,0,0,.4))}
+.sheet{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;
+ background:radial-gradient(120% 90% at 50% 45%,transparent 55%,var(--vign)),var(--grain),var(--sheet);
+ -webkit-mask:var(--tt) 0 0/600px 18px repeat-x,linear-gradient(#000,#000) 0 17px/100% calc(100% - 34px) no-repeat,var(--tb) 0 100%/600px 18px repeat-x;
+ mask:var(--tt) 0 0/600px 18px repeat-x,linear-gradient(#000,#000) 0 17px/100% calc(100% - 34px) no-repeat,var(--tb) 0 100%/600px 18px repeat-x}
 .paper::before,.paper::after{content:"";position:absolute;pointer-events:none;border:1px solid var(--rose30)}
-.paper::before{inset:14px}.paper::after{inset:19px;border-width:.5px;border-color:var(--rose18)}
-.orn{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--rose);margin:0 0 26px}
-.orn i{height:1px;width:min(90px,22%);background:linear-gradient(90deg,transparent,currentColor)}
-.orn i:last-child{transform:scaleX(-1)}
-.orn svg{width:16px;height:16px}
+.paper::before{top:34px;bottom:34px;left:16px;right:16px}.paper::after{top:39px;bottom:39px;left:21px;right:21px;border-color:var(--rose18)}
+.paper .bow{position:absolute;left:50%;top:6px;width:150px;margin:0 0 0 -75px;z-index:2}
 .paper p{margin:0 0 .9em;font:500 clamp(19px,2.3vw,22px)/1.62 "Cormorant Garamond",Georgia,serif;color:var(--ink);text-wrap:pretty}
 .paper .rv:nth-child(3){transition-delay:.08s}.paper .rv:nth-child(4){transition-delay:.16s}.paper .rv:nth-child(n+5){transition-delay:.24s}
-.paper .verse{font:500 italic clamp(21px,2.6vw,25px)/1.55 "Cormorant Garamond",Georgia,serif;color:var(--rose);text-align:center;margin:1.4em 0 1.2em;letter-spacing:.01em}
-.paper .verse::before,.paper .verse::after{content:"";display:block;width:56px;height:1px;margin:0 auto .9em;background:var(--rose55)}
+.paper .verse{font:500 italic clamp(21px,2.6vw,25px)/1.55 "Cormorant Garamond",Georgia,serif;color:var(--accent);text-align:center;margin:1.4em 0 1.2em;letter-spacing:.01em}
+.paper .verse::before,.paper .verse::after{content:"";display:block;width:56px;height:1px;margin:0 auto .9em;background:var(--gold)}
 .paper .verse::after{margin:.9em auto 0}
-.wax{position:absolute;left:50%;bottom:-34px;width:72px;height:72px;margin-left:-36px;rotate:-8deg;filter:drop-shadow(0 6px 8px rgb(90 20 40/.3))}
-.paper .hi{font:400 clamp(44px,6vw,56px)/1.1 "Great Vibes","Marck Script",cursive;color:var(--rose);margin-bottom:.35em}
-.paper .sign{font:400 clamp(40px,5.5vw,50px)/1.2 "Great Vibes","Marck Script",cursive;text-align:right;margin:.6em 0 0;color:var(--ink)}
-.end{text-align:center;min-height:70vh;display:grid;place-content:center;position:relative;overflow:hidden}
-.end .big{font:400 clamp(56px,12vw,96px)/1.15 "Great Vibes","Marck Script",cursive;color:var(--rose);margin:0}
-.end .hrt{width:64px;height:64px;margin:14px auto 0;display:block;animation:beat 1.8s 4 ease-in-out}
+.paper .hi{font:400 clamp(48px,6.5vw,60px)/1.1 "Great Vibes","Marck Script",cursive;color:var(--accent);margin-bottom:.35em}
+.paper .sign{font:400 clamp(42px,5.8vw,54px)/1.2 "Great Vibes","Marck Script",cursive;text-align:right;margin:.6em 0 0;color:var(--ink)}
+.wax{position:absolute;left:50%;bottom:-30px;width:84px;height:84px;margin-left:-42px;rotate:-8deg;z-index:2;filter:drop-shadow(0 6px 8px rgba(40,10,0,.4))}
+
+/* финал */
+.end{text-align:center;min-height:72vh;display:grid;place-content:center;position:relative;overflow:hidden}
+.end .big{font:400 clamp(64px,13vw,110px)/1.15 "Great Vibes","Marck Script",cursive;margin:0;padding:0 .12em}
+.end .lbl{color:var(--onw2);margin:10px 0 0}
+.end .hrt{width:56px;height:56px;margin:18px auto 0;display:block;animation:beat 1.8s 4 ease-in-out}
 @keyframes beat{0%,60%,100%{transform:scale(1)}30%{transform:scale(1.14)}}
 .back{display:block;margin:30px auto 0}
 
+/* глубина при прокрутке */
+.deco{position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden;pointer-events:none;z-index:0}
+.deco>*{position:absolute}
+.bk{border-radius:50%;background:radial-gradient(circle,var(--deco),transparent 70%)}
+.dh{color:var(--deco)}
+#year,#letter,.end{--deco:var(--gold)}
+.hero{--deco:var(--accent)}
+.hero>.rv,#year>.wrap,#letter>.paper,.end>.big,.end>.lbl,.end>.hrt,.end>.back{position:relative;z-index:1}
+
 /* эффекты */
 #fx{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:8}
-.petal{position:fixed;top:-30px;width:14px;height:18px;border-radius:70% 0 70% 0;opacity:.75;pointer-events:none;z-index:9;animation:fall linear forwards}
+.petal{position:fixed;top:-30px;width:14px;height:18px;border-radius:70% 0 70% 0;opacity:.8;pointer-events:none;z-index:9;animation:fall linear forwards}
 @keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot));opacity:.2}}
 .fh{position:absolute;bottom:-40px;width:22px;height:22px;pointer-events:none;animation:rise linear forwards}
 @keyframes rise{to{transform:translate(var(--dx),-80vh) rotate(var(--rot));opacity:0}}
 
 @media(max-width:700px){
- .line::before,.prog{left:14px}
- .item{grid-template-columns:minmax(0,1fr);gap:16px;padding-left:40px}
- .item::after{left:14px;top:22px}
- .px,.item:nth-child(even) .px{order:0;justify-self:start;max-width:100%}
- .item:nth-child(even) .txt{text-align:left;justify-self:start}
- .item:nth-child(even) .txt p{margin-left:0}
+ .item{grid-template-columns:minmax(0,1fr);gap:22px}
+ .px,.item:nth-child(even) .px{order:0;justify-self:center;max-width:min(340px,86%)}
+ .item:nth-child(even) .txt,.txt{text-align:center;justify-self:center}
+ .txt p,.item:nth-child(even) .txt p{margin:0 auto}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.pol,.txt{opacity:1!important;translate:0 0!important}}
 </style>
@@ -203,13 +235,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
 <canvas id="fx" aria-hidden="true"></canvas>
 
 <section id="intro">
- <div class="stage" id="stage">
+ <div class="stage velvet" id="stage">
   <div class="lay" id="far" aria-hidden="true"></div>
   <div class="lay" id="mid" aria-hidden="true"></div>
   <div class="front">
    <div id="head">
-    <p class="date fade">24 декабря · 00:00</p>
-    <p class="for fade">Для Шоны</p>
+    <p class="date lbl fade">24 декабря · 00:00</p>
+    <p class="for goldtext fade">Для Шоны</p>
    </div>
    <div class="tilt" id="tilt">
    <svg class="env" id="env" viewBox="0 -70 320 290" role="button" tabindex="0" aria-label="Запечатанный конверт с замочком">
@@ -217,19 +249,22 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
     <polygon class="flapO part" points="20,62 300,62 160,-14" style="fill:var(--env2)"/>
     <g class="letter">
      <rect x="42" y="72" width="236" height="128" rx="6" style="fill:var(--paper)"/>
-     <text x="160" y="104" text-anchor="middle" style="font:30px 'Marck Script',cursive;fill:var(--rose)">С днём рождения</text>
+     <text x="160" y="106" text-anchor="middle" style="font:32px 'Great Vibes','Marck Script',cursive;fill:var(--accent)">С днём рождения</text>
      <rect x="80" y="122" width="160" height="3" rx="1.5" style="fill:var(--line)"/>
      <rect x="100" y="134" width="120" height="3" rx="1.5" style="fill:var(--line)"/>
     </g>
     <g class="part">
      <path d="M20 70 L160 145 L300 70 V200 a10 10 0 0 1 -10 10 H30 a10 10 0 0 1 -10 -10Z" style="fill:var(--env)"/>
      <path d="M20 200 L130 128 M300 200 L190 128" style="stroke:var(--env2);stroke-width:2;fill:none"/>
+     <rect class="dots" x="30" y="70" width="260" height="130" rx="5"/>
     </g>
     <path class="flapC" d="M20 70 a10 10 0 0 1 10 -10 H290 a10 10 0 0 1 10 10 L160 150Z" style="fill:var(--env3)"/>
+    <path class="dots flapC" d="M32 69 L160 137 L288 69" />
     <defs>
      <linearGradient id="lkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe3a0"/><stop offset=".45" stop-color="#e2ad4d"/><stop offset="1" stop-color="#a8711f"/></linearGradient>
      <linearGradient id="lkS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b98432"/><stop offset=".5" stop-color="#f7d98c"/><stop offset="1" stop-color="#a8711f"/></linearGradient>
      <radialGradient id="lkL"><stop offset="0" stop-color="#fff6d6"/><stop offset=".4" stop-color="#ffd977" stop-opacity=".7"/><stop offset="1" stop-color="#ffd977" stop-opacity="0"/></radialGradient>
+     <radialGradient id="wxG" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".45" stop-color="#d4ad55"/><stop offset="1" stop-color="#8a6420"/></radialGradient>
      <clipPath id="lkC"><rect x="141" y="176" width="38" height="28" rx="7"/></clipPath>
     </defs>
     <g class="lock" id="lock" aria-hidden="true">
@@ -241,19 +276,23 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
      <path class="kh" d="M160 183.5 a3.4 3.4 0 0 1 1.9 6.2 l1 5.3 h-5.8 l1-5.3 a3.4 3.4 0 0 1 1.9 -6.2z" style="fill:#6b3d1c"/>
      <circle class="ring" cx="160" cy="188" r="9" style="fill:none;stroke:#ffd977;stroke-width:2"/>
     </g>
-    <g class="seal">
-     <circle cx="160" cy="146" r="21" style="fill:var(--rose)"/>
-     <circle cx="160" cy="146" r="16" style="fill:none;stroke:#fff;stroke-opacity:.35;stroke-width:1.5"/>
-     <path d="M160 156 c-9-6-13-10-13-15 a6 6 0 0 1 13-2 a6 6 0 0 1 13 2 c0 5-4 9-13 15z" style="fill:#fff;fill-opacity:.85"/>
-    </g>
+    <g class="seal"><g transform="translate(134 120) scale(.722)">
+     <path d="M36 3c6 0 8 4 13 5s10 0 13 5-1 9 1 14 6 8 4 14-7 6-9 11-1 10-6 13-9-1-14 1-7 6-12 5-6-5-11-7-10 1-12-4 2-9 0-14-6-8-4-13 7-6 9-11 0-10 5-13 9 1 14-1 6-5 11-5z" style="fill:url(#wxG)"/>
+     <circle cx="36" cy="36" r="22" style="fill:none;stroke:#7a5518;stroke-opacity:.55;stroke-width:1.4"/>
+     <circle cx="36" cy="36" r="19" style="fill:none;stroke:#fff3c9;stroke-opacity:.5;stroke-width:.8"/>
+     <text x="36" y="43" text-anchor="middle" style="font:600 19px 'Cormorant Garamond',serif;fill:#6e4c12;letter-spacing:.5px">А·Ш</text>
+    </g></g>
    </svg>
    </div>
-   <div class="timer fade" aria-label="Обратный отсчёт">
-    <div class="cell"><b id="d">00</b><span id="dl">дней</span></div>
-    <div class="cell"><b id="h">00</b><span id="hl">часов</span></div>
-    <div class="cell"><b id="m">00</b><span id="ml">минут</span></div>
-    <div class="cell"><b id="s">00</b><span id="sl">секунд</span></div>
-   </div>
+   <div class="timer fade" aria-label="Обратный отсчёт"><div class="ticket">
+    <span class="lbl">до твоего дня</span>
+    <div class="cells">
+     <div class="cell"><b id="d">00</b><span id="dl">дней</span></div>
+     <div class="cell"><b id="h">00</b><span id="hl">часов</span></div>
+     <div class="cell"><b id="m">00</b><span id="ml">минут</span></div>
+     <div class="cell"><b id="s">00</b><span id="sl">секунд</span></div>
+    </div>
+   </div></div>
    <p class="hint fade" id="hint" aria-live="polite">Кое-что откроется ровно в полночь…</p>
    <button class="demo fade" id="demo">Посмотреть сюрприз (демо — уберём в финале)</button>
   </div>
@@ -265,25 +304,48 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
 <main id="open">
  <section class="hero" id="hero">
   <div class="rv">
+   <p class="lbl" data-s="-.4">24 декабря</p>
    <p class="hb" data-s="-.35">С днём рождения,</p>
    <p class="name" data-s="-.22">Шона</p>
    <p class="lead" data-s="-.1">Я долго ждал этой минуты. Листай дальше&nbsp;— тут немного нашего года.</p>
-   <p class="tap">нажми на экран — будет салют</p>
+   <svg class="bow" data-s="-.06" viewBox="0 0 150 96" aria-hidden="true">
+    <defs><linearGradient id="bwG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3dc9a"/><stop offset=".5" stop-color="#c99a3e"/><stop offset="1" stop-color="#8a6420"/></linearGradient>
+    <linearGradient id="bwH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3cf" stop-opacity=".7"/><stop offset="1" stop-color="#fff3cf" stop-opacity="0"/></linearGradient></defs>
+    <path d="M70 40 C52 14 18 6 10 20 C2 34 26 52 70 48Z" style="fill:url(#bwG)"/>
+    <path d="M80 40 C98 14 132 6 140 20 C148 34 124 52 80 48Z" style="fill:url(#bwG)"/>
+    <path d="M66 46 C56 62 44 80 30 92 L44 94 C54 82 66 66 72 50Z" style="fill:url(#bwG)"/>
+    <path d="M84 46 C94 62 106 80 120 92 L106 94 C96 82 84 66 78 50Z" style="fill:url(#bwG)"/>
+    <path d="M20 20 C30 14 52 22 64 38" style="fill:none;stroke:url(#bwH);stroke-width:3;stroke-linecap:round"/>
+    <path d="M130 20 C120 14 98 22 86 38" style="fill:none;stroke:url(#bwH);stroke-width:3;stroke-linecap:round"/>
+    <rect x="64" y="34" width="22" height="18" rx="7" style="fill:url(#bwG);stroke:#8a6420;stroke-opacity:.4"/>
+   </svg>
    <a class="down" href="#year">Смотреть</a>
+   <p class="tap lbl">нажми на лист — будет салют</p>
   </div>
  </section>
 
- <section class="band" id="year">
+ <section class="band velvet" id="year">
   <div class="wrap">
    <h2 class="rv">Наш год</h2>
-   <p class="sub rv">Моменты, которые я храню</p>
+   <p class="sub lbl rv">Моменты, которые я храню</p>
    <div class="line" id="line"><div class="prog" id="prog"></div></div>
   </div>
  </section>
 
- <section class="band" id="letter">
+ <section class="band velvet" id="letter">
   <div class="paper" data-s="-.06">
-   <div class="orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24"><path d="M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z" fill="currentColor"/></svg><i></i></div>
+   <div class="sheet" aria-hidden="true"></div>
+   <svg class="bow" viewBox="0 0 150 96" aria-hidden="true">
+    <defs><linearGradient id="bwG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3dc9a"/><stop offset=".5" stop-color="#c99a3e"/><stop offset="1" stop-color="#8a6420"/></linearGradient>
+    <linearGradient id="bwH2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3cf" stop-opacity=".7"/><stop offset="1" stop-color="#fff3cf" stop-opacity="0"/></linearGradient></defs>
+    <path d="M70 40 C52 14 18 6 10 20 C2 34 26 52 70 48Z" style="fill:url(#bwG2)"/>
+    <path d="M80 40 C98 14 132 6 140 20 C148 34 124 52 80 48Z" style="fill:url(#bwG2)"/>
+    <path d="M66 46 C56 62 44 80 30 92 L44 94 C54 82 66 66 72 50Z" style="fill:url(#bwG2)"/>
+    <path d="M84 46 C94 62 106 80 120 92 L106 94 C96 82 84 66 78 50Z" style="fill:url(#bwG2)"/>
+    <path d="M20 20 C30 14 52 22 64 38" style="fill:none;stroke:url(#bwH2);stroke-width:3;stroke-linecap:round"/>
+    <path d="M130 20 C120 14 98 22 86 38" style="fill:none;stroke:url(#bwH2);stroke-width:3;stroke-linecap:round"/>
+    <rect x="64" y="34" width="22" height="18" rx="7" style="fill:url(#bwG2);stroke:#8a6420;stroke-opacity:.4"/>
+   </svg>
    <p class="hi rv">Шона,</p>
    <p class="rv">я люблю тебя. Очень сильно — сильнее, чем могу говорить словами.</p>
    <p class="rv">Хочу быть с тобой честным. В последнее время я стал злиться так, как раньше со мной никогда не бывало. Я сам ещё толком не понимаю, как с этим справляться, но я учусь — ради нас.</p>
@@ -292,16 +354,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offse
    <p class="verse rv">День за днём, за годом год.<br>Солнце греет небосвод.<br>Как твой свет мои мечты,<br>Где есть только я и ты...</p>
    <p class="sign rv">Твой Амаль</p>
    <svg class="wax" viewBox="0 0 72 72" aria-hidden="true">
-    <path d="M36 3c6 0 8 4 13 5s10 0 13 5-1 9 1 14 6 8 4 14-7 6-9 11-1 10-6 13-9-1-14 1-7 6-12 5-6-5-11-7-10 1-12-4 2-9 0-14-6-8-4-13 7-6 9-11 0-10 5-13 9 1 14-1 6-5 11-5z" style="fill:var(--rose)"/>
-    <circle cx="36" cy="36" r="21" style="fill:none;stroke:#fff;stroke-opacity:.3;stroke-width:1.5"/>
-    <path d="M36 47c-10-7-14-11-14-16.5a7 7 0 0 1 14-2.5a7 7 0 0 1 14 2.5c0 5.5-4 9.5-14 16.5z" style="fill:#fff;fill-opacity:.82"/>
+    <defs><radialGradient id="wxG2" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".45" stop-color="#d4ad55"/><stop offset="1" stop-color="#8a6420"/></radialGradient></defs>
+    <path d="M36 3c6 0 8 4 13 5s10 0 13 5-1 9 1 14 6 8 4 14-7 6-9 11-1 10-6 13-9-1-14 1-7 6-12 5-6-5-11-7-10 1-12-4 2-9 0-14-6-8-4-13 7-6 9-11 0-10 5-13 9 1 14-1 6-5 11-5z" style="fill:url(#wxG2)"/>
+    <circle cx="36" cy="36" r="22" style="fill:none;stroke:#7a5518;stroke-opacity:.55;stroke-width:1.4"/>
+    <circle cx="36" cy="36" r="19" style="fill:none;stroke:#fff3c9;stroke-opacity:.5;stroke-width:.8"/>
+    <text x="36" y="43" text-anchor="middle" style="font:600 19px 'Cormorant Garamond',serif;fill:#6e4c12;letter-spacing:.5px">А·Ш</text>
    </svg>
   </div>
  </section>
 
- <section class="band end" id="end">
-  <p class="big" data-s="-.18">Люблю тебя</p>
-  <svg class="hrt" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z" style="fill:var(--rose)"/></svg>
+ <section class="band end velvet" id="end">
+  <p class="big goldtext" data-s="-.18">Люблю тебя</p>
+  <p class="lbl" data-s="-.12">24 · 12 · 2026</p>
+  <svg class="hrt" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="hG" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".45" stop-color="#d4ad55"/><stop offset="1" stop-color="#8a6420"/></radialGradient></defs><path d="M12 21c-6-4.4-9.5-8-9.5-12A5 5 0 0 1 12 6a5 5 0 0 1 9.5 3c0 4-3.5 7.6-9.5 12z" style="fill:url(#hG)"/></svg>
   <button class="demo back" id="back">↺ Начать сначала (демо)</button>
  </section>
 </main>
@@ -327,18 +392,18 @@ const $ = id => document.getElementById(id);
 $('line').insertAdjacentHTML('beforeend', moments.map((m, i) => `
  <div class="item">
   <div class="px" data-s="${i % 2 ? .07 : -.05}"><figure class="pol" style="--r:${m.r}deg">
+   <svg class="pin" viewBox="0 0 16 48" aria-hidden="true"><rect x="1" y="0" width="14" height="48" rx="2.5" style="fill:#c8a172"/><rect x="1" y="0" width="7" height="48" rx="2.5" style="fill:#b58d5e"/><line x1="8" y1="2" x2="8" y2="46" style="stroke:#7d5a35;stroke-width:.8"/><circle cx="8" cy="22" r="3.4" style="fill:none;stroke:#8f939a;stroke-width:1.6"/></svg>
    <div class="ph">${m.img ? `<img src="${m.img}" alt="">` : `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${HEART}" fill="currentColor"/></svg>`}</div>
    <figcaption class="cap">${m.cap}</figcaption>
   </figure></div>
-  <div class="txt"><p class="when">${m.when}</p><h3>${m.title}</h3><p>${m.text}</p></div>
+  <div class="txt"><p class="when lbl">${m.when}</p><h3>${m.title}</h3><p>${m.text}</p></div>
  </div>`).join(''));
 
 const intro = $('intro'), stage = $('stage'), env = $('env'), open = $('open'), cue = $('cue'), veil = $('veil');
 
 /* слои экрана ожидания: дальние пятна света и ближние искорки */
 const far = $('far'), mid = $('mid'), tilt = $('tilt'), head = $('head');
-far.innerHTML = [['12%','18%',260,'var(--rose)'],['70%','10%',220,'#f0b37e'],['80%','62%',300,'#cdb4db'],['8%','70%',240,'#f4a3b4'],['45%','45%',180,'var(--env2)']]
- .map(([l, t, s, c]) => `<span class="blob" style="left:${l};top:${t};width:${s}px;height:${s}px;background:${c}"></span>`).join('');
+far.innerHTML = '<span class="curtain"></span><span class="spot"></span>';
 for (let i = 0; i < 30; i++) {
  const s = document.createElement('span');
  s.className = 'spark' + (i % 3 ? '' : ' g');
@@ -401,7 +466,7 @@ if (!calm) requestAnimationFrame(sway);
 
 /* салют */
 const cv = $('fx'), cx = cv.getContext('2d');
-const COLORS = ['#ff8fab','#ffb3c6','#ffd6a5','#f4a261','#e05a7a','#cdb4db','#fff1f2','#ffc8dd','#b5475a'];
+const COLORS = ['#f3dc9a','#e8c06a','#fff3d6','#d4ad55','#f6e6cf','#e0475e','#c22a40','#ffd9a8','#ffffff'];
 let parts = [], rockets = [], raf = 0, W = 0, H = 0;
 function size(){ const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); }
 size(); addEventListener('resize', size);
@@ -452,7 +517,7 @@ function petals(n){
  for (let i = 0; i < n; i++) {
   const p = document.createElement('span');
   p.className = 'petal';
-  p.style.background = pick(['var(--rose)','#f4a3b4','#f7c6cf','#e8b86a']);
+  p.style.background = pick(['#c22a40','#e0475e','#d4ad55','#f3e3c8','#9e1b2e']);
   p.style.left = Math.random() * 100 + 'vw';
   p.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
   p.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
@@ -467,7 +532,7 @@ function hearts(box, n){
  for (let i = 0; i < n; i++) {
   const h = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   h.setAttribute('viewBox', '0 0 24 24'); h.setAttribute('class', 'fh');
-  h.innerHTML = `<path d="${HEART}" fill="${pick(['#e05a7a','#ff8fab','#f4a3b4','#e8b86a'])}"/>`;
+  h.innerHTML = `<path d="${HEART}" fill="${pick(['#d4ad55','#f3dc9a','#e0475e','#f6e6cf'])}"/>`;
   h.style.left = Math.random() * 100 + '%';
   h.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
   h.style.setProperty('--rot', (Math.random() * 90 - 45) + 'deg');
