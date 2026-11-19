@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Два события 28.11 — галерея</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #1f3b80; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #234489; }
+  .poster > * { position: absolute; }
+  :root { --paint: #2a52a6; --gold1: #f6e3a4; --gold2: #d6ad55; --gold3: #9a6f25; }
+
+  /* ---------- wall ---------- */
+  .wall { inset: 0; background:
+      radial-gradient(120% 80% at 45% 40%, #2c56a6 0%, #234789 45%, #182f63 100%); }
+  .wall svg { width: 100%; height: 100%; }
+
+  /* ---------- frames ---------- */
+  .frame { filter: drop-shadow(2.4mm 4.2mm 2.6mm rgba(6,14,40,.55)) drop-shadow(.6mm 1mm .5mm rgba(6,14,40,.5)); }
+  .frame .in { position: absolute; overflow: hidden; }
+  .frame svg.fr { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .frame .in::after { content: ''; position: absolute; inset: 0; box-shadow: inset 1.6mm 2.4mm 3mm rgba(30,20,5,.55), inset 0 0 1mm rgba(30,20,5,.5); }
+  .art { position: absolute; inset: 0; background: #e9e3d3; }
+  .art img { position: absolute; filter: grayscale(1) sepia(.28) contrast(1.08) brightness(1.02); }
+
+  /* ---------- plaster in the centre frame ---------- */
+  .plaster { position: absolute; inset: 0; background: linear-gradient(170deg, #f1ecdf 0%, #e7e0cf 60%, #dcd4c0 100%); }
+  .plaster svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .paint { position: absolute; font-family: 'Lora', serif; color: var(--paint); line-height: .82; white-space: nowrap; font-variant-numeric: lining-nums;
+    text-shadow: .25mm .35mm 0 rgba(10,25,70,.35), -.15mm -.15mm 0 rgba(255,255,255,.35); }
+  .p28 { left: 0; right: 0; top: 22mm; text-align: center; font-weight: 700; font-size: 104mm; letter-spacing: -.04em; }
+  .pmon { left: 13mm; top: 116mm; font-weight: 700; font-size: 25mm; letter-spacing: -.015em; }
+  .ptime { right: 13mm; top: 146mm; font-weight: 700; font-size: 25mm; letter-spacing: -.01em; }
+  .pday { left: 0; right: 0; top: 12mm; text-align: center; font-family: 'Montserrat'; font-weight: 700; font-size: 4.6mm; letter-spacing: .5em; text-indent: .5em; line-height: 1; }
+  .proom { left: 0; right: 0; bottom: 11mm; text-align: center; font-family: 'Montserrat'; font-weight: 700; font-size: 4.6mm; letter-spacing: .42em; text-indent: .42em; line-height: 1; }
+
+  /* blue painted canvas in the bottom-right frame */
+  .canvas { position: absolute; inset: 0; background: linear-gradient(160deg, #3a63b4, #2a4f9c 55%, #1f3f84); }
+  .vtext { position: absolute; left: 50%; top: 44%; transform: translate(-50%,-50%) rotate(-90deg); white-space: nowrap; font-family: 'Lora'; font-weight: 600; font-size: 11mm; color: #ead7a4; letter-spacing: .01em; }
+
+  /* gold lettering on the wall */
+  .gold { background: linear-gradient(180deg, #fbefc6 0%, #e6c77c 38%, #c39a48 62%, #f0dca0 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(.3mm .6mm .4mm rgba(5,12,35,.6)); }
+  .title { left: 0; right: 0; top: 326mm; text-align: center; font-family: 'Lora'; font-weight: 600; font-size: 15.5mm; line-height: 1.02; letter-spacing: -.005em; }
+  .events { left: 66mm; right: 66mm; top: 364mm; display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; color: #e9edf7; }
+  .events div { text-align: center; }
+  .events b { display: block; font-weight: 700; font-size: 2.9mm; letter-spacing: .3em; color: #e6c77c; margin-bottom: 1.4mm; }
+  .events span { display: block; font-family: 'Lora'; font-style: italic; font-weight: 500; font-size: 4.1mm; line-height: 1.22; }
+  .foot { left: 66mm; right: 66mm; top: 388mm; display: flex; justify-content: center; flex-wrap: wrap; gap: 2.6mm 6mm; color: #eef1f8; font-weight: 600; font-size: 3.5mm; }
+  .foot div { display: flex; align-items: center; gap: 1.8mm; }
+  .foot svg { width: 5mm; height: 5mm; }
+
+  .logos { right: 13mm; top: 13mm; display: flex; flex-direction: column; align-items: flex-end; gap: 3.4mm; color: #f1e4bc; }
+  .logos .lg { display: flex; align-items: center; gap: 2.4mm; }
+  .logos svg { width: 9mm; height: 9mm; }
+  .logos .t1 { font-weight: 800; font-size: 4.4mm; line-height: 1; text-align: right; }
+  .logos .t2 { font-weight: 500; font-size: 2.2mm; letter-spacing: .28em; margin-top: 1mm; opacity: .85; text-align: right; }
+
+  .light { inset: 0; pointer-events: none; }
+  .feather { pointer-events: none; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="wallTex" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="2" result="n"/>
+      <feColorMatrix in="n" values="0 0 0 0 .1  0 0 0 0 .18  0 0 0 0 .42  0 0 0 .55 -.18"/>
+    </filter>
+    <filter id="wallMottle" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="3" seed="11"/>
+      <feColorMatrix values="0 0 0 0 .05  0 0 0 0 .1  0 0 0 0 .3  0 0 0 1.1 -.45"/>
+    </filter>
+    <filter id="plasterTex" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="4" seed="5"/>
+      <feColorMatrix values="0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .22  0 0 0 .5 -.2"/>
+    </filter>
+    <filter id="plasterStain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="3"/>
+      <feColorMatrix values="0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .25  0 0 0 .9 -.42"/>
+    </filter>
+    <!-- worn paint: tiny chips knocked out of the letters -->
+    <filter id="worn" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".35" numOctaves="2" seed="8" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="14" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -14 12.6" result="holes"/>
+      <feComposite in="d" in2="holes" operator="in"/>
+    </filter>
+    <filter id="metal" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="6" result="n"/>
+      <feColorMatrix in="n" values="0 0 0 0 .25  0 0 0 0 .16  0 0 0 0 .04  0 0 0 .9 -.32" result="spots"/>
+      <feComposite in="spots" in2="SourceAlpha" operator="in" result="s"/>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="s"/></feMerge>
+    </filter>
+    <linearGradient id="featherG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3b2a8f"/><stop offset=".5" stop-color="#7a4fe0"/><stop offset="1" stop-color="#4a6be8" stop-opacity=".2"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="poster">
+  <div class="wall" data-name="Стена" data-raster="full">
+    <svg><rect width="100%" height="100%" filter="url(#wallMottle)" opacity=".7"/><rect width="100%" height="100%" filter="url(#wallTex)" opacity=".55"/></svg>
+  </div>
+
+  <!-- top-left: landscape print, cut by the poster edge -->
+  <div class="frame" data-name="Рама: Гермес (торс)" data-raster="box" data-t="13" data-mat="7" style="left:-14mm; top:-20mm; width:166mm; height:96mm;">
+    <div class="in"><div class="art"><img src="statue-hermes.png" style="left:12%; top:-8%; width:80%;"></div></div>
+  </div>
+
+  <!-- left: faded scales emblem -->
+  <div class="frame" data-name="Рама: весы" data-raster="box" data-t="11" style="left:-34mm; top:104mm; width:80mm; height:118mm;">
+    <div class="in"><div class="art" style="background:linear-gradient(170deg,#ece5d2,#d9cfb6)">
+      <svg viewBox="0 0 60 80" style="position:absolute; right:4mm; top:50%; width:44mm; transform:translateY(-50%); opacity:.55">
+        <g fill="none" stroke="#a5813a" stroke-width="1.6" stroke-linecap="round"><path d="M30 10 V66 M18 66 H42 M10 22 H50"/><path d="M10 22 L3 40 H17 Z M50 22 L43 40 H57 Z"/><circle cx="30" cy="9" r="2.4"/><path d="M24 70 H36"/></g>
+      </svg></div></div>
+  </div>
+
+  <!-- right: Justitia (law) -->
+  <div class="frame" data-name="Рама: Фемида" data-raster="box" data-t="12" data-mat="6" style="left:228mm; top:62mm; width:96mm; height:206mm;">
+    <div class="in"><div class="art" style="background:linear-gradient(180deg,#ebe6da,#d3ccbb)"><img src="statue-justitia.png" style="left:6%; top:4%; height:104%;"></div></div>
+  </div>
+
+  <!-- bottom-left: Hermes bust (networking) -->
+  <div class="frame" data-name="Рама: Гермес (бюст)" data-raster="box" data-t="13" data-ornate="1" style="left:-26mm; top:258mm; width:88mm; height:150mm;">
+    <div class="in"><div class="art" style="background:linear-gradient(180deg,#eee9dd,#d5ceba)"><img src="herm-bust.png" style="left:-8%; top:22%; width:150%;"></div></div>
+  </div>
+
+  <!-- bottom-right: blue canvas with gold lettering -->
+  <div class="frame" data-name="Рама: Точка коннекта" data-raster="box" data-t="11" style="left:232mm; top:296mm; width:90mm; height:150mm;">
+    <div class="in"><div class="canvas"><div class="vtext">Точка коннекта</div></div></div>
+  </div>
+
+  <!-- centre: the date painted on cracked plaster -->
+  <div class="frame" data-name="Рама: дата" data-raster="box" data-t="15" style="left:66mm; top:94mm; width:150mm; height:220mm;">
+    <div class="in"><div class="plaster">
+      <svg class="tex"><rect width="100%" height="100%" filter="url(#plasterStain)" opacity=".6"/><rect width="100%" height="100%" filter="url(#plasterTex)" opacity=".5"/><g class="cracks" fill="none" stroke="#3b3326" stroke-linecap="round"></g></svg>
+      <div style="filter:url(#worn)">
+        <div class="paint pday">СУББОТА</div>
+        <div class="paint p28">28</div>
+        <div class="paint pmon">ноября</div>
+        <div class="paint ptime">13:25</div>
+        <div class="paint proom">АУД. 609</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="logos" data-name="Логотипы">
+    <div class="lg"><div><div class="t1">ПРАВО НА ТРУД</div><div class="t2">МАСТЕР-КЛАСС</div></div>
+      <svg viewBox="0 0 20 20"><g fill="none" stroke="#f1e4bc" stroke-width="1.3" stroke-linecap="round"><path d="M10 3 V17 M5 17 H15 M4 6 H16"/><path d="M4 6 L1.5 11.5 H6.5 Z M16 6 L13.5 11.5 H18.5 Z"/></g></svg></div>
+    <div class="lg"><div><div class="t1">THE HUSTLE HUB</div><div class="t2">ДЕЛОВАЯ ИГРА</div></div>
+      <svg viewBox="0 0 20 20"><g fill="none" stroke="#f1e4bc" stroke-width="1.3"><circle cx="7" cy="10" r="5"/><circle cx="13" cy="10" r="5"/></g><circle cx="10" cy="10" r="1.6" fill="#e2b04a"/></svg></div>
+  </div>
+
+  <div class="title gold" data-name="Заголовок">Два события —<br>один день</div>
+  <div class="events" data-name="События">
+    <div><b>МАСТЕР-КЛАСС</b><span>«Основы трудового права для&nbsp;успешного трудоустройства»</span></div>
+    <div><b>ДЕЛОВАЯ ИГРА</b><span>«The Hustle Hub: Networking&nbsp;Quest» — Точка коннекта</span></div>
+  </div>
+  <div class="foot" data-name="Подвал">
+    <div><svg viewBox="0 0 20 20" fill="none" stroke="#e6c77c" stroke-width="1.5"><rect x="3" y="4.5" width="14" height="12.5" rx="2"/><path d="M3 8.5 H17 M7 2.5 V6 M13 2.5 V6"/></svg>28 ноября 2026, суббота</div>
+    <div><svg viewBox="0 0 20 20" fill="none" stroke="#e6c77c" stroke-width="1.5"><circle cx="10" cy="10" r="7.5"/><path d="M10 5.5 V10 L13 12"/></svg>начало 13:25</div>
+    <div><svg viewBox="0 0 20 20" fill="none" stroke="#e6c77c" stroke-width="1.5"><path d="M10 18 C 5 12, 4 10, 4 8 A6 6 0 0 1 16 8 C 16 10, 15 12, 10 18 Z"/><circle cx="10" cy="8" r="2"/></svg>аудитория 609</div>
+    <div><svg viewBox="0 0 20 20" fill="none" stroke="#e6c77c" stroke-width="1.5"><path d="M4 17 V5 A1.5 1.5 0 0 1 5.5 3.5 H14.5 A1.5 1.5 0 0 1 16 5 V17 Z M2.5 17 H17.5"/><circle cx="13" cy="10.5" r=".9" fill="#e6c77c"/></svg>регистрация: 6 этаж, кабинет 603</div>
+  </div>
+
+  <!-- window light: soft shadow bands and a warm lit band, running "/" -->
+  <div class="light" data-name="Тени" data-raster="full" style="mix-blend-mode:multiply; background:
+    linear-gradient(118deg, rgba(8,16,48,.62) 0%, rgba(8,16,48,.6) 25%, rgba(8,16,48,0) 28.5%, rgba(8,16,48,0) 45%, rgba(8,16,48,.58) 48.5%, rgba(8,16,48,.58) 59%, rgba(8,16,48,0) 62.5%, rgba(8,16,48,0) 76%, rgba(8,16,48,.55) 79.5%, rgba(8,16,48,.6) 100%);"></div>
+  <div class="light" data-name="Свет" data-raster="full" style="mix-blend-mode:soft-light; background:
+    linear-gradient(118deg, rgba(255,236,190,0) 27%, rgba(255,236,190,.9) 31%, rgba(255,236,190,.8) 43%, rgba(255,236,190,0) 46%, rgba(255,236,190,0) 61%, rgba(255,236,190,.7) 65%, rgba(255,236,190,.6) 76%, rgba(255,236,190,0) 79%);"></div>
+  <div class="feathers" data-name="Перья" data-raster="full" style="inset:0"></div>
+</div>
+
+<script>
+const MM = 96 / 25.4;
+// deterministic random
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+
+// ---------- carved gold frames: mitred mouldings, lit from the upper left ----------
+const PROFILE = [ // [from, to] as a fraction of the frame width (outside -> inside), colour stops outside -> inside
+  [0, .1, ['#4d3510', '#c9a04c', '#7a5718']],
+  [.1, .4, ['#8a6222', '#f2dc9a', '#d2a64e', '#7d5a1c']],
+  [.4, .56, ['#5a3f12', '#8f6a26', '#5a3f12'], 'beads'],
+  [.56, .86, ['#f5e2a2', '#c99c45', '#e9cc7c', '#80601f']],
+  [.86, 1, ['#3f2a0b', '#a8823a', '#e4c677']],
+];
+let gid = 0;
+document.querySelectorAll('.frame').forEach(f => {
+  const w = f.offsetWidth, h = f.offsetHeight, T = +f.dataset.t * MM, mat = (+f.dataset.mat || 0) * MM;
+  const inn = f.querySelector('.in'); inn.style.inset = (T - 1) + 'px';
+  if (mat) { const art = inn.querySelector('.art'); art.style.inset = mat + 'px'; inn.style.background = 'linear-gradient(170deg,#f2eee4,#ddd7c8)';
+    inn.style.boxShadow = 'none'; art.style.boxShadow = 'inset .4mm .6mm 1mm rgba(40,30,10,.5)'; }
+  const svg = el('svg', { class: 'fr', viewBox: `0 0 ${w} ${h}` }); f.appendChild(svg);
+  const defs = el('defs', {}, svg); const g = el('g', { filter: 'url(#metal)' }, svg);
+  const sides = [ // polygon at depth a..b, gradient axis, light
+    (a, b) => [[a, a], [w - a, a], [w - b, b], [b, b]],
+    (a, b) => [[w - a, a], [w - a, h - a], [w - b, h - b], [w - b, b]],
+    (a, b) => [[w - a, h - a], [a, h - a], [b, h - b], [w - b, h - b]],
+    (a, b) => [[a, h - a], [a, a], [b, b], [b, h - b]],
+  ];
+  const axis = [(a, b) => [0, a, 0, b], (a, b) => [w - a, 0, w - b, 0], (a, b) => [0, h - a, 0, h - b], (a, b) => [a, 0, b, 0]];
+  const shade = [['#fff', .16], ['#000', .22], ['#000', .34], ['#fff', .05]];
+  PROFILE.forEach(([p0, p1, stops, kind]) => {
+    const a = p0 * T, b = p1 * T;
+    sides.forEach((poly, s) => {
+      const id = 'g' + (gid++); const [x1, y1, x2, y2] = axis[s](a, b);
+      const lg = el('linearGradient', { id, gradientUnits: 'userSpaceOnUse', x1, y1, x2, y2 }, defs);
+      stops.forEach((c, i) => el('stop', { offset: i / (stops.length - 1), 'stop-color': c }, lg));
+      const pts = poly(a, b).map(p => p.join(',')).join(' ');
+      el('polygon', { points: pts, fill: `url(#${id})` }, g);
+      el('polygon', { points: pts, fill: shade[s][0], opacity: shade[s][1] }, g);
+    });
+    if (kind === 'beads') { // a row of gilded beads along the moulding
+      const m = (a + b) / 2, r = (b - a) * .42, step = r * 2.5;
+      const rg = 'rb' + (gid++); const R = el('radialGradient', { id: rg, cx: .35, cy: .3, r: .75 }, defs);
+      [['#fff6d0', 0], ['#e2bf6a', .35], ['#8a6524', .8], ['#4a330d', 1]].forEach(([c, o]) => el('stop', { offset: o, 'stop-color': c }, R));
+      const line = (x0, y0, x1, y1) => { const L = Math.hypot(x1 - x0, y1 - y0), n = Math.floor(L / step);
+        for (let i = 0; i <= n; i++) { const t = i / n; el('circle', { cx: x0 + (x1 - x0) * t, cy: y0 + (y1 - y0) * t, r, fill: `url(#${rg})` }, g); } };
+      line(m, m, w - m, m); line(w - m, m, w - m, h - m); line(w - m, h - m, m, h - m); line(m, h - m, m, m);
+    }
+  });
+  // mitre seams
+  [[0, 0, T, T], [w, 0, w - T, T], [w, h, w - T, h - T], [0, h, T, T + h - 2 * T]].forEach(([x1, y1, x2, y2], i) => {
+    if (i === 3) { x2 = T; y2 = h - T; }
+    el('line', { x1, y1, x2, y2, stroke: '#3a2808', 'stroke-width': .6, opacity: .7 }, g); });
+  // ornate frame: carved corner cartouches
+  if (f.dataset.ornate) {
+    const rg = 'rc' + (gid++); const R = el('radialGradient', { id: rg, cx: .4, cy: .35, r: .8 }, defs);
+    [['#fff3c4', 0], ['#e0b95e', .4], ['#94692a', .85], ['#4a320c', 1]].forEach(([c, o]) => el('stop', { offset: o, 'stop-color': c }, R));
+    const C = T * .78;
+    [[T * .5, T * .5, 0], [w - T * .5, T * .5, 90], [w - T * .5, h - T * .5, 180], [T * .5, h - T * .5, 270]].forEach(([cx, cy, rot]) => {
+      const cg = el('g', { transform: `translate(${cx},${cy}) rotate(${rot})` }, g);
+      el('path', { d: `M${-C * .6},${-C * .6} C ${C * .5},${-C * .9} ${C * 1.2},${-C * .2} ${C * .9},${C * .1} C ${C * .5},${C * .4} ${C * .2},${-C * .1} 0,0 C ${-C * .1},${C * .2} ${C * .4},${C * .5} ${C * .1},${C * .9} C ${-C * .2},${C * 1.2} ${-C * .9},${C * .5} ${-C * .6},${-C * .6} Z`,
+        fill: `url(#${rg})`, stroke: '#4a320c', 'stroke-width': .7 }, cg);
+      el('circle', { cx: C * .05, cy: C * .05, r: C * .18, fill: `url(#${rg})`, stroke: '#4a320c', 'stroke-width': .5 }, cg);
+    });
+  }
+});
+
+// ---------- cracks in the plaster ----------
+document.querySelectorAll('.plaster').forEach(p => {
+  const w = p.offsetWidth, h = p.offsetHeight, g = p.querySelector('.cracks');
+  const crack = (x, y, ang, len, width, depth) => {
+    let d = `M${x.toFixed(1)},${y.toFixed(1)}`; const steps = Math.max(4, len / 9 | 0);
+    for (let i = 0; i < steps; i++) {
+      ang += (rnd() - .5) * .7; x += Math.cos(ang) * len / steps; y += Math.sin(ang) * len / steps; d += ` L${x.toFixed(1)},${y.toFixed(1)}`;
+      if (depth < 2 && rnd() < .14) crack(x, y, ang + (rnd() < .5 ? -1 : 1) * (.5 + rnd() * .7), len * (.25 + rnd() * .3), width * .6, depth + 1);
+    }
+    el('path', { d, 'stroke-width': width, opacity: .55 - depth * .12 }, g);
+    el('path', { d, 'stroke-width': width * .7, stroke: '#fffaf0', opacity: .5, transform: 'translate(.6,.8)' }, g);
+  };
+  crack(w * .62, -5, 1.62, h * .55, 1.1, 0);
+  crack(-5, h * .78, -.25, w * .5, .9, 0);
+  crack(w * .2, h + 5, -1.35, h * .3, .8, 0);
+  crack(w + 5, h * .33, 3.0, w * .35, .7, 0);
+  for (let i = 0; i < 26; i++) { const x = rnd() * w, y = rnd() * h; crack(x, y, rnd() * 6.28, 10 + rnd() * 28, .45, 2); }
+});
+
+// ---------- drifting violet feathers ----------
+(() => {
+  const box = document.querySelector('.feathers'); const svg = el('svg', { viewBox: '0 0 1123 1587', width: '100%', height: '100%', style: 'position:absolute; inset:0; overflow:visible' }); box.appendChild(svg);
+  const defs = el('defs', {}, svg);
+  [[170, 300, -20, 1.0, 3.2], [930, 640, 60, 1.25, 1.2], [420, 830, 35, .8, 4.5], [770, 1180, -40, 1.1, 1.6], [120, 1185, 120, .95, 2.4], [905, 1560, 20, 1.1, 3.6], [505, 120, -70, .75, 5.5]]
+    .forEach(([x, y, rot, s, blur], i) => {
+      const fid = 'fb' + i; const F = el('filter', { id: fid, x: '-60%', y: '-60%', width: '220%', height: '220%' }, defs); el('feGaussianBlur', { stdDeviation: blur }, F);
+      const g = el('g', { transform: `translate(${x},${y}) rotate(${rot}) scale(${s})`, filter: `url(#${fid})`, opacity: .92 }, svg);
+      el('path', { d: 'M-46,2 C -30,-20 10,-30 46,-6 C 30,-2 30,4 46,10 C 10,26 -28,20 -46,2 Z', fill: 'url(#featherG)' }, g);
+      for (let k = -38; k < 40; k += 7) el('path', { d: `M${k},0 L${k + 12},${-14 + Math.abs(k) * .12} M${k},0 L${k + 12},${14 - Math.abs(k) * .12}`, stroke: '#2a1d6b', 'stroke-width': 1.2, opacity: .35 }, g);
+      el('path', { d: 'M-52,4 C -20,0 20,-1 50,2', stroke: '#e9ddff', 'stroke-width': 1.4, fill: 'none', opacity: .6 }, g);
+    });
+})();
+</script>
+</body>
+</html>
