@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Два события 28.11 — мятый лист</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #0a0202; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; }
+  :root { --ink: #2a0a0c; --red: #c4161c; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #160303; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .prop { position: absolute; overflow: visible; }
+
+  /* ---------- the crumpled sheet ---------- */
+  .paper { position: absolute; left: 40mm; top: 82mm; width: 214mm; height: 262mm; transform: rotate(-2.2deg); }
+  .paper > svg { position: absolute; left: 0; top: 0; width: 214mm; height: 262mm; overflow: visible; }
+  .paper .c { position: absolute; color: var(--ink); }
+  .logos { left: 0; right: 0; top: 30mm; transform: rotate(-4deg); display: flex; justify-content: center; align-items: center; gap: 9mm; }
+  .logos .lg { display: flex; align-items: center; gap: 2.4mm; }
+  .logos svg { width: 11mm; height: 11mm; }
+  .logos .t1 { font-weight: 800; font-size: 5.4mm; line-height: 1; letter-spacing: .01em; }
+  .logos .t2 { font-weight: 600; font-size: 2.6mm; letter-spacing: .3em; margin-top: 1.2mm; }
+  .logos .sep { width: .35mm; height: 12mm; background: var(--ink); opacity: .5; }
+  .kick { left: 0; right: 0; top: 54mm; transform: rotate(-4deg); text-align: center; font-weight: 800; font-size: 5.2mm; letter-spacing: .34em; }
+  .hl { left: 0; right: 0; text-align: center; font-weight: 900; line-height: .84; letter-spacing: -.02em; white-space: nowrap; }
+  .hl1 { top: 63mm; transform: rotate(-4deg); } .hl2 { top: 104mm; transform: rotate(-4deg); }
+  .paper .band { left: 18mm; top: 152mm; background: #0d0b0b; color: #f4f1ec; font-weight: 800; font-size: 13mm; line-height: 1; padding: 3.4mm 7mm 3mm; transform: rotate(-4deg); letter-spacing: .01em; white-space: nowrap; box-shadow: 0 .6mm 1.4mm rgba(0,0,0,.35); }
+  .band i { font-style: normal; color: #ff3b3b; margin: 0 3.5mm; }
+  .addr { left: 46mm; top: 176mm; font-weight: 900; font-size: 5.4mm; line-height: 1.08; text-align: center; transform: rotate(-4deg); letter-spacing: .005em; }
+  .events { left: 18mm; right: 18mm; top: 206mm; display: flex; gap: 7mm; transform: rotate(-4deg); }
+  .events > div { flex: 1; border-top: .7mm solid var(--ink); padding-top: 2.6mm; }
+  .events b { display: block; font-weight: 900; font-size: 4.4mm; letter-spacing: .08em; }
+  .events span { display: block; font-weight: 700; font-size: 3.6mm; line-height: 1.22; margin-top: 1.2mm; }
+
+  /* ---------- props ---------- */
+  .badge { position: absolute; border-radius: 2mm; overflow: hidden; background: #b9201c; text-align: center; color: #f1ece4; font-weight: 800; box-shadow: 0 3mm 7mm rgba(0,0,0,.6); }
+  .badge .h { font-size: 1em; letter-spacing: .02em; line-height: 1; padding-top: .28em; }
+  .badge .m { font-size: .3em; letter-spacing: .12em; line-height: 1; margin-top: .12em; }
+  .badge .w { position: absolute; left: 0; right: 0; top: 46%; bottom: 13%; background: #efebe4; display: flex; align-items: center; justify-content: center; }
+  .badge .w b { font-family: 'Caveat', cursive; font-weight: 700; color: #1a1818; font-size: 1.35em; transform: rotate(-4deg); text-transform: uppercase; }
+  .vcard { position: absolute; background: linear-gradient(160deg, #f2eee8, #d8d2ca); color: #2a1414; padding: .45em .55em; font-size: 1em; border-radius: .8mm; box-shadow: 0 2mm 5mm rgba(0,0,0,.55); }
+  .vcard .n { font-weight: 800; font-size: .6em; letter-spacing: .05em; text-transform: uppercase; }
+  .vcard .r { font-weight: 600; font-size: .3em; letter-spacing: .1em; text-transform: uppercase; margin-top: .25em; color: #8a1a1a; }
+  .vcard .l { position: absolute; left: .55em; right: .55em; bottom: .5em; border-top: .02em solid #9a8a8a; padding-top: .2em; font-size: .24em; letter-spacing: .08em; color: #6a5555; }
+  .codex { position: absolute; background: linear-gradient(90deg, #3a0a09, #6e1a16 9%, #5a1411 60%, #3c0c0a); border-radius: 1mm 2.5mm 2.5mm 1mm; color: #e3c27f; text-align: center; box-shadow: 0 5mm 10mm rgba(0,0,0,.7); }
+  .codex .a { font-weight: 800; letter-spacing: .14em; font-size: 7mm; margin-top: 26mm; line-height: 1.2; }
+  .codex .b { font-weight: 600; letter-spacing: .3em; font-size: 3mm; margin-top: 4mm; }
+  .codex .r { position: absolute; left: 10mm; right: 10mm; height: .6mm; background: #c9a960; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- crumpled paper: soft folds (lit noise) + sharp creases (lit turbulence) -->
+    <filter id="crumple" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".0075" numOctaves="3" seed="5" result="n0"/>
+      <feGaussianBlur in="n0" stdDeviation="2.2" result="n1"/>
+      <feDiffuseLighting in="n1" surfaceScale="9" diffuseConstant="1.2" lighting-color="#fff" result="l1"><feDistantLight azimuth="235" elevation="60"/></feDiffuseLighting>
+      <feTurbulence type="turbulence" baseFrequency=".016 .022" numOctaves="3" seed="14" result="m2"/>
+      <feGaussianBlur in="m2" stdDeviation="1.1" result="n2"/>
+      <feDiffuseLighting in="n2" surfaceScale="3" diffuseConstant="1.16" lighting-color="#fff" result="l2"><feDistantLight azimuth="235" elevation="64"/></feDiffuseLighting>
+      <feBlend in="l1" in2="l2" mode="multiply" result="lit"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="2" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .18 0" result="grain"/>
+      <feBlend in="grain" in2="lit" mode="multiply" result="pg"/>
+      <feBlend in="pg" in2="SourceGraphic" mode="multiply" result="col"/>
+      <feComposite in="col" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="soft6" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <radialGradient id="face" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#f4f2ec"/><stop offset=".8" stop-color="#d9d6cf"/><stop offset="1" stop-color="#9e9b94"/></radialGradient>
+    <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8d8f8e"/><stop offset=".45" stop-color="#1c1d1d"/><stop offset=".7" stop-color="#4b4d4c"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient>
+    <g id="clock">
+      <circle cx="0" cy="0" r="50" fill="url(#bezel)"/>
+      <circle cx="0" cy="0" r="43" fill="url(#face)"/>
+      <circle cx="0" cy="0" r="43" fill="none" stroke="#0004" stroke-width="2"/>
+      <g fill="#2a2a2a" font-family="Montserrat" font-weight="600" font-size="8" text-anchor="middle">
+        <text x="0" y="-30">12</text><text x="17" y="-25.5">1</text><text x="28.5" y="-13">2</text><text x="33" y="3">3</text><text x="28.5" y="19">4</text><text x="17" y="31">5</text>
+        <text x="0" y="36">6</text><text x="-17" y="31">7</text><text x="-28.5" y="19">8</text><text x="-33" y="3">9</text><text x="-28.5" y="-13">10</text><text x="-17" y="-25.5">11</text>
+      </g>
+      <line x1="0" y1="4" x2="0" y2="-22" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" transform="rotate(42.5)"/>
+      <line x1="0" y1="6" x2="0" y2="-33" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" transform="rotate(150)"/>
+      <line x1="0" y1="8" x2="0" y2="-36" stroke="#b42420" stroke-width=".8" transform="rotate(230)"/>
+      <circle r="2.4" fill="#1a1a1a"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="poster">
+  <!-- background: dark red, worn -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Фон" data-raster="full">
+    <defs>
+      <radialGradient id="bg" cx="55%" cy="42%" r="70%"><stop offset="0" stop-color="#4a0908"/><stop offset=".5" stop-color="#220303"/><stop offset="1" stop-color="#050000"/></radialGradient>
+      <filter id="mott"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.1 -.35"/></filter>
+      <filter id="scr"><feTurbulence type="fractalNoise" baseFrequency=".004 .5" numOctaves="2" seed="8"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .7  0 0 0 0 .6  0 0 0 -12 9.6"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="url(#bg)"/>
+    <rect width="297" height="420" filter="url(#mott)" opacity=".6"/>
+  </svg>
+
+  <!-- dark red sheets behind the main paper -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Листы сзади" data-raster="full">
+    <g filter="url(#soft6)" fill="#000" opacity=".7"><rect x="34" y="62" width="210" height="150" transform="rotate(6 140 140)"/><rect x="18" y="232" width="150" height="150" transform="rotate(-9 90 300)"/></g>
+    <g><g transform="rotate(6 140 140)"><rect x="30" y="56" width="210" height="150" fill="#5a0c0b"/><image href="crumple-paper.png" x="30" y="56" width="210" height="150" preserveAspectRatio="xMidYMid slice" style="mix-blend-mode:hard-light"/></g>
+       <g transform="rotate(-9 90 300)"><rect x="14" y="226" width="150" height="150" fill="#3e0807"/><image href="crumple-paper.png" x="14" y="226" width="150" height="150" preserveAspectRatio="xMidYMax slice" style="mix-blend-mode:hard-light"/></g>
+       <g transform="rotate(14 215 355)"><rect x="150" y="300" width="130" height="110" fill="#2e0605"/><image href="crumple-paper.png" x="150" y="300" width="130" height="110" preserveAspectRatio="xMinYMin slice" style="mix-blend-mode:hard-light"/></g></g>
+  </svg>
+
+  <!-- lanyard strap passing under the sheet (the film strip of the reference) -->
+  <svg class="prop" viewBox="0 0 300 120" data-name="Лента ланьярда" data-raster="box" style="left:-6mm; top:318mm; width:300mm; height:120mm; filter: blur(.6px);">
+    <defs><linearGradient id="strap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e02a26"/><stop offset=".5" stop-color="#a5110f"/><stop offset="1" stop-color="#5c0807"/></linearGradient>
+      <path id="strapPath" d="M -10 30 C 60 70, 120 10, 190 52 S 280 98, 320 70"/></defs>
+    <use href="#strapPath" fill="none" stroke="#000" stroke-width="20" opacity=".45" transform="translate(3 6)" filter="url(#soft2)"/>
+    <use href="#strapPath" fill="none" stroke="url(#strap)" stroke-width="16"/>
+    <text font-family="Montserrat" font-weight="800" font-size="6.4" letter-spacing="2.2" fill="#fbe9e4" dy="2.3"><textPath href="#strapPath">THE HUSTLE HUB · THE HUSTLE HUB · THE HUSTLE HUB · THE HUSTLE HUB · THE HUSTLE HUB · THE HUSTLE HUB</textPath></text>
+  </svg>
+
+  <!-- the main crumpled sheet with a curled top-right corner -->
+  <div class="paper" data-name="Мятый лист" data-raster="box">
+    <svg viewBox="0 0 214 262">
+      <defs>
+        <clipPath id="sheetClip"><path d="M0 0 H182 L214 32 V262 H0 Z"/></clipPath>
+        <linearGradient id="flapG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbfaf7"/><stop offset=".55" stop-color="#d9d6cf"/><stop offset="1" stop-color="#9f9b94"/></linearGradient>
+        <linearGradient id="sheetShade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#5a3a36" stop-opacity=".35"/></linearGradient>
+      </defs>
+      <path d="M2 6 H184 L218 40 V272 H6 Z" fill="#000" opacity=".75" filter="url(#soft6)"/>
+      <g clip-path="url(#sheetClip)">
+        <rect width="214" height="262" fill="#f1efea"/>
+        <image href="crumple-paper.png" width="214" height="262" preserveAspectRatio="none" style="mix-blend-mode:hard-light" opacity=".9"/>
+        <rect width="214" height="262" fill="url(#sheetShade)"/>
+      </g>
+      <!-- curl -->
+      <path d="M182 0 C 186 10, 190 22, 178 34 C 190 30, 202 32, 214 32 Z" fill="#000" opacity=".35" filter="url(#soft2)" transform="translate(-3 4)"/>
+      <path d="M182 0 C 186 10, 190 22, 178 34 C 190 30, 202 32, 214 32 Z" fill="url(#flapG)"/>
+      <path d="M182 0 C 186 10, 190 22, 178 34" fill="none" stroke="#fff" stroke-width=".5" opacity=".9"/>
+    </svg>
+
+    <div class="c logos">
+      <div class="lg"><svg viewBox="0 0 20 20"><g fill="none" stroke="#2a0a0c" stroke-width="1.4" stroke-linecap="round"><path d="M10 3 V17 M5 17 H15 M4 6 H16"/><path d="M4 6 L1.5 11.5 H6.5 Z M16 6 L13.5 11.5 H18.5 Z"/></g></svg>
+        <div><div class="t1">ПРАВО НА ТРУД</div><div class="t2">МАСТЕР-КЛАСС</div></div></div>
+      <div class="sep"></div>
+      <div class="lg"><svg viewBox="0 0 20 20"><g fill="none" stroke="#2a0a0c" stroke-width="1.4"><circle cx="7" cy="10" r="5"/><circle cx="13" cy="10" r="5"/></g><circle cx="10" cy="10" r="1.7" fill="#c4161c"/></svg>
+        <div><div class="t1">THE HUSTLE HUB</div><div class="t2">ДЕЛОВАЯ ИГРА</div></div></div>
+    </div>
+    <div class="c kick">ОДИН ДЕНЬ — ДВА СОБЫТИЯ</div>
+    <div class="c hl hl1" id="hl1">СОВСЕМ</div>
+    <div class="c hl hl2" id="hl2">СКОРО</div>
+    <div class="c band">28 НОЯБРЯ<i>—</i>13:25</div>
+    <div class="c addr">АУДИТОРИЯ 609.<br>РЕГИСТРАЦИЯ: 6 ЭТАЖ,<br>603 КАБИНЕТ.</div>
+    <div class="c events">
+      <div><b>МАСТЕР-КЛАСС</b><span>«Основы трудового права для успешного трудоустройства»</span></div>
+      <div><b>ДЕЛОВАЯ ИГРА</b><span>«The Hustle Hub: Networking Quest» — Точка коннекта</span></div>
+    </div>
+  </div>
+
+  <!-- pen, top-left (the remote of the reference) -->
+  <svg class="prop" viewBox="0 0 40 230" data-name="Ручка" data-raster="box" style="left:6mm; top:-18mm; width:40mm; height:230mm; transform: rotate(32deg); filter: drop-shadow(4mm 7mm 5mm rgba(0,0,0,.7));">
+    <defs>
+      <linearGradient id="barrel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#050505"/><stop offset=".22" stop-color="#3a3a3c"/><stop offset=".34" stop-color="#8b8b8f"/><stop offset=".42" stop-color="#2a2a2c"/><stop offset=".8" stop-color="#0d0d0e"/><stop offset="1" stop-color="#000"/></linearGradient>
+      <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b3b3b"/><stop offset=".3" stop-color="#f2f2f2"/><stop offset=".5" stop-color="#9a9a9a"/><stop offset=".75" stop-color="#e0e0e0"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+      <linearGradient id="redc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a0606"/><stop offset=".35" stop-color="#ff4a3d"/><stop offset=".6" stop-color="#b3120f"/><stop offset="1" stop-color="#3a0404"/></linearGradient>
+    </defs>
+    <path d="M8 18 Q8 6 20 6 Q32 6 32 18 V150 H8 Z" fill="url(#barrel)"/>
+    <rect x="8" y="58" width="24" height="4" fill="url(#chrome)"/>
+    <rect x="29" y="12" width="5" height="52" rx="2" fill="url(#chrome)"/>
+    <rect x="8" y="150" width="24" height="7" fill="url(#chrome)"/>
+    <path d="M8 157 H32 L28 196 H12 Z" fill="url(#barrel)"/>
+    <rect x="9" y="96" width="22" height="22" fill="url(#redc)"/>
+    <text x="20" y="80" transform="rotate(90 20 80)" font-family="Montserrat" font-weight="800" font-size="4" fill="#d9d9d9" text-anchor="middle" letter-spacing="1">ТК РФ</text>
+    <path d="M12 196 H28 L22 212 H18 Z" fill="url(#chrome)"/>
+    <path d="M19 212 H21 L20 216 Z" fill="#222"/>
+  </svg>
+
+  <!-- striped coffee cup, top-right (the popcorn bucket) -->
+  <svg class="prop" viewBox="0 0 120 150" data-name="Стакан кофе" data-raster="box" style="left:212mm; top:-22mm; width:110mm; height:138mm; transform: rotate(-10deg); filter: blur(.8px) drop-shadow(-4mm 8mm 6mm rgba(0,0,0,.7));">
+    <defs>
+      <clipPath id="cupBody"><path d="M14 34 L106 34 L94 146 L26 146 Z"/></clipPath>
+      <linearGradient id="cyl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset=".25" stop-color="#000" stop-opacity="0"/><stop offset=".38" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity=".7"/></linearGradient>
+      <linearGradient id="lid" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cfc9c2"/><stop offset=".4" stop-color="#fbf8f4"/><stop offset="1" stop-color="#8f8983"/></linearGradient>
+    </defs>
+    <g clip-path="url(#cupBody)">
+      <rect x="0" y="30" width="120" height="120" fill="#f3eee8"/>
+      <g fill="#c8141a">
+        <path d="M22 34 H34 L36 146 H28 Z"/><path d="M46 34 H58 L57 146 H47 Z"/><path d="M70 34 H82 L78 146 H68 Z"/><path d="M94 34 H106 L99 146 H89 Z"/><path d="M0 34 H12 L18 146 H8 Z"/>
+      </g>
+      <rect x="10" y="78" width="100" height="34" fill="#1a0b0b"/>
+      <text x="60" y="99" font-family="Montserrat" font-weight="900" font-size="9.5" fill="#f3eee8" text-anchor="middle" letter-spacing=".6">COFFEE BREAK</text>
+      <rect x="0" y="30" width="120" height="120" fill="url(#cyl)"/>
+    </g>
+    <path d="M8 26 Q60 18 112 26 L110 36 Q60 30 10 36 Z" fill="url(#lid)"/>
+    <path d="M18 18 Q60 8 102 18 L108 26 Q60 18 12 26 Z" fill="url(#lid)"/>
+    <ellipse cx="60" cy="16" rx="34" ry="5" fill="#e9e4de"/>
+  </svg>
+
+  <!-- business cards scattered (popcorn) -->
+  <div class="vcard prop" data-name="Визитка справа" data-raster="box" style="left:236mm; top:126mm; width:62mm; height:36mm; font-size:10.5mm; transform:rotate(24deg); filter: blur(1.8px);">
+    <div class="n">Тимур<br>Коваленко</div><div class="r">Startup founder</div><div class="l">Partnerships · Let's talk</div></div>
+  <div class="vcard prop" data-name="Визитка сверху" data-raster="box" style="left:152mm; top:20mm; width:54mm; height:32mm; font-size:9mm; transform:rotate(-14deg); filter: blur(4px) brightness(.8);">
+    <div class="n">Анна Ли</div><div class="r">Product manager</div><div class="l">+7 · @anna</div></div>
+
+  <!-- app icon (the Netflix tile) -->
+  <svg class="prop" viewBox="0 0 70 70" data-name="Иконка Hustle Hub" data-raster="box" style="left:236mm; top:198mm; width:60mm; height:60mm; transform: rotate(9deg); filter: drop-shadow(-3mm 7mm 6mm rgba(0,0,0,.75));">
+    <defs><linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3a3c"/><stop offset=".25" stop-color="#151516"/><stop offset="1" stop-color="#050505"/></linearGradient>
+      <linearGradient id="ringR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff3a33"/><stop offset="1" stop-color="#8e0b0b"/></linearGradient></defs>
+    <rect x="2" y="2" width="66" height="66" rx="14" fill="url(#tile)"/>
+    <rect x="2.6" y="2.6" width="64.8" height="64.8" rx="13.5" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width=".8"/>
+    <g fill="none" stroke="url(#ringR)" stroke-width="5.4"><circle cx="27" cy="35" r="13"/><circle cx="43" cy="35" r="13"/></g>
+    <circle cx="35" cy="35" r="3.6" fill="#fff"/>
+  </svg>
+
+  <!-- labour code + gavel, bottom-right (the clapperboard) -->
+  <div class="codex prop" data-name="Трудовой кодекс" data-raster="box" style="left:196mm; top:300mm; width:96mm; height:132mm; transform:rotate(-18deg);">
+    <div class="r" style="top:13mm"></div><div class="a">ТРУДОВОЙ<br>КОДЕКС</div><div class="b">РОССИЙСКОЙ ФЕДЕРАЦИИ</div><div class="r" style="bottom:13mm"></div></div>
+  <svg class="prop" viewBox="0 0 160 80" data-name="Молоток судьи" data-raster="box" style="left:150mm; top:322mm; width:160mm; height:80mm; transform: rotate(-30deg); filter: blur(.7px) brightness(.85) drop-shadow(-3mm 6mm 5mm rgba(0,0,0,.8));">
+    <defs>
+      <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1208"/><stop offset=".3" stop-color="#9a5a2c"/><stop offset=".45" stop-color="#c88452"/><stop offset=".65" stop-color="#6a3416"/><stop offset="1" stop-color="#1a0904"/></linearGradient>
+      <linearGradient id="woodV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a1208"/><stop offset=".3" stop-color="#9a5a2c"/><stop offset=".45" stop-color="#c88452"/><stop offset=".65" stop-color="#6a3416"/><stop offset="1" stop-color="#1a0904"/></linearGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5a4210"/><stop offset=".4" stop-color="#f5d98a"/><stop offset="1" stop-color="#6a4c12"/></linearGradient>
+    </defs>
+    <rect x="58" y="35" width="98" height="9" rx="4.5" fill="url(#wood)"/>
+    <rect x="18" y="8" width="42" height="64" rx="7" fill="url(#woodV)"/>
+    <rect x="12" y="10" width="8" height="60" rx="3" fill="url(#woodV)"/>
+    <rect x="58" y="10" width="8" height="60" rx="3" fill="url(#woodV)"/>
+    <rect x="20" y="20" width="38" height="4" fill="url(#gold)"/><rect x="20" y="56" width="38" height="4" fill="url(#gold)"/>
+  </svg>
+
+  <!-- clock at 13:25, bottom-left (the film reel) -->
+  <svg class="prop" viewBox="-55 -55 110 110" data-name="Часы" data-raster="box" style="left:-58mm; top:314mm; width:150mm; height:150mm; transform: rotate(-14deg); filter: blur(1.4px) brightness(.5) contrast(1.1) drop-shadow(4mm 6mm 6mm rgba(0,0,0,.8));"><use href="#clock"/></svg>
+
+  <!-- name badge peeking on the left -->
+  <div class="badge prop" data-name="Бейдж" data-raster="box" style="left:-14mm; top:212mm; width:62mm; height:44mm; font-size:12mm; transform:rotate(-22deg); filter: blur(3px) brightness(.7);">
+    <div class="h">HELLO</div><div class="m">MY NAME IS</div><div class="w"><b>Amal</b></div></div>
+
+  <!-- light: rays from the top-right, red glow, dust -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Лучи и свечение" data-raster="full">
+    <defs>
+      <linearGradient id="ray" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2e6" stop-opacity=".9"/><stop offset=".55" stop-color="#ffd2c2" stop-opacity=".35"/><stop offset="1" stop-color="#ff8a7a" stop-opacity="0"/></linearGradient>
+      <radialGradient id="glowR" cx="100%" cy="0%" r="70%"><stop offset="0" stop-color="#ffe6dc" stop-opacity=".4"/><stop offset=".35" stop-color="#ff3b2e" stop-opacity=".1"/><stop offset="1" stop-color="#ff0000" stop-opacity="0"/></radialGradient>
+      <radialGradient id="glowB" cx="0%" cy="100%" r="60%"><stop offset="0" stop-color="#ff2a1a" stop-opacity=".35"/><stop offset="1" stop-color="#ff0000" stop-opacity="0"/></radialGradient>
+      <filter id="rayBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3.5"/></filter>
+    </defs>
+    <rect width="297" height="420" fill="url(#glowR)"/>
+    <rect width="297" height="420" fill="url(#glowB)"/>
+    <circle cx="292" cy="2" r="40" fill="#fff4ec" opacity=".5" filter="url(#soft6)"/>
+    <g filter="url(#rayBlur)" fill="url(#ray)">
+      <path d="M300 -10 L140 262 L196 274 Z" opacity="1"/>
+      <path d="M300 -10 L210 300 L246 302 Z" opacity=".85"/>
+      <path d="M300 -10 L90 186 L126 220 Z" opacity=".75"/>
+      <path d="M300 -10 L20 64 L34 92 Z" opacity=".9"/>
+      <path d="M300 -10 L70 -10 L60 18 Z" opacity=".7"/>
+      <path d="M300 -10 L120 120 L146 128 Z" opacity=".55"/>
+      <path d="M300 -10 L250 330 L262 330 Z" opacity=".3"/>
+    </g>
+    <g id="dust" fill="#ffe9e0"></g>
+    <g stroke="#ff8a3a" stroke-linecap="round" filter="url(#soft2)">
+      <path d="M8 40 L22 -2" stroke-width="1.6" opacity=".8"/><path d="M4 170 L14 120" stroke-width="1.2" opacity=".6"/><path d="M286 270 L296 240" stroke-width="1.4" opacity=".6"/>
+    </g>
+  </svg>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none; mix-blend-mode:overlay" data-name="Зерно" data-raster="full">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .55 0"/></filter>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".55"/>
+    <rect width="297" height="420" fill="url(#vig2)"/>
+    <defs><radialGradient id="vig2" cx="50%" cy="46%" r="75%"><stop offset=".6" stop-color="#808080" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient></defs>
+  </svg>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  // dust motes
+  (function () {
+    let s = 5; const r = () => (s = (s * 16807) % 2147483647) / 2147483647; let h = '';
+    for (let i = 0; i < 140; i++) { const x = r() * 297, y = r() * 420, rad = .15 + r() * r() * .9; h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rad.toFixed(2)}" opacity="${(.15 + r() * .6).toFixed(2)}"/>`; }
+    document.getElementById('dust').innerHTML = h;
+  })();
+  // headline: both lines fill the same width, like MOVIE / NIGHT
+  document.fonts.ready.then(() => {
+    for (const id of ['hl1', 'hl2']) {
+      const el = document.getElementById(id); el.style.fontSize = '100px';
+      const rg = document.createRange(); rg.selectNodeContents(el); const w = rg.getBoundingClientRect().width;
+      el.style.fontSize = (100 * mm(184) / w) + 'px';
+    }
+  });
+</script>
+</body>
+</html>

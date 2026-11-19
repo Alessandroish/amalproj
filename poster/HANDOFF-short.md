@@ -15,6 +15,8 @@
 - Тени жалюзи генерирует JS в конце HTML (6 полос, ядро `#core` + полутень `#pen`), тёплый свет в промежутках (маска `#gaps`).
 - Другие постеры серии (`poster-networking-blue.*`, `poster-law-halftone.*`) не трогать.
 
+**Второй вариант общего постера: `poster-two-events-cinema.html`** (референс «MOVIE NIGHT»): мятый лист на тёмно-красном фоне, «СОВСЕМ / СКОРО», плашка с датой, предметы вокруг (ручка, стакан кофе, визитки, иконка Hustle Hub, часы, ланьярд, Трудовой кодекс с молотком). Текстура бумаги — `crumple-paper.png` из `make_crumple.py`. Figma: фрейм 57:2 (все слои растровые).
+
 **Рендер:** Playwright, viewport 1123×1587, deviceScaleFactor 3, `networkidle` + `document.fonts.ready`; PNG + PDF 297×420 мм. После правки смотри рендер (и кроп крупно), потом отправляй PNG и PDF.
 
 **Figma:** файл `8XR2sLAtOInOkfYw3M0B63`, фрейм «Два события 28.11 — A3» (node 24:2). Растры — прямоугольники с image fill (заметки 24:9 / 24:11, скрепки 24:10 / 24:12, тени 24:15, свет 24:16, блокнот 24:6 и т. д., список в HANDOFF.md); текст снизу и логотипы — живой Montserrat. Обновление слоя: `node figma_layers.js poster-two-events <папка>` → поправить бокс через use_figma → `upload_assets` с `nodeIds` → POST PNG на submitUrl. Скриншоты — только `enableBase64Response: true`. Перед use_figma загрузить skill://figma/figma-use и figma-generate-design. Пользователь сам правит фрейм (круглый значок слева сверху) — не затирать.
