@@ -33,11 +33,14 @@
   .hl1 { top: 63mm; transform: rotate(-1.5deg); } .hl2 { top: 104mm; transform: rotate(-1.5deg); }
   .paper .band { left: 18mm; top: 152mm; background: #0d0b0b; color: #f4f1ec; font-weight: 800; font-size: 13mm; line-height: 1; padding: 3.4mm 7mm 3mm; transform: rotate(-1.5deg); letter-spacing: .01em; white-space: nowrap; box-shadow: 0 .6mm 1.4mm rgba(0,0,0,.35); }
   .band i { font-style: normal; color: #ff3b3b; margin: 0 3.5mm; }
-  .addr { left: 46mm; top: 176mm; font-weight: 900; font-size: 5.4mm; line-height: 1.08; text-align: center; transform: rotate(-1.5deg); letter-spacing: .005em; }
-  .events { left: 18mm; right: 18mm; top: 206mm; display: flex; gap: 7mm; transform: rotate(-1.5deg); }
+  .addr { left: 46mm; top: 174mm; font-weight: 900; font-size: 5.4mm; line-height: 1.08; text-align: center; transform: rotate(-1.5deg); letter-spacing: .005em; }
+  .events { left: 18mm; right: 18mm; top: 199mm; display: flex; gap: 7mm; transform: rotate(-1.5deg); }
   .events > div { flex: 1; border-top: .7mm solid var(--ink); padding-top: 2.6mm; }
   .events b { display: block; font-weight: 900; font-size: 4.4mm; letter-spacing: .08em; }
   .events span { display: block; font-weight: 700; font-size: 3.6mm; line-height: 1.22; margin-top: 1.2mm; }
+  .events ul { list-style: none; margin-top: 2.2mm; }
+  .events li { position: relative; padding-left: 3.6mm; font-weight: 500; font-size: 3.25mm; line-height: 1.22; margin-bottom: 1.1mm; }
+  .events li::before { content: ''; position: absolute; left: 0; top: 1.25mm; width: 1.6mm; height: 1.6mm; background: var(--red); transform: rotate(45deg); }
 
   /* ---------- props ---------- */
   .badge { position: absolute; border-radius: 2mm; overflow: hidden; background: #b9201c; text-align: center; color: #f1ece4; font-weight: 800; }
@@ -159,8 +162,10 @@
     <div class="c band">28 НОЯБРЯ<i>—</i>13:25</div>
     <div class="c addr">АУДИТОРИЯ 609.<br>РЕГИСТРАЦИЯ: 6 ЭТАЖ,<br>603 КАБИНЕТ.</div>
     <div class="c events">
-      <div><b>МАСТЕР-КЛАСС</b><span>«Основы трудового права для успешного трудоустройства»</span></div>
-      <div><b>ДЕЛОВАЯ ИГРА</b><span>«The Hustle Hub: Networking Quest» — Точка коннекта</span></div>
+      <div><b>МАСТЕР-КЛАСС</b><span>«Основы трудового права для успешного трудоустройства»</span>
+        <ul><li>юридические аспекты отношений с&nbsp;работодателем</li><li>разбор реальных кейсов</li><li>судебная практика</li></ul></div>
+      <div><b>ДЕЛОВАЯ ИГРА</b><span>«The Hustle Hub: Networking Quest» — Точка коннекта</span>
+        <ul><li>общение с&nbsp;разными партнёрами</li><li>поиск совпадений для сотрудничества</li><li>игра с&nbsp;юмором, без&nbsp;языкового барьера</li></ul></div>
     </div>
   </div>
 
@@ -220,9 +225,9 @@
   </svg>
 
   <!-- labour code + gavel, bottom-right (the clapperboard) -->
-  <div class="codex prop" data-name="Трудовой кодекс" data-raster="box" style="left:196mm; top:300mm; width:96mm; height:132mm; transform:rotate(-18deg); box-shadow: -1.22mm 1.18mm 1mm rgba(0,0,0,0.55), -9.11mm 8.61mm 9mm rgba(0,0,0,0.60);">
+  <div class="codex prop" data-name="Трудовой кодекс" data-raster="box" style="left:212mm; top:322mm; width:96mm; height:132mm; transform:rotate(-18deg); box-shadow: -1.22mm 1.18mm 1mm rgba(0,0,0,0.55), -9.11mm 8.61mm 9mm rgba(0,0,0,0.60);">
     <div class="r" style="top:13mm"></div><div class="a">ТРУДОВОЙ<br>КОДЕКС</div><div class="b">РОССИЙСКОЙ ФЕДЕРАЦИИ</div><div class="r" style="bottom:13mm"></div></div>
-  <svg class="prop" viewBox="0 0 160 80" data-name="Молоток судьи" data-raster="box" style="left:150mm; top:322mm; width:160mm; height:80mm; transform: rotate(-30deg); filter: blur(.7px) brightness(.85) drop-shadow(-1.44mm 0.90mm .5mm rgba(0,0,0,0.60)) drop-shadow(-10.70mm 6.53mm 4.5mm rgba(0,0,0,0.60));">
+  <svg class="prop" viewBox="0 0 160 80" data-name="Молоток судьи" data-raster="box" style="left:164mm; top:340mm; width:160mm; height:80mm; transform: rotate(-30deg); filter: blur(.7px) brightness(.85) drop-shadow(-1.44mm 0.90mm .5mm rgba(0,0,0,0.60)) drop-shadow(-10.70mm 6.53mm 4.5mm rgba(0,0,0,0.60));">
     <defs>
       <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1208"/><stop offset=".3" stop-color="#9a5a2c"/><stop offset=".45" stop-color="#c88452"/><stop offset=".65" stop-color="#6a3416"/><stop offset="1" stop-color="#1a0904"/></linearGradient>
       <linearGradient id="woodV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a1208"/><stop offset=".3" stop-color="#9a5a2c"/><stop offset=".45" stop-color="#c88452"/><stop offset=".65" stop-color="#6a3416"/><stop offset="1" stop-color="#1a0904"/></linearGradient>
