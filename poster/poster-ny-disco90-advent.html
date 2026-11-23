@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Дискотека 90-х — адвент</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #2a0606; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #fff; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #efe4df; perspective: 1150mm; perspective-origin: 148.5mm 175mm; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .prop { position: absolute; overflow: visible; }
+  .cell { position: absolute; background-image: url(wood.jpg); background-size: 297mm 420mm; box-shadow: inset 0 0 7mm rgba(20, 0, 0, .45), inset 0 .4mm 0 rgba(255, 255, 255, .06); }
+  .date { position: absolute; font-family: 'Montserrat'; line-height: 1; color: #fbf3ee; text-shadow: 0 .3mm .8mm rgba(0, 0, 0, .35); }
+  .date b { display: block; font-weight: 500; font-size: 12mm; letter-spacing: -.01em; }
+  .date i { display: block; font-style: normal; font-weight: 500; font-size: 4.6mm; letter-spacing: .06em; margin-top: 1.4mm; }
+
+  .door { position: absolute; left: 0; top: 70mm; width: 148.5mm; height: 210mm; transform-origin: 100% 50%; transform: translateX(-74.25mm) rotateY(71deg); transform-style: preserve-3d; }
+  .door .face { position: absolute; inset: 0; background-image: url(wood.jpg); background-size: 297mm 420mm; background-position: -40mm -120mm;
+    box-shadow: inset 0 0 6mm rgba(20, 0, 0, .5); }
+  .door .lit { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 35%, rgba(255,170,90,.16) 75%, rgba(255,190,110,.32) 100%); }
+  .door .txt { position: absolute; left: 0; right: 0; top: 40mm; text-align: center; font-family: 'Oswald'; font-weight: 700; color: #fff8f2; line-height: .98; text-transform: uppercase;
+    text-shadow: 0 0 2mm rgba(255, 220, 170, .55), 0 .6mm 1.2mm rgba(0, 0, 0, .35); }
+  .door .t1 { font-size: 19mm; letter-spacing: .005em; }
+  .door .t2 { font-size: 28mm; letter-spacing: -.005em; }
+  .door .t3 { font-size: 40mm; line-height: .9; margin-top: 1mm; }
+  .door .t4 { font-size: 11.5mm; font-weight: 600; line-height: 1.12; margin-top: 12mm; letter-spacing: .02em; }
+  .door .lab { position: absolute; right: 9mm; top: 7mm; }
+  .door .knob { position: absolute; left: 6mm; top: 98mm; width: 9mm; height: 9mm; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #f6d9a0 0, #b8863a 40%, #4a2a0a 100%); box-shadow: -1.2mm 1.6mm 1.6mm rgba(0,0,0,.5); }
+  .door .edge { position: absolute; left: 0; top: 0; width: 4mm; height: 100%; transform-origin: 0 50%; transform: rotateY(-90deg); background: linear-gradient(90deg, #3a0a0a, #5a1414); }
+
+  .info { position: absolute; left: 74.25mm; top: 350mm; width: 148.5mm; height: 70mm; padding: 9mm 8mm 0 8mm; }
+  .info .s { font-family: 'Oswald'; font-weight: 500; font-size: 5.4mm; letter-spacing: .14em; color: #f3d9b4; }
+  .info .b { font-family: 'Oswald'; font-weight: 700; font-size: 17mm; line-height: 1; margin-top: 1.4mm; letter-spacing: .01em; color: #fff8f2; text-shadow: 0 0 2.4mm rgba(255, 200, 140, .4); }
+  .info .f { font-weight: 500; font-size: 4.1mm; line-height: 1.3; margin-top: 3.4mm; color: #f6e6dc; }
+  .college { position: absolute; left: 0; top: 350mm; width: 74.25mm; height: 70mm; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 0 0 9mm 8mm; gap: 2.4mm; }
+  .college img { width: 17mm; height: 17mm; }
+  .college .a { font-weight: 300; font-size: 3.2mm; line-height: 1; letter-spacing: .02em; }
+  .college .b2 { font-weight: 600; font-size: 4.4mm; line-height: 1; margin-top: .9mm; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div id="grid" data-name="Календарь" data-raster="full" class="layer"></div>
+
+  <!-- shadow the open door throws on the wall to its left -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:multiply" data-name="Тень двери" data-raster="full">
+    <defs><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter></defs>
+    <path d="M74 70 L2 52 L-6 300 L74 280 Z" fill="#2a0303" opacity=".55" filter="url(#sh)"/>
+    <path d="M74 280 L4 300 L30 318 L96 290 Z" fill="#2a0303" opacity=".4" filter="url(#sh)"/>
+  </svg>
+
+  <!-- the open niche -->
+  <svg class="prop" viewBox="0 0 148.5 210" data-name="Ниша" data-raster="box" style="left:74.25mm; top:70mm; width:148.5mm; height:210mm;">
+    <defs>
+      <clipPath id="backC"><rect x="16" y="14" width="116.5" height="162"/></clipPath>
+      <clipPath id="ceilC"><path d="M0 0 H148.5 L132.5 14 H16 Z"/></clipPath>
+      <clipPath id="leftC"><path d="M0 0 L16 14 V176 L0 210 Z"/></clipPath>
+      <clipPath id="rightC"><path d="M148.5 0 L132.5 14 V176 L148.5 210 Z"/></clipPath>
+      <clipPath id="floorC"><path d="M0 210 L16 176 H132.5 L148.5 210 Z"/></clipPath>
+      <clipPath id="allC"><rect width="148.5" height="210"/></clipPath>
+      <radialGradient id="warm" cx="50%" cy="55%" r="65%"><stop offset="0" stop-color="#ffb35a" stop-opacity=".62"/><stop offset=".5" stop-color="#b8441e" stop-opacity=".3"/><stop offset="1" stop-color="#1a0202" stop-opacity=".78"/></radialGradient>
+      <linearGradient id="lw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1a0202" stop-opacity=".75"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".25"/></linearGradient>
+      <linearGradient id="rw" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#1a0202" stop-opacity=".75"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".25"/></linearGradient>
+      <linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0202" stop-opacity=".85"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".15"/></linearGradient>
+      <linearGradient id="fw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffcc8a" stop-opacity=".35"/><stop offset="1" stop-color="#2a0a04" stop-opacity=".5"/></linearGradient>
+      <filter id="bl1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
+      <filter id="bl3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="bl6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="lightWood"><feColorMatrix values=".9 .5 0 0 .18  .55 .3 0 0 .09  .3 .1 0 0 .03  0 0 0 1 0"/></filter>
+      <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dbe0"/><stop offset=".45" stop-color="#8d9099"/><stop offset="1" stop-color="#3a3c42"/></linearGradient>
+      <linearGradient id="bodyBB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4b52"/><stop offset=".12" stop-color="#2a2b30"/><stop offset="1" stop-color="#0d0d10"/></linearGradient>
+      <radialGradient id="cone" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#5a5a60"/><stop offset=".35" stop-color="#1c1c20"/><stop offset=".8" stop-color="#0a0a0c"/><stop offset="1" stop-color="#2a2a30"/></radialGradient>
+      <radialGradient id="dome" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#e8e8ee"/><stop offset=".5" stop-color="#6a6a72"/><stop offset="1" stop-color="#1a1a1e"/></radialGradient>
+      <linearGradient id="chromeH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3c48"/><stop offset=".3" stop-color="#f2f3f8"/><stop offset=".5" stop-color="#a6a9b6"/><stop offset=".8" stop-color="#e6e7ee"/><stop offset="1" stop-color="#2c2e38"/></linearGradient>
+      <radialGradient id="mesh" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#c9ccd8"/><stop offset=".75" stop-color="#5d6274"/><stop offset="1" stop-color="#1c1e28"/></radialGradient>
+    </defs>
+    <!-- walls with wood -->
+    <g clip-path="url(#backC)"><image href="wood.jpg" x="-40" y="-60" width="297" height="420" preserveAspectRatio="none"/><rect x="16" y="14" width="116.5" height="162" fill="url(#warm)"/></g>
+    <g clip-path="url(#leftC)"><image href="wood.jpg" x="-60" y="-100" width="297" height="420" preserveAspectRatio="none"/><rect width="16" height="210" fill="url(#lw)"/></g>
+    <g clip-path="url(#rightC)"><image href="wood.jpg" x="-120" y="-30" width="297" height="420" preserveAspectRatio="none"/><rect x="132.5" width="16" height="210" fill="url(#rw)"/></g>
+    <g clip-path="url(#ceilC)"><image href="wood.jpg" x="-10" y="-200" width="297" height="420" preserveAspectRatio="none"/><rect width="148.5" height="14" fill="url(#cw)"/></g>
+    <g clip-path="url(#floorC)"><image href="wood.jpg" x="-80" y="-250" width="297" height="420" preserveAspectRatio="none" filter="url(#lightWood)"/>
+      <g stroke="#3a1a0a" stroke-width=".35" opacity=".55" id="planks"></g>
+      <rect x="0" y="176" width="148.5" height="34" fill="url(#fw)"/></g>
+    <!-- corner lines -->
+    <g stroke="#1a0202" stroke-width=".5" opacity=".6"><line x1="0" y1="0" x2="16" y2="14"/><line x1="148.5" y1="0" x2="132.5" y2="14"/><line x1="0" y1="210" x2="16" y2="176"/><line x1="148.5" y1="210" x2="132.5" y2="176"/></g>
+    <!-- glow behind tree -->
+    <ellipse cx="74" cy="110" rx="60" ry="70" fill="#ffb060" opacity=".35" filter="url(#bl6)"/>
+    <!-- tree -->
+    <ellipse cx="74" cy="178" rx="44" ry="4" fill="#1a0602" opacity=".6" filter="url(#bl3)"/>
+    <image href="tree.png" x="17" y="27" width="114" height="152"/>
+    <!-- hanging disco ball -->
+    <line x1="118" y1="14" x2="118" y2="34" stroke="#d9c9a0" stroke-width=".35"/>
+    <circle cx="118" cy="45" r="16" fill="#ff9a5a" opacity=".3" filter="url(#bl3)"/>
+    <image href="discoball.png" x="106" y="33" width="24" height="24"/>
+    <g fill="#fff"><path d="M112 39 l.8 -3 l.8 3 l3 .8 l-3 .8 l-.8 3 l-.8 -3 l-3 -.8 z"/><path d="M124 47 l.5 -2 l.5 2 l2 .5 l-2 .5 l-.5 2 l-.5 -2 l-2 -.5 z"/></g>
+    <!-- light spots from the ball on the walls -->
+    <g id="nicheSpots"></g>
+
+    <!-- gift -->
+    <g transform="translate(92 158)">
+      <ellipse cx="13" cy="27" rx="15" ry="2.5" fill="#1a0602" opacity=".55" filter="url(#bl1)"/>
+      <rect x="0" y="6" width="24" height="21" fill="#b8131c"/><rect x="0" y="6" width="24" height="21" fill="url(#lw)" opacity=".4"/>
+      <path d="M0 6 L5 2 H29 L24 6 Z" fill="#d4222c"/><path d="M24 6 L29 2 V23 L24 27 Z" fill="#7a0c12"/>
+      <rect x="10" y="6" width="4" height="21" fill="#e2b24a"/><path d="M10 6 L15 2 H19 L14 6 Z" fill="#f1cf6e"/><path d="M24 14 L29 10 V13 L24 17 Z" fill="#a8822e"/>
+      <path d="M14.5 4 C 8 -4, 3 1, 13 4 Z" fill="#f1cf6e" stroke="#a8822e" stroke-width=".3"/><path d="M14.5 4 C 22 -4, 27 1, 16 4 Z" fill="#e2b24a" stroke="#a8822e" stroke-width=".3"/>
+    </g>
+    <!-- boombox -->
+    <g transform="translate(6 147)">
+      <ellipse cx="44" cy="47" rx="44" ry="3.4" fill="#1a0602" opacity=".7" filter="url(#bl1)"/>
+      <path d="M22 9 C 22 -1, 66 -1, 66 9" fill="none" stroke="url(#silver)" stroke-width="3.2"/>
+      <path d="M22 9 C 22 -1, 66 -1, 66 9" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width=".6"/>
+      <line x1="70" y1="9" x2="86" y2="-14" stroke="url(#chromeH)" stroke-width="1"/><circle cx="86" cy="-14" r="1.2" fill="#ddd"/>
+      <rect x="0" y="8" width="88" height="38" rx="4" fill="url(#bodyBB)"/>
+      <rect x="0" y="8" width="88" height="38" rx="4" fill="none" stroke="#6a6b72" stroke-width=".5"/>
+      <rect x="2" y="9.5" width="84" height="2" rx="1" fill="#8a8c94" opacity=".5"/>
+      <g id="spk"></g>
+      <rect x="32" y="14" width="24" height="26" rx="1.5" fill="#1a1b20" stroke="#55575f" stroke-width=".4"/>
+      <rect x="34" y="17" width="20" height="12" rx="1" fill="#2c2238" stroke="#7a7d88" stroke-width=".3"/>
+      <rect x="36" y="19" width="16" height="7" rx="3.5" fill="#0f0c16"/><circle cx="40" cy="22.5" r="2" fill="#c9c9d0"/><circle cx="48" cy="22.5" r="2" fill="#c9c9d0"/>
+      <g fill="url(#chromeH)"><rect x="34" y="31" width="3.4" height="3"/><rect x="38.2" y="31" width="3.4" height="3"/><rect x="42.4" y="31" width="3.4" height="3"/><rect x="46.6" y="31" width="3.4" height="3"/><rect x="50.8" y="31" width="3.4" height="3"/></g>
+      <rect x="34" y="35.5" width="20" height="2.6" rx=".6" fill="#ff3b6a" opacity=".9"/>
+      <text x="44" y="37.6" font-family="Montserrat" font-weight="800" font-size="2" fill="#fff" text-anchor="middle" letter-spacing=".4">STEREO 90</text>
+      <path d="M4 44 H84" stroke="#000" stroke-opacity=".5" stroke-width=".6"/>
+    </g>
+    <!-- cassettes in front -->
+    <g id="tapes"></g>
+    <!-- microphone on a stand -->
+    <g transform="translate(126 112) rotate(-12)">
+      <ellipse cx="4" cy="94" rx="12" ry="2.6" fill="#1a0602" opacity=".7" filter="url(#bl1)"/>
+      <ellipse cx="2" cy="92" rx="10" ry="2.4" fill="url(#chromeH)"/>
+      <rect x="1" y="30" width="2" height="62" fill="url(#chromeH)"/>
+      <path d="M-4 30 H8 L6 33 H-2 Z" fill="#222"/>
+      <path d="M-3 9 H7 L5.5 31 H-1.5 Z" fill="#141416"/>
+      <rect x="-3.2" y="8" width="10.4" height="3" fill="url(#chromeH)"/>
+      <rect x="-3" y="11" width="10" height="1.2" fill="#ff2f7a"/>
+      <circle cx="2" cy="1" r="7.5" fill="url(#mesh)"/>
+      <g stroke="#2a2c36" stroke-width=".25" opacity=".5"><path d="M-5 -2 H9 M-5.5 1 H9.5 M-5 4 H9 M-2 -6 V8 M2 -6.5 V8.5 M6 -6 V8"/></g>
+      <ellipse cx="-.5" cy="-2" rx="2.2" ry="1.3" fill="#fff" opacity=".6"/>
+    </g>
+    <!-- confetti on the floor -->
+    <g id="floorConf"></g>
+  </svg>
+
+  <!-- warm light spilling out of the niche -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Свет из ниши" data-raster="full">
+    <defs>
+      <filter id="g12" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+      <radialGradient id="spill" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a4a" stop-opacity=".55"/><stop offset="1" stop-color="#ff6a2a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="148.5" cy="180" rx="120" ry="150" fill="url(#spill)" opacity=".7"/>
+    <rect x="70" y="66" width="157" height="218" fill="none" stroke="#ffb070" stroke-width="5" opacity=".35" filter="url(#g12)"/>
+  </svg>
+
+  <!-- the open door (3D) -->
+  <div class="door" data-name="Дверца" data-raster="box">
+    <div class="face"></div><div class="lit"></div>
+    <div class="date lab"><b>??</b><i>ДЕК</i></div>
+    <div class="txt"><div class="t1">Новогодняя</div><div class="t2">дискотека</div><div class="t3">90-х</div><div class="t4">вокал · танцы<br>хиты 90-х</div></div>
+    <div class="knob"></div>
+    <div class="edge"></div>
+  </div>
+
+  <!-- bottom row: college + info -->
+  <div class="college" data-name="Колледж" data-raster="box"><img src="logo-briks-mark-white.png" alt=""><div><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b2">КОЛЛЕДЖ БРИКС</div></div></div>
+  <div class="info" data-name="Инфо" data-raster="box"><div class="s">ДАТА И МЕСТО</div><div class="b">СОВСЕМ СКОРО</div><div class="f">Вокальные и танцевальные номера, хиты 90-х<br>и новогоднее настроение</div></div>
+
+  <!-- streamers, confetti flying out, gold star in the corner -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Конфетти" data-raster="full">
+    <defs>
+      <filter id="b2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter>
+      <filter id="b5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4.5"/></filter>
+      <linearGradient id="strm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#d9d6d2"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+      <radialGradient id="goldS" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff2c4"/><stop offset=".5" stop-color="#d9a640"/><stop offset="1" stop-color="#7a5212"/></radialGradient>
+    </defs>
+    <g filter="url(#b5)" opacity=".75"><path d="M-8 -18 L6 14 L40 18 L12 36 L22 70 L-6 50 L-34 70 L-24 36 L-52 18 L-18 14 Z" fill="url(#goldS)" transform="translate(2 -10) rotate(12) scale(.8)"/></g>
+    <g id="flying"></g>
+  </svg>
+
+  <!-- vignette + grain -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none" data-name="Виньетка" data-raster="full">
+    <defs><radialGradient id="vig" cx="50%" cy="44%" r="75%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .35 0"/></filter></defs>
+    <rect width="297" height="420" fill="url(#vig)"/>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".35" style="mix-blend-mode:overlay"/>
+  </svg>
+</div>
+
+<script>
+  let seed = 1231; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const $ = id => document.getElementById(id);
+  // calendar grid: 4 x 6 wooden panels with thin light seams
+  (function () {
+    const g = $('grid'); const cw = 74.25, ch = 70, gap = .35; let h = '';
+    const labels = { '0,0': ['20', 'ДЕК'], '0,1': ['21', 'ДЕК'], '0,2': ['22', 'ДЕК'], '0,3': ['23', 'ДЕК'], '1,3': ['25', 'ДЕК'], '2,3': ['27', 'ДЕК'],
+      '3,3': ['29', 'ДЕК'], '4,0': ['30', 'ДЕК'], '4,1': ['31', 'ДЕК'], '4,2': ['1', 'ЯНВ'], '4,3': ['2', 'ЯНВ'], '5,3': ['3', 'ЯНВ'] };
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 4; c++) {
+      if (r >= 1 && r <= 3 && (c === 1 || c === 2)) continue;
+      const wide = r === 5 && c === 1; if (r === 5 && c === 2) continue;
+      const x = c * cw + gap, y = r * ch + gap, w = (wide ? 2 : 1) * cw - 2 * gap, hh = ch - 2 * gap;
+      const bx = -(rnd() * 200), by = -(rnd() * 330), br = (.88 + rnd() * .2).toFixed(2);
+      h += `<div class="cell" style="left:${x}mm;top:${y}mm;width:${w}mm;height:${hh}mm;background-position:${bx.toFixed(1)}mm ${by.toFixed(1)}mm;filter:brightness(${br})"></div>`;
+      const L = labels[r + ',' + c]; const dy = (r === 4 && c === 0) ? 22 : 7; if (L) h += `<div class="date" style="left:${x + 6}mm;top:${y + dy}mm"><b>${L[0]}</b><i>${L[1]}</i></div>`;
+    }
+    // niche frame: the opening (thin seam around)
+    h += `<div style="position:absolute;left:${74.25}mm;top:${70}mm;width:148.5mm;height:210mm;box-shadow:0 0 0 .7mm #efe4df"></div>`;
+    g.innerHTML = h;
+  })();
+  // floor planks in perspective
+  (function () { let h = ''; for (let i = 0; i <= 10; i++) { const xb = i * 14.85, xt = 16 + i * 11.65; h += `<line x1="${xt}" y1="176" x2="${xb}" y2="210"/>`; } $('planks').innerHTML = h; })();
+  // speakers
+  (function () { let h = ''; [[16, 27], [72, 27]].forEach(([x, y]) => {
+    h += `<circle cx="${x}" cy="${y}" r="13" fill="url(#chromeH)"/><circle cx="${x}" cy="${y}" r="11.8" fill="#151518"/><circle cx="${x}" cy="${y}" r="10.6" fill="url(#cone)"/>`;
+    for (let k = 3; k < 10.5; k += 1.6) h += `<circle cx="${x}" cy="${y}" r="${k}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width=".25"/>`;
+    h += `<circle cx="${x}" cy="${y}" r="3.4" fill="url(#dome)"/>`; }); $('spk').innerHTML = h; })();
+  // cassettes stack
+  (function () { let h = ''; const cols = ['#ff2f7a', '#2fd3ff', '#ffd36b'];
+    for (let i = 0; i < 3; i++) { const x = 86 + i * 1.5, y = 200 - i * 4.2;
+      h += `<g transform="translate(${x} ${y}) rotate(${(-4 + i * 3)})"><rect x="0" y="-4" width="28" height="5" rx=".8" fill="#141418"/><rect x="0" y="-4" width="28" height="1.2" fill="${cols[i]}"/><rect x="3" y="-2.4" width="22" height="1.8" fill="#efe6d6"/><path d="M0 1 H28" stroke="#000" stroke-width=".4"/></g>`; }
+    $('tapes').innerHTML = `<ellipse cx="101" cy="203" rx="17" ry="2.2" fill="#1a0602" opacity=".6" filter="url(#bl1)"/>` + h; })();
+  // light spots in the niche and confetti on the floor
+  (function () { let h = ''; for (let i = 0; i < 40; i++) { const x = 18 + rnd() * 112, y = 16 + rnd() * 120; h += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(.6 + rnd()).toFixed(2)}" ry="${(.4 + rnd() * .5).toFixed(2)}" fill="${['#fff', '#ffd9a8', '#ffc0e0', '#c8f6ff'][i % 4]}" opacity="${(.25 + rnd() * .4).toFixed(2)}"/>`; }
+    $('nicheSpots').innerHTML = h;
+    let f = ''; for (let i = 0; i < 70; i++) { const y = 178 + rnd() * 31, t = (y - 176) / 34, x0 = 16 - 16 * t, x1 = 132.5 + 16 * t, x = x0 + rnd() * (x1 - x0);
+      f += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(1 + rnd() * 1.6).toFixed(2)}" height="${(.5 + rnd() * .6).toFixed(2)}" fill="${['#e9c46a', '#f6f1e8', '#d9a640', '#ff4f7a'][i % 4]}" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
+    $('floorConf').innerHTML = f; })();
+  // streamers + confetti flying out of the niche
+  (function () { let h = '';
+    const strip = (x, y, a, l, w, blur) => { const c = Math.cos(a), s = Math.sin(a);
+      h += `<g transform="translate(${x} ${y}) rotate(${a * 57.3})" ${blur ? `filter="url(#b${blur})"` : ''}><path d="M0 0 C ${l * .3} ${-w * 2}, ${l * .6} ${w * 2}, ${l} 0 L ${l} ${w} C ${l * .6} ${w * 3}, ${l * .3} ${-w}, 0 ${w} Z" fill="url(#strm)"/><path d="M0 0 C ${l * .3} ${-w * 2}, ${l * .6} ${w * 2}, ${l} 0" stroke="#9a948c" stroke-width=".25" fill="none" opacity=".6"/></g>`; };
+    strip(118, 92, -.3, 22, 3, 0); strip(160, 70, .5, 18, 2.6, 0); strip(214, 150, -.9, 20, 2.8, 0); strip(240, 60, .3, 26, 3.4, 2); strip(70, 300, -.4, 22, 3, 2); strip(250, 300, .8, 18, 2.6, 0);
+    for (let i = 0; i < 110; i++) { const a = rnd() * Math.PI * 2, d = 60 + rnd() * 140, x = 148.5 + Math.cos(a) * d * .9, y = 175 + Math.sin(a) * d;
+      if (x > 74 && x < 222 && y > 70 && y < 280) continue; if (y > 345) continue;
+      const w = 1.4 + rnd() * 2.2; h += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(2)}" height="${(w * .45).toFixed(2)}" fill="${['#f1cf6e', '#ffffff', '#d9a640', '#f6e6d6'][i % 4]}" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" opacity=".95" ${rnd() < .25 ? 'filter="url(#b2)"' : ''}/>`; }
+    $('flying').innerHTML = h; })();
+</script>
+</body>
+</html>
