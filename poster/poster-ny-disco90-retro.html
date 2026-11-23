@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Дискотека 90-х — снова в эфире</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #e9dfcc; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; }
+  :root { --green: #1c3a28; --red: #a8222a; --deep: #8e1c1f; --cream: #f6efe2; --ink: #1a1816; --gold: #c9a14a; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #ebe2d0; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .prop { position: absolute; overflow: visible; }
+
+  .head { left: 18mm; right: 18mm; top: 13mm; height: 12mm; display: flex; align-items: center; justify-content: space-between; border-bottom: .35mm solid rgba(26,24,22,.55); }
+  .head .tri { width: 0; height: 0; border-left: 3.6mm solid var(--red); border-top: 2.1mm solid transparent; border-bottom: 2.1mm solid transparent; }
+  .head .t { font-weight: 800; font-size: 5.4mm; letter-spacing: .22em; color: var(--ink); }
+  .head .y { font-weight: 800; font-size: 4.2mm; letter-spacing: .1em; color: var(--red); }
+
+  .title { left: 16mm; top: 31mm; font-family: 'Playfair Display', serif; font-weight: 400; color: var(--green); line-height: .86; white-space: nowrap; transform-origin: 0 0; letter-spacing: -.01em; }
+  .right { right: 18mm; top: 36mm; text-align: right; font-weight: 800; line-height: .98; color: var(--ink); white-space: nowrap; letter-spacing: -.015em; }
+  .right .r { color: var(--red); font-style: italic; font-weight: 900; }
+  .right .sm { display: flex; justify-content: flex-end; align-items: center; gap: 2.4mm; font-weight: 600; font-size: 4.6mm; letter-spacing: .02em; margin-top: 2.4mm; }
+  .right .sm::before { content: ''; width: 12mm; height: .35mm; background: var(--red); }
+  .right .top::before { content: ''; display: inline-block; vertical-align: middle; width: 12mm; height: .35mm; background: var(--ink); margin-right: 3mm; }
+
+  .band { left: 0; right: 0; top: 340mm; bottom: 0; background: var(--deep); }
+  .card { position: absolute; background: var(--cream); border-radius: 6mm; color: var(--deep); }
+  .c1 { left: 13mm; top: 350mm; width: 78mm; height: 58mm; padding: 6mm 6mm 0 7mm; }
+  .c1 .s { font-family: 'Russo One'; font-size: 4.4mm; letter-spacing: .04em; line-height: 1.1; }
+  .c1 .b { font-family: 'Russo One'; font-size: 20mm; line-height: 1; margin-top: 1.4mm; letter-spacing: -.01em; }
+  .c2 { left: 96mm; top: 350mm; width: 142mm; height: 58mm; padding: 6.5mm 8mm 0; text-align: center; }
+  .c2 .t { font-family: 'Russo One'; font-size: 5.1mm; line-height: 1.22; letter-spacing: .02em; }
+  .c2 .bars { height: 4.4mm; margin: 4.4mm auto 3.6mm; width: 96mm; background: repeating-linear-gradient(90deg, var(--deep) 0 .5mm, transparent .5mm 1.6mm); opacity: .5; }
+  .c2 .f { font-family: 'Russo One'; font-size: 4.4mm; letter-spacing: .03em; }
+  .c3 { left: 243mm; top: 350mm; width: 41mm; height: 58mm; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.6mm; }
+  .c3 img { width: 21mm; height: 21mm; }
+  .c3 .a { font-weight: 500; font-size: 2.3mm; letter-spacing: .02em; text-align: center; line-height: 1.15; color: var(--ink); }
+  .c3 .a b { display: block; font-weight: 700; font-size: 2.9mm; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
+    <filter id="b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="b6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="stampF" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="3" seed="21" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -6 5" result="holes"/>
+      <feComposite in="SourceGraphic" in2="holes" operator="in"/>
+    </filter>
+    <filter id="wearF"><feTurbulence type="fractalNoise" baseFrequency=".12" numOctaves="3" seed="5"/>
+      <feColorMatrix values="0 0 0 0 .86  0 0 0 0 .80  0 0 0 0 .66  0 0 0 -16 5.4"/></filter>
+    <filter id="grainS"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/></filter>
+  </defs>
+</svg>
+
+<div class="poster">
+  <!-- paper: cream base, faded overlapping sheets with print, crumple texture -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Бумага" data-raster="full">
+    <defs>
+      <radialGradient id="paperG" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#f3ebdc"/><stop offset=".7" stop-color="#e8ddc8"/><stop offset="1" stop-color="#d6c8ae"/></radialGradient>
+    </defs>
+    <rect width="297" height="420" fill="url(#paperG)"/>
+    <g id="sheets"></g>
+    <image href="crumple-paper.png" width="297" height="420" preserveAspectRatio="none" style="mix-blend-mode:hard-light" opacity=".42"/>
+    <g id="gold"></g>
+  </svg>
+
+  <!-- the TV -->
+  <svg class="prop" viewBox="0 0 250 205" data-name="Телевизор" data-raster="box" style="left:24mm; top:116mm; width:250mm; height:205mm;">
+    <defs>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a5a3e"/><stop offset=".5" stop-color="#1d4430"/><stop offset="1" stop-color="#112a1d"/></linearGradient>
+      <linearGradient id="sideG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b1d13"/><stop offset="1" stop-color="#16382a"/></linearGradient>
+      <linearGradient id="bezelG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1e7cf"/><stop offset=".6" stop-color="#e2d4b4"/><stop offset="1" stop-color="#c8b48d"/></linearGradient>
+      <linearGradient id="chromeV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a4a4a"/><stop offset=".35" stop-color="#f4f4f4"/><stop offset=".55" stop-color="#9a9a9a"/><stop offset=".8" stop-color="#dedede"/><stop offset="1" stop-color="#3a3a3a"/></linearGradient>
+      <radialGradient id="ballTip" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#9a9a9a"/><stop offset="1" stop-color="#1e1e1e"/></radialGradient>
+      <radialGradient id="knobG" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#5a5a5a"/><stop offset=".6" stop-color="#1b1b1b"/><stop offset="1" stop-color="#050505"/></radialGradient>
+      <radialGradient id="scrBg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#4a1a78"/><stop offset=".5" stop-color="#1e0a3c"/><stop offset="1" stop-color="#07020f"/></radialGradient>
+      <radialGradient id="crtVig" cx="50%" cy="50%" r="62%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+      <radialGradient id="beamFade" gradientUnits="userSpaceOnUse" cx="110" cy="76" r="110"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <mask id="beamM"><rect x="0" y="0" width="250" height="205" fill="url(#beamFade)"/></mask>
+      <pattern id="scanP" width="2" height="1.1" patternUnits="userSpaceOnUse"><rect width="2" height=".45" fill="#000" opacity=".35"/></pattern>
+      <clipPath id="scr"><rect x="38" y="38" width="144" height="126" rx="15"/></clipPath>
+      <clipPath id="bodyClip"><rect x="14" y="14" width="232" height="174" rx="10"/></clipPath>
+      <mask id="edgeM"><rect x="0" y="0" width="250" height="205" fill="#000"/><rect x="14" y="14" width="232" height="174" rx="10" fill="none" stroke="#fff" stroke-width="5"/></mask>
+    </defs>
+    <!-- antennas -->
+    <g stroke-linecap="round">
+      <line x1="124" y1="15" x2="78" y2="-10" stroke="#2a2a2a" stroke-width="3.2"/><line x1="124" y1="15" x2="78" y2="-10" stroke="url(#chromeV)" stroke-width="2.2"/>
+      <line x1="136" y1="15" x2="196" y2="-20" stroke="#2a2a2a" stroke-width="3.2"/><line x1="136" y1="15" x2="196" y2="-20" stroke="url(#chromeV)" stroke-width="2.2"/>
+      <circle cx="78" cy="-10" r="4.2" fill="url(#ballTip)"/><circle cx="196" cy="-20" r="4.2" fill="url(#ballTip)"/>
+      <path d="M118 16 Q130 4 142 16 Z" fill="#1a1a1a"/>
+    </g>
+    <!-- floor shadow (light from the top-right) -->
+    <ellipse cx="118" cy="194" rx="128" ry="7" fill="#2a1f12" opacity=".55" filter="url(#b6)"/>
+    <path d="M4 40 L-6 50 V196 L222 200 L246 188 Z" fill="#2a1f12" opacity=".28" filter="url(#b6)"/>
+    <!-- feet -->
+    <rect x="30" y="186" width="16" height="7" rx="1.5" fill="#0d0d0d"/><rect x="206" y="186" width="16" height="7" rx="1.5" fill="#0d0d0d"/>
+    <!-- side + body -->
+    <path d="M14 24 L5 31 V184 L14 188 Z" fill="url(#sideG)"/>
+    <rect x="14" y="14" width="232" height="174" rx="10" fill="url(#bodyG)"/>
+    <g clip-path="url(#bodyClip)"><rect x="0" y="0" width="250" height="205" filter="url(#grainS)"/><rect x="0" y="0" width="250" height="205" filter="url(#wearF)" mask="url(#edgeM)"/></g>
+    <path d="M24 15 H236" stroke="#fff" stroke-opacity=".22" stroke-width=".8"/>
+    <!-- cream bezel + control panel -->
+    <rect x="22" y="22" width="216" height="158" rx="6" fill="url(#bezelG)"/>
+    <rect x="22" y="22" width="216" height="158" rx="6" fill="none" stroke="#8a7650" stroke-width=".5"/>
+    <rect x="198" y="28" width="34" height="146" rx="3" fill="#cdbd98" stroke="#a8956c" stroke-width=".4"/>
+    <!-- screen frame -->
+    <rect x="30" y="30" width="160" height="142" rx="18" fill="#111"/>
+    <rect x="32" y="32" width="156" height="138" rx="17" fill="#2a2826"/>
+    <!-- screen content -->
+    <g clip-path="url(#scr)">
+      <rect x="38" y="38" width="144" height="126" fill="url(#scrBg)"/>
+      <g id="scrBokeh"></g>
+      <g mask="url(#beamM)" style="mix-blend-mode:screen"><g id="scrBeams" filter="url(#b1)"></g></g>
+      <g id="scrFloor" stroke="#ff2fa8" fill="none" opacity=".75"></g>
+      <g id="scrSpots"></g>
+      <line x1="110" y1="38" x2="110" y2="52" stroke="#c9c9c9" stroke-width=".5"/>
+      <circle cx="110" cy="76" r="30" fill="#ff4fc8" opacity=".35" filter="url(#b6)"/>
+      <image href="discoball.png" x="86" y="52" width="48" height="48"/>
+      <g fill="#fff"><path d="M101 63 l1 -4 l1 4 l4 1 l-4 1 l-1 4 l-1 -4 l-4 -1 z"/><path d="M121 59 l1.3 -5 l1.3 5 l5 1.3 l-5 1.3 l-1.3 5 l-1.3 -5 l-5 -1.3 z"/><path d="M126 84 l.7 -2.6 l.7 2.6 l2.6 .7 l-2.6 .7 l-.7 2.6 l-.7 -2.6 l-2.6 -.7 z"/></g>
+      <text x="46" y="51" font-family="Russo One" font-size="6.2" fill="#ff3d3d">● LIVE</text>
+      <text x="174" y="51" font-family="Russo One" font-size="6.2" fill="#e8f6ff" text-anchor="end">CH 90</text>
+      <text x="46" y="157" font-family="Russo One" font-size="5.4" fill="#e8f6ff" opacity=".85">▶ PLAY</text>
+      <text x="174" y="157" font-family="Russo One" font-size="5.4" fill="#e8f6ff" opacity=".85" text-anchor="end">HI-FI ♪</text>
+      <rect x="38" y="38" width="144" height="126" fill="url(#scanP)"/>
+      <rect x="38" y="38" width="144" height="126" fill="url(#crtVig)"/>
+      <path d="M38 38 H128 Q90 70 38 112 Z" fill="#fff" opacity=".07"/>
+    </g>
+    <rect x="38" y="38" width="144" height="126" rx="15" fill="none" stroke="#000" stroke-opacity=".6" stroke-width="1.2"/>
+    <!-- knobs -->
+    <g id="knobs"></g>
+    <!-- speaker grill -->
+    <g stroke="#4a3f2c" stroke-width="1.1">
+      <line x1="204" y1="134" x2="226" y2="134"/><line x1="204" y1="138" x2="226" y2="138"/><line x1="204" y1="142" x2="226" y2="142"/><line x1="204" y1="146" x2="226" y2="146"/><line x1="204" y1="150" x2="226" y2="150"/><line x1="204" y1="154" x2="226" y2="154"/>
+    </g>
+    <rect x="203" y="161" width="9" height="7" rx="1.2" fill="url(#chromeV)" stroke="#555" stroke-width=".3"/>
+    <rect x="216" y="162" width="11" height="5" rx="1" fill="#1a1a1a"/>
+    <circle cx="221.5" cy="164.5" r=".9" fill="#ff3d3d"/>
+  </svg>
+
+  <!-- cassette lying at the TV foot -->
+  <svg class="prop" viewBox="0 0 110 70" data-name="Кассета" data-raster="box" style="left:214mm; top:296mm; width:64mm; height:41mm; transform: rotate(-12deg); filter: drop-shadow(-1.6mm 1.6mm .6mm rgba(40,25,10,.45)) drop-shadow(-4mm 4mm 3mm rgba(40,25,10,.35));">
+    <defs>
+      <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a30"/><stop offset="1" stop-color="#0b0b0e"/></linearGradient>
+      <radialGradient id="reel" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#8c8c96"/></radialGradient>
+    </defs>
+    <rect x="1" y="1" width="108" height="68" rx="4" fill="url(#shell)"/>
+    <rect x="7" y="5" width="96" height="40" rx="2" fill="#f4ecdc"/>
+    <rect x="7" y="5" width="96" height="6" fill="#a8222a"/><rect x="7" y="11" width="96" height="2.4" fill="#c9a14a"/>
+    <text x="13" y="26" font-family="Montserrat" font-weight="900" font-style="italic" font-size="8" fill="#1c3a28">ХИТЫ 90-х</text>
+    <text x="97" y="26" font-family="Montserrat" font-weight="900" font-size="6" fill="#a8222a" text-anchor="end">A</text>
+    <rect x="28" y="28" width="54" height="15" rx="7.5" fill="#1a1420"/>
+    <rect x="44" y="31" width="22" height="9" fill="#4a321c"/>
+    <g transform="translate(36 35.5)"><circle r="6" fill="url(#reel)"/><circle r="2.2" fill="#2a2a34"/></g>
+    <g transform="translate(74 35.5)"><circle r="6" fill="url(#reel)"/><circle r="2.2" fill="#2a2a34"/></g>
+    <path d="M24 69 L30 52 H80 L86 69 Z" fill="#1d1d24"/>
+    <g fill="#55556a"><circle cx="5" cy="5" r="1.3"/><circle cx="105" cy="5" r="1.3"/><circle cx="5" cy="64" r="1.3"/><circle cx="105" cy="64" r="1.3"/></g>
+  </svg>
+
+  <!-- stamp -->
+  <svg class="prop" viewBox="0 0 100 100" data-name="Штамп" data-raster="box" style="left:9mm; top:262mm; width:66mm; height:66mm; transform: rotate(-12deg); filter: drop-shadow(-1mm 1.2mm 1.2mm rgba(40,25,10,.3));">
+    <circle cx="50" cy="50" r="48.5" fill="#efe4d1"/>
+    <defs><path id="arcT" d="M13 50 A37 37 0 0 1 87 50"/><path id="arcB" d="M11 50 A39 39 0 0 0 89 50"/></defs>
+    <g filter="url(#stampF)" fill="#a8222a" stroke="#a8222a">
+      <circle cx="50" cy="50" r="47" fill="none" stroke-width="2.4"/>
+      <circle cx="50" cy="50" r="28" fill="none" stroke-width="1.2"/>
+      <text font-family="Montserrat" font-weight="900" font-size="8.6" letter-spacing="1" stroke="none" dy="-1"><textPath href="#arcT" startOffset="50%" text-anchor="middle">ВОКАЛ · ТАНЦЫ</textPath></text>
+      <text font-family="Montserrat" font-weight="900" font-size="8.6" letter-spacing="1.4" stroke="none" dy="7"><textPath href="#arcB" startOffset="50%" text-anchor="middle">ХИТЫ 90-Х</textPath></text>
+      <g stroke="none"><path d="M10 50 l1.6 -1.6 l1.6 1.6 l-1.6 1.6 z M87 50 l1.6 -1.6 l1.6 1.6 l-1.6 1.6 z"/></g>
+      <!-- disco ball glyph -->
+      <circle cx="50" cy="52" r="13" stroke="none"/>
+      <g stroke="#f2e6d4" stroke-width="1.1" fill="none"><ellipse cx="50" cy="52" rx="13" ry="5"/><ellipse cx="50" cy="52" rx="5" ry="13"/><ellipse cx="50" cy="52" rx="10" ry="13"/><line x1="37" y1="52" x2="63" y2="52"/><line x1="50" y1="39" x2="50" y2="65"/></g>
+      <line x1="50" y1="31" x2="50" y2="39" stroke-width="1.3"/>
+    </g>
+  </svg>
+
+  <!-- header + title -->
+  <div class="abs head" data-name="Шапка" data-raster="box"><div class="tri"></div><div class="t">НОВОГОДНИЙ ВЫПУСК</div><div class="y">2027</div></div>
+  <div class="abs title" id="title" data-name="СНОВА В ЭФИРЕ" data-raster="box"><div>СНОВА</div><div>В ЭФИРЕ:</div></div>
+  <div class="abs right" id="right" data-name="Новогодняя дискотека 90-х" data-raster="box">
+    <div class="top">новогодняя</div><div class="r">дискотека</div><div>90-х</div>
+    <div class="sm">вокал и танцы</div>
+  </div>
+
+  <!-- red band with info cards -->
+  <div class="abs band" data-name="Красная полоса" data-raster="box"></div>
+  <div class="card c1" data-name="Карточка СКОРО" data-raster="box"><div class="s">ДАТА И МЕСТО</div><div class="b">СКОРО</div><div class="s" style="margin-top:1.2mm">СЛЕДИ ЗА АНОНСОМ</div></div>
+  <div class="card c2" data-name="Карточка описание" data-raster="box">
+    <div class="t">ВОКАЛЬНЫЕ И ТАНЦЕВАЛЬНЫЕ НОМЕРА,<br>ХИТЫ 90-Х И НОВОГОДНЕЕ<br>НАСТРОЕНИЕ</div>
+    <div class="bars"></div>
+    <div class="f">ВЕЧЕР НОСТАЛЬГИИ ПО ЛИХИМ 90-М</div>
+  </div>
+  <div class="card c3" data-name="Карточка колледж" data-raster="box"><img src="logo-briks-mark-red.png" alt=""><div class="a">УНИВЕРСИТЕТСКИЙ<b>КОЛЛЕДЖ БРИКС</b></div></div>
+
+  <!-- chunky snowflake asterisks -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Снежинки" data-raster="full">
+    <defs><g id="ast"><g id="arm"><rect x="-3.4" y="-22" width="6.8" height="44" rx=".6"/></g><use href="#arm" transform="rotate(45)"/><use href="#arm" transform="rotate(90)"/><use href="#arm" transform="rotate(135)"/></g></defs>
+    <use href="#ast" transform="translate(16 338) rotate(10) scale(.62)" fill="#f6efe2"/>
+    <use href="#ast" transform="translate(244 112) rotate(-8) scale(.42)" fill="#b8c2a6"/>
+  </svg>
+
+  <!-- grain -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:multiply; pointer-events:none" data-name="Зерно" data-raster="full">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .42  0 0 0 .5 0"/></filter>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".35"/>
+  </svg>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  let seed = 31; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const $ = id => document.getElementById(id);
+  // faded overlapping paper sheets with print lines (newspaper backdrop)
+  (function () { let h = '';
+    const S = [[-20, 120, 150, 110, -8], [150, 96, 170, 120, 6], [-10, 250, 130, 100, 4], [170, 230, 150, 110, -5], [60, 30, 180, 80, 3], [40, 180, 120, 90, -3]];
+    S.forEach(([x, y, w, hh, r]) => {
+      h += `<g transform="rotate(${r} ${x + w / 2} ${y + hh / 2})"><rect x="${x + 1.2}" y="${y + 1.6}" width="${w}" height="${hh}" fill="#6b5a3c" opacity=".08" filter="url(#b1)"/><rect x="${x}" y="${y}" width="${w}" height="${hh}" fill="#f1e8d6" opacity=".55"/>`;
+      for (let ly = y + 8; ly < y + hh - 6; ly += 3.2) { const cols = 3, cw = (w - 16) / cols;
+        for (let c = 0; c < cols; c++) { const lw = cw - 3 - (rnd() < .15 ? rnd() * cw * .6 : 0); h += `<rect x="${(x + 8 + c * cw).toFixed(1)}" y="${ly.toFixed(1)}" width="${lw.toFixed(1)}" height=".55" fill="#7a6a4e" opacity=".14"/>`; } }
+      h += `</g>`; });
+    $('sheets').innerHTML = h; })();
+  // gold dust drifting behind the TV
+  (function () { let h = '';
+    for (let i = 0; i < 260; i++) { const x = 30 + rnd() * 240, y = 60 + Math.pow(rnd(), 1.4) * 260, r = .2 + rnd() * rnd() * .9;
+      h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${rnd() < .5 ? '#c9a14a' : '#e8c877'}" opacity="${(.25 + rnd() * .55).toFixed(2)}"/>`; }
+    $('gold').innerHTML = h; })();
+  // screen: beams, bokeh, floor grid, light spots
+  (function () {
+    const cols = ['#ff2fa8', '#4ff3ff', '#ffd36b', '#9b5cff', '#ffffff']; let b = '';
+    for (let i = 0; i < 12; i++) { const a = i / 12 * Math.PI * 2 + .2, w = .06 + rnd() * .05, L = 150;
+      b += `<path d="M110 76 L${(110 + Math.cos(a - w) * L).toFixed(1)} ${(76 + Math.sin(a - w) * L).toFixed(1)} L${(110 + Math.cos(a + w) * L).toFixed(1)} ${(76 + Math.sin(a + w) * L).toFixed(1)} Z" fill="${cols[i % 5]}" opacity="${(.3 + rnd() * .25).toFixed(2)}"/>`; }
+    $('scrBeams').innerHTML = b;
+    let k = ''; for (let i = 0; i < 26; i++) k += `<circle cx="${(40 + rnd() * 140).toFixed(1)}" cy="${(40 + rnd() * 90).toFixed(1)}" r="${(1 + rnd() * 4).toFixed(1)}" fill="${cols[i % 5]}" opacity="${(.12 + rnd() * .2).toFixed(2)}" filter="url(#b1)"/>`;
+    $('scrBokeh').innerHTML = k;
+    let f = ''; const hz = 130;
+    for (let i = -10; i <= 10; i++) f += `<line x1="${110 + i * 3}" y1="${hz}" x2="${110 + i * 20}" y2="170" stroke-width=".35"/>`;
+    for (let i = 1; i < 8; i++) { const y = hz + Math.pow(i / 7, 1.8) * 36; f += `<line x1="38" y1="${y.toFixed(1)}" x2="182" y2="${y.toFixed(1)}" stroke-width="${(.25 + i * .05).toFixed(2)}"/>`; }
+    $('scrFloor').innerHTML = f;
+    let s = ''; for (let i = 0; i < 40; i++) { const a = rnd() * Math.PI * 2, d = 30 + rnd() * 70, x = 110 + Math.cos(a) * d, y = 76 + Math.sin(a) * d * .8, r = .4 + rnd() * 1;
+      s += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(r * 1.5).toFixed(2)}" ry="${r.toFixed(2)}" fill="${['#fff', '#ffb3e6', '#b3fbff', '#ffe7a8'][i % 4]}" opacity="${(.4 + rnd() * .5).toFixed(2)}"/>`; }
+    $('scrSpots').innerHTML = s; })();
+  // knobs with dial numbers
+  (function () { let h = '';
+    [[215, 58, 40], [215, 100, -70]].forEach(([cx, cy, rot]) => {
+      h += `<circle cx="${cx}" cy="${cy}" r="14.5" fill="#1d1d1d" stroke="#8c7a55" stroke-width=".6"/>`;
+      for (let n = 0; n < 12; n++) { const a = (n / 12) * Math.PI * 2 - Math.PI / 2, x = cx + Math.cos(a) * 11.6, y = cy + Math.sin(a) * 11.6 + 1.1;
+        h += `<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" font-family="Montserrat" font-weight="600" font-size="2.9" fill="#d8d0bd" text-anchor="middle">${n + 1}</text>`; }
+      h += `<circle cx="${cx}" cy="${cy}" r="8.6" fill="url(#knobG)"/><g transform="rotate(${rot} ${cx} ${cy})"><rect x="${cx - 2.2}" y="${cy - 8.4}" width="4.4" height="16.8" rx="1.6" fill="url(#chromeV)" stroke="#333" stroke-width=".3"/></g>`; });
+    $('knobs').innerHTML = h; })();
+  // typography fitting
+  document.fonts.ready.then(() => {
+    const t = $('title'); t.style.fontSize = '100px';
+    const r = document.createRange(); r.selectNodeContents(t.lastElementChild); const w = r.getBoundingClientRect().width;
+    t.style.fontSize = (100 * mm(150) / w) + 'px'; t.style.transform = 'scaleY(1.22)';
+    const R = $('right'); R.style.fontSize = '100px';
+    const r2 = document.createRange(); r2.selectNodeContents(R.children[1]); const w2 = r2.getBoundingClientRect().width;
+    R.style.fontSize = (100 * mm(104) / w2) + 'px';
+    R.querySelector('.sm').style.fontSize = '4.6mm';
+  });
+</script>
+</body>
+</html>
