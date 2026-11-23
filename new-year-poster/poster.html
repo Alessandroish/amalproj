@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Happy New Year 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#efeee9;
@@ -40,19 +40,19 @@
 
   /* ---------- header ---------- */
   .brand{position:absolute;top:50px;left:0;right:0;text-align:center;letter-spacing:.18em}
-  .brand small{display:block;font-size:12px;font-weight:600;color:#4a3d3a}
-  .brand b{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Playfair Display',serif;font-weight:600;font-size:18px;letter-spacing:.08em;margin:4px 0;color:#2b2121}
+  .brand small{display:block;font-family:'Lora',serif;font-size:11.5px;font-weight:600;color:#3a2f2c}
+  .brand b{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Lora',serif;font-weight:700;font-size:18px;letter-spacing:.08em;margin:4px 0;color:#2b2121}
   .brand b i{font-style:normal;display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid #2b2121;position:relative}
   .brand b i::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
 
-  .h1{position:absolute;left:0;right:0;font-family:'Playfair Display',serif;font-weight:400;color:#3a2a2a;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
-  .h1.a{top:178px;font-size:72px;letter-spacing:.04em;padding-left:20px}
-  .h1.b{top:252px;font-size:142px;letter-spacing:.01em;padding-right:30px}
+  .h1{position:absolute;left:0;right:0;font-family:'Yeseva One',serif;font-weight:400;color:#2a1d1d;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
+  .h1.a{top:178px;font-size:70px;letter-spacing:.03em;padding-left:20px}
+  .h1.b{top:250px;font-size:136px;letter-spacing:.02em;padding-right:30px}
   .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1}
   .ribbon.over{z-index:3}
   .h1{z-index:2}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
-  .script.yr{left:122px;top:116px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
+  .script.yr{left:118px;top:104px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
   .spark{position:absolute;left:520px;top:250px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
 
   /* ---------- polaroids ---------- */
@@ -82,8 +82,8 @@
     background:radial-gradient(circle at 35% 35%,#ff8a8a,#d1121c 55%,#7d070c);box-shadow:1px 2px 1px rgba(0,0,0,.4),6px 9px 6px rgba(0,0,0,.3)}
 
   /* ---------- verse ---------- */
-  .verse{position:absolute;left:156px;right:146px;top:1040px;text-align:center;font-size:21px;line-height:1.32;color:#2b2121;font-weight:500}
-  .verse .r{color:var(--red2)}
+  .verse{position:absolute;left:150px;right:140px;top:1036px;text-align:center;font-family:'Lora',serif;font-size:18px;line-height:1.45;color:#1f1717;font-weight:500;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+  .verse .r{color:#a8121c;font-weight:600}
   .verse .c{position:relative;display:inline-block}
   .verse .c svg{position:absolute;left:-8px;top:-5px;width:calc(100% + 16px);height:calc(100% + 10px);overflow:visible}
   .verse b{font-weight:700}
@@ -130,14 +130,14 @@
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
     <defs><linearGradient id="rib" x1="0" x2="1"><stop offset="0" stop-color="#7a0c12"/><stop offset=".5" stop-color="#c41f2a"/><stop offset="1" stop-color="#8b0f16"/></linearGradient></defs>
-    <filter id="ribsh" x="-5%" y="-20%" width="110%" height="140%"><feDropShadow dx="2" dy="3.5" stdDeviation="1.6" flood-color="#3a0a05" flood-opacity=".45"/></filter></defs><defs><g id="ribpaths" fill="none" stroke="url(#rib)" stroke-linecap="round">
-      <path d="M115 150 C200 90 330 100 290 160 C260 210 170 190 230 135 C300 70 470 150 610 70 C660 40 700 30 736 40" stroke-width="3.8"/>
-      <path d="M0 455 C120 380 140 300 210 270 C280 240 330 300 270 320 C210 340 220 260 330 250 C440 240 520 290 610 250" stroke-width="3.2" transform="translate(0,-60)"/>
-      <path d="M560 210 C620 190 660 230 600 250 C560 262 540 220 610 200 C660 186 700 196 736 180" stroke-width="2.2"/>
+    <filter id="ribsh" x="-5%" y="-20%" width="110%" height="140%"><feDropShadow dx="1.5" dy="2.5" stdDeviation="1.2" flood-color="#3a0a05" flood-opacity=".4"/></filter></defs><defs><g id="ribpaths" fill="none" stroke="url(#rib)" stroke-linecap="round">
+      <path d="M115 150 C200 90 330 100 290 160 C260 210 170 190 230 135 C300 70 470 150 610 70 C660 40 700 30 736 40" stroke-width="1.9"/>
+      <path d="M0 455 C120 380 140 300 210 270 C280 240 330 300 270 320 C210 340 220 260 330 250 C440 240 520 290 610 250" stroke-width="1.6" transform="translate(0,-60)"/>
+      <path d="M560 210 C620 190 660 230 600 250 C560 262 540 220 610 200 C660 186 700 196 736 180" stroke-width="1.4"/>
     </g></defs>
     <use href="#ribpaths" filter="url(#ribsh)"/>
   </svg>
-  <svg class="ribbon over" viewBox="0 0 736 340"><defs><mask id="weave" maskUnits="userSpaceOnUse" x="0" y="0" width="736" height="340"><rect width="736" height="340" fill="#000"/><rect x="150" y="0" width="52" height="340" fill="#fff"/><rect x="254" y="0" width="52" height="340" fill="#fff"/><rect x="358" y="0" width="52" height="340" fill="#fff"/><rect x="462" y="0" width="52" height="340" fill="#fff"/><rect x="566" y="0" width="52" height="340" fill="#fff"/><rect x="670" y="0" width="52" height="340" fill="#fff"/><rect x="0" y="0" width="135" height="340" fill="#fff"/><rect x="630" y="0" width="106" height="340" fill="#fff"/></mask></defs>
+  <svg class="ribbon over" viewBox="0 0 736 340"><defs><mask id="weave" maskUnits="userSpaceOnUse" x="0" y="0" width="736" height="340"><rect width="736" height="340" fill="#000"/><g id="weavecut"></g><rect x="0" y="0" width="120" height="340" fill="#fff"/><rect x="640" y="0" width="96" height="340" fill="#fff"/></mask></defs>
     <g mask="url(#weave)"><use href="#ribpaths" filter="url(#ribsh)"/></g>
   </svg>
   <div class="script yr">новогодняя</div>
@@ -441,6 +441,13 @@
   });
 })();
 
+  // weave: thread passes over every other letter
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{
+    const g=document.getElementById('weavecut');let h='';let k=0;
+    document.querySelectorAll('.h1').forEach(el=>{const t=el.firstChild;for(let i=0;i<t.length;i++){
+      const r=document.createRange();r.setStart(t,i);r.setEnd(t,i+1);const b=r.getBoundingClientRect();
+      if(!b.width||t.data[i]===' ')continue; if(k++%2)h+=`<rect x="${b.left-2}" y="0" width="${b.width+4}" height="340" fill="#fff"/>`;}});
+    g.innerHTML=h;});
   // deterministic snowflakes
   const s=document.getElementById('snow');let seed=7;const r=()=>((seed=(seed*16807)%2147483647)/2147483647);
   let h='';
