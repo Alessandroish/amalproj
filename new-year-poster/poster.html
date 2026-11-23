@@ -48,7 +48,9 @@
   .h1{position:absolute;left:0;right:0;font-family:'Playfair Display',serif;font-weight:400;color:#3a2a2a;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
   .h1.a{top:178px;font-size:72px;letter-spacing:.04em;padding-left:20px}
   .h1.b{top:252px;font-size:142px;letter-spacing:.01em;padding-right:30px}
-  .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none}
+  .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1}
+  .ribbon.over{z-index:3}
+  .h1{z-index:2}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
   .script.yr{left:122px;top:116px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
   .spark{position:absolute;left:520px;top:250px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
@@ -128,11 +130,15 @@
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
     <defs><linearGradient id="rib" x1="0" x2="1"><stop offset="0" stop-color="#7a0c12"/><stop offset=".5" stop-color="#c41f2a"/><stop offset="1" stop-color="#8b0f16"/></linearGradient></defs>
-    <g fill="none" stroke="url(#rib)" stroke-linecap="round">
-      <path d="M115 150 C200 90 330 100 290 160 C260 210 170 190 230 135 C300 70 470 150 610 70 C660 40 700 30 736 40" stroke-width="3.2"/>
-      <path d="M0 455 C120 380 140 300 210 270 C280 240 330 300 270 320 C210 340 220 260 330 250 C440 240 520 290 610 250" stroke-width="2.6" transform="translate(0,-60)"/>
+    <filter id="ribsh" x="-5%" y="-20%" width="110%" height="140%"><feDropShadow dx="2" dy="3.5" stdDeviation="1.6" flood-color="#3a0a05" flood-opacity=".45"/></filter></defs><defs><g id="ribpaths" fill="none" stroke="url(#rib)" stroke-linecap="round">
+      <path d="M115 150 C200 90 330 100 290 160 C260 210 170 190 230 135 C300 70 470 150 610 70 C660 40 700 30 736 40" stroke-width="3.8"/>
+      <path d="M0 455 C120 380 140 300 210 270 C280 240 330 300 270 320 C210 340 220 260 330 250 C440 240 520 290 610 250" stroke-width="3.2" transform="translate(0,-60)"/>
       <path d="M560 210 C620 190 660 230 600 250 C560 262 540 220 610 200 C660 186 700 196 736 180" stroke-width="2.2"/>
-    </g>
+    </g></defs>
+    <use href="#ribpaths" filter="url(#ribsh)"/>
+  </svg>
+  <svg class="ribbon over" viewBox="0 0 736 340"><defs><mask id="weave" maskUnits="userSpaceOnUse" x="0" y="0" width="736" height="340"><rect width="736" height="340" fill="#000"/><rect x="150" y="0" width="52" height="340" fill="#fff"/><rect x="254" y="0" width="52" height="340" fill="#fff"/><rect x="358" y="0" width="52" height="340" fill="#fff"/><rect x="462" y="0" width="52" height="340" fill="#fff"/><rect x="566" y="0" width="52" height="340" fill="#fff"/><rect x="670" y="0" width="52" height="340" fill="#fff"/><rect x="0" y="0" width="135" height="340" fill="#fff"/><rect x="630" y="0" width="106" height="340" fill="#fff"/></mask></defs>
+    <g mask="url(#weave)"><use href="#ribpaths" filter="url(#ribsh)"/></g>
   </svg>
   <div class="script yr">новогодняя</div>
   <svg class="spark" viewBox="-50 -50 100 100"><defs><radialGradient id="spg"><stop offset="0" stop-color="#fff8d8"/><stop offset=".45" stop-color="#f3cf6a"/><stop offset="1" stop-color="#a8741f"/></radialGradient><radialGradient id="spglow"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffe9a0" stop-opacity="0"/></radialGradient></defs><circle r="44" fill="url(#spglow)"/><path d="M0 -46 C4 -10 10 -4 46 0 C10 4 4 10 0 46 C-4 10 -10 4 -46 0 C-10 -4 -4 -10 0 -46Z" fill="url(#spg)"/><path d="M0 -24 C2 -5 5 -2 24 0 C5 2 2 5 0 24 C-2 5 -5 2 -24 0 C-5 -2 -2 -5 0 -24Z" fill="#fffbe8" transform="rotate(45)" opacity=".9"/></svg>
