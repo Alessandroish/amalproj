@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Happy New Year 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#efeee9;
@@ -41,16 +41,17 @@
   /* ---------- header ---------- */
   .brand{position:absolute;top:50px;left:0;right:0;text-align:center;letter-spacing:.18em}
   .brand small{display:block;font-size:12px;font-weight:600;color:#4a3d3a}
-  .brand b{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Playfair Display',serif;font-weight:600;font-size:21px;letter-spacing:.08em;margin:4px 0;color:#2b2121}
+  .brand b{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Playfair Display',serif;font-weight:600;font-size:18px;letter-spacing:.08em;margin:4px 0;color:#2b2121}
   .brand b i{font-style:normal;display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid #2b2121;position:relative}
   .brand b i::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
 
   .h1{position:absolute;left:0;right:0;font-family:'Playfair Display',serif;font-weight:400;color:#3a2a2a;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
-  .h1.a{top:150px;font-size:118px;letter-spacing:.05em;padding-right:70px}
-  .h1.b{top:268px;font-size:90px;letter-spacing:.02em}
+  .h1.a{top:178px;font-size:72px;letter-spacing:.04em;padding-left:20px}
+  .h1.b{top:252px;font-size:142px;letter-spacing:.01em;padding-right:30px}
   .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
-  .script.yr{right:40px;top:150px;font-size:104px;transform:rotate(-9deg)}
+  .script.yr{left:122px;top:116px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
+  .spark{position:absolute;left:520px;top:250px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
 
   /* ---------- polaroids ---------- */
   .pol{position:absolute;padding:11px 11px 34px;
@@ -79,11 +80,14 @@
     background:radial-gradient(circle at 35% 35%,#ff8a8a,#d1121c 55%,#7d070c);box-shadow:1px 2px 1px rgba(0,0,0,.4),6px 9px 6px rgba(0,0,0,.3)}
 
   /* ---------- verse ---------- */
-  .verse{position:absolute;left:150px;right:150px;top:1050px;text-align:center;font-size:19.5px;line-height:1.32;color:#2b2121;font-weight:500}
+  .verse{position:absolute;left:156px;right:146px;top:1040px;text-align:center;font-size:21px;line-height:1.32;color:#2b2121;font-weight:500}
   .verse .r{color:var(--red2)}
   .verse .c{position:relative;display:inline-block}
   .verse .c svg{position:absolute;left:-8px;top:-5px;width:calc(100% + 16px);height:calc(100% + 10px);overflow:visible}
   .verse b{font-weight:700}
+  .verse ul{list-style:none;margin-top:12px;display:inline-block;text-align:left}
+  .verse li{position:relative;padding-left:30px;margin:4px 0}
+  .verse li::before{content:"→";position:absolute;left:0;top:0;color:#2b2121;font-weight:700}
   .handle{position:absolute;bottom:58px;left:0;right:0;text-align:center;font-family:Arial,sans-serif;font-size:13px;color:#444;letter-spacing:.02em}
 
   .snow,.flare{position:absolute;inset:0;pointer-events:none}
@@ -113,13 +117,13 @@
 
   <!-- header -->
   <div class="brand">
-    <small>НОВОГОДНИЙ ВЕЧЕР</small>
-    <b><i></i>WINTER GALA<i></i></b>
-    <small>31 · 12 · 2026</small>
+    <small>ПРИГЛАШАЕМ НА</small>
+    <b><i></i>НОВОГОДНЕЕ МЕРОПРИЯТИЕ<i></i></b>
+    <small>ВХОД В ОБРАЗЕ ПРИВЕТСТВУЕТСЯ</small>
   </div>
 
-  <div class="h1 a">HAPPY</div>
-  <div class="h1 b">NEW YEAR</div>
+  <div class="h1 a">ДИСКОТЕКА</div>
+  <div class="h1 b">90-х</div>
 
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
@@ -130,7 +134,8 @@
       <path d="M560 210 C620 190 660 230 600 250 C560 262 540 220 610 200 C660 186 700 196 736 180" stroke-width="2.2"/>
     </g>
   </svg>
-  <div class="script yr">2027</div>
+  <div class="script yr">новогодняя</div>
+  <svg class="spark" viewBox="-50 -50 100 100"><defs><radialGradient id="spg"><stop offset="0" stop-color="#fff8d8"/><stop offset=".45" stop-color="#f3cf6a"/><stop offset="1" stop-color="#a8741f"/></radialGradient><radialGradient id="spglow"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".9"/><stop offset="1" stop-color="#ffe9a0" stop-opacity="0"/></radialGradient></defs><circle r="44" fill="url(#spglow)"/><path d="M0 -46 C4 -10 10 -4 46 0 C10 4 4 10 0 46 C-4 10 -10 4 -46 0 C-10 -4 -4 -10 0 -46Z" fill="url(#spg)"/><path d="M0 -24 C2 -5 5 -2 24 0 C5 2 2 5 0 24 C-2 5 -5 2 -24 0 C-5 -2 -2 -5 0 -24Z" fill="#fffbe8" transform="rotate(45)" opacity=".9"/></svg>
 
   <!-- MAIN FRAME: winter night scene -->
   <div class="frame f-main" style="z-index:3" data-t="72" data-center="1"><div class="inner"><img class="paint" src="paint-main.jpg" alt=""></div></div>
@@ -240,8 +245,11 @@
 
   <!-- verse -->
   <div class="verse">
-    Пусть всё задуманное <span class="c">сбудется<svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M6 18 C2 6 40 2 70 3 C96 4 100 18 86 25 C66 32 22 30 8 24 C2 21 4 16 10 13" fill="none" stroke="#c41f2a" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></span>,<br>
-    а каждый новый день приносит свет, тепло и&nbsp;веру в&nbsp;чудо. <span class="r">Пусть рядом будут близкие люди, в доме — уют, а&nbsp;в&nbsp;сердце — радость</span> на&nbsp;весь <b>2027 год.</b>
+    Новогоднее мероприятие пройдёт в&nbsp;стиле <span class="c">«Дискотека 90-х»<svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M6 18 C2 6 40 2 70 3 C96 4 100 18 86 25 C66 32 22 30 8 24 C2 21 4 16 10 13" fill="none" stroke="#c41f2a" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></span>&nbsp;✦
+    <ul>
+      <li><span class="r">Готовятся вокальные и&nbsp;танцевальные номера</span></li>
+      <li><span class="r">Готовится сценарий мероприятия</span></li>
+    </ul>
   </div>
   <div class="handle">@yourhandle</div>
 
