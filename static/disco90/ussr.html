@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1200">
+<title>Дискотека 90-х — афиша</title>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;700;900&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#5a1214}
+  .poster{position:relative;width:1200px;height:1697px;margin:0 auto;overflow:hidden;background:#8e1f22;font-family:Tektur,sans-serif}
+  .photo{position:absolute;left:66px;top:54px;width:1068px;height:1282px;border-radius:30px;overflow:hidden;
+    outline:6px solid #fff;outline-offset:0}
+  .photo .scene{position:absolute;inset:0;filter:saturate(1.1) contrast(1.08) sepia(.32) blur(1.1px) brightness(.95)}
+  .photo img.real{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+  .photo .grain{position:absolute;inset:0;opacity:.55;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .photo .vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 45% 50%,transparent 50%,rgba(20,5,0,.55) 100%)}
+  .title{position:absolute;right:110px;top:95px;text-align:left;color:#fff;font-weight:700;
+    font-size:270px;line-height:.95;letter-spacing:.02em;text-shadow:0 4px 24px rgba(40,10,0,.45)}
+  .ast{position:absolute}
+  .card{position:absolute;background:#fff;border-radius:36px}
+  .c1{left:66px;top:1372px;width:810px;height:270px;display:flex;padding:34px 44px;gap:44px;color:#8e1f22}
+  .date{font-weight:700;font-size:80px;line-height:.95;white-space:nowrap}
+  .date small{display:block;font-family:Montserrat;font-weight:500;font-size:22px;line-height:1.1;margin:14px 0 10px;color:#8e1f22}
+  .info{flex:1;display:flex;flex-direction:column;justify-content:space-between;text-align:right;
+    font-weight:700;font-size:24px;line-height:1.22;text-transform:uppercase;letter-spacing:.02em;padding:10px 0}
+  .bar{height:20px;background:repeating-linear-gradient(90deg,#e8a9ad 0 4px,transparent 4px 10px);
+    -webkit-mask:linear-gradient(90deg,transparent,#000);mask:linear-gradient(90deg,transparent,#000);margin-left:40px}
+  .c2{left:908px;top:1372px;width:226px;height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+  .logo{font-weight:900;font-size:46px;line-height:1;color:#111}
+  .logo b{color:#c8161f}
+  .logo-sub{font-family:Montserrat;font-weight:700;font-size:12px;letter-spacing:.12em;color:#111;text-transform:uppercase;margin-top:-6px}
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="photo">
+    <svg class="scene" id="scene" viewBox="0 0 1068 1282" width="1068" height="1282"></svg>
+    <img class="real" src="photo.jpg" alt="" onload="this.style.display='block'">
+    <div class="grain"></div><div class="vig"></div>
+  </div>
+
+  <div class="title"><span style="font-size:112px;letter-spacing:.01em">ДИСКОТЕКА</span><br>90-Х</div>
+
+  <!-- asterisks -->
+  <svg class="ast" style="left:92px;top:122px" width="230" height="230" viewBox="-100 -100 200 200"><use href="#star" fill="#b9bf9e"/></svg>
+  <svg class="ast" style="left:965px;top:780px" width="190" height="190" viewBox="-100 -100 200 200"><use href="#star" fill="#dca0a2"/></svg>
+  <svg class="ast" style="left:-60px;top:1125px" width="270" height="270" viewBox="-100 -100 200 200"><use href="#star" fill="#fff"/></svg>
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <g id="star"><rect x="-13" y="-96" width="26" height="192"/><rect x="-13" y="-96" width="26" height="192" transform="rotate(45)"/>
+      <rect x="-13" y="-96" width="26" height="192" transform="rotate(90)"/><rect x="-13" y="-96" width="26" height="192" transform="rotate(135)"/></g>
+  </defs></svg>
+
+  <div class="card c1">
+    <div class="date">ДЕКАБРЬ<small>дата и время —</small>СКОРО</div>
+    <div class="info">
+      <div>Новогодняя вечеринка<br>под хиты девяностых</div>
+      <div class="bar"></div>
+      <div style="font-size:21px">номера и сценарий<br>уже готовятся</div>
+    </div>
+  </div>
+  <div class="card c2">
+    <svg width="104" height="104" viewBox="0 0 29 29" shape-rendering="crispEdges" id="qr"></svg>
+    <div class="logo">Н<b>Г</b>27</div>
+    <div class="logo-sub">новый год 2027</div>
+  </div>
+</div>
+
+<script>
+let s=90210; const R=()=>(s=(s*16807)%2147483647)/2147483647;
+const NS="http://www.w3.org/2000/svg";
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+
+// ---------- QR placeholder ----------
+(function(){const q=document.getElementById('qr');const f=(x,y,w,h)=>el('rect',{x,y,width:w,height:h,fill:'#8e1f22'},q);
+  const finder=(x,y)=>{f(x,y,7,7);el('rect',{x:x+1,y:y+1,width:5,height:5,fill:'#fff'},q);f(x+2,y+2,3,3)};
+  finder(0,0);finder(22,0);finder(0,22);s=7;
+  for(let y=0;y<29;y++)for(let x=0;x<29;x++){if((x<8&&y<8)||(x>20&&y<8)||(x<8&&y>20))continue;if(R()>.55)f(x,y,1,1)}})();
+
+// ---------- photo scene: 90s apartment, New Year night ----------
+const S=document.getElementById('scene');
+S.innerHTML=`<defs>
+ <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4a2a17"/><stop offset=".45" stop-color="#8a5a32"/><stop offset="1" stop-color="#3a1e10"/></linearGradient>
+ <radialGradient id="warm" cx="35%" cy="40%" r="60%"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient>
+ <pattern id="carpet" width="150" height="150" patternUnits="userSpaceOnUse">
+   <rect width="150" height="150" fill="#6e1414"/>
+   <path d="M75 8 L142 75 L75 142 L8 75Z" fill="#2a1b3a"/>
+   <path d="M75 28 L122 75 L75 122 L28 75Z" fill="#a8261f"/>
+   <path d="M75 48 L102 75 L75 102 L48 75Z" fill="#e2c08a"/>
+   <circle cx="75" cy="75" r="9" fill="#2a1b3a"/>
+   <g fill="#d9b373" opacity=".85"><circle cx="0" cy="0" r="10"/><circle cx="150" cy="0" r="10"/><circle cx="0" cy="150" r="10"/><circle cx="150" cy="150" r="10"/></g>
+   <g stroke="#e2c08a" stroke-width="3" fill="none" opacity=".6"><path d="M75 8 L142 75 L75 142 L8 75Z" transform="translate(0 0) scale(1)"/></g>
+ </pattern>
+ <radialGradient id="ornR" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffb3a0"/><stop offset=".3" stop-color="#d8281f"/><stop offset="1" stop-color="#4a0505"/></radialGradient>
+ <radialGradient id="ornG" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff2c8"/><stop offset=".35" stop-color="#e3b450"/><stop offset="1" stop-color="#5a3a05"/></radialGradient>
+ <radialGradient id="ornB" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#c8e6ff"/><stop offset=".35" stop-color="#2f6fc0"/><stop offset="1" stop-color="#0a1a40"/></radialGradient>
+ <radialGradient id="ornGr" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#d8ffd0"/><stop offset=".35" stop-color="#3aa055"/><stop offset="1" stop-color="#0a3014"/></radialGradient>
+ <radialGradient id="tang" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ffd08a"/><stop offset=".4" stop-color="#f07a12"/><stop offset="1" stop-color="#8a3a00"/></radialGradient>
+ <linearGradient id="cloth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe4cf"/><stop offset="1" stop-color="#b9a585"/></linearGradient>
+ <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d9dc"/><stop offset=".5" stop-color="#9a9aa0"/><stop offset="1" stop-color="#5b5b62"/></linearGradient>
+ <linearGradient id="bottle" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0d1a10"/><stop offset=".35" stop-color="#2d4a30"/><stop offset=".5" stop-color="#5a7a5a"/><stop offset=".65" stop-color="#1f3522"/><stop offset="1" stop-color="#050a06"/></linearGradient>
+ <linearGradient id="foil" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a5510"/><stop offset=".45" stop-color="#ffe9a8"/><stop offset="1" stop-color="#8a6015"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".15"/><stop offset=".3" stop-color="#fff" stop-opacity=".7"/><stop offset=".6" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity=".55"/></linearGradient>
+ <filter id="b1"><feGaussianBlur stdDeviation="1.2"/></filter>
+ <filter id="b4"><feGaussianBlur stdDeviation="4"/></filter>
+ <filter id="b10"><feGaussianBlur stdDeviation="10"/></filter>
+ <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect width="1068" height="1282" fill="url(#wall)"/>
+<!-- wallpaper stripes -->
+<g opacity=".12">${Array.from({length:30},(_,i)=>`<rect x="${i*36}" y="0" width="14" height="1282" fill="#ffe3b0"/>`).join('')}</g>
+<!-- carpet on wall (right) -->
+<g filter="url(#b1)"><rect x="700" y="-20" width="420" height="980" fill="url(#carpet)"/>
+<rect x="700" y="-20" width="420" height="980" fill="none" stroke="#2a1b3a" stroke-width="26"/>
+<rect x="700" y="-20" width="420" height="980" fill="#000" opacity=".25"/></g>
+<rect width="1068" height="1282" fill="url(#warm)"/>
+<g id="tree"></g><g id="cab"></g><g id="table"></g>`;
+
+const T=document.getElementById('tree');
+// tree
+s=11;const tx=330,base=930,h=900,w=620;
+for(let t=0;t<9;t++){const top=base-h+t*h/9*.93,bot=top+h/9*1.6,half=w*(.12+.88*(t+1)/9)/2;
+  for(let k=0;k<26;k++){const a=-0.5+k/25;const x0=tx+a*half*.3,y0=top+(bot-top)*.25;const x1=tx+a*half*2*(.9+R()*.2),y1=bot+(R()*20);
+    el('path',{d:`M${x0},${y0} Q${(x0+x1)/2},${(y0+y1)/2-30} ${x1},${y1}`,stroke:`hsl(${120+R()*20},${30+R()*20}%,${10+R()*14}%)`,'stroke-width':6+R()*8,'stroke-linecap':'round',fill:'none'},T)}}
+// tinsel ("дождик") and garland lights
+for(let k=0;k<5;k++){const y=base-h+180+k*150,half=w*(.2+.8*(y-(base-h))/h)/2;
+  el('path',{d:`M${tx-half*.9},${y} Q${tx},${y+70} ${tx+half*.9},${y+20}`,stroke:'#cfd6e0','stroke-width':7,'stroke-dasharray':'2 3',fill:'none',opacity:.75},T)}
+const orns=['url(#ornR)','url(#ornG)','url(#ornB)','url(#ornGr)'];
+for(let k=0;k<60;k++){const ty=base-h+90+R()*h*.85,f=(ty-(base-h))/h,hf=w*(.1+.85*f)/2,x=tx+(R()*2-1)*hf*.8;
+  if(R()>.55){const r=12+R()*16;el('circle',{cx:x,cy:ty,r,fill:orns[k%4]},T);el('ellipse',{cx:x-r*.35,cy:ty-r*.35,rx:r*.25,ry:r*.15,fill:'#fff',opacity:.6},T)}
+  else{const c=['#ff6a4a','#ffd34a','#6ad0ff','#9aff6a'][k%4];el('circle',{cx:x,cy:ty,r:12,fill:c,opacity:.55,filter:'url(#glow)'},T);el('circle',{cx:x,cy:ty,r:3.5,fill:'#fff'},T)}}
+// red star on top
+el('path',{d:`M${tx},${base-h-40} l14,34 37,3 -28,24 9,36 -32,-19 -32,19 9,-36 -28,-24 37,-3z`,fill:'#d8281f',stroke:'#ffd36a','stroke-width':3},T);
+
+// cabinet + boombox (магнитофон) in the middle
+const C=document.getElementById('cab');
+el('rect',{x:560,y:760,width:420,height:260,fill:'#3a1f10'},C);
+el('rect',{x:560,y:760,width:420,height:16,fill:'#5a3018'},C);
+const bx=el('g',{transform:'translate(590,590)'},C);
+el('rect',{x:0,y:0,width:360,height:175,rx:14,fill:'url(#silver)',stroke:'#3a3a40','stroke-width':3},bx);
+el('path',{d:'M60,0 L60,-40 Q60,-55 75,-55 L285,-55 Q300,-55 300,-40 L300,0',stroke:'#2a2a2e','stroke-width':12,fill:'none'},bx);
+[[75,100],[285,100]].forEach(([x,y])=>{el('circle',{cx:x,cy:y,r:56,fill:'#1c1c20'},bx);for(let r=50;r>10;r-=8)el('circle',{cx:x,cy:y,r,fill:'none',stroke:'#3a3a42','stroke-width':2},bx);el('circle',{cx:x,cy:y,r:14,fill:'#55555c'},bx)});
+el('rect',{x:140,y:45,width:80,height:52,rx:4,fill:'#2a2a30',stroke:'#777','stroke-width':2},bx);
+el('rect',{x:150,y:58,width:60,height:24,rx:12,fill:'#d8c7a0'},bx);
+el('rect',{x:20,y:14,width:320,height:16,rx:3,fill:'#1c1c20'},bx);
+for(let k=0;k<6;k++)el('rect',{x:146+k*12,y:110,width:8,height:16,fill:'#222'},bx);
+el('circle',{cx:180,cy:150,r:8,fill:'#d8281f'},bx);
+el('text',{x:24,y:27,fill:'#e8e8ea','font-family':'Tektur','font-size':12,'font-weight':700},bx).textContent='STEREO RADIO CASSETTE';
+// toys on cabinet: Ded Moroz silhouette & cassettes stack
+const dm=el('g',{transform:'translate(985,700)'},C);
+el('path',{d:'M-40,60 L-30,-40 Q0,-70 30,-40 L40,60Z',fill:'#2f5fb0'},dm);el('circle',{cx:0,cy:-55,r:22,fill:'#f2d2b0'},dm);
+el('path',{d:'M-22,-48 Q0,-10 22,-48 L18,-20 Q0,10 -18,-20Z',fill:'#f4f4f4'},dm);el('path',{d:'M-24,-66 Q0,-100 24,-66Z',fill:'#2f5fb0'},dm);
+el('rect',{x:-40,y:52,width:80,height:10,fill:'#f4f4f4'},dm);
+
+// table in foreground
+const B=document.getElementById('table');
+el('path',{d:'M-20,1040 L1090,1000 L1090,1300 L-20,1300Z',fill:'url(#cloth)'},B);
+el('path',{d:'M-20,1040 L1090,1000',stroke:'#fff',opacity:.5,'stroke-width':3},B);
+// cassettes on table
+function cas(x,y,rot,col){const g=el('g',{transform:`translate(${x},${y}) rotate(${rot})`},B);
+  el('rect',{x:-80,y:-50,width:160,height:100,rx:7,fill:'#1d1d23'},g);el('rect',{x:-68,y:-40,width:136,height:56,rx:4,fill:col},g);
+  el('rect',{x:-40,y:-24,width:80,height:24,rx:12,fill:'#111'},g);el('circle',{cx:-22,cy:-12,r:8,fill:'#eee'},g);el('circle',{cx:22,cy:-12,r:8,fill:'#eee'},g)}
+cas(620,1150,-12,'#f2e6c8');cas(760,1175,9,'#e84a7a');
+// champagne
+const ch=el('g',{transform:'translate(470,840)'},B);
+el('path',{d:'M-18,0 L18,0 L22,80 Q48,110 48,160 L48,330 Q48,345 34,345 L-34,345 Q-48,345 -48,330 L-48,160 Q-48,110 -22,80Z',fill:'url(#bottle)'},ch);
+el('path',{d:'M-20,-10 L20,-10 L24,85 Q40,100 44,120 L-44,120 Q-40,100 -24,85Z',fill:'url(#foil)'},ch);
+el('rect',{x:-46,y:190,width:92,height:90,fill:'#f3e7c4'},ch);el('rect',{x:-46,y:200,width:92,height:14,fill:'#b8161c'},ch);
+el('text',{x:0,y:250,'text-anchor':'middle',fill:'#3a1d10','font-family':'Tektur','font-size':11,'font-weight':700},ch).textContent='ШАМПАНСКОЕ';
+// crystal glasses
+function glass(x,y,sc){const g=el('g',{transform:`translate(${x},${y}) scale(${sc})`},B);
+  el('path',{d:'M-38,-120 L38,-120 L28,-20 Q0,0 -28,-20Z',fill:'url(#glass)',stroke:'#fff','stroke-opacity':.6,'stroke-width':2},g);
+  for(let k=-30;k<=30;k+=12)el('path',{d:`M${k},-118 L${k*0.6},-30`,stroke:'#fff',opacity:.35,'stroke-width':2},g);
+  el('rect',{x:-4,y:-12,width:8,height:70,fill:'#fff',opacity:.5},g);el('ellipse',{cx:0,cy:60,rx:34,ry:8,fill:'#fff',opacity:.5},g)}
+glass(330,1140,1.1);glass(930,1110,1.0);
+// tangerines + plate
+el('ellipse',{cx:190,cy:1200,rx:150,ry:40,fill:'#f6f1e6',stroke:'#c9b99b','stroke-width':3},B);
+[[140,1168,40],[215,1160,44],[180,1130,38],[255,1190,34]].forEach(([x,y,r])=>{el('circle',{cx:x,cy:y,r,fill:'url(#tang)'},B);el('circle',{cx:x+4,cy:y-r+6,r:3,fill:'#3a5a1a'},B)});
+// lights bokeh overlay
+for(let k=0;k<26;k++){const x=R()*1068,y=R()*900,r=12+R()*40;el('circle',{cx:x,cy:y,r,fill:['#ffcf8a','#ff8a6a','#8ad0ff'][k%3],opacity:.10+R()*.12,filter:'url(#b10)'},S)}
+document.fonts.ready.then(()=>setTimeout(()=>document.body.dataset.ready=1,300));
+</script>
+</body>
+</html>
