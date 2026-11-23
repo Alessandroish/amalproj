@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Happy New Year 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#efeee9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:736px;height:1308px;background:#ddd}
+  .poster{
+    position:relative;width:736px;height:1308px;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 20% 8%, rgba(255,250,235,.95), transparent 45%),
+      radial-gradient(ellipse at 50% 55%, rgba(255,255,255,.6), transparent 60%),
+      radial-gradient(ellipse at 90% 100%, rgba(160,150,140,.35), transparent 55%),
+      var(--wall);
+    font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);
+  }
+  .grain{position:absolute;inset:0;opacity:.55;mix-blend-mode:multiply;pointer-events:none}
+
+  /* ---------- gold frames ---------- */
+  .frame{
+    position:absolute;padding:26px;
+    background:
+      repeating-linear-gradient(45deg, rgba(90,55,10,.25) 0 2px, transparent 2px 6px),
+      repeating-linear-gradient(-45deg, rgba(255,240,180,.25) 0 2px, transparent 2px 7px),
+      linear-gradient(135deg,#6b4310 0%,#e8c368 14%,#9a6a1c 28%,#f6dc8c 42%,#a8741f 58%,#e9c56b 72%,#7a4c12 88%,#d8ad52 100%);
+    box-shadow:
+      0 0 0 3px #5a370b,
+      0 0 0 6px #e2bb5f,
+      0 0 0 8px #6e4610,
+      14px 22px 30px rgba(40,25,10,.45),
+      4px 6px 8px rgba(40,25,10,.35);
+  }
+  .frame::before{
+    content:"";position:absolute;inset:10px;
+    border:5px solid transparent;
+    background:
+      repeating-radial-gradient(circle at 50% 50%, rgba(255,235,160,.6) 0 1.5px, rgba(90,55,10,.5) 1.5px 3.5px) border-box;
+    -webkit-mask:linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+    mask:linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+    mask-composite:exclude;
+  }
+  .frame .inner{
+    position:relative;width:100%;height:100%;overflow:hidden;
+    box-shadow:0 0 0 3px #3f2606, 0 0 0 5px #d9b25a, inset 0 0 30px rgba(0,0,0,.7);
+  }
+  .frame .inner svg{display:block;width:100%;height:100%}
+
+  .f-tl{left:-90px;top:-30px;width:180px;height:400px}
+  .f-tr{right:-60px;top:-40px;width:140px;height:180px}
+  .f-r{right:-110px;top:730px;width:190px;height:520px}
+  .f-main{left:146px;top:432px;width:456px;height:520px}
+
+  /* ---------- header ---------- */
+  .brand{position:absolute;top:50px;left:0;right:0;text-align:center;letter-spacing:.18em}
+  .brand small{display:block;font-size:12px;font-weight:600;color:#4a3d3a}
+  .brand b{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Playfair Display',serif;font-weight:600;font-size:21px;letter-spacing:.08em;margin:4px 0;color:#2b2121}
+  .brand b i{font-style:normal;display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid #2b2121;position:relative}
+  .brand b i::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
+
+  .h1{position:absolute;left:0;right:0;font-family:'Playfair Display',serif;font-weight:400;color:#3a2a2a;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:0 2px 0 rgba(255,255,255,.6)}
+  .h1.a{top:150px;font-size:118px;letter-spacing:.05em;padding-right:70px}
+  .h1.b{top:268px;font-size:90px;letter-spacing:.02em}
+  .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none}
+  .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 2px rgba(80,0,0,.25)}
+  .script.yr{right:40px;top:150px;font-size:104px;transform:rotate(-9deg)}
+
+  /* ---------- polaroids ---------- */
+  .pol{position:absolute;background:#fbfaf6;padding:10px 10px 30px;box-shadow:6px 12px 22px rgba(30,20,10,.38),0 1px 2px rgba(0,0,0,.3)}
+  .pol svg{display:block}
+  .pol.clock{right:-22px;top:372px;transform:rotate(7deg)}
+  .pol.glass{left:-24px;top:870px;transform:rotate(-8deg)}
+
+  /* ---------- sticky note ---------- */
+  .note{position:absolute;left:90px;top:592px;width:150px;height:146px;transform:rotate(-6deg);
+    background:linear-gradient(170deg,#fff3a6 0%,#f7e27a 70%,#eed465 100%);
+    box-shadow:4px 10px 14px rgba(40,30,0,.35);font-family:'Caveat',cursive;color:#1f1a18;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.9;z-index:6}
+  .note::after{content:"";position:absolute;right:0;bottom:0;width:26px;height:26px;background:linear-gradient(135deg,#e9cf5c 50%,rgba(0,0,0,.08) 50%)}
+  .note .s1{font-size:40px;transform:rotate(-4deg)}
+  .note .s2{font-size:50px;transform:rotate(-4deg);margin-top:2px}
+  .pin{position:absolute;left:68px;top:-6px;width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#ff8a8a,#d1121c 55%,#7d070c);box-shadow:3px 5px 4px rgba(0,0,0,.35)}
+
+  /* ---------- verse ---------- */
+  .verse{position:absolute;left:150px;right:150px;top:1050px;text-align:center;font-size:19.5px;line-height:1.32;color:#2b2121;font-weight:500}
+  .verse .r{color:var(--red2)}
+  .verse .c{position:relative;display:inline-block}
+  .verse .c svg{position:absolute;left:-8px;top:-5px;width:calc(100% + 16px);height:calc(100% + 10px);overflow:visible}
+  .verse b{font-weight:700}
+  .handle{position:absolute;bottom:58px;left:0;right:0;text-align:center;font-family:Arial,sans-serif;font-size:13px;color:#444;letter-spacing:.02em}
+
+  .snow,.flare{position:absolute;inset:0;pointer-events:none}
+  .z{position:absolute;inset:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- wall texture -->
+  <svg class="grain" width="736" height="1308"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .53  0 0 0 0 .5  0 0 0 .22 0"/></filter><filter id="n2"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="9"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .48  0 0 0 0 .45  0 0 0 .18 0"/></filter><rect width="100%" height="100%" filter="url(#n2)"/><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+  <!-- side frames -->
+  <div class="frame f-tl"><div class="inner"><svg viewBox="0 0 100 300" preserveAspectRatio="xMidYMid slice">
+    <defs><radialGradient id="tlg" cx=".75" cy=".45" r=".7"><stop offset="0" stop-color="#7a4a22"/><stop offset=".5" stop-color="#3a1d10"/><stop offset="1" stop-color="#120806"/></radialGradient></defs>
+    <rect width="100" height="300" fill="url(#tlg)"/>
+    <path d="M60 60 L100 20 L100 300 L40 300 Z" fill="#1e3a24" opacity=".7"/>
+    <g fill="#f8c66a"><circle cx="78" cy="110" r="3"/><circle cx="88" cy="150" r="2.5"/><circle cx="70" cy="190" r="3"/><circle cx="92" cy="220" r="2"/></g>
+  </svg></div></div>
+
+  <div class="frame f-tr"><div class="inner"><svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice"><rect width="100" height="120" fill="#2a1a12"/><circle cx="30" cy="60" r="30" fill="#7b4a1c" opacity=".5"/></svg></div></div>
+
+  <div class="frame f-r"><div class="inner"><svg viewBox="0 0 100 300" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2433"/><stop offset="1" stop-color="#3b2a20"/></linearGradient></defs>
+    <rect width="100" height="300" fill="url(#rg)"/>
+    <g fill="#fff" opacity=".5"><circle cx="20" cy="40" r="1.4"/><circle cx="45" cy="80" r="1"/><circle cx="25" cy="130" r="1.6"/><circle cx="60" cy="170" r="1"/></g>
+    <path d="M0 240 Q30 220 60 238 T100 230 V300 H0Z" fill="#d9dde6" opacity=".7"/>
+  </svg></div></div>
+
+  <!-- header -->
+  <div class="brand">
+    <small>НОВОГОДНИЙ ВЕЧЕР</small>
+    <b><i></i>WINTER GALA<i></i></b>
+    <small>31 · 12 · 2026</small>
+  </div>
+
+  <div class="h1 a">HAPPY</div>
+  <div class="h1 b">NEW YEAR</div>
+
+  <!-- red ribbon swirl -->
+  <svg class="ribbon" viewBox="0 0 736 340">
+    <defs><linearGradient id="rib" x1="0" x2="1"><stop offset="0" stop-color="#7a0c12"/><stop offset=".5" stop-color="#c41f2a"/><stop offset="1" stop-color="#8b0f16"/></linearGradient></defs>
+    <g fill="none" stroke="url(#rib)" stroke-linecap="round">
+      <path d="M115 150 C200 90 330 100 290 160 C260 210 170 190 230 135 C300 70 470 150 610 70 C660 40 700 30 736 40" stroke-width="3.2"/>
+      <path d="M0 455 C120 380 140 300 210 270 C280 240 330 300 270 320 C210 340 220 260 330 250 C440 240 520 290 610 250" stroke-width="2.6" transform="translate(0,-60)"/>
+      <path d="M560 210 C620 190 660 230 600 250 C560 262 540 220 610 200 C660 186 700 196 736 180" stroke-width="2.2"/>
+    </g>
+  </svg>
+  <div class="script yr">2027</div>
+
+  <!-- MAIN FRAME: winter night scene -->
+  <div class="frame f-main" style="z-index:3"><div class="inner"><svg viewBox="0 0 404 468" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1428"/><stop offset=".55" stop-color="#28324f"/><stop offset="1" stop-color="#5a4a52"/></linearGradient>
+      <radialGradient id="glow" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#ffe2a0" stop-opacity=".95"/><stop offset=".35" stop-color="#f0a850" stop-opacity=".45"/><stop offset="1" stop-color="#f0a850" stop-opacity="0"/></radialGradient>
+      <radialGradient id="star" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fff4c8"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+      <linearGradient id="tree" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6a3e"/><stop offset=".6" stop-color="#16402a"/><stop offset="1" stop-color="#0b2618"/></linearGradient>
+      <linearGradient id="snowg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4e9d6"/><stop offset="1" stop-color="#b9b6c4"/></linearGradient>
+      <filter id="b2"><feGaussianBlur stdDeviation="2"/></filter>
+      <filter id="b6"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="b12"><feGaussianBlur stdDeviation="14"/></filter>
+      <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff2c4" stop-opacity="0"/></linearGradient>
+    </defs>
+    <rect width="404" height="468" fill="url(#sky)"/>
+    <!-- stars -->
+    <g fill="#fff"><circle cx="40" cy="40" r="1.2"/><circle cx="90" cy="70" r=".9"/><circle cx="150" cy="30" r="1.1"/><circle cx="330" cy="50" r="1.3"/><circle cx="370" cy="110" r=".8"/><circle cx="280" cy="90" r=".9"/><circle cx="60" cy="130" r="1"/><circle cx="350" cy="180" r="1"/></g>
+    <!-- moon -->
+    <circle cx="330" cy="70" r="22" fill="#f6eed8"/><circle cx="330" cy="70" r="45" fill="#f6eed8" opacity=".12" filter="url(#b6)"/>
+    <!-- distant hills -->
+    <path d="M0 300 Q80 250 160 285 T320 270 T404 280 V468 H0Z" fill="#3c4560"/>
+    <path d="M0 330 Q100 290 200 320 T404 305 V468 H0Z" fill="#6d6f86"/>
+    <!-- distant pines -->
+    <g fill="#1d2c33">
+      <path d="M20 330 l14 -50 l14 50z"/><path d="M44 334 l10 -36 l10 36z"/><path d="M340 322 l16 -58 l16 58z"/><path d="M372 326 l10 -38 l10 38z"/>
+    </g>
+    <!-- house -->
+    <g transform="translate(40 300)">
+      <path d="M0 50 L40 15 L80 50 V90 H0Z" fill="#3a2a2a"/>
+      <path d="M-6 52 L40 10 L86 52 L80 54 L40 18 L0 54Z" fill="#eef0f6"/>
+      <rect x="14" y="56" width="16" height="16" fill="#ffc86a"/><rect x="50" y="56" width="16" height="16" fill="#ffc86a"/>
+      <rect x="10" y="50" width="60" height="30" fill="#ffb84a" opacity=".35" filter="url(#b6)"/>
+    </g>
+    <!-- glow behind tree -->
+    <circle cx="225" cy="290" r="170" fill="url(#glow)"/>
+    <!-- light rays from star -->
+    <g opacity=".7" filter="url(#b2)">
+      <path d="M225 120 L150 468 L190 468Z" fill="url(#ray)"/>
+      <path d="M225 120 L250 468 L300 468Z" fill="url(#ray)"/>
+      <path d="M225 120 L80 380 L110 400Z" fill="url(#ray)" opacity=".6"/>
+      <path d="M225 120 L380 360 L360 390Z" fill="url(#ray)" opacity=".6"/>
+    </g>
+    <!-- christmas tree -->
+    <g>
+      <path d="M225 120 L175 210 L195 208 L150 290 L175 287 L125 370 L325 370 L275 287 L300 290 L255 208 L275 210Z" fill="url(#tree)"/>
+      <path d="M225 120 L175 210 L195 208 L150 290 L175 287 L125 370 L225 370Z" fill="#000" opacity=".18"/>
+      <rect x="214" y="368" width="22" height="22" fill="#3a2414"/>
+      <!-- garland -->
+      <g fill="none" stroke="#ffd98a" stroke-width="1.4" opacity=".9">
+        <path d="M190 190 Q225 210 262 192"/><path d="M168 255 Q225 285 285 256"/><path d="M145 335 Q225 365 305 336"/>
+      </g>
+      <!-- lights -->
+      <g>
+        <g fill="#fff1b8">
+          <circle cx="200" cy="196" r="3"/><circle cx="225" cy="203" r="3"/><circle cx="250" cy="197" r="3"/>
+          <circle cx="180" cy="264" r="3"/><circle cx="205" cy="274" r="3"/><circle cx="235" cy="276" r="3"/><circle cx="265" cy="268" r="3"/>
+          <circle cx="160" cy="343" r="3"/><circle cx="190" cy="354" r="3"/><circle cx="225" cy="358" r="3"/><circle cx="260" cy="354" r="3"/><circle cx="290" cy="345" r="3"/>
+        </g>
+        <g fill="#ffcc66" opacity=".7" filter="url(#b2)">
+          <circle cx="200" cy="196" r="7"/><circle cx="250" cy="197" r="7"/><circle cx="205" cy="274" r="7"/><circle cx="265" cy="268" r="7"/><circle cx="190" cy="354" r="7"/><circle cx="260" cy="354" r="7"/>
+        </g>
+        <!-- baubles -->
+        <circle cx="212" cy="232" r="6" fill="#c41f2a"/><circle cx="246" cy="240" r="5" fill="#d9a63c"/><circle cx="185" cy="312" r="6" fill="#d9a63c"/><circle cx="270" cy="318" r="7" fill="#c41f2a"/><circle cx="225" cy="320" r="5" fill="#c41f2a"/>
+        <g fill="#fff" opacity=".7"><circle cx="210" cy="230" r="1.6"/><circle cx="268" cy="315" r="2"/><circle cx="183" cy="310" r="1.6"/></g>
+      </g>
+      <!-- star -->
+      <circle cx="225" cy="118" r="40" fill="url(#star)"/>
+      <path d="M225 100 l5 13 h14 l-11 8 4 14 -12 -8 -12 8 4 -14 -11 -8 h14z" fill="#fff6d6"/>
+    </g>
+    <!-- gifts -->
+    <g>
+      <rect x="160" y="372" width="34" height="26" fill="#a3141d"/><rect x="174" y="372" width="6" height="26" fill="#f0d07a"/>
+      <rect x="250" y="368" width="40" height="30" fill="#e8dcc4"/><rect x="267" y="368" width="6" height="30" fill="#a3141d"/>
+      <rect x="196" y="384" width="26" height="16" fill="#1f4a33"/><rect x="207" y="384" width="4" height="16" fill="#f0d07a"/>
+    </g>
+    <!-- snow ground -->
+    <path d="M0 392 Q110 372 210 394 T404 386 V468 H0Z" fill="url(#snowg)"/>
+    <path d="M0 392 Q110 372 210 394 T404 386" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/>
+    <ellipse cx="225" cy="400" rx="140" ry="18" fill="#ffd690" opacity=".35" filter="url(#b6)"/>
+    <!-- vignette & warm haze -->
+    <rect width="404" height="468" fill="#ffcf80" opacity=".05"/>
+    <!-- falling snow -->
+    <g fill="#fff" opacity=".85">
+      <circle cx="30" cy="200" r="1.8"/><circle cx="70" cy="240" r="1.3"/><circle cx="110" cy="170" r="2"/><circle cx="130" cy="230" r="1.2"/>
+      <circle cx="300" cy="150" r="1.6"/><circle cx="340" cy="230" r="2"/><circle cx="380" cy="270" r="1.4"/><circle cx="310" cy="290" r="1.1"/>
+      <circle cx="90" cy="330" r="1.5"/><circle cx="360" cy="340" r="1.7"/><circle cx="160" cy="80" r="1.3"/><circle cx="250" cy="60" r="1.5"/>
+      <circle cx="20" cy="380" r="1.3"/><circle cx="395" cy="200" r="1.2"/><circle cx="140" cy="420" r="1.4"/><circle cx="330" cy="430" r="1.6"/>
+    </g>
+  </svg></div></div>
+
+  <!-- red velvet ribbon + bow on main frame (replaces cloth drape) -->
+  <svg class="z" style="z-index:4" viewBox="0 0 736 1308">
+    <defs>
+      <linearGradient id="vel" x1="0" x2="1"><stop offset="0" stop-color="#5e060b"/><stop offset=".35" stop-color="#b8161f"/><stop offset=".55" stop-color="#e0303a"/><stop offset=".75" stop-color="#a3141d"/><stop offset="1" stop-color="#5e060b"/></linearGradient>
+      <linearGradient id="vel2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d42a34"/><stop offset="1" stop-color="#6d070d"/></linearGradient>
+      <filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="6" dy="10" stdDeviation="7" flood-color="#2a0a05" flood-opacity=".45"/></filter>
+    </defs>
+    <g filter="url(#ds)">
+      <!-- tail draping down right side -->
+      <path d="M548 470 C565 560 548 640 585 720 C615 790 590 860 620 930 C632 958 620 985 640 1010 L606 1018 C590 990 598 960 584 930 C556 862 578 792 548 724 C514 646 530 566 516 478Z" fill="url(#vel)"/>
+      <!-- tail 2 -->
+      <path d="M522 470 C500 540 470 560 470 620 L448 614 C452 556 480 532 498 468Z" fill="url(#vel)"/>
+      <!-- bow loops -->
+      <path d="M535 465 C490 410 440 410 448 448 C455 485 510 482 535 465Z" fill="url(#vel2)"/>
+      <path d="M535 465 C580 405 640 410 628 452 C618 488 560 482 535 465Z" fill="url(#vel2)"/>
+      <path d="M535 465 C505 440 470 432 462 448" fill="none" stroke="#5e060b" stroke-width="2" opacity=".6"/>
+      <path d="M535 465 C565 440 605 432 614 450" fill="none" stroke="#5e060b" stroke-width="2" opacity=".6"/>
+      <ellipse cx="535" cy="466" rx="15" ry="13" fill="#b8161f"/>
+      <ellipse cx="531" cy="461" rx="6" ry="4" fill="#ff6a70" opacity=".5"/>
+    </g>
+    <!-- spruce sprig + baubles at lower-left corner of frame -->
+    <g transform="translate(150 930)">
+      <g stroke="#1e4a2c" stroke-width="2.2" stroke-linecap="round">
+        <path d="M0 10 L130 -18" stroke="#3b2416" stroke-width="3"/>
+        <path d="M0 10 L120 30" stroke="#3b2416" stroke-width="3"/>
+      </g>
+      <g stroke="#245c36" stroke-width="2" stroke-linecap="round" fill="none">
+        <path d="M10 8 l-8 -10 M20 6 l-6 -12 M30 4 l-4 -13 M40 2 l-2 -13 M50 0 l0 -13 M60 -2 l2 -13 M70 -4 l4 -12 M80 -6 l5 -12 M90 -8 l6 -11 M100 -10 l7 -10 M110 -12 l8 -9"/>
+        <path d="M10 8 l2 10 M20 6 l4 11 M30 4 l5 11 M40 2 l6 11 M50 0 l7 10 M60 -2 l8 10 M70 -4 l8 9 M80 -6 l9 8 M90 -8 l9 7 M100 -10 l9 6"/>
+        <path d="M15 11 l-4 10 M30 13 l-2 11 M45 16 l0 11 M60 18 l2 11 M75 21 l3 10 M90 23 l4 10 M105 26 l5 9"/>
+        <path d="M15 11 l2 -9 M30 13 l4 -9 M45 16 l6 -8 M60 18 l7 -8 M75 21 l8 -7 M90 23 l9 -6"/>
+      </g>
+      <circle cx="40" cy="36" r="13" fill="url(#vel2)"/><circle cx="35" cy="31" r="4" fill="#fff" opacity=".45"/><rect x="36" y="20" width="8" height="5" fill="#d9a63c"/>
+      <circle cx="74" cy="44" r="10" fill="#d9a63c"/><circle cx="70" cy="40" r="3" fill="#fff" opacity=".55"/><rect x="71" y="31" width="6" height="4" fill="#9a6a1c"/>
+    </g>
+  </svg>
+
+  <!-- polaroid: midnight clock -->
+  <div class="pol clock" style="z-index:5"><svg width="170" height="200" viewBox="0 0 170 200">
+    <defs>
+      <radialGradient id="cb" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#3d2a1c"/><stop offset="1" stop-color="#0d0806"/></radialGradient>
+      <radialGradient id="face" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#fff8e4"/><stop offset="1" stop-color="#d8c69a"/></radialGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dc8c"/><stop offset=".5" stop-color="#9a6a1c"/><stop offset="1" stop-color="#e9c56b"/></linearGradient>
+      <filter id="bk"><feGaussianBlur stdDeviation="3"/></filter>
+    </defs>
+    <rect width="170" height="200" fill="url(#cb)"/>
+    <g filter="url(#bk)" opacity=".8"><circle cx="20" cy="30" r="9" fill="#ffc86a"/><circle cx="150" cy="20" r="7" fill="#ff9a5a"/><circle cx="155" cy="170" r="10" fill="#ffd27a"/><circle cx="15" cy="180" r="8" fill="#e85a4a"/><circle cx="140" cy="95" r="5" fill="#ffe3a0"/></g>
+    <circle cx="85" cy="100" r="62" fill="url(#gold)"/>
+    <circle cx="85" cy="100" r="54" fill="url(#face)"/>
+    <g font-family="Cormorant Garamond,serif" font-size="12" font-weight="700" fill="#2b2121" text-anchor="middle">
+      <text x="85" y="60">XII</text><text x="128" y="104">III</text><text x="85" y="148">VI</text><text x="42" y="104">IX</text>
+    </g>
+    <g fill="#2b2121"><circle cx="107" cy="63" r="1.5"/><circle cx="122" cy="78" r="1.5"/><circle cx="122" cy="122" r="1.5"/><circle cx="107" cy="137" r="1.5"/><circle cx="63" cy="137" r="1.5"/><circle cx="48" cy="122" r="1.5"/><circle cx="48" cy="78" r="1.5"/><circle cx="63" cy="63" r="1.5"/></g>
+    <path d="M85 100 L83 70 L85 64 L87 70Z" fill="#2b2121"/>
+    <path d="M85 100 L84 58 L85 52 L86 58Z" fill="#a3141d"/>
+    <circle cx="85" cy="100" r="4" fill="url(#gold)"/>
+    <ellipse cx="70" cy="75" rx="22" ry="12" fill="#fff" opacity=".25" transform="rotate(-30 70 75)"/>
+  </svg></div>
+
+  <!-- polaroid: champagne -->
+  <div class="pol glass" style="z-index:5"><svg width="160" height="205" viewBox="0 0 160 205">
+    <defs>
+      <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1e3a"/><stop offset="1" stop-color="#3b2232"/></linearGradient>
+      <linearGradient id="champ" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0b0"/><stop offset="1" stop-color="#d9a63c"/></linearGradient>
+      <filter id="bk2"><feGaussianBlur stdDeviation="4"/></filter>
+    </defs>
+    <rect width="160" height="205" fill="url(#gb)"/>
+    <g filter="url(#bk2)" opacity=".85"><circle cx="25" cy="40" r="12" fill="#ffc86a"/><circle cx="130" cy="30" r="10" fill="#ff7a6a"/><circle cx="80" cy="20" r="7" fill="#fff0b0"/><circle cx="140" cy="140" r="9" fill="#ffd27a"/><circle cx="20" cy="150" r="7" fill="#8ab0ff"/></g>
+    <!-- glass L -->
+    <g transform="rotate(14 60 120)">
+      <path d="M44 50 L72 50 L68 110 Q58 120 48 110Z" fill="#fff" opacity=".18" stroke="#fff" stroke-opacity=".7"/>
+      <path d="M46 72 L70 72 L68 110 Q58 120 48 110Z" fill="url(#champ)" opacity=".9"/>
+      <rect x="57" y="115" width="3" height="50" fill="#fff" opacity=".7"/><ellipse cx="58.5" cy="166" rx="14" ry="3.5" fill="#fff" opacity=".6"/>
+    </g>
+    <!-- glass R -->
+    <g transform="rotate(-14 100 120)">
+      <path d="M88 50 L116 50 L112 110 Q102 120 92 110Z" fill="#fff" opacity=".18" stroke="#fff" stroke-opacity=".7"/>
+      <path d="M90 70 L114 70 L112 110 Q102 120 92 110Z" fill="url(#champ)" opacity=".9"/>
+      <rect x="101" y="115" width="3" height="50" fill="#fff" opacity=".7"/><ellipse cx="102.5" cy="166" rx="14" ry="3.5" fill="#fff" opacity=".6"/>
+    </g>
+    <!-- sparks -->
+    <g fill="#fff6c8"><path d="M80 38 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/><circle cx="66" cy="30" r="1.5"/><circle cx="96" cy="28" r="1.5"/><circle cx="88" cy="18" r="1"/><circle cx="72" cy="20" r="1"/></g>
+    <circle cx="80" cy="44" r="18" fill="#fff2b0" opacity=".35" filter="url(#bk2)"/>
+  </svg></div>
+
+  <!-- sticky note -->
+  <div class="note"><span class="pin"></span><span class="s1">С Новым</span><span class="s2">годом!</span></div>
+
+  <!-- verse -->
+  <div class="verse">
+    Пусть всё задуманное <span class="c">сбудется<svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M6 18 C2 6 40 2 70 3 C96 4 100 18 86 25 C66 32 22 30 8 24 C2 21 4 16 10 13" fill="none" stroke="#c41f2a" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></span>,<br>
+    а каждый новый день приносит свет, тепло и&nbsp;веру в&nbsp;чудо. <span class="r">Пусть рядом будут близкие люди, в доме — уют, а&nbsp;в&nbsp;сердце — радость</span> на&nbsp;весь <b>2027 год.</b>
+  </div>
+  <div class="handle">@yourhandle</div>
+
+  <!-- snow over everything -->
+  <svg class="snow" style="z-index:8" viewBox="0 0 736 1308" id="snow"></svg>
+
+  <!-- light flare top-left -->
+  <svg class="flare" style="z-index:9" viewBox="0 0 736 1308">
+    <defs>
+      <radialGradient id="fl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".15" stop-color="#fffbe8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>
+      <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <radialGradient id="fl2" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff3d0" stop-opacity=".75"/><stop offset="1" stop-color="#fff3d0" stop-opacity="0"/></radialGradient>
+    </defs>
+    <circle cx="20" cy="30" r="170" fill="url(#fl)"/>
+    <path d="M20 30 L360 210 L330 240Z" fill="url(#beam)" opacity=".55"/>
+    <path d="M20 30 L250 330 L215 340Z" fill="url(#beam)" opacity=".4"/>
+    <path d="M20 30 L520 120 L510 150Z" fill="url(#beam)" opacity=".35"/>
+    <circle cx="385" cy="490" r="70" fill="url(#fl2)"/>
+    <circle cx="385" cy="490" r="16" fill="#fff" opacity=".55"/>
+  </svg>
+</div>
+
+<script>
+  // deterministic snowflakes
+  const s=document.getElementById('snow');let seed=7;const r=()=>((seed=(seed*16807)%2147483647)/2147483647);
+  let h='';
+  for(let i=0;i<130;i++){const x=r()*736,y=r()*1308,rad=.6+r()*2.4,o=.35+r()*.55;
+    h+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rad.toFixed(2)}" fill="#fff" opacity="${o.toFixed(2)}"/>`;}
+  for(let i=0;i<14;i++){const x=r()*736,y=r()*1308,sz=4+r()*5;
+    h+=`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" stroke="#fff" stroke-width=".9" opacity=".75"><path d="M0 -${sz}V${sz}M-${sz*.87} -${sz/2}L${sz*.87} ${sz/2}M-${sz*.87} ${sz/2}L${sz*.87} -${sz/2}"/></g>`;}
+  s.innerHTML=h;
+</script>
+</body>
+</html>
