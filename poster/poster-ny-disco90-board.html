@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Дискотека 90-х — доска</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Caveat:wght@600;700&family=Montserrat:wght@300;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #6d6d70; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #1a1a1a; }
+  :root { --red: #d3121b; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #8a8a8c url(concrete.jpg) 0 0 / 297mm 420mm; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+
+  .pol { position: absolute; background: linear-gradient(170deg, #f7f6f2, #e9e7e1); padding: 3.6mm 3.6mm 13mm; transform-origin: 50% 0;
+    box-shadow: 0 0 0 .15mm rgba(0,0,0,.08), 1.4mm 2.6mm 2mm rgba(0,0,0,.35), 4mm 9mm 9mm rgba(0,0,0,.35); }
+  .pol img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; box-shadow: inset 0 0 0 .2mm rgba(0,0,0,.2); }
+  .pol::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.22) 0, rgba(255,255,255,0) 35%); pointer-events: none; }
+  .pol b { position: absolute; left: 0; right: 0; bottom: 3mm; text-align: center; font-family: 'Caveat'; font-weight: 700; font-size: 6mm; color: #2a2a2a; }
+
+  .head { left: 0; right: 0; top: 26mm; text-align: center; line-height: 1; }
+  .head .a { font-family: 'Russo One'; font-size: 11mm; color: #1a1a1a; letter-spacing: .01em; }
+  .head .b { font-family: 'Caveat'; font-weight: 700; font-size: 8mm; color: var(--red); margin-top: -1mm; }
+  .college { left: 50%; transform: translateX(-50%); top: 12mm; display: flex; align-items: center; gap: 2.2mm; }
+  .college img { width: 10mm; height: 10mm; }
+  .college .x { font-weight: 300; font-size: 2.7mm; line-height: 1; color: #2a2a2a; }
+  .college .y { font-weight: 700; font-size: 3.7mm; line-height: 1; margin-top: .7mm; color: #1a1a1a; }
+
+  .t90 { left: 0; right: 0; top: 136mm; text-align: center; font-family: 'Russo One'; line-height: .86; white-space: nowrap; font-size: 62mm; letter-spacing: -.02em; }
+  .t90 span, .tdisco span { display: inline-block; color: transparent; -webkit-background-clip: text; background-clip: text;
+    filter: drop-shadow(.6mm 1mm 0 rgba(90,0,0,.35)) drop-shadow(1.4mm 2.6mm 2.4mm rgba(0,0,0,.28)); }
+  .tdisco { left: 0; right: 0; top: 191mm; text-align: center; font-family: 'Russo One'; font-size: 15.5mm; line-height: 1; letter-spacing: .06em; }
+  .s1 { left: 0; right: 0; top: 211mm; text-align: center; font-family: 'Caveat'; font-weight: 700; font-size: 15mm; line-height: 1; color: #141414; }
+  .s2 { left: 0; right: 0; top: 225mm; text-align: center; font-family: 'Caveat'; font-weight: 700; font-size: 13.5mm; line-height: 1; color: var(--red); }
+
+  .note { position: absolute; width: 54mm; height: 50mm; background: linear-gradient(165deg, #fbfaf6, #ecebe5 70%, #dcdad3); text-align: center; padding-top: 9mm;
+    box-shadow: 1mm 2mm 1.6mm rgba(0,0,0,.3), 3mm 7mm 7mm rgba(0,0,0,.3); clip-path: polygon(0 0, 100% 0, 100% 88%, 90% 100%, 0 100%); }
+  .note .n { font-weight: 800; font-size: 8mm; line-height: 1; color: #1a1a1a; }
+  .note .m { font-family: 'Caveat'; font-weight: 700; font-size: 10.5mm; line-height: 1; color: var(--red); margin-top: .6mm; }
+  .note .y { font-weight: 800; font-size: 6.4mm; line-height: 1; color: #1a1a1a; margin-top: .8mm; letter-spacing: .04em; }
+  .note::after { content: ''; position: absolute; right: 0; bottom: 0; width: 10%; height: 12%; background: linear-gradient(135deg, #cfccc4 0, #f3f2ee 60%); box-shadow: -.4mm -.4mm 1mm rgba(0,0,0,.25); }
+  .soon { left: 0; right: 0; top: 330mm; text-align: center; font-weight: 800; font-size: 3.9mm; letter-spacing: .18em; color: #1a1a1a; }
+  .soon i { font-style: normal; color: var(--red); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="pinHead" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ff8f86"/><stop offset=".35" stop-color="#e01b22"/><stop offset="1" stop-color="#6e0508"/></radialGradient>
+    <symbol id="pin" viewBox="0 0 16 22" overflow="visible">
+      <ellipse cx="11" cy="20" rx="5" ry="1.6" fill="#000" opacity=".35" filter="url(#pb)"/>
+      <path d="M8 12 L10.5 20" stroke="#9a9a9a" stroke-width=".9"/>
+      <path d="M3 9.5 C 3 7, 13 7, 13 9.5 L 12 11.5 C 10 13, 6 13, 4 11.5 Z" fill="url(#pinHead)"/>
+      <rect x="5.4" y="3.5" width="5.2" height="5" rx="1.2" fill="url(#pinHead)"/>
+      <ellipse cx="8" cy="3.8" rx="4.2" ry="2.6" fill="url(#pinHead)"/>
+      <ellipse cx="6.8" cy="3.2" rx="1.4" ry=".7" fill="#fff" opacity=".6"/>
+    </symbol>
+    <filter id="pb" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".8"/></filter>
+    <filter id="sb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation=".6"/></filter>
+  </defs>
+</svg>
+
+<div class="poster">
+  <div id="pols" class="layer" data-name="Полароиды" data-raster="full"></div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Нитки" data-raster="full">
+    <g id="strShadow" fill="none" stroke="#000" stroke-width="1.1" opacity=".28" filter="url(#sb)"></g>
+    <g id="strings" fill="none" stroke-linecap="round"></g>
+  </svg>
+
+  <div class="abs college" data-name="Колледж" data-raster="box"><img src="logo-briks-mark.png" alt="" style="filter:brightness(0) saturate(100%) invert(14%)">
+    <div><div class="x">УНИВЕРСИТЕТСКИЙ</div><div class="y">КОЛЛЕДЖ БРИКС</div></div></div>
+  <div class="abs head" data-name="Шапка" data-raster="box"><div class="b">встречаем 2027</div></div>
+
+  <div class="abs t90" data-name="90-Х" data-raster="box"><span id="t90">90-Х</span></div>
+  <div class="abs tdisco" data-name="ДИСКОТЕКА" data-raster="box"><span id="tdisco">ДИСКОТЕКА</span></div>
+  <div class="abs s1" data-name="Строка 1" data-raster="box">Новогодняя вечеринка</div>
+  <div class="abs s2" data-name="Строка 2" data-raster="box">в стиле лихих 90-х</div>
+
+  <div class="note" data-name="Записка 1999" data-raster="box" style="left:66mm; top:266mm; transform:rotate(-4deg)"><div class="n">31</div><div class="m">декабря</div><div class="y">1999</div></div>
+  <div class="note" data-name="Записка 2027" data-raster="box" style="left:178mm; top:266mm; transform:rotate(3deg)"><div class="n">СНОВА</div><div class="m">в эфире</div><div class="y">2027</div></div>
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Стрелка" data-raster="full">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#d3121b"/></marker></defs>
+    <path d="M124 300 C 140 308, 158 304, 175 296" fill="none" stroke="#d3121b" stroke-width=".8" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  </svg>
+  <div class="abs soon" data-name="Скоро" data-raster="box">ВОКАЛ <i>✦</i> ТАНЦЫ <i>✦</i> ДАТА И МЕСТО — СОВСЕМ СКОРО</div>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Кнопки" data-raster="full"><g id="pins"></g></svg>
+
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="pointer-events:none" data-name="Свет" data-raster="full">
+    <defs><radialGradient id="vig" cx="50%" cy="46%" r="72%"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".62"/></radialGradient></defs>
+    <rect width="297" height="420" fill="url(#vig)"/>
+  </svg>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  // polaroids: pin x, pin y, width, rotation, photo, caption
+  const P = [
+    [10, -10, 62, -9, 'stamp', ''], [26, 66, 66, -6, 'tv', 'снова в эфире'], [16, 156, 62, 5, 'niche', ''], [24, 244, 66, -5, 'tree', 'ёлка ✓'],
+    [12, 336, 64, 8, 'gifts', ''], [272, 34, 66, 7, 'neon90', 'хиты 90-х'], [278, 120, 64, -4, 'boombox', 'звук ✓'], [282, 208, 58, 6, 'ball', ''],
+    [272, 296, 64, -7, 'cassette', 'mix 90-х'], [150, 376, 56, 3, 'mic', 'вокал']];
+  let h = '';
+  P.forEach(([x, y, w, r, ph, cap]) => { if (!w) return;
+    h += `<div class="pol" style="left:${x - w / 2}mm;top:${y - 2}mm;width:${w}mm;transform:rotate(${r}deg)"><img src="board-${ph}.jpg" alt="">${cap ? `<b>${cap}</b>` : ''}</div>`; });
+  $('pols').innerHTML = h;
+  // pins: on each polaroid + centre + notes
+  const pins = P.filter(p => p[2]).map(p => [p[0], p[1] + 3]);
+  const C = [210, 124], N1 = [93, 270], N2 = [205, 270];
+  pins.push(C, N1, N2);
+  let ph = ''; pins.forEach(([x, y], i) => { const s = i === pins.length - 3 ? 15 : 8; ph += `<use href="#pin" x="${x - s / 2}" y="${y - s * .55}" width="${s}" height="${s * 1.375}"/>`; });
+  $('pins').innerHTML = ph;
+  // red strings
+  const E = [[0, 1], [1, 2], [2, 3], [3, 4], [5, 6], [6, 7], [7, 8], [8, 9], [1, 10], [6, 10], [5, 10], [2, 11], [7, 12], [3, 11], [8, 12], [11, 12], [4, 9], [3, 9], [11, 9]];
+  let s1 = '', s2 = '';
+  E.forEach(([a, b]) => { const [x1, y1] = pins[a], [x2, y2] = pins[b]; const L = Math.hypot(x2 - x1, y2 - y1), sag = L * .03;
+    const d = `M${x1} ${y1} Q ${(x1 + x2) / 2} ${(y1 + y2) / 2 + sag} ${x2} ${y2}`;
+    s2 += `<path d="${d}" transform="translate(1.6 2.6)"/>`;
+    s1 += `<path d="${d}" stroke="#7a060b" stroke-width="1.1"/><path d="${d}" stroke="#d3121b" stroke-width=".8"/><path d="${d}" stroke="#ff6a6a" stroke-width=".22" opacity=".7" transform="translate(-.15 -.15)"/>`; });
+  $('strShadow').innerHTML = s2; $('strings').innerHTML = s1;
+
+  // distressed red title: diamond plate + noise holes + splatter
+  const enc = s => 'url("data:image/svg+xml,' + encodeURIComponent(s) + '")';
+  const plate = enc(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="#d3121b"/><g fill="#a20c13"><path d="M6 4 l6 6 l-2 2 l-6 -6 z"/><path d="M26 24 l6 6 l-2 2 l-6 -6 z"/></g><g fill="#ff4a4f" opacity=".7"><path d="M28 4 l-6 6 l2 2 l6 -6 z"/><path d="M8 24 l-6 6 l2 2 l6 -6 z"/></g></svg>`);
+  const holes = enc(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="h"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -18 13.2"/></filter><rect width="400" height="400" filter="url(#h)"/></svg>`);
+  for (const id of ['t90', 'tdisco']) { const el = $(id);
+    el.style.backgroundImage = `${plate}, linear-gradient(180deg, #e3161f, #b20d15)`; el.style.backgroundSize = id === 't90' ? '7mm 7mm, 100% 100%' : '3.6mm 3.6mm, 100% 100%';
+    el.style.webkitMaskImage = el.style.maskImage = holes; el.style.webkitMaskSize = el.style.maskSize = id === 't90' ? '120mm 120mm' : '60mm 60mm'; }
+</script>
+</body>
+</html>
