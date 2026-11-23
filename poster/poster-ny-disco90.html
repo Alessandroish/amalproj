@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Новогодняя дискотека 90-х</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Unbounded:wght@700;900&family=Pacifico&family=Montserrat:wght@300;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #07021a; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Montserrat', sans-serif; color: #fff; }
+  :root { --pink: #ff2fa8; --cyan: #4ff3ff; --violet: #8a3dff; --gold: #ffd36b; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #0a0320; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .prop { position: absolute; overflow: visible; }
+
+  .ball { position: absolute; left: 87mm; top: 30mm; width: 123mm; height: 123mm; }
+  .ball img { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 9mm rgba(255, 70, 200, .45)) drop-shadow(0 4mm 8mm rgba(0, 0, 0, .7)); }
+
+  .brand { left: 14mm; top: 12mm; display: flex; align-items: center; gap: 2.8mm; }
+  .brand img { width: 11mm; height: 11mm; }
+  .brand .a { font-weight: 300; font-size: 3.1mm; letter-spacing: .02em; line-height: 1; }
+  .brand .b { font-weight: 600; font-size: 4.3mm; letter-spacing: .02em; line-height: 1; margin-top: 1mm; }
+  .year { right: 14mm; top: 11mm; font-family: 'Russo One'; font-weight: 400; font-size: 9mm; line-height: 1; letter-spacing: .02em;
+          color: transparent; -webkit-text-stroke: .5mm var(--gold); filter: drop-shadow(0 0 1.6mm rgba(255, 200, 90, .9)); }
+
+  .script { left: 0; right: 0; top: 152mm; text-align: center; font-family: 'Pacifico', cursive; font-size: 25mm; line-height: 1; color: #fff4fb;
+            transform: rotate(-6deg);
+            text-shadow: 0 0 .6mm #fff, 0 0 2mm var(--pink), 0 0 5mm var(--pink), 0 0 11mm var(--pink), 0 0 22mm rgba(255, 47, 168, .7); }
+  .disco { left: 0; right: 0; top: 187mm; text-align: center; font-family: 'Russo One'; font-weight: 400; line-height: 1; white-space: nowrap; letter-spacing: -.01em; }
+  .disco span { display: inline-block; transform: skewX(-9deg);
+    background: linear-gradient(180deg, #ffffff 0%, #eaf1ff 22%, #9fb3ea 44%, #26224f 50%, #4a2a7a 58%, #c35ad8 76%, #ffd2f1 92%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: .35mm rgba(255, 255, 255, .85);
+    filter: drop-shadow(0 .9mm 0 #ff2fa8) drop-shadow(0 .9mm 0 #b0188a) drop-shadow(0 .9mm 0 #5a0f6e) drop-shadow(0 4mm 6mm rgba(0, 0, 0, .55)) drop-shadow(0 0 7mm rgba(255, 47, 168, .45)); }
+  .n90 { left: 0; right: 0; top: 229mm; height: 88mm; text-align: center; font-family: 'Russo One'; font-weight: 400; line-height: 1; white-space: nowrap; letter-spacing: -.01em; }
+  .n90 > div { position: absolute; left: 0; right: 0; top: 0; transform: skewX(-9deg); }
+  .n90 .p { color: transparent; -webkit-text-stroke: 2.4mm #ff2fa8; transform: translate(-2.6mm, 2mm) skewX(-9deg); filter: drop-shadow(0 0 2.5mm #ff2fa8) drop-shadow(0 0 9mm rgba(255, 47, 168, .8)); opacity: .95; }
+  .n90 .c { color: rgba(79, 243, 255, .07); -webkit-text-stroke: 2.4mm #4ff3ff; filter: drop-shadow(0 0 2mm #4ff3ff) drop-shadow(0 0 9mm rgba(31, 184, 255, .9)); }
+  .n90 .w { color: transparent; -webkit-text-stroke: .7mm #f4ffff; }
+
+  .lineup { left: 0; right: 0; top: 316mm; text-align: center; font-weight: 800; font-size: 6.2mm; letter-spacing: .16em; line-height: 1;
+            text-shadow: 0 0 3mm rgba(79, 243, 255, .6); }
+  .lineup i { font-style: normal; color: var(--gold); margin: 0 3mm; text-shadow: 0 0 2mm rgba(255, 200, 90, .9); }
+  .sub { left: 0; right: 0; top: 326.5mm; text-align: center; font-weight: 500; font-size: 4.4mm; letter-spacing: .06em; color: rgba(255, 255, 255, .85); }
+  .soon { left: 50%; top: 336mm; transform: translateX(-50%); white-space: nowrap; padding: 2.4mm 7mm 2.2mm; border: .55mm solid var(--pink); border-radius: 20mm;
+          font-weight: 800; font-size: 4.8mm; letter-spacing: .2em; background: rgba(20, 4, 40, .55);
+          box-shadow: 0 0 2mm var(--pink), 0 0 7mm rgba(255, 47, 168, .7), inset 0 0 3mm rgba(255, 47, 168, .5); text-shadow: 0 0 2mm rgba(255, 47, 168, .9); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
+    <filter id="b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="b8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+    <filter id="glowF" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.4" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0 -10 C1 -2 2 -1 10 0 C2 1 1 2 0 10 C-1 2 -2 1 -10 0 C-2 -1 -1 -2 0 -10 Z" fill="#fff"/></symbol>
+  </defs>
+</svg>
+
+<div class="poster">
+  <!-- night club backdrop: violet haze, bokeh, light spots from the ball, neon floor grid -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Фон" data-raster="full">
+    <defs>
+      <radialGradient id="bgG" cx="50%" cy="28%" r="80%"><stop offset="0" stop-color="#3b1172"/><stop offset=".35" stop-color="#1c0847"/><stop offset=".75" stop-color="#0a0322"/><stop offset="1" stop-color="#030010"/></radialGradient>
+      <radialGradient id="haloP" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff3fbf" stop-opacity=".55"/><stop offset=".5" stop-color="#8a3dff" stop-opacity=".22"/><stop offset="1" stop-color="#8a3dff" stop-opacity="0"/></radialGradient>
+      <linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2fa8" stop-opacity="0"/><stop offset=".25" stop-color="#ff2fa8" stop-opacity=".35"/><stop offset="1" stop-color="#7a1fff" stop-opacity=".5"/></linearGradient>
+      <linearGradient id="horizon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2fa8" stop-opacity="0"/><stop offset=".6" stop-color="#ff2fa8" stop-opacity=".35"/><stop offset="1" stop-color="#ff2fa8" stop-opacity="0"/></linearGradient>
+    </defs>
+    <rect width="297" height="420" fill="url(#bgG)"/>
+    <circle cx="148.5" cy="92" r="140" fill="url(#haloP)"/>
+    <rect x="0" y="300" width="297" height="60" fill="url(#horizon)"/>
+    <g id="bokeh"></g>
+    <g id="spots"></g>
+    <g id="grid" stroke="url(#floorG)" fill="none" filter="url(#glowF)"></g>
+  </svg>
+
+  <!-- light beams from the ball -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Лучи" data-raster="full">
+    <defs>
+      <radialGradient id="beamG" gradientUnits="userSpaceOnUse" cx="148.5" cy="92" r="330"><stop offset="0" stop-opacity=".55" stop-color="#fff"/><stop offset=".4" stop-opacity=".16" stop-color="#fff"/><stop offset="1" stop-opacity="0" stop-color="#fff"/></radialGradient>
+    </defs>
+    <g id="beams" filter="url(#b3)"></g>
+  </svg>
+
+  <!-- christmas branches with a neon garland, top corners -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Ёлочные ветки" data-raster="full">
+    <g id="branches"></g>
+    <g id="garland"></g>
+  </svg>
+
+  <!-- string + cap + disco ball -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Подвес шара" data-raster="full">
+    <defs>
+      <linearGradient id="capG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6b4a12"/><stop offset=".3" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#d9a640"/><stop offset=".75" stop-color="#fff2c4"/><stop offset="1" stop-color="#5a3c0e"/></linearGradient>
+      <linearGradient id="ribbonG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a0106a"/><stop offset=".5" stop-color="#ff5cc6"/><stop offset="1" stop-color="#a0106a"/></linearGradient>
+    </defs>
+    <rect x="147.3" y="-2" width="2.4" height="33" fill="url(#ribbonG)"/>
+    <path d="M148.5 21 c -3 -6 -10 -7 -10 -3 c 0 4 7 4 10 3 c 3 1 10 1 10 -3 c 0 -4 -7 -3 -10 3 z" fill="url(#ribbonG)" stroke="#5a0838" stroke-width=".3"/>
+    <path d="M148.5 21 l -3 7 l 1.6 -.4 z M148.5 21 l 3 7 l -1.6 -.4 z" fill="#d2288f"/>
+    <rect x="140.5" y="27.5" width="16" height="7" rx="1.2" fill="url(#capG)"/>
+    <g stroke="#8a6418" stroke-width=".35" opacity=".8"><line x1="143" y1="27.8" x2="143" y2="34.2"/><line x1="146" y1="27.8" x2="146" y2="34.2"/><line x1="149" y1="27.8" x2="149" y2="34.2"/><line x1="152" y1="27.8" x2="152" y2="34.2"/><line x1="155" y1="27.8" x2="155" y2="34.2"/></g>
+  </svg>
+  <div class="ball" data-name="Диско-шар" data-raster="box"><img src="discoball.png" alt=""></div>
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Блики шара" data-raster="full">
+    <g id="glints"></g>
+  </svg>
+
+  <!-- side props -->
+  <svg class="prop" viewBox="0 0 110 70" data-name="Кассета" data-raster="box" style="left:-9mm; top:240mm; width:90mm; height:61mm; transform: rotate(-16deg); filter: drop-shadow(-3mm 6mm 5mm rgba(0,0,0,.65)) drop-shadow(0 0 4mm rgba(255,47,168,.35));">
+    <defs>
+      <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a3a"/><stop offset=".5" stop-color="#151522"/><stop offset="1" stop-color="#07070d"/></linearGradient>
+      <linearGradient id="labelG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6ea"/><stop offset="1" stop-color="#efe2d2"/></linearGradient>
+      <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2f4a" stop-opacity=".9"/><stop offset="1" stop-color="#120c1c" stop-opacity=".95"/></linearGradient>
+      <radialGradient id="reel" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f4f4f4"/><stop offset=".55" stop-color="#cfcfd6"/><stop offset="1" stop-color="#7c7c88"/></radialGradient>
+    </defs>
+    <rect x="1" y="1" width="108" height="68" rx="4" fill="url(#shell)" stroke="#4a4a5e" stroke-width=".6"/>
+    <rect x="7" y="5" width="96" height="40" rx="2" fill="url(#labelG)"/>
+    <rect x="7" y="5" width="96" height="6" fill="#ff2fa8"/><rect x="7" y="11" width="96" height="3" fill="#ffd36b"/><rect x="7" y="14" width="96" height="2" fill="#4ff3ff"/>
+    <text x="13" y="27" font-family="Pacifico" font-size="9" fill="#2a0a3a" transform="rotate(-4 13 27)">MIX 90-х</text>
+    <text x="96" y="25" font-family="Unbounded" font-weight="900" font-size="5" fill="#ff2fa8" text-anchor="end">A</text>
+    <rect x="28" y="28" width="54" height="15" rx="7.5" fill="url(#win)" stroke="#9a8fb0" stroke-width=".4"/>
+    <rect x="44" y="31" width="22" height="9" fill="#3b2a18" opacity=".85"/>
+    <g id="reelL" transform="translate(36 35.5)"><circle r="6" fill="url(#reel)"/><circle r="2.2" fill="#2a2a34"/><g fill="#2a2a34"><rect x="-.6" y="-4.6" width="1.2" height="2"/><rect x="-.6" y="2.6" width="1.2" height="2"/><rect x="-4.6" y="-.6" width="2" height="1.2"/><rect x="2.6" y="-.6" width="2" height="1.2"/></g></g>
+    <g transform="translate(74 35.5)"><circle r="6" fill="url(#reel)"/><circle r="2.2" fill="#2a2a34"/><g fill="#2a2a34"><rect x="-.6" y="-4.6" width="1.2" height="2"/><rect x="-.6" y="2.6" width="1.2" height="2"/><rect x="-4.6" y="-.6" width="2" height="1.2"/><rect x="2.6" y="-.6" width="2" height="1.2"/></g></g>
+    <path d="M24 69 L30 52 H80 L86 69 Z" fill="#1d1d2b" stroke="#4a4a5e" stroke-width=".5"/>
+    <g fill="#55556a"><circle cx="5" cy="5" r="1.3"/><circle cx="105" cy="5" r="1.3"/><circle cx="5" cy="64" r="1.3"/><circle cx="105" cy="64" r="1.3"/><circle cx="55" cy="60" r="1.3"/></g>
+    <g fill="#0a0a10"><circle cx="38" cy="62" r="1.8"/><circle cx="72" cy="62" r="1.8"/></g>
+    <path d="M3 3 H107" stroke="#fff" stroke-opacity=".25" stroke-width=".6"/>
+  </svg>
+
+  <svg class="prop" viewBox="0 0 40 150" data-name="Микрофон" data-raster="box" style="left:246mm; top:200mm; width:40mm; height:150mm; transform: rotate(24deg); filter: drop-shadow(-4mm 7mm 6mm rgba(0,0,0,.65)) drop-shadow(0 0 4mm rgba(79,243,255,.3));">
+    <defs>
+      <radialGradient id="mesh" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#c9ccd8"/><stop offset=".75" stop-color="#5d6274"/><stop offset="1" stop-color="#1c1e28"/></radialGradient>
+      <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a3c48"/><stop offset=".3" stop-color="#f2f3f8"/><stop offset=".5" stop-color="#a6a9b6"/><stop offset=".8" stop-color="#e6e7ee"/><stop offset="1" stop-color="#2c2e38"/></linearGradient>
+      <linearGradient id="handle" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#050507"/><stop offset=".3" stop-color="#3c3d48"/><stop offset=".42" stop-color="#8a8c9a"/><stop offset=".55" stop-color="#25262e"/><stop offset="1" stop-color="#050507"/></linearGradient>
+      <clipPath id="headClip"><circle cx="20" cy="20" r="17"/></clipPath>
+    </defs>
+    <circle cx="20" cy="20" r="17" fill="url(#mesh)"/>
+    <g clip-path="url(#headClip)" stroke="#2a2c36" stroke-width=".45" opacity=".55" id="meshLines"></g>
+    <circle cx="20" cy="20" r="17" fill="none" stroke="#1c1e28" stroke-width=".6"/>
+    <ellipse cx="14" cy="13" rx="5" ry="3" fill="#fff" opacity=".55" transform="rotate(-30 14 13)"/>
+    <path d="M7 34 H33 L31 44 H9 Z" fill="url(#metal)"/>
+    <rect x="9" y="44" width="22" height="3" fill="#ff2fa8"/>
+    <path d="M9 47 H31 L26 128 Q20 132 14 128 Z" fill="url(#handle)"/>
+    <rect x="15.5" y="70" width="9" height="16" rx="2" fill="#1a1b22" stroke="#3a3b46" stroke-width=".4"/>
+    <rect x="17.5" y="73" width="5" height="6" rx="1" fill="#4ff3ff" opacity=".9"/>
+    <path d="M20 130 C 20 140, 30 142, 26 150" stroke="#111" stroke-width="3" fill="none"/>
+  </svg>
+
+  <!-- gifts piled at the bottom (background) -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Подарки" data-raster="full">
+    <g id="gifts"></g>
+  </svg>
+
+  <!-- text -->
+  <div class="abs brand txt" data-name="Логотип колледжа" data-ftext="1">
+    <img src="logo-briks-mark-white.png" alt="">
+    <div><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b">КОЛЛЕДЖ БРИКС</div></div>
+  </div>
+  <div class="abs year" data-name="2027" data-raster="box">2027</div>
+  <div class="abs script" data-name="Новогодняя" data-raster="box">Новогодняя</div>
+  <div class="abs disco" id="disco" data-name="ДИСКОТЕКА" data-raster="box"><span>ДИСКОТЕКА</span></div>
+  <div class="abs n90" id="n90" data-name="90-х" data-raster="box"><div class="p">90-х</div><div class="c">90-х</div><div class="w">90-х</div></div>
+  <div class="abs lineup" data-name="Номера" data-raster="box">ВОКАЛЬНЫЕ НОМЕРА<i>✦</i>ТАНЦЕВАЛЬНЫЕ НОМЕРА</div>
+  <div class="abs sub" data-name="Подзаголовок" data-raster="box">Хиты 90-х, танцпол и новогоднее настроение</div>
+  <div class="abs soon" data-name="Скоро" data-raster="box">ДАТА И МЕСТО — СОВСЕМ СКОРО</div>
+
+  <!-- confetti, tinsel, snow in front -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Конфетти и снег" data-raster="full">
+    <g id="confetti"></g>
+  </svg>
+  <!-- VHS grain + scanlines -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:overlay; pointer-events:none" data-name="Зерно" data-raster="full">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .5 0"/></filter>
+    <rect width="297" height="420" filter="url(#grain)" opacity=".5"/>
+    <g id="scan" stroke="#000" stroke-width=".18" opacity=".18"></g>
+    <rect width="297" height="420" fill="url(#vig)"/>
+    <defs><radialGradient id="vig" cx="50%" cy="45%" r="75%"><stop offset=".6" stop-color="#808080" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient></defs>
+  </svg>
+</div>
+
+<script>
+  const mm = v => v * 96 / 25.4;
+  let seed = 1990; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pick = a => a[Math.floor(rnd() * a.length)];
+  const NEON = ['#ff2fa8', '#4ff3ff', '#ffd36b', '#8a3dff', '#7dff9b', '#ff7a3d'];
+  const $ = id => document.getElementById(id);
+
+  // bokeh
+  (function () { let h = '';
+    for (let i = 0; i < 46; i++) { const x = rnd() * 297, y = rnd() * 330, r = 2 + rnd() * rnd() * 11, c = pick(NEON);
+      h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}" opacity="${(.08 + rnd() * .22).toFixed(2)}" filter="url(#b${r > 6 ? 3 : 1})"/>`; }
+    $('bokeh').innerHTML = h; })();
+  // light spots thrown by the mirror ball
+  (function () { let h = '';
+    for (let i = 0; i < 70; i++) { const a = rnd() * Math.PI * 2, d = 80 + rnd() * 150, x = 148.5 + Math.cos(a) * d, y = 92 + Math.sin(a) * d * .9;
+      if (y > 335) continue; const s = .5 + rnd() * 1.6;
+      h += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(s * 1.4).toFixed(2)}" ry="${s.toFixed(2)}" fill="${pick(['#fff', '#ff9adf', '#9ff7ff', '#ffe7a8'])}" opacity="${(.35 + rnd() * .5).toFixed(2)}" transform="rotate(${(a * 57).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
+    $('spots').innerHTML = h; })();
+  // perspective neon floor
+  (function () { let h = ''; const hz = 330, vx = 148.5;
+    for (let k = -14; k <= 14; k++) { const xb = vx + k * 26; h += `<line x1="${vx + k * 3}" y1="${hz}" x2="${xb}" y2="430" stroke-width=".45"/>`; }
+    for (let k = 1; k < 12; k++) { const y = hz + Math.pow(k / 11, 1.9) * 95; h += `<line x1="-10" y1="${y.toFixed(2)}" x2="307" y2="${y.toFixed(2)}" stroke-width="${(.25 + k * .05).toFixed(2)}"/>`; }
+    $('grid').innerHTML = h; })();
+  // beams
+  (function () { let h = ''; const cols = ['#ff2fa8', '#4ff3ff', '#ffd36b', '#8a3dff', '#ffffff'];
+    for (let i = 0; i < 14; i++) { const a = (i / 14) * Math.PI * 2 + rnd() * .3, w = .025 + rnd() * .04, L = 360;
+      const x1 = 148.5 + Math.cos(a - w) * L, y1 = 92 + Math.sin(a - w) * L, x2 = 148.5 + Math.cos(a + w) * L, y2 = 92 + Math.sin(a + w) * L;
+      h += `<path d="M148.5 92 L${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)} Z" fill="${cols[i % cols.length]}" opacity="${(.12 + rnd() * .16).toFixed(2)}" style="mask:none"/>`; }
+    $('beams').innerHTML = `<g fill-opacity="1">${h}</g><circle cx="148.5" cy="92" r="80" fill="url(#beamG)" opacity=".0"/>`;
+    // fade beams with distance using the radial gradient as an alpha mask
+    $('beams').setAttribute('mask', 'url(#beamMask)');
+    const svg = $('beams').ownerSVGElement; const m = document.createElementNS('http://www.w3.org/2000/svg', 'mask'); m.id = 'beamMask';
+    m.innerHTML = '<rect width="297" height="420" fill="url(#beamG)"/>'; svg.querySelector('defs').appendChild(m); })();
+  // christmas branches (needles along curves) + garland bulbs
+  (function () {
+    const needles = (pts, len, dens) => { let h = '';
+      for (let t = 0; t < 1; t += 1 / dens) {
+        const i = Math.min(pts.length - 2, Math.floor(t * (pts.length - 1))), f = t * (pts.length - 1) - i;
+        const x = pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f, y = pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f;
+        const dir = Math.atan2(pts[i + 1][1] - pts[i][1], pts[i + 1][0] - pts[i][0]);
+        for (let k = 0; k < 7; k++) { const side = k % 2 ? 1 : -1, a = dir + side * (.6 + rnd() * .7), l = len * (.6 + rnd() * .6) * (1 - t * .35);
+          const g = Math.floor(40 + rnd() * 70); const col = `rgb(${Math.floor(g * .25)},${g},${Math.floor(g * .55)})`;
+          h += `<line x1="${x.toFixed(2)}" y1="${y.toFixed(2)}" x2="${(x + Math.cos(a) * l).toFixed(2)}" y2="${(y + Math.sin(a) * l).toFixed(2)}" stroke="${col}" stroke-width="${(.35 + rnd() * .3).toFixed(2)}" stroke-linecap="round"/>`; } }
+      return h; };
+    const curve = (x0, y0, x1, y1, bend) => { const p = []; for (let i = 0; i <= 12; i++) { const t = i / 12; p.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t + Math.sin(t * Math.PI) * bend]); } return p; };
+    let h = '<g filter="url(#b1)" opacity=".55">' + needles(curve(-20, 40, 70, -8, 10), 11, 70) + needles(curve(317, 40, 227, -8, 10), 11, 70) + '</g>';
+    h += needles(curve(-15, 18, 82, 6, 14), 9, 120) + needles(curve(-10, 62, 46, 30, 6), 8, 70);
+    h += needles(curve(312, 18, 215, 6, 14), 9, 120) + needles(curve(307, 62, 251, 30, 6), 8, 70);
+    $('branches').innerHTML = h;
+    // garland wire + bulbs
+    let g = ''; const wire = (x0, y0, x1, y1, sag, n) => { let d = `M${x0} ${y0}`; const pts = [];
+      for (let i = 1; i <= 30; i++) { const t = i / 30, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t + Math.sin(t * Math.PI) * sag; d += ` L${x.toFixed(2)} ${y.toFixed(2)}`; }
+      g += `<path d="${d}" stroke="#0c1a10" stroke-width=".5" fill="none"/>`;
+      for (let i = 1; i < n; i++) { const t = i / n, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t + Math.sin(t * Math.PI) * sag, c = NEON[i % 5];
+        g += `<circle cx="${x.toFixed(2)}" cy="${(y + 2.2).toFixed(2)}" r="5" fill="${c}" opacity=".35" filter="url(#b3)"/><ellipse cx="${x.toFixed(2)}" cy="${(y + 2.2).toFixed(2)}" rx="1.3" ry="2" fill="${c}"/><ellipse cx="${(x - .35).toFixed(2)}" cy="${(y + 1.6).toFixed(2)}" rx=".4" ry=".7" fill="#fff" opacity=".85"/><rect x="${(x - .7).toFixed(2)}" y="${(y - .2).toFixed(2)}" width="1.4" height="1" fill="#c9a03a"/>`; } };
+    wire(-4, 14, 84, 10, 16, 9); wire(301, 14, 213, 10, 16, 9);
+    $('garland').innerHTML = g;
+  })();
+  // glints on the ball
+  (function () { let h = ''; const P = [[118, 62, 7], [170, 58, 9], [186, 100, 5], [132, 118, 4], [158, 80, 3.5], [104, 96, 3], [176, 132, 3.5]];
+    P.forEach(([x, y, s]) => { h += `<circle cx="${x}" cy="${y}" r="${s * .9}" fill="#fff" opacity=".35" filter="url(#b3)"/><use href="#spark" x="${x - s}" y="${y - s}" width="${s * 2}" height="${s * 2}"/>`; });
+    // a few sparkles around the title
+    [[40, 180, 3], [262, 176, 4], [30, 300, 2.5], [270, 300, 3], [214, 228, 2.2], [84, 312, 2]].forEach(([x, y, s]) => { h += `<use href="#spark" x="${x - s}" y="${y - s}" width="${s * 2}" height="${s * 2}" opacity=".9"/>`; });
+    $('glints').innerHTML = h; })();
+  // mesh lines on the microphone head
+  (function () { let h = ''; for (let i = -20; i <= 60; i += 2.2) { h += `<line x1="${i}" y1="0" x2="${i + 40}" y2="40"/><line x1="${i}" y1="40" x2="${i + 40}" y2="0"/>`; } $('meshLines').innerHTML = h; })();
+  // gift boxes in 3/4 view
+  (function () {
+    let defs = '', h = '', id = 0;
+    function box(x, y, w, hgt, dx, dy, c1, c2, rib, pat, blur, op) {
+      id++; const shade = (c, f) => { const n = parseInt(c.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255; r = Math.round(r * f); g = Math.round(g * f); b = Math.round(b * f); return `rgb(${Math.min(255, r)},${Math.min(255, g)},${Math.min(255, b)})`; };
+      defs += `<pattern id="pt${id}" patternUnits="userSpaceOnUse" width="${pat === 'dots' ? 6 : 7}" height="${pat === 'dots' ? 6 : 7}" patternTransform="rotate(${pat === 'stripes' ? 35 : 0})">` +
+        (pat === 'dots' ? `<circle cx="3" cy="3" r="1.1" fill="${c2}"/>` : pat === 'stripes' ? `<rect width="3" height="7" fill="${c2}"/>` : `<path d="M3.5 .5 L4.3 2.7 L6.6 2.7 L4.7 4 L5.4 6.3 L3.5 5 L1.6 6.3 L2.3 4 L.4 2.7 L2.7 2.7 Z" fill="${c2}"/>`) + `</pattern>`;
+      const front = `M${x} ${y} H${x + w} V${y + hgt} H${x} Z`, side = `M${x + w} ${y} L${x + w + dx} ${y - dy} V${y + hgt - dy} L${x + w} ${y + hgt} Z`, top = `M${x} ${y} L${x + dx} ${y - dy} H${x + w + dx} L${x + w} ${y} Z`;
+      let g = `<g ${blur ? `filter="url(#b${blur})"` : ''} opacity="${op || 1}">`;
+      g += `<path d="M${x - 4} ${y + hgt + 1} H${x + w + dx + 6} L${x + w + dx + 12} ${y + hgt + 4} H${x - 10} Z" fill="#000" opacity=".5" filter="url(#b3)"/>`;
+      g += `<path d="${front}" fill="${c1}"/><path d="${front}" fill="url(#pt${id})" opacity=".55"/>`;
+      g += `<path d="${side}" fill="${shade(c1, .55)}"/><path d="${side}" fill="url(#pt${id})" opacity=".3"/>`;
+      g += `<path d="${top}" fill="${shade(c1, 1.25)}"/><path d="${top}" fill="url(#pt${id})" opacity=".45"/>`;
+      const rw = Math.max(3, w * .12), cx = x + w / 2;
+      g += `<rect x="${cx - rw / 2}" y="${y}" width="${rw}" height="${hgt}" fill="${rib}"/>`;
+      g += `<path d="M${cx - rw / 2} ${y} L${cx - rw / 2 + dx} ${y - dy} H${cx + rw / 2 + dx} L${cx + rw / 2} ${y} Z" fill="${shade(rib, 1.15)}"/>`;
+      const sy = y + hgt / 2 - dy / 2; g += `<path d="M${x + w} ${y + hgt / 2 - rw / 2} L${x + w + dx} ${y + hgt / 2 - rw / 2 - dy} V${y + hgt / 2 + rw / 2 - dy} L${x + w} ${y + hgt / 2 + rw / 2} Z" fill="${shade(rib, .6)}"/>`;
+      g += `<path d="M${x + dx / 2} ${y - dy / 2} H${x + w + dx / 2}" stroke="${shade(rib, 1.15)}" stroke-width="${rw}"/>`;
+      // bow
+      const bx = cx + dx / 2, by = y - dy / 2, s = Math.min(w, 44) * .42;
+      g += `<path d="M${bx} ${by} C ${bx - s * .7} ${by - s * 1.5}, ${bx - s * 2} ${by - s * 1.1}, ${bx - s * 1.5} ${by - s * .1} C ${bx - s * 1.1} ${by + s * .35}, ${bx - s * .4} ${by + s * .15}, ${bx} ${by} Z" fill="${rib}" stroke="${shade(rib, .5)}" stroke-width=".4"/>`;
+      g += `<path d="M${bx} ${by} C ${bx + s * .7} ${by - s * 1.5}, ${bx + s * 2} ${by - s * 1.1}, ${bx + s * 1.5} ${by - s * .1} C ${bx + s * 1.1} ${by + s * .35}, ${bx + s * .4} ${by + s * .15}, ${bx} ${by} Z" fill="${shade(rib, .85)}" stroke="${shade(rib, .5)}" stroke-width=".4"/>`;
+      g += `<path d="M${bx} ${by} l ${-s * .5} ${s * .9} l ${s * .25} -.2 Z M${bx} ${by} l ${s * .55} ${s * .85} l ${-s * .22} -.1 Z" fill="${shade(rib, .75)}"/>`;
+      g += `<ellipse cx="${bx}" cy="${by - s * .05}" rx="${s * .28}" ry="${s * .24}" fill="${shade(rib, 1.15)}" stroke="${shade(rib, .55)}" stroke-width=".4"/><path d="M${bx - s * 1.2} ${by - s * .9} q ${s * .4} ${-s * .2} ${s * .8} ${s * .3}" stroke="#fff" stroke-opacity=".45" stroke-width=".5" fill="none"/>`;
+      // neon rim light
+      g += `<path d="M${x} ${y + hgt} V${y} L${x + dx} ${y - dy} H${x + w + dx}" stroke="#ff7ad0" stroke-width=".5" fill="none" opacity=".7"/>`;
+      g += `</g>`; h += g;
+    }
+    // back row (soft focus)
+    box(-6, 352, 48, 40, 14, 9, '#5a1fb8', '#ffd36b', '#ffd36b', 'stars', 1, .8);
+    box(232, 346, 56, 46, 14, 9, '#0f7c8a', '#a6fbff', '#ff2fa8', 'dots', 1, .8);
+    box(96, 362, 40, 34, 12, 8, '#b8167a', '#ff9adf', '#4ff3ff', 'stripes', 1, .8);
+    box(176, 360, 38, 30, 12, 8, '#d9a032', '#fff1c1', '#8a3dff', 'dots', 1, .8);
+    // front row
+    box(18, 378, 62, 52, 16, 10, '#e0207f', '#ffc2e6', '#ffd36b', 'dots', 0, 1);
+    box(124, 386, 54, 44, 14, 9, '#2d1f8a', '#8a7dff', '#4ff3ff', 'stars', 0, 1);
+    box(206, 378, 66, 52, 16, 10, '#0e9fb0', '#d8ffff', '#ff2fa8', 'stripes', 0, 1);
+    box(78, 400, 40, 30, 12, 8, '#ffcc4a', '#ff7a3d', '#e0207f', 'stripes', 2, 1);
+    $('gifts').innerHTML = `<defs>${defs}</defs>` + h;
+  })();
+  // confetti, tinsel, snow
+  (function () { let h = '';
+    for (let i = 0; i < 160; i++) { const x = rnd() * 297, y = rnd() * 420, r = .25 + rnd() * rnd() * 1.3; h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="#fff" opacity="${(.3 + rnd() * .6).toFixed(2)}" ${r > 1 ? 'filter="url(#b1)"' : ''}/>`; }
+    for (let i = 0; i < 70; i++) { const x = rnd() * 297, y = rnd() * 420; if (x > 40 && x < 257 && y > 150 && y < 345) continue;
+      const w = 1.2 + rnd() * 2.2, hh = .6 + rnd() * 1.2; h += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(2)}" height="${hh.toFixed(2)}" fill="${pick(NEON)}" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" opacity=".9"/>`; }
+    for (let i = 0; i < 10; i++) { const x = rnd() * 297, y = rnd() * 420; if (x > 40 && x < 257 && y > 150 && y < 345) continue;
+      h += `<path d="M${x.toFixed(1)} ${y.toFixed(1)} q 3 -4 6 0 t 6 0 t 6 0" stroke="${pick(NEON)}" stroke-width=".7" fill="none" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
+    $('confetti').innerHTML = h;
+    let s = ''; for (let y = 0; y < 420; y += .9) s += `<line x1="0" y1="${y.toFixed(1)}" x2="297" y2="${y.toFixed(1)}"/>`; $('scan').innerHTML = s; })();
+  // headline fitting
+  document.fonts.ready.then(() => {
+    const fit = (el, wmm) => { el.style.fontSize = '100px'; const r = document.createRange(); r.selectNodeContents(el); const w = r.getBoundingClientRect().width; el.style.fontSize = (100 * mm(wmm) / w) + 'px'; };
+    fit(document.querySelector('#disco span'), 252);
+    const n = $('n90'); n.style.fontSize = '100px'; const r = document.createRange(); r.selectNodeContents(n.querySelector('.c')); const w = r.getBoundingClientRect().width; n.style.fontSize = (100 * mm(206) / w) + 'px';
+  });
+</script>
+</body>
+</html>
