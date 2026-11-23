@@ -50,8 +50,8 @@
   <!-- shadow the open door throws on the wall to its left -->
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:multiply" data-name="Тень двери" data-raster="full">
     <defs><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter></defs>
-    <path d="M74 70 L2 52 L-6 300 L74 280 Z" fill="#2a0303" opacity=".55" filter="url(#sh)"/>
-    <path d="M74 280 L4 300 L30 318 L96 290 Z" fill="#2a0303" opacity=".4" filter="url(#sh)"/>
+    <path d="M74 70 L40 60 L36 292 L74 280 Z" fill="#2a0303" opacity=".3" filter="url(#sh)"/>
+    <path d="M74 280 L14 298 L70 312 L120 292 Z" fill="#2a0303" opacity=".45" filter="url(#sh)"/>
   </svg>
 
   <!-- the open niche -->
@@ -63,7 +63,7 @@
       <clipPath id="rightC"><path d="M148.5 0 L132.5 14 V176 L148.5 210 Z"/></clipPath>
       <clipPath id="floorC"><path d="M0 210 L16 176 H132.5 L148.5 210 Z"/></clipPath>
       <clipPath id="allC"><rect width="148.5" height="210"/></clipPath>
-      <radialGradient id="warm" cx="50%" cy="55%" r="65%"><stop offset="0" stop-color="#ffb35a" stop-opacity=".62"/><stop offset=".5" stop-color="#b8441e" stop-opacity=".3"/><stop offset="1" stop-color="#1a0202" stop-opacity=".78"/></radialGradient>
+      <radialGradient id="warm" cx="50%" cy="55%" r="65%"><stop offset="0" stop-color="#ffb35a" stop-opacity=".42"/><stop offset=".5" stop-color="#b8441e" stop-opacity=".3"/><stop offset="1" stop-color="#1a0202" stop-opacity=".78"/></radialGradient>
       <linearGradient id="lw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1a0202" stop-opacity=".75"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".25"/></linearGradient>
       <linearGradient id="rw" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#1a0202" stop-opacity=".75"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".25"/></linearGradient>
       <linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0202" stop-opacity=".85"/><stop offset="1" stop-color="#ff9a50" stop-opacity=".15"/></linearGradient>
@@ -71,6 +71,7 @@
       <filter id="bl1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
       <filter id="bl3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
       <filter id="bl6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="silh" x="-20%" y="-20%" width="140%" height="140%"><feColorMatrix type="matrix" values="0 0 0 0 .07  0 0 0 0 .01  0 0 0 0 .01  0 0 0 1 0"/><feGaussianBlur stdDeviation="2.4"/></filter>
       <filter id="lightWood"><feColorMatrix values=".9 .5 0 0 .18  .55 .3 0 0 .09  .3 .1 0 0 .03  0 0 0 1 0"/></filter>
       <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dbe0"/><stop offset=".45" stop-color="#8d9099"/><stop offset="1" stop-color="#3a3c42"/></linearGradient>
       <linearGradient id="bodyBB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4b52"/><stop offset=".12" stop-color="#2a2b30"/><stop offset="1" stop-color="#0d0d10"/></linearGradient>
@@ -86,13 +87,15 @@
     <g clip-path="url(#ceilC)"><image href="wood.jpg" x="-10" y="-200" width="297" height="420" preserveAspectRatio="none"/><rect width="148.5" height="14" fill="url(#cw)"/></g>
     <g clip-path="url(#floorC)"><image href="wood.jpg" x="-80" y="-250" width="297" height="420" preserveAspectRatio="none" filter="url(#lightWood)"/>
       <g stroke="#3a1a0a" stroke-width=".35" opacity=".55" id="planks"></g>
+      <g id="floorConf"></g>
       <rect x="0" y="176" width="148.5" height="34" fill="url(#fw)"/></g>
     <!-- corner lines -->
     <g stroke="#1a0202" stroke-width=".5" opacity=".6"><line x1="0" y1="0" x2="16" y2="14"/><line x1="148.5" y1="0" x2="132.5" y2="14"/><line x1="0" y1="210" x2="16" y2="176"/><line x1="148.5" y1="210" x2="132.5" y2="176"/></g>
     <!-- glow behind tree -->
-    <ellipse cx="74" cy="110" rx="60" ry="70" fill="#ffb060" opacity=".35" filter="url(#bl6)"/>
+    <ellipse cx="74" cy="110" rx="60" ry="70" fill="#ffb060" opacity=".2" filter="url(#bl6)"/>
     <!-- tree -->
-    <ellipse cx="74" cy="178" rx="44" ry="4" fill="#1a0602" opacity=".6" filter="url(#bl3)"/>
+    <image href="tree.png" x="27" y="30" width="114" height="152" filter="url(#silh)" opacity=".5"/>
+    <ellipse cx="80" cy="178" rx="48" ry="4" fill="#1a0602" opacity=".6" filter="url(#bl3)"/>
     <image href="tree.png" x="17" y="27" width="114" height="152"/>
     <!-- hanging disco ball -->
     <line x1="118" y1="14" x2="118" y2="34" stroke="#d9c9a0" stroke-width=".35"/>
@@ -103,6 +106,7 @@
     <g id="nicheSpots"></g>
 
     <!-- gift -->
+    <path d="M116 185 L132 181 L132 172 L118 176 Z" fill="#160402" opacity=".45" filter="url(#bl1)"/>
     <g transform="translate(92 158)">
       <ellipse cx="13" cy="27" rx="15" ry="2.5" fill="#1a0602" opacity=".55" filter="url(#bl1)"/>
       <rect x="0" y="6" width="24" height="21" fill="#b8131c"/><rect x="0" y="6" width="24" height="21" fill="url(#lw)" opacity=".4"/>
@@ -110,41 +114,21 @@
       <rect x="10" y="6" width="4" height="21" fill="#e2b24a"/><path d="M10 6 L15 2 H19 L14 6 Z" fill="#f1cf6e"/><path d="M24 14 L29 10 V13 L24 17 Z" fill="#a8822e"/>
       <path d="M14.5 4 C 8 -4, 3 1, 13 4 Z" fill="#f1cf6e" stroke="#a8822e" stroke-width=".3"/><path d="M14.5 4 C 22 -4, 27 1, 16 4 Z" fill="#e2b24a" stroke="#a8822e" stroke-width=".3"/>
     </g>
-    <!-- boombox -->
-    <g transform="translate(6 147)">
-      <ellipse cx="44" cy="47" rx="44" ry="3.4" fill="#1a0602" opacity=".7" filter="url(#bl1)"/>
-      <path d="M22 9 C 22 -1, 66 -1, 66 9" fill="none" stroke="url(#silver)" stroke-width="3.2"/>
-      <path d="M22 9 C 22 -1, 66 -1, 66 9" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width=".6"/>
-      <line x1="70" y1="9" x2="86" y2="-14" stroke="url(#chromeH)" stroke-width="1"/><circle cx="86" cy="-14" r="1.2" fill="#ddd"/>
-      <rect x="0" y="8" width="88" height="38" rx="4" fill="url(#bodyBB)"/>
-      <rect x="0" y="8" width="88" height="38" rx="4" fill="none" stroke="#6a6b72" stroke-width=".5"/>
-      <rect x="2" y="9.5" width="84" height="2" rx="1" fill="#8a8c94" opacity=".5"/>
-      <g id="spk"></g>
-      <rect x="32" y="14" width="24" height="26" rx="1.5" fill="#1a1b20" stroke="#55575f" stroke-width=".4"/>
-      <rect x="34" y="17" width="20" height="12" rx="1" fill="#2c2238" stroke="#7a7d88" stroke-width=".3"/>
-      <rect x="36" y="19" width="16" height="7" rx="3.5" fill="#0f0c16"/><circle cx="40" cy="22.5" r="2" fill="#c9c9d0"/><circle cx="48" cy="22.5" r="2" fill="#c9c9d0"/>
-      <g fill="url(#chromeH)"><rect x="34" y="31" width="3.4" height="3"/><rect x="38.2" y="31" width="3.4" height="3"/><rect x="42.4" y="31" width="3.4" height="3"/><rect x="46.6" y="31" width="3.4" height="3"/><rect x="50.8" y="31" width="3.4" height="3"/></g>
-      <rect x="34" y="35.5" width="20" height="2.6" rx=".6" fill="#ff3b6a" opacity=".9"/>
-      <text x="44" y="37.6" font-family="Montserrat" font-weight="800" font-size="2" fill="#fff" text-anchor="middle" letter-spacing=".4">STEREO 90</text>
-      <path d="M4 44 H84" stroke="#000" stroke-opacity=".5" stroke-width=".6"/>
-    </g>
-    <!-- cassettes in front -->
+    <!-- boombox (raster, make_props.py) + floor shadow cast to the right by the side light -->
+    <path d="M7 196 L91 196 L118 188 L36 184 Z" fill="#160402" opacity=".55" filter="url(#bl3)"/>
+    <ellipse cx="48" cy="196" rx="44" ry="1.6" fill="#0a0201" opacity=".8" filter="url(#bl1)"/>
+    <image href="boombox.png" x="2" y="141" width="92" height="60"/>
+        <!-- cassettes in front -->
     <g id="tapes"></g>
-    <!-- microphone on a stand -->
-    <g transform="translate(126 112) rotate(-12)">
-      <ellipse cx="4" cy="94" rx="12" ry="2.6" fill="#1a0602" opacity=".7" filter="url(#bl1)"/>
-      <ellipse cx="2" cy="92" rx="10" ry="2.4" fill="url(#chromeH)"/>
-      <rect x="1" y="30" width="2" height="62" fill="url(#chromeH)"/>
-      <path d="M-4 30 H8 L6 33 H-2 Z" fill="#222"/>
-      <path d="M-3 9 H7 L5.5 31 H-1.5 Z" fill="#141416"/>
-      <rect x="-3.2" y="8" width="10.4" height="3" fill="url(#chromeH)"/>
-      <rect x="-3" y="11" width="10" height="1.2" fill="#ff2f7a"/>
-      <circle cx="2" cy="1" r="7.5" fill="url(#mesh)"/>
-      <g stroke="#2a2c36" stroke-width=".25" opacity=".5"><path d="M-5 -2 H9 M-5.5 1 H9.5 M-5 4 H9 M-2 -6 V8 M2 -6.5 V8.5 M6 -6 V8"/></g>
-      <ellipse cx="-.5" cy="-2" rx="2.2" ry="1.3" fill="#fff" opacity=".6"/>
-    </g>
+    <!-- microphone (raster) + shadow -->
+    <path d="M126 205 L150 198 L150 196 L127 203 Z" fill="#160402" opacity=".55" filter="url(#bl1)"/>
+    <ellipse cx="133" cy="206" rx="13" ry="2.4" fill="#0a0201" opacity=".6" filter="url(#bl1)"/>
+    <image href="mic.png" x="111" y="101" width="34" height="110"/>
     <!-- confetti on the floor -->
-    <g id="floorConf"></g>
+    <!-- the door blocks the side light: soft shadow over the left of the niche -->
+    <path d="M0 0 L30 0 L22 176 L40 210 L0 210 Z" fill="#140201" opacity=".42" filter="url(#bl6)"/>
+    <!-- haze: lifts the darks, calms the centre -->
+    <rect width="148.5" height="210" fill="#7a3520" opacity=".13"/>
   </svg>
 
   <!-- warm light spilling out of the niche -->
@@ -153,7 +137,7 @@
       <filter id="g12" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
       <radialGradient id="spill" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a4a" stop-opacity=".55"/><stop offset="1" stop-color="#ff6a2a" stop-opacity="0"/></radialGradient>
     </defs>
-    <ellipse cx="148.5" cy="180" rx="120" ry="150" fill="url(#spill)" opacity=".7"/>
+    <ellipse cx="148.5" cy="180" rx="120" ry="150" fill="url(#spill)" opacity=".4"/>
     <rect x="70" y="66" width="157" height="218" fill="none" stroke="#ffb070" stroke-width="5" opacity=".35" filter="url(#g12)"/>
   </svg>
 
@@ -170,6 +154,23 @@
   <div class="college" data-name="Колледж" data-raster="box"><img src="logo-briks-mark-white.png" alt=""><div><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b2">КОЛЛЕДЖ БРИКС</div></div></div>
   <div class="info" data-name="Инфо" data-raster="box"><div class="s">ДАТА И МЕСТО</div><div class="b">СОВСЕМ СКОРО</div><div class="f">Вокальные и танцевальные номера, хиты 90-х<br>и новогоднее настроение</div></div>
 
+  <!-- sunbeam from the upper left: window light falling across the calendar -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Луч солнца" data-raster="full">
+    <defs>
+      <linearGradient id="sunG" gradientUnits="userSpaceOnUse" x1="-20" y1="-10" x2="250" y2="380"><stop offset="0" stop-color="#ffe2b0" stop-opacity=".95"/><stop offset=".45" stop-color="#ffc27a" stop-opacity=".45"/><stop offset="1" stop-color="#ff9a5a" stop-opacity="0"/></linearGradient>
+      <filter id="sunB" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+      <filter id="sunB2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>
+      <radialGradient id="sunSrc" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff3d8" stop-opacity=".9"/><stop offset="1" stop-color="#ffb070" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g fill="url(#sunG)">
+      <path d="M-40 10 L40 -40 L330 360 L240 430 Z" filter="url(#sunB2)" opacity=".5"/>
+      <path d="M-30 20 L8 -6 L262 360 L214 400 Z" filter="url(#sunB)" opacity=".55"/>
+      <path d="M14 -12 L36 -26 L300 330 L274 352 Z" filter="url(#sunB)" opacity=".45"/>
+    </g>
+    <circle cx="-6" cy="-6" r="70" fill="url(#sunSrc)" filter="url(#sunB2)"/>
+    <g id="dust" fill="#fff2dc"></g>
+  </svg>
+
   <!-- streamers, confetti flying out, gold star in the corner -->
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Конфетти" data-raster="full">
     <defs>
@@ -178,7 +179,7 @@
       <linearGradient id="strm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#d9d6d2"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
       <radialGradient id="goldS" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff2c4"/><stop offset=".5" stop-color="#d9a640"/><stop offset="1" stop-color="#7a5212"/></radialGradient>
     </defs>
-    <g filter="url(#b5)" opacity=".75"><path d="M-8 -18 L6 14 L40 18 L12 36 L22 70 L-6 50 L-34 70 L-24 36 L-52 18 L-18 14 Z" fill="url(#goldS)" transform="translate(2 -10) rotate(12) scale(.8)"/></g>
+    <g filter="url(#b5)" opacity="0"><path d="M-8 -18 L6 14 L40 18 L12 36 L22 70 L-6 50 L-34 70 L-24 36 L-52 18 L-18 14 Z" fill="url(#goldS)" transform="translate(2 -10) rotate(12) scale(.8)"/></g>
     <g id="flying"></g>
   </svg>
 
@@ -213,11 +214,6 @@
   })();
   // floor planks in perspective
   (function () { let h = ''; for (let i = 0; i <= 10; i++) { const xb = i * 14.85, xt = 16 + i * 11.65; h += `<line x1="${xt}" y1="176" x2="${xb}" y2="210"/>`; } $('planks').innerHTML = h; })();
-  // speakers
-  (function () { let h = ''; [[16, 27], [72, 27]].forEach(([x, y]) => {
-    h += `<circle cx="${x}" cy="${y}" r="13" fill="url(#chromeH)"/><circle cx="${x}" cy="${y}" r="11.8" fill="#151518"/><circle cx="${x}" cy="${y}" r="10.6" fill="url(#cone)"/>`;
-    for (let k = 3; k < 10.5; k += 1.6) h += `<circle cx="${x}" cy="${y}" r="${k}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width=".25"/>`;
-    h += `<circle cx="${x}" cy="${y}" r="3.4" fill="url(#dome)"/>`; }); $('spk').innerHTML = h; })();
   // cassettes stack
   (function () { let h = ''; const cols = ['#ff2f7a', '#2fd3ff', '#ffd36b'];
     for (let i = 0; i < 3; i++) { const x = 86 + i * 1.5, y = 200 - i * 4.2;
@@ -229,6 +225,9 @@
     let f = ''; for (let i = 0; i < 70; i++) { const y = 178 + rnd() * 31, t = (y - 176) / 34, x0 = 16 - 16 * t, x1 = 132.5 + 16 * t, x = x0 + rnd() * (x1 - x0);
       f += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(1 + rnd() * 1.6).toFixed(2)}" height="${(.5 + rnd() * .6).toFixed(2)}" fill="${['#e9c46a', '#f6f1e8', '#d9a640', '#ff4f7a'][i % 4]}" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
     $('floorConf').innerHTML = f; })();
+  // dust motes floating in the sunbeam
+  (function () { let h = ''; for (let i = 0; i < 150; i++) { const t = rnd(), x0 = -20 + t * 280, y0 = -10 + t * 380, o = (rnd() - .5) * 70, x = x0 + o * .8, y = y0 - o * .6, r = .15 + rnd() * rnd() * .9;
+    h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" opacity="${((.25 + rnd() * .6) * (1 - t * .7)).toFixed(2)}"/>`; } $('dust').innerHTML = h; })();
   // streamers + confetti flying out of the niche
   (function () { let h = '';
     const strip = (x, y, a, l, w, blur) => { const c = Math.cos(a), s = Math.sin(a);

@@ -35,7 +35,8 @@ base = np.array([112, 26, 28], np.float64) / 255
 img = np.clip(base[None, None, :] * v[..., None], 0, 1)
 # darker streaks
 img *= (1 - .18 * np.clip(rings - .6, 0, 1))[..., None]
-Image.fromarray((img * 255).astype(np.uint8)).save(f'{out}/wood.jpg', quality=90)
+import os
+if not os.path.exists(f'{out}/wood.jpg'): Image.fromarray((img * 255).astype(np.uint8)).save(f'{out}/wood.jpg', quality=90)
 print('wood ok')
 
 # ---------- tree ----------
@@ -53,6 +54,12 @@ def halfw(y):
 
 # trunk
 d.polygon([(cx - 26, bot - 120), (cx + 26, bot - 120), (cx + 34, bot + 60), (cx - 34, bot + 60)], fill=(58, 34, 20, 255))
+# dark interior so gaps between branches read as depth, not holes
+cone = Image.new('L', (TW, TH), 0)
+ImageDraw.Draw(cone).polygon([(cx, top + 40), (cx + halfw(bot - 60) * .66, bot - 90), (cx - halfw(bot - 60) * .66, bot - 90)], fill=255)
+cone = cone.filter(ImageFilter.GaussianBlur(40))
+dark = Image.new('RGBA', (TW, TH), (8, 22, 14, 255)); dark.putalpha(cone)
+tree.alpha_composite(dark)
 tiers = 34
 for depth in (0, 1, 2):          # back (dark) -> front (light)
     for k in range(tiers):
@@ -85,7 +92,7 @@ alpha = T[..., 3:4]
 # shading: darker at edges and bottom-left, lit from front-centre
 xx = (np.arange(TW)[None, :] - cx) / 700
 ys = (np.arange(TH)[:, None] - top) / (bot - top)
-light = np.clip(1.15 - .55 * np.abs(xx) - .15 * ys, .45, 1.2)
+light = np.clip(1.05 - .5 * np.abs(xx) - .2 * ys + .18 * np.clip(-xx, 0, 1), .38, 1.15)
 rgb = T[..., :3] * light[..., None]
 
 
@@ -100,11 +107,11 @@ def glow_layer(points, color, rad, blur):
 
 # fairy lights inside the cone
 pts = []
-for i in range(330):
+for i in range(240):
     y = rng.uniform(top + 60, bot - 90)
     x = cx + rng.uniform(-1, 1) * halfw(y) * .92
     pts.append((x, y, rng.uniform(.8, 1.4)))
-glow = glow_layer(pts, [1.0, .72, .35], 14, 16) * .9 + glow_layer(pts, [1, .95, .8], 4, 2) * 1.6
+glow = glow_layer(pts, [1.0, .62, .28], 16, 22) * .55 + glow_layer(pts, [1, .9, .7], 3.5, 2) * 1.3
 rgb = rgb + glow
 alpha = np.maximum(alpha, np.clip(glow.max(axis=2, keepdims=True) * .9, 0, 1))
 im = Image.fromarray((np.dstack([np.clip(rgb, 0, 1), np.clip(alpha, 0, 1)]) * 255).astype(np.uint8), 'RGBA')
@@ -155,6 +162,21 @@ for i in range(46):
         b = ball(r, cols[i % len(cols)])
     gd.line([(x, y - r - 10), (x, y - r)], fill=(200, 170, 90, 255), width=2)
     im.alpha_composite(b, (int(x - b.width / 2), int(y - b.height / 2)))
+# front needle tips over the ornaments (they sit inside the branches)
+fd = ImageDraw.Draw(im)
+for k in range(2600):
+    y = rng.uniform(top + 80, bot - 70)
+    x = cx + rng.uniform(-1, 1) * halfw(y) * .95
+    a = rng.uniform(0, math.pi) + .2
+    L = rng.uniform(10, 22)
+    g = rng.uniform(.8, 1.3)
+    fd.line([(x, y), (x + math.cos(a) * L, y + math.sin(a) * L)], fill=(int(34 * g), int(86 * g), int(46 * g), 255), width=2)
+# a touch of desaturation + warm ambient so the tree sits in the warm niche
+A = np.asarray(im).astype(np.float64) / 255
+lum = A[..., :3].mean(axis=2, keepdims=True)
+A[..., :3] = (A[..., :3] * .85 + lum * .15) * np.array([1.04, 1.0, .9])
+im = Image.fromarray((np.clip(A, 0, 1) * 255).astype(np.uint8), 'RGBA')
+gd = ImageDraw.Draw(im)
 # star on top
 star = Image.new('RGBA', (TW, TH), (0, 0, 0, 0))
 sd = ImageDraw.Draw(star)
