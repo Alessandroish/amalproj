@@ -50,6 +50,19 @@
       <filter id="b6"><feGaussianBlur stdDeviation="6"/></filter>
       <filter id="b12"><feGaussianBlur stdDeviation="12"/></filter>
       <filter id="b20"><feGaussianBlur stdDeviation="20"/></filter>
+      <linearGradient id="casBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3a3a42"/><stop offset=".5" stop-color="#1d1d23"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+      <linearGradient id="label" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fbf1df"/><stop offset="1" stop-color="#e7d6b8"/></linearGradient>
+      <radialGradient id="reel" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#f4f1ea"/><stop offset=".7" stop-color="#cfc8bb"/><stop offset="1" stop-color="#8d867a"/></radialGradient>
+      <radialGradient id="tape" cx="50%" cy="50%" r="50%">
+        <stop offset=".45" stop-color="#4a2a1a"/><stop offset="1" stop-color="#22130b"/></radialGradient>
+      <radialGradient id="vinyl" cx="45%" cy="40%" r="60%">
+        <stop offset="0" stop-color="#2b2b2f"/><stop offset=".8" stop-color="#121214"/><stop offset="1" stop-color="#050506"/></radialGradient>
+      <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#6d6d72"/><stop offset=".3" stop-color="#f2f2f4"/><stop offset=".55" stop-color="#9b9ba1"/><stop offset="1" stop-color="#3f3f44"/></linearGradient>
+      <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#2a0003" flood-opacity=".55"/></filter>
     </defs>
     <g id="g"></g>
   </svg>
@@ -111,6 +124,50 @@ function gift(x,y,w,h,blur){const g=grp(blur);
   el('path',{d:`M${x+w/2},${y} c-34,-36 -60,-4 -26,9 M${x+w/2},${y} c34,-36 60,-4 26,9`,stroke:'#e9b955','stroke-width':8,fill:'none','stroke-linecap':'round'},g)}
 gift(-30,1330,200,190,'b6');gift(150,1390,170,140,'b6');gift(300,1300,140,230,'b6');
 gift(-60,1640,330,300,'b20');gift(220,1720,260,240,'b20');
+// ===== 90s props on the sides =====
+// cassette — left, sharp (like the sharp tree in the reference)
+(function(){const c=el('g',{transform:'translate(215,1080) rotate(-14)',filter:'url(#shadow)'});
+  el('rect',{x:-210,y:-135,width:420,height:270,rx:18,fill:'url(#casBody)',stroke:'#4a4a52','stroke-width':2},c);
+  el('rect',{x:-185,y:-112,width:370,height:150,rx:10,fill:'url(#label)'},c);
+  el('rect',{x:-185,y:-80,width:370,height:12,fill:'#c8161f'},c);
+  el('rect',{x:-185,y:-62,width:370,height:6,fill:'#e9b955'},c);
+  const lt=el('text',{x:-165,y:-88,fill:'#3a1d10','font-family':'Great Vibes','font-size':34},c);lt.textContent='Дискотека 90-х';
+  const sd=el('text',{x:150,y:-88,fill:'#c8161f','font-family':'Montserrat','font-weight':800,'font-size':26},c);sd.textContent='A';
+  el('rect',{x:-110,y:-40,width:220,height:70,rx:35,fill:'#141418',stroke:'#55555e','stroke-width':2},c);
+  [[-60,'tape',30],[60,'tape',20]].forEach(([x,f,r])=>{el('circle',{cx:x,cy:-5,r,fill:'url(#tape)'},c);
+    el('circle',{cx:x,cy:-5,r:16,fill:'url(#reel)'},c);
+    for(let k=0;k<6;k++){const a=k*Math.PI/3;el('rect',{x:x-2,y:-5-12,width:4,height:6,fill:'#5b554c',transform:`rotate(${k*60} ${x} -5)`},c)}
+    el('circle',{cx:x,cy:-5,r:5,fill:'#5b554c'},c)});
+  el('path',{d:'M-140,135 L-112,70 L112,70 L140,135Z',fill:'#26262d',stroke:'#3c3c45','stroke-width':2},c);
+  [[-80,100],[80,100],[-30,95],[30,95]].forEach(([x,y],i)=>el('circle',{cx:x,cy:y,r:i<2?9:6,fill:'#0c0c0f'},c));
+  [[-190,-118],[190,-118],[-190,118],[190,118],[0,118]].forEach(([x,y])=>{el('circle',{cx:x,cy:y,r:7,fill:'url(#chrome)'},c)});
+  el('path',{d:'M-200,-128 L120,-128',stroke:'#fff',opacity:.18,'stroke-width':4,'stroke-linecap':'round'},c);
+})();
+
+// vinyl record — right, half off the edge, slightly soft focus
+(function(){const v=el('g',{transform:'translate(1010,1170) rotate(-8)',filter:'url(#shadow)'});const g=el('g',{filter:'url(#b2)'},v);
+  el('circle',{r:250,fill:'url(#vinyl)'},g);
+  for(let r=240;r>95;r-=6) el('circle',{r,fill:'none',stroke:'#26262a','stroke-width':1.2,opacity:.9},g);
+  el('path',{d:'M0,0 L-170,-180 A248,248 0 0 1 -60,-242Z',fill:'#fff',opacity:.10},g);
+  el('path',{d:'M0,0 L170,180 A248,248 0 0 1 60,242Z',fill:'#fff',opacity:.07},g);
+  el('circle',{r:88,fill:'#c8161f'},g);el('circle',{r:88,fill:'url(#shade)'},g);
+  el('circle',{r:70,fill:'none',stroke:'#e9b955','stroke-width':2,opacity:.8},g);
+  const tx=el('text',{x:0,y:-28,'text-anchor':'middle',fill:'#f6e2b5','font-family':'Great Vibes','font-size':34},g);tx.textContent='Хиты 90-х';
+  el('circle',{r:8,fill:'#0b0b0c'},g);
+})();
+
+// vintage microphone — right, lower, leaning against the gifts side
+(function(){const m=el('g',{transform:'translate(1000,1790) rotate(28) scale(.85)',filter:'url(#shadow)'});const g=el('g',{filter:'url(#b2)'},m);
+  el('rect',{x:-26,y:40,width:52,height:240,rx:22,fill:'#151518'},g);
+  el('rect',{x:-16,y:50,width:9,height:220,rx:4,fill:'#fff',opacity:.12},g);
+  el('rect',{x:-32,y:20,width:64,height:34,rx:8,fill:'url(#chrome)'},g);
+  el('circle',{cx:0,cy:-40,r:68,fill:'url(#chrome)'},g);
+  for(let k=-60;k<=60;k+=12) el('line',{x1:k,y1:-40-Math.sqrt(Math.max(0,66*66-k*k)),x2:k,y2:-40+Math.sqrt(Math.max(0,66*66-k*k)),stroke:'#55555b','stroke-width':1.4,opacity:.7},g);
+  for(let k=-60;k<=60;k+=12) el('line',{y1:-40+k,x1:-Math.sqrt(Math.max(0,66*66-k*k)),y2:-40+k,x2:Math.sqrt(Math.max(0,66*66-k*k)),stroke:'#55555b','stroke-width':1.4,opacity:.7},g);
+  el('rect',{x:-70,y:-46,width:140,height:14,rx:7,fill:'#c8161f'},g);
+  el('ellipse',{cx:-24,cy:-70,rx:20,ry:10,fill:'#fff',opacity:.5,transform:'rotate(-30 -24 -70)'},g);
+})();
+
 
 // bokeh
 const b=document.getElementById('bokeh').getContext('2d');s=77;
