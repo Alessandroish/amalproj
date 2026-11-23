@@ -19,29 +19,23 @@
   .date i { display: block; font-style: normal; font-weight: 500; font-size: 4.6mm; letter-spacing: .06em; margin-top: 1.4mm; }
 
   .door { position: absolute; left: 0; top: 70mm; width: 148.5mm; height: 210mm; transform-origin: 100% 50%; transform: translateX(-74.25mm) rotateY(71deg); transform-style: preserve-3d; }
-  .door .grain { position: absolute; left: -30.75mm; top: 30.75mm; width: 210mm; height: 148.5mm; transform: rotate(90deg); background-image: url(wood.jpg); background-size: 297mm 420mm; background-position: -60mm -200mm; filter: brightness(.95); }
-  .door .frame { position: absolute; inset: 0; box-shadow: inset 1.2mm 1.2mm 0 rgba(255,210,170,.18), inset -1.4mm -1.4mm 0 rgba(0,0,0,.35), inset 0 0 0 4mm rgba(0,0,0,.04); }
-  .door .panel { position: absolute; left: 11mm; right: 11mm; top: 22mm; bottom: 14mm; border-radius: .6mm;
-    box-shadow: -.8mm -.8mm 0 rgba(0,0,0,.32), .8mm .8mm 0 rgba(255,205,160,.22), inset 1.6mm 1.6mm 2.4mm rgba(0,0,0,.28), inset -.8mm -.8mm 1.2mm rgba(255,200,150,.12); }
-  .door .sun { position: absolute; inset: 0; mix-blend-mode: screen;
-    background: linear-gradient(152deg, rgba(0,0,0,0) 8%, rgba(255,214,160,.10) 16%, rgba(255,214,160,.36) 24%, rgba(255,226,180,.42) 38%, rgba(255,214,160,.30) 50%, rgba(255,200,140,.08) 60%, rgba(0,0,0,0) 66%); }
-  .door .ao { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 86%, rgba(20,0,0,.55) 100%); }
-  .door .hinge { position: absolute; right: -1mm; width: 4.5mm; height: 20mm; border-radius: .8mm;
-    background: linear-gradient(90deg, #5a3a10, #e9c879 35%, #a87a2a 60%, #3a2206); box-shadow: -.6mm .8mm 1mm rgba(0,0,0,.5); }
-  .door .hinge::after { content: ''; position: absolute; left: 1.4mm; right: 1.4mm; top: 2mm; bottom: 2mm; background: repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 .3mm, transparent .3mm 4mm); }
+  .door .tone { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,190,150,.06), rgba(0,0,0,0) 40%, rgba(20,0,0,.18)); }
+  .door .shade { position: absolute; inset: 0; mix-blend-mode: multiply;
+    background: linear-gradient(90deg, rgb(118,104,100) 0%, rgb(196,186,182) 22%, rgb(236,228,224) 55%, rgb(255,236,214) 88%, rgb(214,180,156) 100%); }
+  .door .sheen { position: absolute; inset: 0; mix-blend-mode: screen;
+    background: linear-gradient(100deg, rgba(0,0,0,0) 46%, rgba(255,214,180,.10) 60%, rgba(255,226,196,.16) 66%, rgba(255,214,180,.06) 72%, rgba(0,0,0,0) 80%); }
+  .door .rim { position: absolute; left: 0; top: 0; bottom: 0; width: .5mm; background: linear-gradient(180deg, rgba(255,200,160,.35), rgba(255,200,160,.12)); }
   .door .face { position: absolute; inset: 0; overflow: hidden; background-image: url(wood.jpg); background-size: 297mm 420mm; background-position: -40mm -120mm;
-    box-shadow: inset 0 0 6mm rgba(20, 0, 0, .5); }
-  .door .lit { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 35%, rgba(255,170,90,.16) 75%, rgba(255,190,110,.32) 100%); }
+    box-shadow: inset 0 0 2.4mm rgba(20, 0, 0, .35), inset 0 .4mm 0 rgba(255, 210, 180, .12); }
   .door .txt { position: absolute; left: 0; right: 0; top: 40mm; text-align: center; font-family: 'Oswald'; font-weight: 700; color: #fff8f2; line-height: .98; text-transform: uppercase;
-    text-shadow: 0 0 2mm rgba(255, 220, 170, .4), .5mm .8mm 1.2mm rgba(40, 8, 0, .6), 0 0 .4mm rgba(40, 8, 0, .5); }
+    text-shadow: 0 .15mm .25mm rgba(40, 8, 0, .35); }
   .door .t1 { font-size: 19mm; letter-spacing: .005em; }
   .door .t2 { font-size: 28mm; letter-spacing: -.005em; }
   .door .t3 { font-size: 40mm; line-height: .9; margin-top: 1mm; }
   .door .t4 { font-size: 11.5mm; font-weight: 600; line-height: 1.12; margin-top: 12mm; letter-spacing: .02em; }
   .door .lab { position: absolute; right: 9mm; top: 7mm; }
-  .door .knob { position: absolute; left: 6mm; top: 98mm; width: 9mm; height: 9mm; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #f6d9a0 0, #b8863a 40%, #4a2a0a 100%); box-shadow: -1.2mm 1.6mm 1.6mm rgba(0,0,0,.5); }
-  .door .edge { position: absolute; left: 0; top: 0; width: 5mm; height: 100%; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, #c06a48, #8a3424 60%, #5a1810); box-shadow: inset 0 0 1mm rgba(0,0,0,.4); }
+  .door .knob { position: absolute; left: 7mm; top: 100mm; width: 7mm; height: 7mm; border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #fff2cc 0, #e0b45e 18%, #9a6a24 55%, #3a2206 100%); box-shadow: inset 0 0 0 .5mm rgba(60,30,0,.5), -1.6mm 1.4mm 1.6mm rgba(20,0,0,.55), -.4mm .4mm .3mm rgba(20,0,0,.6); }
 
   .info { position: absolute; left: 74.25mm; top: 350mm; width: 148.5mm; height: 70mm; padding: 9mm 8mm 0 8mm; }
   .info .s { font-family: 'Oswald'; font-weight: 500; font-size: 5.4mm; letter-spacing: .14em; color: #f3d9b4; }
@@ -60,8 +54,9 @@
   <!-- shadow the open door throws on the wall to its left -->
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:multiply" data-name="Тень двери" data-raster="full">
     <defs><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter></defs>
-    <path d="M74 280 L134 330 L134 352 L70 300 Z" fill="#2a0303" opacity=".5" filter="url(#sh)"/>
-    <path d="M74 280 L8 296 L40 304 L96 292 Z" fill="#2a0303" opacity=".5" filter="url(#sh)"/>
+    <path d="M72 68 L2 50 L-14 46 L-14 312 L2 302 L72 284 Z" fill="#2a0303" opacity=".45" filter="url(#sh)"/>
+    <path d="M74 280 L4 300 L24 306 L78 288 Z" fill="#1a0202" opacity=".55" filter="url(#sh)"/>
+    <rect x="70.5" y="66" width="4.5" height="218" fill="#1a0202" opacity=".55" filter="url(#sh)"/>
   </svg>
 
   <!-- the open niche -->
@@ -136,7 +131,7 @@
     <image href="mic.png" x="111" y="101" width="34" height="110"/>
     <!-- confetti on the floor -->
     <!-- the door blocks the side light: soft shadow over the left of the niche -->
-    <path d="M0 0 L60 48 L62 210 L0 210 Z" fill="#140201" opacity=".45" filter="url(#bl3)"/>
+    <path d="M0 0 L18 14 L18 176 L0 210 Z" fill="#140201" opacity=".35" filter="url(#bl3)"/>
     <!-- haze: lifts the darks, calms the centre -->
     <rect width="148.5" height="210" fill="#7a3520" opacity=".13"/>
   </svg>
@@ -153,10 +148,10 @@
 
   <!-- the open door (3D) -->
   <div class="door" data-name="Дверца" data-raster="box">
-    <div class="face"><div class="grain"></div></div><div class="lit"></div><div class="panel"></div><div class="frame"></div><div class="ao"></div><div class="sun"></div>
-    <div class="hinge" style="top:24mm"></div><div class="hinge" style="bottom:24mm"></div>
+    <div class="face"></div><div class="tone"></div>
     <div class="date lab"><b>??</b><i>ДЕК</i></div>
     <div class="txt"><div class="t1">Новогодняя</div><div class="t2">дискотека</div><div class="t3">90-х</div><div class="t4">вокал · танцы<br>хиты 90-х</div></div>
+    <div class="shade"></div><div class="sheen"></div><div class="rim"></div>
     <div class="knob"></div>
     <div class="edge"></div>
   </div>
@@ -165,20 +160,6 @@
   <div class="college" data-name="Колледж" data-raster="box"><img src="logo-briks-mark-white.png" alt=""><div><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b2">КОЛЛЕДЖ БРИКС</div></div></div>
   <div class="info" data-name="Инфо" data-raster="box"><div class="s">ДАТА И МЕСТО</div><div class="b">СОВСЕМ СКОРО</div><div class="f">Вокальные и танцевальные номера, хиты 90-х<br>и новогоднее настроение</div></div>
 
-  <!-- sunbeam from the upper left: window light falling across the calendar -->
-  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Луч солнца" data-raster="full">
-    <defs>
-      <linearGradient id="sunG" gradientUnits="userSpaceOnUse" x1="-60" y1="-60" x2="170" y2="330"><stop offset="0" stop-color="#ffe6b8" stop-opacity="1"/><stop offset=".55" stop-color="#ffc27a" stop-opacity=".6"/><stop offset="1" stop-color="#ff9a5a" stop-opacity="0"/></linearGradient>
-      <filter id="sunB" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
-      <filter id="sunB2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>
-      <radialGradient id="sunSrc" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff3d8" stop-opacity=".9"/><stop offset="1" stop-color="#ffb070" stop-opacity="0"/></radialGradient>
-    </defs>
-    <mask id="doorBlock"><rect x="-50" y="-50" width="400" height="520" fill="#fff"/>
-      <path d="M76 66 L150 118 L160 360 L120 360 L76 284 Z" fill="#000" filter="url(#sunB)"/></mask>
-    <g fill="url(#sunG)" id="beam" mask="url(#doorBlock)"></g>
-    <circle cx="-6" cy="-6" r="70" fill="url(#sunSrc)" filter="url(#sunB2)"/>
-    <g id="dust" fill="#fff2dc"></g>
-  </svg>
 
   <!-- streamers, confetti flying out, gold star in the corner -->
   <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Конфетти" data-raster="full">
@@ -234,16 +215,6 @@
     let f = ''; for (let i = 0; i < 70; i++) { const y = 178 + rnd() * 31, t = (y - 176) / 34, x0 = 16 - 16 * t, x1 = 132.5 + 16 * t, x = x0 + rnd() * (x1 - x0);
       f += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(1 + rnd() * 1.6).toFixed(2)}" height="${(.5 + rnd() * .6).toFixed(2)}" fill="${['#e9c46a', '#f6f1e8', '#d9a640', '#ff4f7a'][i % 4]}" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; }
     $('floorConf').innerHTML = f; })();
-  // sunbeam: bands along one direction, centred on the door
-  (function () { const dx = .575, dy = .818, nx = dy, ny = -dx, cx = 38, cy = 150; let h = '';
-    const band = (off, hw, op, blur) => { const x0 = cx + nx * off, y0 = cy + ny * off, a = -260, b = 230;
-      const P = [[a, -hw], [a, hw], [b, hw], [b, -hw]].map(([t, w]) => [(x0 + dx * t + nx * w).toFixed(1), (y0 + dy * t + ny * w).toFixed(1)]);
-      h += `<path d="M${P.map(p => p.join(' ')).join(' L')} Z" opacity="${op}" filter="url(#${blur})"/>`; };
-    band(0, 52, .45, 'sunB2'); band(-6, 22, .7, 'sunB'); band(30, 9, .55, 'sunB'); band(-40, 7, .4, 'sunB');
-    $('beam').innerHTML = h; })();
-  // dust motes floating in the sunbeam
-  (function () { let h = ''; for (let i = 0; i < 150; i++) { const t = rnd(), x0 = -60 + t * 170, y0 = -90 + t * 240, o = (rnd() - .5) * 70, x = x0 + o * .82, y = y0 - o * .57, r = .15 + rnd() * rnd() * .9;
-    h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" opacity="${((.25 + rnd() * .6) * (1 - t * .7)).toFixed(2)}"/>`; } $('dust').innerHTML = h; })();
   // streamers + confetti flying out of the niche
   (function () { let h = '';
     const strip = (x, y, a, l, w, blur) => { const c = Math.cos(a), s = Math.sin(a);
