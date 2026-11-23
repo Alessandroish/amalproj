@@ -4,294 +4,123 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=1080">
 <title>Дискотека 90-х</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;800&family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --red:#b3121b; --deep:#4a0408; --gold:#f3c96b; --gold2:#b8862c;
-    --pink:#ff3fb4; --cyan:#3ff0ff; --cream:#fff4ea;
-  }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:#2a0204}
-  .poster{
-    position:relative;width:1080px;height:1920px;overflow:hidden;margin:0 auto;
-    background:
-      radial-gradient(ellipse 70% 45% at 50% 34%, #e2372b 0%, #c11c1e 35%, #8e0c12 70%, #4a0408 100%),
-      #8e0c12;
-    font-family:Montserrat,sans-serif;color:var(--cream);
-  }
-  /* paper texture */
-  .poster::before{
-    content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;pointer-events:none;z-index:1;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  /* vignette */
-  .poster::after{
-    content:"";position:absolute;inset:0;pointer-events:none;z-index:30;
-    background:radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(30,0,2,.75) 100%);
-  }
-  canvas#fx{position:absolute;inset:0;z-index:2}
-  .layer{position:absolute;inset:0}
-  svg{position:absolute;overflow:visible}
-
-  /* light beams from the disco ball */
-  .beams{position:absolute;left:540px;top:250px;width:0;height:0;z-index:3}
-  .beam{position:absolute;left:0;top:0;width:1600px;height:70px;transform-origin:0 50%;
-    margin-top:-35px;filter:blur(14px);opacity:.38;
-    clip-path:polygon(0 48%,100% 0,100% 100%,0 52%)}
-  .b-pink{background:linear-gradient(90deg,rgba(255,63,180,.95),rgba(255,63,180,0))}
-  .b-cyan{background:linear-gradient(90deg,rgba(63,240,255,.85),rgba(63,240,255,0))}
-  .b-gold{background:linear-gradient(90deg,rgba(255,220,140,.9),rgba(255,220,140,0))}
-
-  .title{position:absolute;left:0;right:0;top:430px;z-index:12;text-align:center}
-  .kicker{font-weight:500;letter-spacing:.42em;font-size:26px;text-transform:uppercase;
-    color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,.35)}
-  .kicker span{display:inline-block;width:70px;height:1px;background:var(--gold);vertical-align:middle;margin:0 22px;opacity:.8}
-  .script{font-family:"Great Vibes",cursive;font-size:250px;line-height:.9;margin-top:30px;
-    color:#fff;text-shadow:0 4px 18px rgba(80,0,0,.55), 0 0 2px rgba(255,255,255,.7);
-    transform:rotate(-6deg);margin-left:-40px}
-  .nineties{position:relative;font-family:"Russo One",sans-serif;font-size:310px;line-height:1;
-    margin-top:-40px;margin-left:300px;letter-spacing:-.02em;transform:rotate(-6deg);
-    color:transparent;-webkit-text-stroke:5px #fff;
-    text-shadow:0 0 18px var(--pink),0 0 42px var(--pink),0 0 90px rgba(255,63,180,.7)}
-  .nineties::after{content:"90-х";position:absolute;left:12px;top:10px;-webkit-text-stroke:3px var(--cyan);
-    text-shadow:0 0 18px var(--cyan),0 0 40px rgba(63,240,255,.6);opacity:.85;z-index:-1}
-  .sign{font-weight:400;font-size:32px;margin-top:6px;margin-left:430px;letter-spacing:.02em;
-    color:#ffeef0;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-
-  .status{position:absolute;left:96px;right:96px;top:1085px;z-index:12}
-  .row{display:flex;align-items:center;gap:26px;padding:20px 30px;margin-bottom:14px;
-    border-radius:22px;background:linear-gradient(90deg,rgba(60,0,6,.55),rgba(60,0,6,.18));
-    border:1px solid rgba(243,201,107,.35);backdrop-filter:blur(6px);
-    box-shadow:0 10px 30px rgba(40,0,4,.35), inset 0 1px 0 rgba(255,255,255,.08)}
-  .ico{flex:0 0 74px;height:74px;border-radius:50%;display:grid;place-items:center;
-    background:radial-gradient(circle at 35% 30%,#fff3c9,#f3c96b 45%,#a8761f 100%);
-    box-shadow:0 0 22px rgba(243,201,107,.55)}
-  .ico svg{position:static;width:40px;height:40px}
-  .txt{flex:1}
-  .txt b{display:block;font-weight:700;font-size:33px;margin-top:8px;color:#fff;letter-spacing:.005em}
-  .txt i{display:block;font-style:normal;font-size:23px;color:#ffd8d8;margin-top:4px;font-weight:400}
-  .chip{display:inline-block;font-size:16px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    padding:6px 14px;border-radius:40px;color:#fff;
-    background:linear-gradient(90deg,var(--pink),#ff6a3d);box-shadow:0 0 16px rgba(255,63,180,.6)}
-  .chip.c{background:linear-gradient(90deg,#1fb7d6,var(--cyan));color:#08303a;box-shadow:0 0 16px rgba(63,240,255,.55)}
-  .chip.g{background:linear-gradient(90deg,#d79b2e,var(--gold));color:#3a1d00;box-shadow:0 0 16px rgba(243,201,107,.6)}
-
-  .footer{position:absolute;left:100px;right:100px;bottom:60px;z-index:12;text-align:center}
-  .mark{font-family:"Great Vibes",cursive;font-size:66px;line-height:1;color:#fff;
-    text-shadow:0 2px 12px rgba(0,0,0,.45)}
-  .mark small{font-family:Montserrat;font-size:16px;letter-spacing:.5em;vertical-align:middle;
-    margin-right:14px;writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block;opacity:.85}
-  .about{margin-top:18px;font-size:22px;line-height:1.5;color:#fff;font-weight:400;
-    text-shadow:0 2px 8px rgba(0,0,0,.6)}
+  .poster{position:relative;width:1080px;height:1920px;overflow:hidden;margin:0 auto;
+    background:radial-gradient(ellipse 75% 55% at 45% 38%,#d8352a 0%,#bd1f1f 40%,#8c0e12 75%,#540608 100%);
+    font-family:Montserrat,sans-serif;color:#fff}
+  .poster::before{content:"";position:absolute;inset:0;opacity:.28;mix-blend-mode:overlay;z-index:1;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .poster::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;
+    background:radial-gradient(ellipse 85% 75% at 50% 42%,transparent 55%,rgba(35,0,3,.6) 100%)}
+  canvas{position:absolute;inset:0;z-index:2}
+  svg{position:absolute;left:0;top:0;z-index:3}
+  .title{position:absolute;left:0;right:0;top:380px;z-index:10;
+    font-family:"Great Vibes",cursive;color:#fbf3ee;line-height:.82;
+    text-shadow:0 3px 14px rgba(70,0,0,.45)}
+  .l1{font-size:220px;margin-left:80px}
+  .l2{font-size:220px;margin-left:175px}
+  .sign{position:absolute;right:120px;top:740px;z-index:10;font-weight:400;font-size:30px;
+    letter-spacing:.01em;color:#fff1ee;text-shadow:0 2px 8px rgba(60,0,0,.4)}
+  .bottom{position:absolute;left:0;right:0;top:1475px;z-index:10;text-align:center}
+  .mark{display:inline-flex;align-items:center;gap:14px;font-family:"Great Vibes",cursive;
+    font-size:74px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+  .mark small{font-family:Montserrat;font-weight:500;font-size:15px;letter-spacing:.35em;
+    writing-mode:vertical-rl;transform:rotate(180deg)}
+  .about{margin:22px auto 0;width:860px;font-size:22px;line-height:1.45;font-weight:400;
+    text-shadow:0 1px 6px rgba(0,0,0,.65)}
 </style>
 </head>
 <body>
 <div class="poster" id="poster">
-
-  <!-- light beams -->
-  <div class="beams" id="beams"></div>
-  <canvas id="fx" width="1080" height="1920"></canvas>
-
-  <!-- garlands + ornaments + disco ball + trees -->
-  <svg width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0;z-index:5" id="deco">
+  <canvas id="bokeh" width="1080" height="1920" style="z-index:2"></canvas>
+  <svg width="1080" height="1920" viewBox="0 0 1080 1920" id="deco">
     <defs>
-      <radialGradient id="ornRed" cx="35%" cy="30%" r="75%">
-        <stop offset="0" stop-color="#ffb3a0"/><stop offset=".25" stop-color="#e8322a"/>
-        <stop offset=".75" stop-color="#8a0a10"/><stop offset="1" stop-color="#3d0205"/>
-      </radialGradient>
-      <radialGradient id="ornGold" cx="35%" cy="30%" r="75%">
-        <stop offset="0" stop-color="#fff6d0"/><stop offset=".3" stop-color="#f1c45c"/>
-        <stop offset=".8" stop-color="#9a6a12"/><stop offset="1" stop-color="#4a3005"/>
-      </radialGradient>
-      <radialGradient id="ballShade" cx="38%" cy="32%" r="70%">
-        <stop offset="0" stop-color="#fff" stop-opacity=".0"/>
-        <stop offset=".7" stop-color="#000" stop-opacity=".15"/>
-        <stop offset="1" stop-color="#000" stop-opacity=".65"/>
-      </radialGradient>
-      <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stop-color="#fff2d0" stop-opacity=".9"/>
-        <stop offset=".4" stop-color="#ffb35c" stop-opacity=".35"/>
-        <stop offset="1" stop-color="#ff5030" stop-opacity="0"/>
-      </radialGradient>
-      <clipPath id="ballClip"><circle cx="540" cy="250" r="132"/></clipPath>
-      <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
-      <filter id="blur14"><feGaussianBlur stdDeviation="14"/></filter>
-      <filter id="blur3"><feGaussianBlur stdDeviation="2.5"/></filter>
+      <radialGradient id="red" cx="35%" cy="30%" r="75%">
+        <stop offset="0" stop-color="#ffb09a"/><stop offset=".25" stop-color="#e2302a"/>
+        <stop offset=".75" stop-color="#860a10"/><stop offset="1" stop-color="#3a0205"/></radialGradient>
+      <radialGradient id="gold" cx="35%" cy="30%" r="75%">
+        <stop offset="0" stop-color="#fff3c8"/><stop offset=".3" stop-color="#e9b955"/>
+        <stop offset=".8" stop-color="#8f6010"/><stop offset="1" stop-color="#3f2804"/></radialGradient>
+      <radialGradient id="shade" cx="40%" cy="30%" r="80%">
+        <stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+      <filter id="b2"><feGaussianBlur stdDeviation="1.6"/></filter>
+      <filter id="b6"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="b12"><feGaussianBlur stdDeviation="12"/></filter>
+      <filter id="b20"><feGaussianBlur stdDeviation="20"/></filter>
     </defs>
-    <g id="garland"></g>
-    <!-- disco ball -->
-    <line x1="540" y1="0" x2="540" y2="120" stroke="#d9b25a" stroke-width="4"/>
-    <circle cx="540" cy="250" r="230" fill="url(#glow)"/>
-    <g clip-path="url(#ballClip)" id="facets"></g>
-    <circle cx="540" cy="250" r="132" fill="url(#ballShade)"/>
-    <circle cx="540" cy="250" r="132" fill="none" stroke="#ffe7b0" stroke-opacity=".35" stroke-width="2"/>
-    <rect x="522" y="108" width="36" height="20" rx="4" fill="url(#ornGold)"/>
-    <g id="sparkles"></g>
-    <g id="ornaments"></g>
-    <g id="trees"></g>
+    <g id="g"></g>
   </svg>
+  <canvas id="glitter" width="1080" height="1920" style="z-index:4"></canvas>
 
-  <div class="title">
-    <div class="kicker"><span></span>Новогоднее мероприятие<span></span></div>
-    <div class="script">Дискотека</div>
-    <div class="nineties">90-х</div>
-    <div class="sign">— встречаем Новый год 2027</div>
-  </div>
+  <div class="title"><div class="l1">Дискотека</div><div class="l2">девяностых</div></div>
+  <div class="sign">— новогоднее мероприятие</div>
 
-  <div class="status">
-    <div class="row">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5a1a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg></div>
-      <div class="txt"><div class="chip">Готовятся</div><b>Вокальные и танцевальные номера</b><i>хиты 90-х вживую и на танцполе</i></div>
-    </div>
-    <div class="row">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5a1a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
-      <div class="txt"><div class="chip c">Готовится</div><b>Сценарий мероприятия</b><i>ведущие, конкурсы и сюрпризы</i></div>
-    </div>
-    <div class="row">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5a1a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
-      <div class="txt"><div class="chip g">В разработке</div><b>Афиша</b><i>дата, время и место — совсем скоро</i></div>
-    </div>
-  </div>
-
-  <div style="position:absolute;left:0;right:0;bottom:0;height:520px;z-index:11;background:linear-gradient(180deg,rgba(40,0,4,0),rgba(40,0,4,.78) 55%,rgba(30,0,3,.92))"></div>
-  <div class="footer">
-    <div class="mark"><small>ДИСКО</small>Новый год в стиле 90-х</div>
-    <p class="about">Достаём из шкафа блёстки, кассеты и лучшее настроение. Впереди вечер,
-      где звучат любимые хиты, танцпол не пустеет ни на минуту, а Новый год встречают так,
-      как умели только в девяностые. Следите за анонсами — будет жарко!</p>
+  <div class="bottom">
+    <div class="mark"><small>2027</small>Новый год</div>
+    <p class="about">Готовятся вокальные и танцевальные номера, пишется сценарий вечера,
+      а афиша уже в разработке. Совсем скоро — любимые хиты, блёстки
+      и танцпол до утра. Встречаем Новый год так, как умели в девяностые.</p>
   </div>
 </div>
-
 <script>
-// deterministic RNG
-let s=19901999; const R=()=>(s=(s*16807)%2147483647)/2147483647;
-const NS="http://www.w3.org/2000/svg";
-const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+let s=1990; const R=()=>(s=(s*16807)%2147483647)/2147483647;
+const NS="http://www.w3.org/2000/svg", G=document.getElementById('g');
+const el=(t,a,p=G)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+const grp=f=>el('g',f?{filter:`url(#${f})`}:{});
 
-// beams
-const beams=document.getElementById('beams');
-[[18,'b-pink'],[38,'b-gold'],[62,'b-cyan'],[118,'b-cyan'],[142,'b-gold'],[162,'b-pink'],[90,'b-gold'],[75,'b-pink'],[105,'b-cyan']]
- .forEach(([a,c])=>{const d=document.createElement('div');d.className='beam '+c;d.style.transform=`rotate(${a}deg)`;beams.appendChild(d)});
+// garlands
+function swag(x1,y1,x2,y2,sag,n,r,p){for(let k=0;k<=n;k++){const t=k/n;
+  el('circle',{cx:x1+(x2-x1)*t,cy:y1+(y2-y1)*t+sag*4*t*(1-t),r,fill:'url(#gold)'},p)}}
+const gl=grp('b2');
+swag(-30,20,360,30,60,50,4.2,gl);swag(360,30,760,25,70,52,4.2,gl);swag(760,25,1110,15,60,46,4.2,gl);
+function starP(x,y,z){return `M${x},${y-z} L${x+z*.25},${y-z*.25} L${x+z},${y} L${x+z*.25},${y+z*.25} L${x},${y+z} L${x-z*.25},${y+z*.25} L${x-z},${y} L${x-z*.25},${y-z*.25}Z`}
+[[160,25,190],[360,30,280],[555,28,330],[760,25,170]].forEach(([x,y,l])=>{
+  for(let k=0;k<l;k+=11) el('circle',{cx:x,cy:y+k,r:3,fill:'url(#gold)'},gl);
+  el('path',{d:starP(x,y+l+14,16),fill:'url(#gold)'},gl)});
 
-// disco ball facets (sphere mapped grid)
-const fac=document.getElementById('facets'), cx=540, cy=250, r=132;
-const rows=16, cols=24;
-for(let i=0;i<rows;i++){
-  const la1=-Math.PI/2+Math.PI*i/rows, la2=-Math.PI/2+Math.PI*(i+1)/rows;
-  for(let j=0;j<cols;j++){
-    const lo1=-Math.PI/2+Math.PI*j/cols*1.0, lo2=-Math.PI/2+Math.PI*(j+1)/cols;
-    const P=(la,lo)=>[cx+r*Math.cos(la)*Math.sin(lo), cy+r*Math.sin(la)];
-    const pts=[P(la1,lo1),P(la1,lo2),P(la2,lo2),P(la2,lo1)];
-    const lit=R(); const hot=(i<6&&j<11&&R()>.55);
-    let col;
-    if(hot) col=`hsl(${R()>.5?320:185},100%,${78+R()*15}%)`;
-    else { const l=28+lit*55; col=`hsl(${R()>.85?(R()>.5?330:190):30},${R()>.85?70:12}%,${l}%)`; }
-    el('polygon',{points:pts.map(p=>p.join(',')).join(' '),fill:col,stroke:'#2a1410','stroke-width':1.2},fac);
-  }
-}
+// baubles
+function bauble(x,y,r,f,blur){const g=grp(blur);
+  el('line',{x1:x,y1:-5,x2:x,y2:y-r,stroke:'#b8893a','stroke-width':2},g);
+  el('rect',{x:x-r*.17,y:y-r*1.15,width:r*.34,height:r*.22,rx:3,fill:'url(#gold)'},g);
+  el('circle',{cx:x,cy:y,r,fill:f},g);
+  el('ellipse',{cx:x-r*.32,cy:y-r*.38,rx:r*.26,ry:r*.14,fill:'#fff',opacity:.4,transform:`rotate(-30 ${x-r*.32} ${y-r*.38})`},g)}
+bauble(55,310,110,'url(#red)','b6');
+bauble(130,185,48,'url(#red)','b2');
+bauble(1000,300,135,'url(#red)','b20');
+bauble(880,150,42,'url(#gold)','b6');
 
-// sparkles (star glints)
-const sp=document.getElementById('sparkles');
-const star=(x,y,sz,o)=>{const g=el('g',{transform:`translate(${x},${y})`,opacity:o},sp);
-  el('path',{d:`M0,${-sz} L${sz*.12},${-sz*.12} L${sz},0 L${sz*.12},${sz*.12} L0,${sz} L${-sz*.12},${sz*.12} L${-sz},0 L${-sz*.12},${-sz*.12}Z`,fill:'#fff'},g);
-  el('circle',{r:sz*.18,fill:'#fff',filter:'url(#blur3)'},g)};
-star(480,190,40,1);star(590,300,22,.9);star(505,320,14,.8);star(610,175,16,.85);
+// trees
+function tree(x,base,h,w,blur,seed,dim){s=seed;const g=grp(blur);
+  for(let t=0;t<8;t++){const top=base-h+t*h/8*.92,bot=top+h/8*1.55,half=w*(.15+.85*(t+1)/8)/2;
+    el('path',{d:`M${x},${top} C${x-half*.3},${top+(bot-top)*.5} ${x-half*.8},${bot-18} ${x-half},${bot} Q${x},${bot+26} ${x+half},${bot} C${x+half*.8},${bot-18} ${x+half*.3},${top+(bot-top)*.5} ${x},${top}Z`,
+      fill:`hsl(${135+R()*12},${28+R()*10}%,${(8+t*1.5)*dim}%)`},g)}
+  for(let k=0;k<90;k++){const ty=base-h+R()*h*.97,f=(ty-(base-h))/h,hf=w*(.1+.85*f)/2,tx=x+(R()*2-1)*hf*.85;
+    if(R()>.78) el('circle',{cx:tx,cy:ty,r:8+R()*10,fill:R()>.45?'url(#red)':'url(#gold)'},g);
+    else{el('circle',{cx:tx,cy:ty,r:9,fill:'#ffcf7a',opacity:.4,filter:'url(#b6)'},g);el('circle',{cx:tx,cy:ty,r:2.4,fill:'#fff4d6'},g)}}
+  el('path',{d:starP(x,base-h-10,h*.04),fill:'url(#gold)'},g)}
+tree(30,1560,900,560,'b6',7,.9);
+tree(1070,1950,1200,700,'b20',11,1.1);
 
-// garlands (gold bead swags) across top
-const gar=document.getElementById('garland');
-function swag(x1,y1,x2,y2,sag,n,rad){
-  for(let k=0;k<=n;k++){const t=k/n;const x=x1+(x2-x1)*t;const y=y1+(y2-y1)*t+sag*4*t*(1-t);
-    el('circle',{cx:x,cy:y,r:rad,fill:'url(#ornGold)',opacity:.9},gar);}
-}
-swag(-40,30,330,40,70,46,5.5); swag(330,40,750,40,80,52,5.5); swag(750,40,1120,25,70,46,5.5);
-swag(-40,8,540,5,40,70,3.5); swag(540,5,1120,10,40,70,3.5);
-// hanging strands
-[[150,30,170],[330,40,250],[750,40,250],[930,32,190]].forEach(([x,y,l])=>{
-  for(let k=0;k<l;k+=12) el('circle',{cx:x,cy:y+k,r:3.6,fill:'url(#ornGold)'},gar);
-  star(x, y+l+8, 18, .95); sp.lastChild && gar.appendChild(sp.lastChild);
-});
+// gifts bottom (blurred, like reference foreground)
+function gift(x,y,w,h,blur){const g=grp(blur);
+  el('rect',{x,y,width:w,height:h,rx:4,fill:'#b8141c'},g);el('rect',{x,y,width:w,height:h,fill:'url(#shade)'},g);
+  el('rect',{x:x+w*.46,y,width:w*.08,height:h,fill:'url(#gold)'},g);el('rect',{x,y:y+h*.2,width:w,height:h*.07,fill:'url(#gold)'},g);
+  el('path',{d:`M${x+w/2},${y} c-34,-36 -60,-4 -26,9 M${x+w/2},${y} c34,-36 60,-4 26,9`,stroke:'#e9b955','stroke-width':8,fill:'none','stroke-linecap':'round'},g)}
+gift(-30,1330,200,190,'b6');gift(150,1390,170,140,'b6');gift(300,1300,140,230,'b6');
+gift(-60,1640,330,300,'b20');gift(220,1720,260,240,'b20');
 
-// ornaments (big, some blurred like the reference)
-const orn=document.getElementById('ornaments');
-function bauble(x,y,rad,fill,blur,str){
-  const g=el('g',blur?{filter:`url(#${blur})`}:{},orn);
-  if(str) el('line',{x1:x,y1:-10,x2:x,y2:y-rad,stroke:'#c99a3c','stroke-width':2.5},g);
-  el('rect',{x:x-rad*.18,y:y-rad-rad*.18,width:rad*.36,height:rad*.24,rx:3,fill:'url(#ornGold)'},g);
-  el('circle',{cx:x,cy:y,r:rad,fill},g);
-  el('ellipse',{cx:x-rad*.35,cy:y-rad*.4,rx:rad*.28,ry:rad*.16,fill:'#fff',opacity:.45,transform:`rotate(-30 ${x-rad*.35} ${y-rad*.4})`},g);
-}
-bauble(70,300,120,'url(#ornRed)','blur6',true);
-bauble(185,170,58,'url(#ornRed)',null,true);
-bauble(1010,330,140,'url(#ornRed)','blur14',true);
-bauble(900,150,48,'url(#ornGold)','blur3',true);
-bauble(270,95,26,'url(#ornGold)',null,true);
-bauble(805,110,30,'url(#ornRed)',null,true);
-
-// trees (stylised, layered) left sharp / right blurred, like reference
-const tr=document.getElementById('trees');
-function tree(x,base,h,w,blur,seed){
-  s=seed; const g=el('g',blur?{filter:`url(#${blur})`}:{},tr);
-  const tiers=7;
-  for(let t=0;t<tiers;t++){
-    const top=base-h+t*h/tiers*0.92, bot=top+h/tiers*1.6, half=w*(0.18+0.82*(t+1)/tiers)/2;
-    const d=`M${x},${top} C${x-half*.3},${top+ (bot-top)*.5} ${x-half*.8},${bot-20} ${x-half},${bot} Q${x},${bot+28} ${x+half},${bot} C${x+half*.8},${bot-20} ${x+half*.3},${top+(bot-top)*.5} ${x},${top}Z`;
-    el('path',{d,fill:`hsl(${140+R()*10},${35+R()*10}%,${10+t*1.6}%)`,stroke:'#0a1f12','stroke-width':1},g);
-  }
-  // lights + baubles
-  for(let k=0;k<70;k++){
-    const ty=base-h+R()*h*.98, frac=(ty-(base-h))/h, half=w*(0.12+0.85*frac)/2;
-    const tx=x+(R()*2-1)*half*.85;
-    if(R()>.72){ el('circle',{cx:tx,cy:ty,r:9+R()*11,fill:R()>.4?'url(#ornRed)':'url(#ornGold)'},g); }
-    else { el('circle',{cx:tx,cy:ty,r:7,fill:'#ffd37a',opacity:.35,filter:'url(#blur3)'},g);
-           el('circle',{cx:tx,cy:ty,r:2.6,fill:'#fff6d8'},g); }
-  }
-  // star on top
-  const sx=x, sy=base-h-6, sz=h*.05;
-  el('path',{d:`M${sx},${sy-sz} L${sx+sz*.3},${sy-sz*.3} L${sx+sz},${sy-sz*.2} L${sx+sz*.45},${sy+sz*.25} L${sx+sz*.6},${sy+sz} L${sx},${sy+sz*.6} L${sx-sz*.6},${sy+sz} L${sx-sz*.45},${sy+sz*.25} L${sx-sz},${sy-sz*.2} L${sx-sz*.3},${sy-sz*.3}Z`,fill:'url(#ornGold)'},g);
-}
-tree(30,1640,900,520,null,7);
-tree(1060,1880,1250,640,'blur14',11);
-
-// gift boxes + cassette/vinyl at bottom-left
-function gift(x,y,w,h,blur){
-  const g=el('g',blur?{filter:`url(#${blur})`}:{},tr);
-  el('rect',{x,y,width:w,height:h,rx:4,fill:'#c8161f',stroke:'#6a0308','stroke-width':2},g);
-  el('rect',{x,y,width:w,height:h,rx:4,fill:'url(#ballShade)',opacity:.6},g);
-  el('rect',{x:x+w*.45,y,width:w*.1,height:h,fill:'url(#ornGold)'},g);
-  el('rect',{x,y:y+h*.18,width:w,height:h*.09,fill:'url(#ornGold)'},g);
-  el('path',{d:`M${x+w/2},${y} c-40,-40 -70,-5 -30,10 M${x+w/2},${y} c40,-40 70,-5 30,10`,stroke:'#f3c96b','stroke-width':10,fill:'none','stroke-linecap':'round'},g);
-}
-gift(-30,1700,200,180,'blur6'); gift(140,1760,180,160,'blur6');
-
-// vinyl record leaning
-const v=el('g',{transform:'translate(70,1600) rotate(-12)'},tr);
-el('circle',{r:150,fill:'#111'},v);
-for(let k=140;k>60;k-=7) el('circle',{r:k,fill:'none',stroke:'#2a2a2a','stroke-width':1.4},v);
-el('circle',{r:55,fill:'#ff3fb4'},v); el('circle',{r:6,fill:'#111'},v);
-el('path',{d:'M-120,-80 A145,145 0 0 1 60,-135',stroke:'#fff',opacity:.25,'stroke-width':10,fill:'none'},v);
-
-// cassette tape
-const c=el('g',{transform:'translate(990,1640) rotate(14) scale(.8)'},tr);
-el('rect',{x:-150,y:-95,width:300,height:190,rx:14,fill:'#1a1a22',stroke:'#3ff0ff','stroke-width':3},c);
-el('rect',{x:-128,y:-75,width:256,height:84,rx:8,fill:'#ff3fb4'},c);
-el('rect',{x:-128,y:-30,width:256,height:14,fill:'#ffd34a'},c);
-el('rect',{x:-80,y:-48,width:160,height:46,rx:22,fill:'#1a1a22'},c);
-el('circle',{cx:-48,cy:-25,r:16,fill:'#eee'},c); el('circle',{cx:48,cy:-25,r:16,fill:'#eee'},c);
-el('path',{d:'M-90,95 L-70,40 L70,40 L90,95',fill:'#2a2a34'},c);
-const tt=el('text',{x:-118,y:-55,fill:'#1a1a22','font-family':'Russo One','font-size':20},c); tt.textContent='HITS 90s';
-
-// canvas: bokeh + glitter like reference
-const cv=document.getElementById('fx'),x=cv.getContext('2d'); s=4242;
-for(let i=0;i<46;i++){const px=R()*1080,py=R()*1920,rr=20+R()*90;
-  const g=x.createRadialGradient(px,py,0,px,py,rr);const hue=[ '255,210,150','255,120,120','255,63,180','63,240,255'][Math.floor(R()*4)];
-  g.addColorStop(0,`rgba(${hue},${.10+R()*.18})`);g.addColorStop(.7,`rgba(${hue},.05)`);g.addColorStop(1,`rgba(${hue},0)`);
-  x.fillStyle=g;x.beginPath();x.arc(px,py,rr,0,7);x.fill();}
-for(let i=0;i<900;i++){ // glitter stream from ball downward like reference
-  const t=R(); const px=540+(R()-.5)*(200+t*900), py=360+t*1300+(R()-.5)*120;
-  const rr=R()*2.6+.4; x.fillStyle=`rgba(255,${200+R()*55|0},${130+R()*90|0},${.35+R()*.6})`;
-  x.shadowColor='rgba(255,200,120,.9)';x.shadowBlur=6;x.beginPath();x.arc(px,py,rr,0,7);x.fill();}
-x.shadowBlur=0;
+// bokeh
+const b=document.getElementById('bokeh').getContext('2d');s=77;
+for(let i=0;i<34;i++){const x=R()*1080,y=R()*1500,r=25+R()*80,g=b.createRadialGradient(x,y,0,x,y,r);
+  const c=R()>.5?'255,215,170':'255,140,120';g.addColorStop(0,`rgba(${c},${.08+R()*.14})`);g.addColorStop(.75,`rgba(${c},.04)`);g.addColorStop(1,`rgba(${c},0)`);
+  b.fillStyle=g;b.beginPath();b.arc(x,y,r,0,7);b.fill()}
+// glitter (top layer, sparse like reference)
+const q=document.getElementById('glitter').getContext('2d');s=99;q.shadowColor='rgba(255,200,120,.9)';q.shadowBlur=7;
+for(let i=0;i<520;i++){const t=R(),x=420+(R()-.45)*(140+t*700),y=820+t*900+(R()-.5)*150;
+  q.fillStyle=`rgba(255,${205+R()*50|0},${140+R()*80|0},${.3+R()*.6})`;q.beginPath();q.arc(x,y,R()*2.3+.4,0,7);q.fill()}
 document.fonts.ready.then(()=>document.body.dataset.ready=1);
 </script>
 </body>
