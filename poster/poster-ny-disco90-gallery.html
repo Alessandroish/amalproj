@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Дискотека 90-х — галерея</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Caveat:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 297mm; height: 420mm; background: #ecebe8; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Cormorant Garamond', serif; color: #2a2220; }
+  :root { --red: #a3121c; --ink: #2b2220; }
+  .poster { position: relative; width: 297mm; height: 420mm; overflow: hidden; background: #efeeeb url(plaster.jpg) 0 0 / 297mm 420mm; }
+  .layer { position: absolute; left: 0; top: 0; width: 297mm; height: 420mm; }
+  .abs { position: absolute; }
+  .gf { position: absolute; }
+  .gf .pt { position: absolute; object-fit: cover; }
+  .gf .fr { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pol { position: absolute; background: linear-gradient(170deg, #fbfbf9, #ecebe7); padding: 3mm 3mm 3mm; box-shadow: 1mm 2mm 1.6mm rgba(0,0,0,.2), 4mm 9mm 9mm rgba(0,0,0,.22); }
+  .pol img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .head { left: 0; right: 0; top: 12mm; display: flex; justify-content: center; align-items: center; gap: 3.4mm; }
+  .head img { width: 10mm; height: 10mm; }
+  .head .c { text-align: center; line-height: 1; }
+  .head .a { font-family: 'Montserrat'; font-weight: 500; font-size: 2.6mm; letter-spacing: .22em; }
+  .head .b { font-family: 'Playfair Display'; font-weight: 600; font-size: 5.6mm; letter-spacing: .06em; margin-top: .9mm; }
+  .head .d { font-family: 'Montserrat'; font-weight: 500; font-size: 2.4mm; letter-spacing: .26em; margin-top: 1mm; }
+
+  .t1, .t2 { left: 0; right: 0; text-align: center; font-family: 'Playfair Display'; font-weight: 500; color: var(--ink); line-height: .8; white-space: nowrap; letter-spacing: .01em; }
+  .t1 { top: 40mm; } .t2 { top: 75mm; }
+  .scr { font-family: 'Great Vibes'; color: var(--red); white-space: nowrap; line-height: 1; }
+
+  .note { position: absolute; left: 16mm; top: 186mm; width: 52mm; height: 50mm; background: linear-gradient(160deg, #fbe983, #f3d95c 70%, #e9cb4a); transform: rotate(-7deg);
+    box-shadow: 1mm 2mm 1.6mm rgba(0,0,0,.18), 3mm 7mm 7mm rgba(0,0,0,.2); display: flex; align-items: center; justify-content: center; text-align: center;
+    font-family: 'Caveat'; font-weight: 700; font-size: 13mm; line-height: .86; color: #1c1a16; }
+  .quote { left: 46mm; right: 46mm; top: 362mm; text-align: center; font-weight: 500; font-size: 5.6mm; line-height: 1.28; color: #26201e; }
+  .quote .r { color: var(--red); }
+  .quote b { font-weight: 700; }
+  .quote .circ { position: relative; white-space: nowrap; }
+  .quote .circ svg { position: absolute; left: -2.5mm; top: -1.2mm; width: calc(100% + 5mm); height: calc(100% + 2.4mm); overflow: visible; }
+  .handle { left: 0; right: 0; top: 403mm; text-align: center; font-family: 'Montserrat'; font-weight: 500; font-size: 3.4mm; color: #4a4240; letter-spacing: .02em; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <radialGradient id="pinHead" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ff8f86"/><stop offset=".35" stop-color="#e01b22"/><stop offset="1" stop-color="#6e0508"/></radialGradient>
+  <filter id="b1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
+  <filter id="b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+  <filter id="b8" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+</defs></svg>
+
+<div class="poster">
+  <!-- edge frames, partly off the poster -->
+  <div class="gf" data-name="Рама слева сверху" data-raster="box" style="left:-38mm; top:-12mm; width:74mm; height:106mm; filter: drop-shadow(3mm 6mm 5mm rgba(0,0,0,.35));">
+    <img class="pt" src="paint-mic.jpg" style="left:11mm; top:11mm; width:52mm; height:84mm"><img class="fr" src="gframe-side.png"></div>
+  <div class="gf" data-name="Рама справа" data-raster="box" style="left:258mm; top:250mm; width:70mm; height:100mm; filter: drop-shadow(-3mm 6mm 5mm rgba(0,0,0,.35));">
+    <img class="pt" src="paint-neon.jpg" style="left:11mm; top:11mm; width:48mm; height:78mm"><img class="fr" src="gframe-side.png"></div>
+  <div class="gf" data-name="Рама справа сверху" data-raster="box" style="left:262mm; top:-30mm; width:60mm; height:86mm; filter: drop-shadow(-3mm 6mm 5mm rgba(0,0,0,.35));">
+    <img class="pt" src="paint-bb.jpg" style="left:9mm; top:9mm; width:42mm; height:68mm"><img class="fr" src="gframe-side.png"></div>
+
+  <!-- the main frame -->
+  <div class="gf" data-name="Главная рама" data-raster="box" style="left:56mm; top:122mm; width:186mm; height:211mm; filter: drop-shadow(2mm 4mm 2.4mm rgba(0,0,0,.35)) drop-shadow(6mm 14mm 12mm rgba(0,0,0,.3));">
+    <img class="pt" src="paint-main.jpg" style="left:21.5mm; top:21.5mm; width:143mm; height:168mm"><img class="fr" src="gframe-main.png"></div>
+
+  <!-- white cloth draped over the frame corner (make_cloth.py) -->
+  <img class="abs" src="cloth.png" alt="" data-name="Ткань" data-raster="box" style="left:130mm; top:108mm; width:140mm; height:254mm; filter: drop-shadow(1.2mm 2mm 1.4mm rgba(0,0,0,.22)) drop-shadow(4mm 9mm 8mm rgba(0,0,0,.22));">
+
+  <!-- polaroids -->
+  <div class="pol" data-name="Полароид справа" data-raster="box" style="left:232mm; top:100mm; width:60mm; height:74mm; transform: rotate(9deg);"><img src="paint-ball.jpg" alt=""></div>
+  <div class="pol" data-name="Полароид слева" data-raster="box" style="left:-14mm; top:268mm; width:62mm; height:74mm; transform: rotate(-7deg);"><img src="paint-tree.jpg" alt=""></div>
+
+  <!-- sticky note -->
+  <div class="note" data-name="Стикер" data-raster="box">Хиты<br>90-х!</div>
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Кнопка" data-raster="full"><g transform="translate(-4 18)">
+    <ellipse cx="48" cy="186" rx="3" ry="1.2" fill="#000" opacity=".3" filter="url(#b1)"/>
+    <path d="M45 176 L47.6 185" stroke="#9a9a9a" stroke-width=".8"/>
+    <path d="M40 174 C 40 172, 50 172, 50 174 L 49 176 C 47 177.5, 43 177.5, 41 176 Z" fill="url(#pinHead)"/>
+    <rect x="42.4" y="168.6" width="5.2" height="5" rx="1.2" fill="url(#pinHead)"/>
+    <ellipse cx="45" cy="168.9" rx="4" ry="2.4" fill="url(#pinHead)"/>
+    <ellipse cx="43.8" cy="168.3" rx="1.3" ry=".6" fill="#fff" opacity=".6"/></g>
+  </svg>
+
+  <!-- header + title -->
+  <div class="abs head" data-name="Шапка" data-raster="box"><img src="logo-briks-mark.png" alt="" style="filter:brightness(0) saturate(100%) invert(12%)">
+    <div class="c"><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b">КОЛЛЕДЖ БРИКС</div><div class="d">НОВЫЙ ГОД · 2027</div></div>
+    <img src="logo-briks-mark.png" alt="" style="filter:brightness(0) saturate(100%) invert(12%); transform: scaleX(-1)"></div>
+  <div class="abs t1" id="t1" data-name="ДИСКОТЕКА" data-raster="box">ДИСКОТЕКА</div>
+  <div class="abs t2" id="t2" data-name="90-Х" data-raster="box">90-Х</div>
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" data-name="Каллиграфия" data-raster="full">
+    <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a3121c" stop-opacity="0"/><stop offset=".12" stop-color="#a3121c"/><stop offset=".88" stop-color="#a3121c"/><stop offset="1" stop-color="#a3121c" stop-opacity="0"/></linearGradient></defs>
+    <g fill="none" stroke="url(#sw)" stroke-linecap="round">
+      <path d="M-6 118 C 40 112, 70 104, 92 96 C 112 88, 104 76, 92 82 C 80 90, 96 104, 130 106 C 180 110, 236 96, 268 64 C 282 50, 292 34, 304 26" stroke-width=".9"/>
+      <path d="M200 112 C 230 108, 262 96, 282 78" stroke-width=".5"/>
+    </g>
+    <text x="16" y="99" font-size="25" transform="rotate(-9 16 99)" style="font-family:'Great Vibes'" fill="#a3121c">Новогодняя</text>
+  </svg>
+
+  <!-- quote -->
+  <div class="abs quote" data-name="Текст" data-raster="box">Готовим для вас <span class="circ">вокальные<svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M6 20 C 2 6, 40 1, 74 4 C 100 7, 100 24, 70 28 C 42 31, 8 28, 4 16 C 3 10, 12 6, 20 5" fill="none" stroke="#a3121c" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg></span> и танцевальные номера, сценарий праздника и громкие хиты девяностых. <span class="r">Доставай джинсовку и кассеты — встречаемся на танцполе, как в 1999-м!</span> <b>Дата и место — совсем скоро.</b></div>
+  <div class="abs handle" data-name="Подпись" data-raster="box">Университетский колледж БРИКС · новогодняя дискотека 90-х</div>
+
+  <!-- sun flare top-left -->
+  <svg class="layer" viewBox="0 0 297 420" preserveAspectRatio="none" style="mix-blend-mode:screen" data-name="Блик" data-raster="full">
+    <defs><radialGradient id="fl" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".25" stop-color="#fff3dc" stop-opacity=".55"/><stop offset="1" stop-color="#ffe2b0" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="14" cy="12" r="60" fill="url(#fl)"/>
+    <g stroke="#fff" stroke-linecap="round" filter="url(#b1)" opacity=".75">
+      <line x1="14" y1="12" x2="120" y2="92" stroke-width="1.6"/><line x1="14" y1="12" x2="80" y2="120" stroke-width="1"/><line x1="14" y1="12" x2="150" y2="40" stroke-width=".8"/>
+    </g>
+    <circle cx="150" cy="122" r="6" fill="#fff" opacity=".25" filter="url(#b3)"/><circle cx="182" cy="150" r="3" fill="#ffd9a8" opacity=".35" filter="url(#b1)"/>
+  </svg>
+</div>
+<script>
+  const mm = v => v * 96 / 25.4;
+  document.fonts.ready.then(() => {
+    const fit = (id, w) => { const el = document.getElementById(id); el.style.fontSize = '100px'; const r = document.createRange(); r.selectNodeContents(el);
+      el.style.fontSize = (100 * mm(w) / r.getBoundingClientRect().width) + 'px'; };
+    fit('t1', 246); const f = parseFloat(document.getElementById('t1').style.fontSize); document.getElementById('t2').style.fontSize = (f * 1.08) + 'px';
+  });
+</script>
+</body>
+</html>
