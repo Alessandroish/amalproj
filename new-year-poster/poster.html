@@ -26,8 +26,11 @@
     filter:drop-shadow(4px 6px 3px rgba(35,20,5,.55)) drop-shadow(16px 26px 22px rgba(35,20,5,.42)) drop-shadow(34px 50px 50px rgba(35,20,5,.2));}
   .frame .inner{position:absolute;inset:var(--t,40px);overflow:hidden;background:#111}
   .frame .inner svg{display:block;width:100%;height:100%}
+  .frame .inner .paint{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.05)}
+  .frame .inner::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.35;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' seed='4'/%3E%3CfeDiffuseLighting surfaceScale='1.6' lighting-color='%23888'%3E%3CfeDistantLight azimuth='225' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)'/%3E%3C/svg%3E")}
   .frame .inner::after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,rgba(255,250,230,.14) 0%,rgba(255,255,255,0) 35%,rgba(255,255,255,0) 70%,rgba(255,240,200,.06) 100%);
-    box-shadow:inset 0 0 40px rgba(0,0,0,.55)}
+    box-shadow:inset 0 0 24px rgba(0,0,0,.35)}
   .fsvg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
 
   .f-tl{left:-96px;top:-34px;width:210px;height:430px}
@@ -102,21 +105,11 @@
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 5%,rgba(255,248,225,.55),transparent 50%),radial-gradient(ellipse at 100% 100%,rgba(60,45,30,.28),transparent 60%),radial-gradient(ellipse at 0% 100%,rgba(60,45,30,.18),transparent 50%);pointer-events:none"></div>
 
   <!-- side frames -->
-  <div class="frame f-tl" data-t="58"><div class="inner"><svg viewBox="0 0 100 300" preserveAspectRatio="xMidYMid slice">
-    <defs><radialGradient id="tlg" cx=".75" cy=".45" r=".7"><stop offset="0" stop-color="#7a4a22"/><stop offset=".5" stop-color="#3a1d10"/><stop offset="1" stop-color="#120806"/></radialGradient></defs>
-    <rect width="100" height="300" fill="url(#tlg)"/>
-    <path d="M60 60 L100 20 L100 300 L40 300 Z" fill="#1e3a24" opacity=".7"/>
-    <g fill="#f8c66a"><circle cx="78" cy="110" r="3"/><circle cx="88" cy="150" r="2.5"/><circle cx="70" cy="190" r="3"/><circle cx="92" cy="220" r="2"/></g>
-  </svg></div></div>
+  <div class="frame f-tl" data-t="58"><div class="inner"><img class="paint" src="paint-tl.jpg" alt=""></div></div>
 
-  <div class="frame f-tr" data-t="52"><div class="inner"><svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice"><rect width="100" height="120" fill="#2a1a12"/><circle cx="30" cy="60" r="30" fill="#7b4a1c" opacity=".5"/></svg></div></div>
+  <div class="frame f-tr" data-t="52"><div class="inner"><img class="paint" src="paint-tr.jpg" alt=""></div></div>
 
-  <div class="frame f-r" data-t="62"><div class="inner"><svg viewBox="0 0 100 300" preserveAspectRatio="xMidYMid slice">
-    <defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2433"/><stop offset="1" stop-color="#3b2a20"/></linearGradient></defs>
-    <rect width="100" height="300" fill="url(#rg)"/>
-    <g fill="#fff" opacity=".5"><circle cx="20" cy="40" r="1.4"/><circle cx="45" cy="80" r="1"/><circle cx="25" cy="130" r="1.6"/><circle cx="60" cy="170" r="1"/></g>
-    <path d="M0 240 Q30 220 60 238 T100 230 V300 H0Z" fill="#d9dde6" opacity=".7"/>
-  </svg></div></div>
+  <div class="frame f-r" data-t="62"><div class="inner"><img class="paint" src="paint-r.jpg" alt=""></div></div>
 
   <!-- header -->
   <div class="brand">
@@ -140,93 +133,7 @@
   <div class="script yr">2027</div>
 
   <!-- MAIN FRAME: winter night scene -->
-  <div class="frame f-main" style="z-index:3" data-t="72" data-center="1"><div class="inner"><svg viewBox="0 0 404 468" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1428"/><stop offset=".55" stop-color="#28324f"/><stop offset="1" stop-color="#5a4a52"/></linearGradient>
-      <radialGradient id="glow" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#ffe2a0" stop-opacity=".95"/><stop offset=".35" stop-color="#f0a850" stop-opacity=".45"/><stop offset="1" stop-color="#f0a850" stop-opacity="0"/></radialGradient>
-      <radialGradient id="star" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fff4c8"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
-      <linearGradient id="tree" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f6a3e"/><stop offset=".6" stop-color="#16402a"/><stop offset="1" stop-color="#0b2618"/></linearGradient>
-      <linearGradient id="snowg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4e9d6"/><stop offset="1" stop-color="#b9b6c4"/></linearGradient>
-      <filter id="b2"><feGaussianBlur stdDeviation="2"/></filter>
-      <filter id="b6"><feGaussianBlur stdDeviation="6"/></filter>
-      <filter id="b12"><feGaussianBlur stdDeviation="14"/></filter>
-      <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff2c4" stop-opacity="0"/></linearGradient>
-    </defs>
-    <rect width="404" height="468" fill="url(#sky)"/>
-    <!-- stars -->
-    <g fill="#fff"><circle cx="40" cy="40" r="1.2"/><circle cx="90" cy="70" r=".9"/><circle cx="150" cy="30" r="1.1"/><circle cx="330" cy="50" r="1.3"/><circle cx="370" cy="110" r=".8"/><circle cx="280" cy="90" r=".9"/><circle cx="60" cy="130" r="1"/><circle cx="350" cy="180" r="1"/></g>
-    <!-- moon -->
-    <circle cx="330" cy="70" r="22" fill="#f6eed8"/><circle cx="330" cy="70" r="45" fill="#f6eed8" opacity=".12" filter="url(#b6)"/>
-    <!-- distant hills -->
-    <path d="M0 300 Q80 250 160 285 T320 270 T404 280 V468 H0Z" fill="#3c4560"/>
-    <path d="M0 330 Q100 290 200 320 T404 305 V468 H0Z" fill="#6d6f86"/>
-    <!-- distant pines -->
-    <g fill="#1d2c33">
-      <path d="M20 330 l14 -50 l14 50z"/><path d="M44 334 l10 -36 l10 36z"/><path d="M340 322 l16 -58 l16 58z"/><path d="M372 326 l10 -38 l10 38z"/>
-    </g>
-    <!-- house -->
-    <g transform="translate(40 300)">
-      <path d="M0 50 L40 15 L80 50 V90 H0Z" fill="#3a2a2a"/>
-      <path d="M-6 52 L40 10 L86 52 L80 54 L40 18 L0 54Z" fill="#eef0f6"/>
-      <rect x="14" y="56" width="16" height="16" fill="#ffc86a"/><rect x="50" y="56" width="16" height="16" fill="#ffc86a"/>
-      <rect x="10" y="50" width="60" height="30" fill="#ffb84a" opacity=".35" filter="url(#b6)"/>
-    </g>
-    <!-- glow behind tree -->
-    <circle cx="225" cy="290" r="170" fill="url(#glow)"/>
-    <!-- light rays from star -->
-    <g opacity=".7" filter="url(#b2)">
-      <path d="M225 120 L150 468 L190 468Z" fill="url(#ray)"/>
-      <path d="M225 120 L250 468 L300 468Z" fill="url(#ray)"/>
-      <path d="M225 120 L80 380 L110 400Z" fill="url(#ray)" opacity=".6"/>
-      <path d="M225 120 L380 360 L360 390Z" fill="url(#ray)" opacity=".6"/>
-    </g>
-    <!-- christmas tree -->
-    <g>
-      <path d="M225 120 L175 210 L195 208 L150 290 L175 287 L125 370 L325 370 L275 287 L300 290 L255 208 L275 210Z" fill="url(#tree)"/>
-      <path d="M225 120 L175 210 L195 208 L150 290 L175 287 L125 370 L225 370Z" fill="#000" opacity=".18"/>
-      <rect x="214" y="368" width="22" height="22" fill="#3a2414"/>
-      <!-- garland -->
-      <g fill="none" stroke="#ffd98a" stroke-width="1.4" opacity=".9">
-        <path d="M190 190 Q225 210 262 192"/><path d="M168 255 Q225 285 285 256"/><path d="M145 335 Q225 365 305 336"/>
-      </g>
-      <!-- lights -->
-      <g>
-        <g fill="#fff1b8">
-          <circle cx="200" cy="196" r="3"/><circle cx="225" cy="203" r="3"/><circle cx="250" cy="197" r="3"/>
-          <circle cx="180" cy="264" r="3"/><circle cx="205" cy="274" r="3"/><circle cx="235" cy="276" r="3"/><circle cx="265" cy="268" r="3"/>
-          <circle cx="160" cy="343" r="3"/><circle cx="190" cy="354" r="3"/><circle cx="225" cy="358" r="3"/><circle cx="260" cy="354" r="3"/><circle cx="290" cy="345" r="3"/>
-        </g>
-        <g fill="#ffcc66" opacity=".7" filter="url(#b2)">
-          <circle cx="200" cy="196" r="7"/><circle cx="250" cy="197" r="7"/><circle cx="205" cy="274" r="7"/><circle cx="265" cy="268" r="7"/><circle cx="190" cy="354" r="7"/><circle cx="260" cy="354" r="7"/>
-        </g>
-        <!-- baubles -->
-        <circle cx="212" cy="232" r="6" fill="#c41f2a"/><circle cx="246" cy="240" r="5" fill="#d9a63c"/><circle cx="185" cy="312" r="6" fill="#d9a63c"/><circle cx="270" cy="318" r="7" fill="#c41f2a"/><circle cx="225" cy="320" r="5" fill="#c41f2a"/>
-        <g fill="#fff" opacity=".7"><circle cx="210" cy="230" r="1.6"/><circle cx="268" cy="315" r="2"/><circle cx="183" cy="310" r="1.6"/></g>
-      </g>
-      <!-- star -->
-      <circle cx="225" cy="118" r="40" fill="url(#star)"/>
-      <path d="M225 100 l5 13 h14 l-11 8 4 14 -12 -8 -12 8 4 -14 -11 -8 h14z" fill="#fff6d6"/>
-    </g>
-    <!-- gifts -->
-    <g>
-      <rect x="160" y="372" width="34" height="26" fill="#a3141d"/><rect x="174" y="372" width="6" height="26" fill="#f0d07a"/>
-      <rect x="250" y="368" width="40" height="30" fill="#e8dcc4"/><rect x="267" y="368" width="6" height="30" fill="#a3141d"/>
-      <rect x="196" y="384" width="26" height="16" fill="#1f4a33"/><rect x="207" y="384" width="4" height="16" fill="#f0d07a"/>
-    </g>
-    <!-- snow ground -->
-    <path d="M0 392 Q110 372 210 394 T404 386 V468 H0Z" fill="url(#snowg)"/>
-    <path d="M0 392 Q110 372 210 394 T404 386" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/>
-    <ellipse cx="225" cy="400" rx="140" ry="18" fill="#ffd690" opacity=".35" filter="url(#b6)"/>
-    <!-- vignette & warm haze -->
-    <rect width="404" height="468" fill="#ffcf80" opacity=".05"/>
-    <!-- falling snow -->
-    <g fill="#fff" opacity=".85">
-      <circle cx="30" cy="200" r="1.8"/><circle cx="70" cy="240" r="1.3"/><circle cx="110" cy="170" r="2"/><circle cx="130" cy="230" r="1.2"/>
-      <circle cx="300" cy="150" r="1.6"/><circle cx="340" cy="230" r="2"/><circle cx="380" cy="270" r="1.4"/><circle cx="310" cy="290" r="1.1"/>
-      <circle cx="90" cy="330" r="1.5"/><circle cx="360" cy="340" r="1.7"/><circle cx="160" cy="80" r="1.3"/><circle cx="250" cy="60" r="1.5"/>
-      <circle cx="20" cy="380" r="1.3"/><circle cx="395" cy="200" r="1.2"/><circle cx="140" cy="420" r="1.4"/><circle cx="330" cy="430" r="1.6"/>
-    </g>
-  </svg></div></div>
+  <div class="frame f-main" style="z-index:3" data-t="72" data-center="1"><div class="inner"><img class="paint" src="paint-main.jpg" alt=""></div></div>
 
   <!-- red velvet ribbon + bow on main frame (replaces cloth drape) -->
   <svg class="z" style="z-index:4" viewBox="0 0 736 1308">
@@ -352,8 +259,7 @@
     <path d="M20 30 L360 210 L330 240Z" fill="url(#beam)" opacity=".55"/>
     <path d="M20 30 L250 330 L215 340Z" fill="url(#beam)" opacity=".4"/>
     <path d="M20 30 L520 120 L510 150Z" fill="url(#beam)" opacity=".35"/>
-    <circle cx="385" cy="490" r="70" fill="url(#fl2)"/>
-    <circle cx="385" cy="490" r="16" fill="#fff" opacity=".55"/>
+    
   </svg>
 </div>
 
