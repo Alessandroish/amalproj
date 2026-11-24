@@ -1,0 +1,41 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,800;1,800&family=Oswald:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:1600px;overflow:hidden}
+.p{position:relative;width:1200px;height:1600px;overflow:hidden}
+.bg{position:absolute;inset:0}
+.rb{position:absolute;right:80px;text-align:right;font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-1px;color:#141a14;mix-blend-mode:multiply;filter:url(#ink)}
+.l1{top:150px;font-size:76px;line-height:1}
+.l2{top:224px;font-size:98px;line-height:1;font-style:italic;color:#8d1a1c}
+.l3{top:318px;font-size:74px;line-height:1}
+.l4{top:398px;font-size:26px;font-weight:500;letter-spacing:0;line-height:1}
+.l4 b{font-weight:800}
+.dash{display:inline-block;vertical-align:middle;height:2px;background:#141a14;margin-right:16px;position:relative;top:-6px}
+.dash.red{background:#8d1a1c;top:-4px}
+.dash.red:after{content:"";position:absolute;right:-2px;top:-4px;border-left:9px solid #8d1a1c;border-top:5px solid transparent;border-bottom:5px solid transparent}
+</style></head><body><div class="p">
+<svg width="0" height="0" style="position:absolute"><filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" result="d"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.95" result="sp"/><feComposite in="sp" in2="d" operator="in" result="spi"/>
+<feMerge><feMergeNode in="d"/><feMergeNode in="spi"/></feMerge></filter>
+<filter id="stamp"><feTurbulence type="fractalNoise" baseFrequency=".05 .09" numOctaves="3" seed="8" result="n"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 1.45" result="m"/>
+<feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+<img class="bg" src="bg4_clean.png">
+
+<div class="rb l1"><span class="dash" style="width:62px"></span>дискотека</div>
+<div class="rb l2">90-х</div>
+<div class="rb l3">до утра</div>
+<div class="rb l4"><span class="dash red" style="width:64px"></span><b>31</b> декабря</div>
+
+<svg class="bg" width="1200" height="1600" style="mix-blend-mode:multiply">
+ <defs>
+  <path id="top" d="M 36 1262 A 112 112 0 0 1 260 1262"/>
+  <path id="bot" d="M 38 1262 A 108 108 0 0 0 254 1262"/>
+ </defs>
+ <g fill="#961e16" font-family="Oswald" font-weight="600" letter-spacing="2" filter="url(#stamp)" transform="rotate(-12 146 1262)">
+  <text font-size="38" text-anchor="middle"><textPath href="#top" startOffset="50%">ХИТЫ 90-Х</textPath></text>
+  <text font-size="38" text-anchor="middle" dominant-baseline="hanging"><textPath href="#bot" startOffset="50%" dy="6">ДО УТРА</textPath></text>
+ </g>
+</svg>
+</div></body></html>
