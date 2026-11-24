@@ -87,7 +87,7 @@
     background:radial-gradient(circle at 35% 35%,#ff8a8a,#d1121c 55%,#7d070c);box-shadow:1px 2px 1px rgba(0,0,0,.4),6px 9px 6px rgba(0,0,0,.3)}
 
   /* ---------- verse ---------- */
-  .verse{position:absolute;left:150px;right:140px;top:1036px;text-align:center;font-family:'Lora',serif;font-size:18px;line-height:1.45;color:#1f1717;font-weight:500;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+  .verse{position:absolute;left:188px;right:156px;top:1032px;text-align:center;font-family:'Lora',serif;font-size:17px;line-height:1.45;color:#1f1717;font-weight:500;text-shadow:0 1px 0 rgba(255,255,255,.7)}
   .verse .r{color:#a8121c;font-weight:600}
   .verse .c{position:relative;display:inline-block}
   .verse .c svg{position:absolute;left:-8px;top:-5px;width:calc(100% + 16px);height:calc(100% + 10px);overflow:visible}
@@ -95,7 +95,7 @@
   .verse ul{list-style:none;margin-top:12px;display:inline-block;text-align:left}
   .verse li{position:relative;padding-left:30px;margin:4px 0}
   .verse li::before{content:"→";position:absolute;left:0;top:0;color:#2b2121;font-weight:700}
-  .handle{position:absolute;bottom:58px;left:0;right:0;text-align:center;font-family:Arial,sans-serif;font-size:13px;color:#444;letter-spacing:.02em}
+  .handle{position:absolute;bottom:88px;z-index:6;left:0;right:0;text-align:center;font-family:Arial,sans-serif;font-size:13px;color:#444;letter-spacing:.02em}
 
   .snow,.flare{position:absolute;inset:0;pointer-events:none}
   .z{position:absolute;inset:0;pointer-events:none}
@@ -141,7 +141,6 @@
       <!-- left: long sweep down the side and along the base of "90" with a small hook -->
       <path class="sw" data-w="0:.3,.15:2.2,.32:6.2,.5:3,.7:1,.82:2.4,1:.3" d="M196 122 C120 160 96 250 150 282 C200 310 300 300 340 276 C366 260 352 236 330 246 C310 256 326 284 380 280"/>
       <!-- right: big script "y"-like stroke: hook on top, heavy downstroke, loop, hairline exit -->
-      <path class="sw" data-w="0:.3,.4:3.2,.7:1.2,1:.2" d="M650 90 C680 72 710 60 760 60"/>
     </g></defs>
     <use href="#ribpaths" filter="url(#ribsh)"/>
   </svg>
@@ -266,6 +265,24 @@
     </ul>
   </div>
   <div class="handle">@yourhandle</div>
+
+  <!-- New Year: hanging bauble + fir garland with ornaments -->
+  <svg class="deco" style="position:absolute;inset:0;z-index:7;pointer-events:none" viewBox="0 0 736 1308">
+    <defs>
+      <radialGradient id="bR" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#ff9a9e"/><stop offset=".18" stop-color="#e0303a"/><stop offset=".6" stop-color="#9c0f18"/><stop offset="1" stop-color="#3e0408"/></radialGradient>
+      <radialGradient id="bG" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff4c4"/><stop offset=".2" stop-color="#f0c95c"/><stop offset=".6" stop-color="#b07a1e"/><stop offset="1" stop-color="#4e300a"/></radialGradient>
+      <radialGradient id="bW" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset=".25" stop-color="#e8ecf2"/><stop offset=".7" stop-color="#9aa3b3"/><stop offset="1" stop-color="#4a5060"/></radialGradient>
+      <linearGradient id="cap" x1="0" x2="1"><stop offset="0" stop-color="#6b4310"/><stop offset=".4" stop-color="#f6dc8c"/><stop offset=".7" stop-color="#b8862e"/><stop offset="1" stop-color="#5a370b"/></linearGradient>
+      <radialGradient id="lamp"><stop offset="0" stop-color="#fff6d0"/><stop offset=".3" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb84a" stop-opacity="0"/></radialGradient>
+      <filter id="wallsh" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+      <filter id="garsh" x="-10%" y="-30%" width="120%" height="160%"><feDropShadow dx="5" dy="9" stdDeviation="6" flood-color="#1a1005" flood-opacity=".45"/></filter>
+      <g id="ball">
+        <circle r="1" fill="currentColor"/>
+      </g>
+    </defs>
+    <g id="baubles"></g>
+    <g id="garland" filter="url(#garsh)"></g>
+  </svg>
 
   <!-- snow over everything -->
   <svg class="snow" style="z-index:8" viewBox="0 0 736 1308" id="snow"></svg>
@@ -468,6 +485,42 @@
       const r=document.createRange();r.setStart(t,i);r.setEnd(t,i+1);const b=r.getBoundingClientRect();
       if(!b.width||t.data[i]===' ')continue; if(k++%2)h+=`<rect x="${b.left-2}" y="0" width="${b.width+4}" height="340" fill="#fff"/>`;}}));
     g.innerHTML=h;});
+  // ---- New Year decor ----
+  (function(){
+    let sd=21;const rnd=()=>((sd=(sd*16807)%2147483647)/2147483647);
+    const bauble=(x,y,r,g,str)=>{
+      let h='';
+      if(str) h+=`<path d="M${x} 0 L${x} ${y-r-6}" stroke="#a3141d" stroke-width="1.2"/><path d="M${x+3} 0 L${x+3} ${y-r-6}" stroke="#000" stroke-opacity=".08" stroke-width="2" filter="url(#wallsh)"/>`;
+      h+=`<ellipse cx="${x+r*.5}" cy="${y+r*.7}" rx="${r*1.05}" ry="${r*.95}" fill="#2a1a0a" opacity=".28" filter="url(#wallsh)"/>`;
+      h+=`<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${g})"/>`;
+      h+=`<path d="M${x-r*.62} ${y-r*.35} A${r*.75} ${r*.75} 0 0 1 ${x+r*.1} ${y-r*.82}" stroke="#fff" stroke-opacity=".55" stroke-width="${r*.09}" fill="none" stroke-linecap="round"/>`;
+      h+=`<ellipse cx="${x-r*.36}" cy="${y-r*.42}" rx="${r*.16}" ry="${r*.1}" fill="#fff" opacity=".85" transform="rotate(-35 ${x-r*.36} ${y-r*.42})"/>`;
+      h+=`<ellipse cx="${x+r*.35}" cy="${y+r*.55}" rx="${r*.35}" ry="${r*.12}" fill="#fff" opacity=".12" transform="rotate(-30 ${x+r*.35} ${y+r*.55})"/>`;
+      h+=`<rect x="${x-r*.28}" y="${y-r-r*.3}" width="${r*.56}" height="${r*.36}" rx="${r*.06}" fill="url(#cap)"/>`;
+      h+=`<path d="M${x-r*.12} ${y-r-r*.3} q${r*.12} -${r*.32} ${r*.24} 0" fill="none" stroke="#c9a24a" stroke-width="${r*.06}"/>`;
+      for(let i=1;i<4;i++)h+=`<line x1="${x-r*.28+i*r*.14}" y1="${y-r-r*.3}" x2="${x-r*.28+i*r*.14}" y2="${y-r+r*.06}" stroke="#6b4310" stroke-width=".6" opacity=".7"/>`;
+      return h;};
+    // hanging baubles at the top
+    document.getElementById('baubles').innerHTML=bauble(598,84,17,'bR',1)+bauble(620,44,10,'bG',1);
+    // fir garland along the bottom
+    let h='';const y0=1262,x0=150,x1=640;
+    const yAt=x=>y0+Math.sin((x-x0)/70)*6;
+    for(let layer=0;layer<3;layer++){
+      const cols=['#123a24','#1d5234','#2f6e45'][layer];
+      for(let x=x0;x<=x1;x+=2.2){
+        const n=3;for(let k=0;k<n;k++){const a=(rnd()*2-1)*Math.PI*.95,L=16+rnd()*16-layer*3,cx=x+rnd()*6-3,cy=yAt(x)+rnd()*6-3;
+          h+=`<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx+Math.cos(a)*L).toFixed(1)}" y2="${(cy+Math.sin(a)*L*.8).toFixed(1)}" stroke="${cols}" stroke-width="${(1.6-layer*.3).toFixed(2)}" stroke-linecap="round"/>`;}}
+    }
+    // pine cones
+    for(const cx of [232,470]){const cy=yAt(cx)+6;h+=`<ellipse cx="${cx}" cy="${cy}" rx="9" ry="15" fill="#5a3418" transform="rotate(-20 ${cx} ${cy})"/>`;
+      for(let i=0;i<6;i++)h+=`<path d="M${cx-8} ${cy-10+i*4} q8 4 16 0" stroke="#2e1a0a" stroke-width="1.2" fill="none" transform="rotate(-20 ${cx} ${cy})"/>`;}
+    // lights
+    for(let x=x0+14;x<x1;x+=34){const y=yAt(x)-4+rnd()*8;h+=`<circle cx="${x}" cy="${y.toFixed(1)}" r="9" fill="url(#lamp)" opacity=".8"/><circle cx="${x}" cy="${y.toFixed(1)}" r="1.8" fill="#fffbe8"/>`;}
+    // ornaments on the garland
+    const orns=[[178,10,'bG'],[286,14,'bR'],[360,9,'bW'],[408,13,'bG'],[520,15,'bR'],[586,10,'bW'],[612,12,'bG']];
+    for(const [x,r,g] of orns)h+=bauble(x,yAt(x)+r+8,r,g,0);
+    document.getElementById('garland').innerHTML=h;
+  })();
   // deterministic snowflakes
   const s=document.getElementById('snow');let seed=7;const r=()=>((seed=(seed*16807)%2147483647)/2147483647);
   let h='';
