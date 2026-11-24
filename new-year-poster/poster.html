@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Prata&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#efeee9;
+    --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#f8f7f4;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:736px;height:1308px;background:#ddd}
@@ -51,6 +51,12 @@
   .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1;overflow:visible}
   .ribbon.over{z-index:3}
   .h1{z-index:2}
+  .glyph{display:inline-block;vertical-align:top;height:1em;position:relative}
+  .glyph svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(1.5px 2.5px 1.5px rgba(58,10,5,.4))}
+  .g9{width:.66em}
+  .ga{width:.84em}
+  .g9 svg{width:.714em}
+  .ga svg{width:1em}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
   .script.yr{left:118px;top:104px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
   .spark{position:absolute;left:512px;top:300px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
@@ -101,14 +107,14 @@
 
   <!-- wall texture -->
   <svg class="grain" width="736" height="1308">
-    <filter id="plaster" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="5" seed="8" result="t"/><feDiffuseLighting in="t" surfaceScale="3.5" diffuseConstant="1.05" lighting-color="#f4f1ea"><feDistantLight azimuth="225" elevation="55"/></feDiffuseLighting></filter>
+    <filter id="plaster" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="5" seed="8" result="t"/><feDiffuseLighting in="t" surfaceScale="3.5" diffuseConstant="1.05" lighting-color="#fbfaf7"><feDistantLight azimuth="225" elevation="55"/></feDiffuseLighting></filter>
     <filter id="fine" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="3" seed="2" result="t"/><feDiffuseLighting in="t" surfaceScale="1.2" diffuseConstant="1" lighting-color="#fff"><feDistantLight azimuth="225" elevation="60"/></feDiffuseLighting></filter>
     <filter id="n2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".006" numOctaves="3" seed="9"/><feColorMatrix values="0 0 0 0 .45  0 0 0 0 .42  0 0 0 0 .38  0 0 0 .35 -.05"/></filter>
-    <rect width="100%" height="100%" filter="url(#plaster)" opacity=".7"/>
-    <rect width="100%" height="100%" filter="url(#fine)" opacity=".35"/>
-    <rect width="100%" height="100%" filter="url(#n2)"/>
+    <rect width="100%" height="100%" filter="url(#plaster)" opacity=".38"/>
+    <rect width="100%" height="100%" filter="url(#fine)" opacity=".22"/>
+    <rect width="100%" height="100%" filter="url(#n2)" opacity=".45"/>
   </svg>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 5%,rgba(255,248,225,.55),transparent 50%),radial-gradient(ellipse at 100% 100%,rgba(60,45,30,.28),transparent 60%),radial-gradient(ellipse at 0% 100%,rgba(60,45,30,.18),transparent 50%);pointer-events:none"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 5%,rgba(255,248,225,.55),transparent 50%),radial-gradient(ellipse at 100% 100%,rgba(60,45,30,.12),transparent 60%),radial-gradient(ellipse at 0% 100%,rgba(60,45,30,.08),transparent 50%);pointer-events:none"></div>
 
   <!-- side frames -->
   <div class="frame f-tl" data-t="58"><div class="inner"><img class="paint" src="paint-tl.jpg" alt=""></div></div>
@@ -124,8 +130,8 @@
     <small>ВХОД В ОБРАЗЕ ПРИВЕТСТВУЕТСЯ</small>
   </div>
 
-  <div class="h1 a">ДИСКОТЕКА</div>
-  <div class="h1 b">90-х</div>
+  <div class="h1 a">ДИСКОТЕК<span class="glyph ga"><svg viewBox="0 0 70 70"><defs><linearGradient id="gga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a0d15"/><stop offset=".35" stop-color="#d8333c"/><stop offset=".55" stop-color="#a8121b"/><stop offset="1" stop-color="#6a0a10"/></linearGradient></defs><path class="sw" transform="translate(-4 -7) scale(1.12)" data-fill="url(#gga)" data-w="0:.3,.12:1.2,.42:2,.5:1,.62:5.6,.84:5,.95:1.4,1:.3" d="M-6 66 C6 58 22 32 34 12 C38 6 42 6 43 12 C46 30 50 48 58 60 C62 66 68 64 72 58"/><path class="sw" transform="translate(-4 -7) scale(1.12)" data-fill="url(#gga)" data-w="0:.3,.25:3.2,.5:1,.75:2.6,1:.2" d="M10 44 C24 36 48 34 56 40 C64 46 54 54 46 48 C38 42 52 30 80 32"/></svg></span></div>
+  <div class="h1 b"><span class="glyph g9"><svg viewBox="0 0 100 140"><defs><linearGradient id="gg9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a0d15"/><stop offset=".35" stop-color="#d8333c"/><stop offset=".55" stop-color="#a8121b"/><stop offset="1" stop-color="#6a0a10"/></linearGradient></defs><path class="sw" transform="translate(-8 -22) scale(1.14)" data-fill="url(#gg9)" data-w="0:.3,.08:2,.2:9,.3:3,.38:1.2,.48:3.4,.6:10,.74:7,.86:2,.94:.9,1:.3" d="M8 44 C20 24 58 18 78 38 C96 58 84 94 50 96 C20 98 12 68 27 51 C42 34 76 37 84 60 C92 84 86 112 70 126 C56 138 30 140 18 130 C10 122 20 112 34 118"/></svg></span>0-х</div>
 
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
@@ -136,8 +142,8 @@
       <!-- left: long sweep down the side and along the base of "90" with a small hook -->
       <path class="sw" data-w="0:.3,.15:2.2,.32:6.2,.5:3,.7:1,.82:2.4,1:.3" d="M196 122 C120 160 96 250 150 282 C200 310 300 300 340 276 C366 260 352 236 330 246 C310 256 326 284 380 280"/>
       <!-- right: big script "y"-like stroke: hook on top, heavy downstroke, loop, hairline exit -->
-      <path class="sw" data-w="0:.3,.1:2.6,.22:7.2,.36:6,.5:1.2,.62:.8,.72:3,.84:1,1:.3" d="M540 46 C560 18 620 2 640 18 C660 34 630 80 592 124 C562 160 540 196 566 214 C590 230 630 206 640 176 C650 146 616 142 600 164 C580 192 640 210 760 150"/>
-      <path class="sw" data-w="0:.3,.4:3.2,.7:1.2,1:.2" d="M600 92 C640 70 690 56 760 58"/>
+      <path class="sw" data-w="0:.3,.1:2.6,.22:7.2,.36:6,.5:1.2,.62:.8,.72:3,.84:1,1:.3" d="M600 40 C616 14 664 2 680 16 C696 30 672 76 640 120 C614 158 596 196 620 214 C642 230 676 206 684 176 C692 148 662 142 648 164 C630 192 690 210 780 150"/>
+      <path class="sw" data-w="0:.3,.4:3.2,.7:1.2,1:.2" d="M650 90 C680 72 710 60 760 60"/>
     </g></defs>
     <use href="#ribpaths" filter="url(#ribsh)"/>
   </svg>
@@ -455,14 +461,14 @@
       A.push([c.x+nx*w,c.y+ny*w]);B.push([c.x-nx*w,c.y-ny*w]);}
     const f=q=>q[0].toFixed(2)+' '+q[1].toFixed(2);
     p.setAttribute('d','M'+A.map(f).join('L')+'L'+B.reverse().map(f).join('L')+'Z');
-    p.setAttribute('fill','url(#rib)');p.setAttribute('stroke','none');
+    p.setAttribute('fill',p.dataset.fill||'url(#rib)');p.setAttribute('stroke','none');
   });
   // weave: thread passes over every other letter
   (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{
     const g=document.getElementById('weavecut');let h='';let k=0;
-    document.querySelectorAll('.h1').forEach(el=>{const t=el.firstChild;for(let i=0;i<t.length;i++){
+    document.querySelectorAll('.h1').forEach(el=>[...el.childNodes].filter(n=>n.nodeType===3).forEach(t=>{for(let i=0;i<t.length;i++){
       const r=document.createRange();r.setStart(t,i);r.setEnd(t,i+1);const b=r.getBoundingClientRect();
-      if(!b.width||t.data[i]===' ')continue; if(k++%2)h+=`<rect x="${b.left-2}" y="0" width="${b.width+4}" height="340" fill="#fff"/>`;}});
+      if(!b.width||t.data[i]===' ')continue; if(k++%2)h+=`<rect x="${b.left-2}" y="0" width="${b.width+4}" height="340" fill="#fff"/>`;}}));
     g.innerHTML=h;});
   // deterministic snowflakes
   const s=document.getElementById('snow');let seed=7;const r=()=>((seed=(seed*16807)%2147483647)/2147483647);
