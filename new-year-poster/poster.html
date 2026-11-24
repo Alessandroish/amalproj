@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Happy New Year 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Prata&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Prata&family=Monsieur+La+Doulaise&family=Pinyon+Script&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#f8f7f4;
@@ -51,12 +51,11 @@
   .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1;overflow:visible}
   .ribbon.over{z-index:3}
   .h1{z-index:2}
-  .glyph{display:inline-block;vertical-align:top;height:1em;position:relative}
-  .glyph svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(1.5px 2.5px 1.5px rgba(58,10,5,.4))}
-  .g9{width:.66em}
-  .ga{width:.84em}
-  .g9 svg{width:.714em}
-  .ga svg{width:1em}
+  .glyph{display:inline;position:relative;line-height:0;font-weight:400;letter-spacing:0;
+    background:linear-gradient(135deg,#6a0a10 0%,#b3161f 30%,#e2444c 45%,#a8121b 60%,#7a0c12 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:none;filter:drop-shadow(1.5px 2.5px 1.5px rgba(58,10,5,.42))}
+  .ga{font-family:'Monsieur La Doulaise',cursive;font-size:1.72em;margin:0 -.3em 0 -.3em;top:.04em;padding:.25em .1em}
+  .g9{font-family:'Pinyon Script',cursive;font-size:1.36em;margin:0 -.04em 0 -.1em;top:.02em;padding:0 .12em}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
   .script.yr{left:118px;top:104px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
   .spark{position:absolute;left:512px;top:300px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
@@ -130,8 +129,8 @@
     <small>ВХОД В ОБРАЗЕ ПРИВЕТСТВУЕТСЯ</small>
   </div>
 
-  <div class="h1 a">ДИСКОТЕК<span class="glyph ga"><svg viewBox="0 0 70 70"><defs><linearGradient id="gga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a0d15"/><stop offset=".35" stop-color="#d8333c"/><stop offset=".55" stop-color="#a8121b"/><stop offset="1" stop-color="#6a0a10"/></linearGradient></defs><path class="sw" transform="translate(-4 -7) scale(1.12)" data-fill="url(#gga)" data-w="0:.3,.12:1.2,.42:2,.5:1,.62:5.6,.84:5,.95:1.4,1:.3" d="M-6 66 C6 58 22 32 34 12 C38 6 42 6 43 12 C46 30 50 48 58 60 C62 66 68 64 72 58"/><path class="sw" transform="translate(-4 -7) scale(1.12)" data-fill="url(#gga)" data-w="0:.3,.25:3.2,.5:1,.75:2.6,1:.2" d="M10 44 C24 36 48 34 56 40 C64 46 54 54 46 48 C38 42 52 30 80 32"/></svg></span></div>
-  <div class="h1 b"><span class="glyph g9"><svg viewBox="0 0 100 140"><defs><linearGradient id="gg9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a0d15"/><stop offset=".35" stop-color="#d8333c"/><stop offset=".55" stop-color="#a8121b"/><stop offset="1" stop-color="#6a0a10"/></linearGradient></defs><path class="sw" transform="translate(-8 -22) scale(1.14)" data-fill="url(#gg9)" data-w="0:.3,.08:2,.2:9,.3:3,.38:1.2,.48:3.4,.6:10,.74:7,.86:2,.94:.9,1:.3" d="M8 44 C20 24 58 18 78 38 C96 58 84 94 50 96 C20 98 12 68 27 51 C42 34 76 37 84 60 C92 84 86 112 70 126 C56 138 30 140 18 130 C10 122 20 112 34 118"/></svg></span>0-х</div>
+  <div class="h1 a">ДИСКОТЕК<span class="glyph ga">A</span></div>
+  <div class="h1 b"><span class="glyph g9">9</span>0-х</div>
 
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
@@ -142,7 +141,6 @@
       <!-- left: long sweep down the side and along the base of "90" with a small hook -->
       <path class="sw" data-w="0:.3,.15:2.2,.32:6.2,.5:3,.7:1,.82:2.4,1:.3" d="M196 122 C120 160 96 250 150 282 C200 310 300 300 340 276 C366 260 352 236 330 246 C310 256 326 284 380 280"/>
       <!-- right: big script "y"-like stroke: hook on top, heavy downstroke, loop, hairline exit -->
-      <path class="sw" data-w="0:.3,.1:2.6,.22:7.2,.36:6,.5:1.2,.62:.8,.72:3,.84:1,1:.3" d="M600 40 C616 14 664 2 680 16 C696 30 672 76 640 120 C614 158 596 196 620 214 C642 230 676 206 684 176 C692 148 662 142 648 164 C630 192 690 210 780 150"/>
       <path class="sw" data-w="0:.3,.4:3.2,.7:1.2,1:.2" d="M650 90 C680 72 710 60 760 60"/>
     </g></defs>
     <use href="#ribpaths" filter="url(#ribsh)"/>
