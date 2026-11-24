@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Happy New Year 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&family=Marck+Script&family=Yeseva+One&family=Prata&family=Lora:wght@500;600;700&family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2121; --red:#a3141d; --red2:#c41f2a; --wall:#efeee9;
@@ -45,15 +45,15 @@
   .brand b i{font-style:normal;display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid #2b2121;position:relative}
   .brand b i::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
 
-  .h1{position:absolute;left:0;right:0;font-family:'Yeseva One',serif;font-weight:400;color:#2a1d1d;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
-  .h1.a{top:178px;font-size:70px;letter-spacing:.03em;padding-left:20px}
-  .h1.b{top:250px;font-size:136px;letter-spacing:.02em;padding-right:30px}
-  .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1}
+  .h1{position:absolute;left:0;right:0;font-family:'Prata',serif;font-weight:400;color:#2b1f1f;text-align:center;line-height:1;letter-spacing:.01em;text-shadow:-1px -1px 0 rgba(255,255,255,.8),1px 1px 0 rgba(0,0,0,.25),3px 5px 6px rgba(40,25,10,.28),8px 14px 18px rgba(40,25,10,.14)}
+  .h1.a{top:176px;font-size:68px;letter-spacing:.035em;padding-left:10px}
+  .h1.b{top:246px;font-size:138px;letter-spacing:.02em;padding-right:20px}
+  .ribbon{position:absolute;left:0;top:120px;width:736px;height:340px;pointer-events:none;z-index:1;overflow:visible}
   .ribbon.over{z-index:3}
   .h1{z-index:2}
   .script{position:absolute;font-family:'Great Vibes',cursive;color:var(--red);text-shadow:1px 2px 1px rgba(60,0,0,.35),4px 8px 10px rgba(60,0,0,.25)}
   .script.yr{left:118px;top:104px;font-family:'Marck Script',cursive;font-size:64px;transform:rotate(-10deg)}
-  .spark{position:absolute;left:520px;top:250px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
+  .spark{position:absolute;left:512px;top:300px;width:84px;height:84px;filter:drop-shadow(3px 5px 4px rgba(80,50,0,.35))}
 
   /* ---------- polaroids ---------- */
   .pol{position:absolute;padding:11px 11px 34px;
@@ -129,12 +129,15 @@
 
   <!-- red ribbon swirl -->
   <svg class="ribbon" viewBox="0 0 736 340">
-    <defs><linearGradient id="rib" x1="0" x2="1"><stop offset="0" stop-color="#7a0c12"/><stop offset=".5" stop-color="#c41f2a"/><stop offset="1" stop-color="#8b0f16"/></linearGradient></defs>
+    <defs><linearGradient id="rib" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="736" y2="340"><stop offset="0" stop-color="#6a0a10"/><stop offset=".22" stop-color="#b3161f"/><stop offset=".32" stop-color="#e0434b"/><stop offset=".45" stop-color="#a8121b"/><stop offset=".62" stop-color="#7c0b12"/><stop offset=".78" stop-color="#d0303a"/><stop offset="1" stop-color="#7a0c12"/></linearGradient></defs>
     <filter id="ribsh" x="-5%" y="-20%" width="110%" height="140%"><feDropShadow dx="1.5" dy="2.5" stdDeviation="1.2" flood-color="#3a0a05" flood-opacity=".4"/></filter></defs><defs><g id="ribpaths" fill="none" stroke="url(#rib)" stroke-linecap="round">
-      <path d="M-10 262 C40 250 90 212 130 164 C160 126 190 102 224 110 C262 120 256 170 216 168 C180 166 178 124 210 104 C240 86 282 86 322 98" stroke-width="1.9"/>
-      <path d="M0 300 C40 296 80 280 110 262" stroke-width="1.3"/>
-      <path d="M746 36 C690 40 630 62 596 104 C566 142 590 206 636 196 C676 186 668 132 622 136 C566 142 540 210 500 262 C480 288 452 306 420 312" stroke-width="1.9"/>
-      <path d="M746 120 C716 126 690 140 672 158" stroke-width="1.3"/>
+      <!-- left: loop through the first letters (like the loop through "A" in the reference) -->
+      <path class="sw" data-w="0:.4,.12:3.8,.3:5.2,.45:1,.58:.8,.68:3.6,.8:1.6,1:.3" d="M70 132 C120 80 210 62 252 92 C284 116 258 152 226 140 C196 128 210 86 262 76 C320 64 380 76 430 98"/>
+      <!-- left: long sweep down the side and along the base of "90" with a small hook -->
+      <path class="sw" data-w="0:.3,.15:2.2,.32:6.2,.5:3,.7:1,.82:2.4,1:.3" d="M196 122 C120 160 96 250 150 282 C200 310 300 300 340 276 C366 260 352 236 330 246 C310 256 326 284 380 280"/>
+      <!-- right: big script "y"-like stroke: hook on top, heavy downstroke, loop, hairline exit -->
+      <path class="sw" data-w="0:.3,.1:2.6,.22:7.2,.36:6,.5:1.2,.62:.8,.72:3,.84:1,1:.3" d="M540 46 C560 18 620 2 640 18 C660 34 630 80 592 124 C562 160 540 196 566 214 C590 230 630 206 640 176 C650 146 616 142 600 164 C580 192 640 210 760 150"/>
+      <path class="sw" data-w="0:.3,.4:3.2,.7:1.2,1:.2" d="M600 92 C640 70 690 56 760 58"/>
     </g></defs>
     <use href="#ribpaths" filter="url(#ribsh)"/>
   </svg>
@@ -442,6 +445,18 @@
   });
 })();
 
+  // calligraphic swashes: variable-width outline from centerline
+  document.querySelectorAll('path.sw').forEach(p=>{
+    const prof=p.dataset.w.split(',').map(x=>x.split(':').map(Number)).map(([t,w])=>[t,w<1?w:w*1.75]);
+    const W=t=>{for(let i=1;i<prof.length;i++){if(t<=prof[i][0]){const [t0,w0]=prof[i-1],[t1,w1]=prof[i];let u=(t-t0)/(t1-t0);u=u*u*(3-2*u);return w0+(w1-w0)*u;}}return prof[prof.length-1][1];};
+    const L=p.getTotalLength(),N=260,A=[],B=[];
+    for(let i=0;i<=N;i++){const l=L*i/N,a=p.getPointAtLength(Math.max(0,l-.5)),b=p.getPointAtLength(Math.min(L,l+.5)),c=p.getPointAtLength(l);
+      let dx=b.x-a.x,dy=b.y-a.y,m=Math.hypot(dx,dy)||1;const nx=-dy/m,ny=dx/m,w=W(i/N)/2;
+      A.push([c.x+nx*w,c.y+ny*w]);B.push([c.x-nx*w,c.y-ny*w]);}
+    const f=q=>q[0].toFixed(2)+' '+q[1].toFixed(2);
+    p.setAttribute('d','M'+A.map(f).join('L')+'L'+B.reverse().map(f).join('L')+'Z');
+    p.setAttribute('fill','url(#rib)');p.setAttribute('stroke','none');
+  });
   // weave: thread passes over every other letter
   (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{
     const g=document.getElementById('weavecut');let h='';let k=0;
