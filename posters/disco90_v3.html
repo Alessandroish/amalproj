@@ -1,0 +1,75 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden}
+.p{position:relative;width:1080px;height:1350px;overflow:hidden}
+.bg{position:absolute;inset:0}
+.c{position:absolute;left:0;width:1080px;text-align:center;transform:translateX(-6px) rotate(-2.2deg)}
+.foil{background:linear-gradient(170deg,#7d4e17 0%,#c8913f 18%,#f2d38e 30%,#b7802f 46%,#e6bd6b 60%,#8f5a1b 78%,#d9a955 100%);
+ -webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:url(#foil)}
+.t1{top:395px;font-family:'Playfair Display',serif;font-weight:500;font-size:118px;line-height:1;letter-spacing:1px}
+.t2{top:500px;font-family:'Playfair Display',serif;font-weight:600;font-size:225px;line-height:1}
+.t3{top:715px;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:70px;line-height:1}
+.sub{top:333px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;letter-spacing:7px;color:#2f6650;filter:url(#ink)}
+.date{top:905px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;letter-spacing:6px}
+.foot{top:1218px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;letter-spacing:8px;color:#d6e8d4;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.seal{position:absolute;left:51px;top:900px;width:124px;height:124px;border-radius:50%;
+ background:radial-gradient(circle at 38% 32%,#f7df9a 0,#d9ae58 30%,#b78434 62%,#8a5d1f 100%);
+ box-shadow:inset 0 0 0 5px rgba(120,80,25,.35),inset 3px 4px 10px rgba(255,240,190,.5),inset -4px -6px 12px rgba(80,45,10,.55)}
+.seal span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 58px 'Playfair Display';color:#c9963f;
+ text-shadow:-1px -1px 1px rgba(255,236,180,.9),2px 3px 3px rgba(90,50,10,.7)}
+</style></head><body><div class="p">
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a571b"/><stop offset=".3" stop-color="#e9c47a"/><stop offset=".55" stop-color="#b47b2c"/><stop offset=".8" stop-color="#f0d08a"/><stop offset="1" stop-color="#8f5a1b"/></linearGradient>
+ <filter id="foil" x="-5%" y="-10%" width="110%" height="125%" color-interpolation-filters="sRGB">
+  <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="b"/>
+  <feSpecularLighting in="b" surfaceScale="3" specularConstant=".8" specularExponent="26" lighting-color="#fff6dc" result="s"><feDistantLight azimuth="-60" elevation="45"/></feSpecularLighting>
+  <feComposite in="s" in2="SourceAlpha" operator="in" result="si"/>
+  <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 .35 0 0 0 0 .2 0 0 0 0 .05 0 0 0 .9 -.45" result="nn"/>
+  <feComposite in="nn" in2="SourceAlpha" operator="in" result="ni"/>
+  <feOffset in="SourceAlpha" dx="1" dy="1.5" result="o"/><feGaussianBlur in="o" stdDeviation="1" result="ob"/>
+  <feFlood flood-color="#5a3a15" flood-opacity=".35"/><feComposite in2="ob" operator="in" result="sh"/>
+  <feMerge><feMergeNode in="sh"/><feMergeNode in="SourceGraphic"/><feMergeNode in="ni"/><feMergeNode in="si"/></feMerge>
+ </filter>
+ <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale=".6"/></filter>
+ </defs>
+</svg>
+<img class="bg" src="bg3_clean.png">
+
+<!-- flourishes -->
+<svg class="bg" width="1080" height="1350" fill="none" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round" style="filter:url(#foil)">
+ <g transform="rotate(-2.2 540 600)">
+ <path d="M205 450 C190 410 225 380 255 395 C285 410 280 450 250 455 C225 458 222 430 240 425"/>
+ <path d="M255 395 C300 420 300 480 290 500"/>
+ <path d="M775 290 C820 262 860 310 828 334 C805 350 790 325 808 316 M828 334 C880 365 890 430 858 470 C838 495 808 488 810 466"/>
+ <path d="M840 480 C845 520 830 560 820 580"/>
+  <path d="M505 812 C580 840 700 835 770 790 C790 778 800 790 790 800"/>
+  </g>
+ <g fill="url(#g)" stroke="none" transform="rotate(-2.2 540 600)">
+  <circle cx="240" cy="425" r="5"/><circle cx="810" cy="466" r="5"/><circle cx="808" cy="316" r="4"/><circle cx="505" cy="812" r="4"/>
+ </g>
+</svg>
+
+<!-- small emblem: disco ball -->
+<svg class="bg" width="1080" height="1350" style="transform:rotate(-2.2deg);transform-origin:540px 600px">
+ <defs><clipPath id="cb"><circle cx="537" cy="270" r="26"/></clipPath></defs>
+ <line x1="537" y1="228" x2="537" y2="244" stroke="#2f6650" stroke-width="2"/>
+ <circle cx="537" cy="270" r="26" fill="#2f6650"/>
+ <g clip-path="url(#cb)" stroke="#c99a48" stroke-width="1.4" fill="none">
+  <ellipse cx="537" cy="270" rx="13" ry="26"/><line x1="537" y1="244" x2="537" y2="296"/>
+  <line x1="505" y1="257" x2="570" y2="257"/><line x1="505" y1="270" x2="570" y2="270"/><line x1="505" y1="283" x2="570" y2="283"/>
+ </g>
+ <circle cx="528" cy="261" r="4" fill="#f2d38e"/>
+</svg>
+
+<div class="c sub">НОВОГОДНЯЯ ВЕЧЕРИНКА</div>
+<div class="c t1 foil">Дискотека</div>
+<div class="c t2 foil">90-х</div>
+<div class="c t3 foil" style="transform:translateX(40px) rotate(-2.2deg)">до утра</div>
+<div class="c date foil" style="transform:translateX(66px) rotate(-2.2deg);font-size:32px">31.12.2026</div>
+<div class="c foot" style="transform:none">ДРЕСС-КОД: ЯРКИЕ 90-Е</div>
+<div class="seal"><span>90</span></div>
+</div></body></html>
