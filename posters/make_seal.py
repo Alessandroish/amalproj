@@ -48,3 +48,14 @@ rm=np.zeros((H,W),np.uint8);sub=(((hv[...,0]<10)|(hv[...,0]>170))&(hv[...,1]>110
 rm=cv2.dilate(rm,np.ones((3,3),np.uint8),2);out=cv2.inpaint(o8,rm,5,cv2.INPAINT_TELEA).astype(np.float32)
 cv2.imwrite(P+'bg_dossier2.png',np.clip(out,0,255).astype(np.uint8))
 cv2.imwrite('/tmp/claude-0/-home-user-amalproj/7393960b-4a3c-5440-b7e3-6238436b5979/scratchpad/seal2.png',cv2.resize(np.clip(out,0,255).astype(np.uint8)[735:895,758:918],(480,480),interpolation=cv2.INTER_CUBIC))
+
+# --- remove brand text from the pen barrel ---
+im=cv2.imread(P+'bg_dossier2.png').astype(np.float32);hsv=cv2.cvtColor(im.astype(np.uint8),cv2.COLOR_BGR2HSV)
+p=np.zeros((H,W),np.uint8);cv2.fillPoly(p,[np.array([(229,533),(247,538),(227,616),(209,611)])],255)
+m=((p>0)&(hsv[...,2]>70)&(hsv[...,1]>25)).astype(np.uint8)
+m=cv2.dilate(m,np.ones((3,3),np.uint8),2)&(p>0)
+w=(1-m).astype(np.float32)
+num=cv2.GaussianBlur(im*w[...,None],(0,0),4);den=cv2.GaussianBlur(w,(0,0),4)[...,None]+1e-6
+fill=num/den+np.random.default_rng(2).normal(0,2,(H,W,1))
+f=cv2.GaussianBlur(m.astype(np.float32),(0,0),1.2)[...,None]
+cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
