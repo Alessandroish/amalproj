@@ -70,3 +70,28 @@ src=im[1000:1110,330:520];hp=src-cv2.GaussianBlur(src,(0,0),5)
 tile=np.tile(hp,(H//hp.shape[0]+1,W//hp.shape[1]+1,1))[:H,:W]
 f=cv2.GaussianBlur(nm.astype(np.float32),(0,0),4)[...,None]/255
 cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- glove layer above stamp + erase old stamp-hat remnant ---
+im=cv2.imread(P+'bg_dossier2.png');hsv=cv2.cvtColor(im,cv2.COLOR_BGR2HSV)
+def poly(p):m=np.zeros((H,W),np.uint8);cv2.fillPoly(m,[np.array(p)],255);return m>0
+hat=poly([(462,402),(548,414),(612,436),(606,505),(495,508),(493,480),(479,454),(458,428)])
+region=poly([(290,320),(560,320),(560,530),(290,530)])
+red=((hsv[...,0]<12)|(hsv[...,0]>168))&(hsv[...,1]>110)&(hsv[...,2]>40)
+gm=(red&region&~hat).astype(np.uint8)*255
+gm=cv2.morphologyEx(gm,cv2.MORPH_CLOSE,np.ones((9,9),np.uint8))
+n,l,st,_=cv2.connectedComponentsWithStats(gm);keep=np.zeros_like(gm)
+for i in range(1,n):
+    if st[i][4]>800:keep[l==i]=255
+cnts,_=cv2.findContours(keep,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE);cv2.drawContours(keep,cnts,-1,255,-1)
+keep[hat]=0
+a=cv2.GaussianBlur(keep,(0,0),0.9)
+g=cv2.cvtColor(im,cv2.COLOR_BGR2BGRA);g[...,3]=a;cv2.imwrite(P+'glove_layer.png',g)
+# erase hat remnant (outside glove) with kraft
+hm=(hat&(keep==0)).astype(np.uint8)*255;hm=cv2.dilate(hm,np.ones((5,5),np.uint8))&~cv2.dilate(keep,np.ones((3,3),np.uint8))
+imf=im.astype(np.float32)
+sm=cv2.resize(im,(W//4,H//4),interpolation=cv2.INTER_AREA);ms=cv2.resize(cv2.dilate(hm|keep,np.ones((7,7),np.uint8)),(W//4,H//4),interpolation=cv2.INTER_NEAREST)
+low=cv2.GaussianBlur(cv2.resize(cv2.inpaint(sm,ms,5,cv2.INPAINT_TELEA),(W,H),interpolation=cv2.INTER_CUBIC).astype(np.float32),(0,0),5)
+src=imf[1000:1110,330:520];hp=src-cv2.GaussianBlur(src,(0,0),5)
+tile=np.tile(hp,(H//hp.shape[0]+1,W//hp.shape[1]+1,1))[:H,:W]
+f=cv2.GaussianBlur(hm.astype(np.float32),(0,0),1.5)[...,None]/255
+cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+imf*(1-f),0,255).astype(np.uint8))
