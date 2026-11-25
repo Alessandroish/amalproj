@@ -21,7 +21,8 @@ body{width:1200px;height:1600px;overflow:hidden}
 <filter id="stamp"><feTurbulence type="fractalNoise" baseFrequency=".05 .09" numOctaves="3" seed="8" result="n"/>
 <feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 1.45" result="m"/>
 <feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
-<img class="bg" src="bg4_blue.png">
+<img class="bg" src="bg4_party.png">
+<canvas id="props" class="bg" width="1200" height="1600" style="filter:blur(.35px) contrast(1.05)"></canvas>
 
 <div class="rb l1"><span class="dash" style="width:62px"></span>дискотека</div>
 <div class="rb l2">90-х</div>
@@ -38,4 +39,100 @@ body{width:1200px;height:1600px;overflow:hidden}
   <text font-size="38" text-anchor="middle" dominant-baseline="hanging"><textPath href="#bot" startOffset="50%" dy="6">ДО УТРА</textPath></text>
  </g>
 </svg>
-</div></body></html>
+</div>
+<script>
+document.fonts.load('800 26px Montserrat').then(()=>document.fonts.ready).then(draw);
+function draw(){
+const c=document.getElementById('props'),x=c.getContext('2d');
+let seed=11;const R=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+function shadow(b,ox,oy,a){x.shadowColor=`rgba(45,22,6,${a})`;x.shadowBlur=b;x.shadowOffsetX=ox;x.shadowOffsetY=oy}
+function noShadow(){x.shadowColor='transparent';x.shadowBlur=0;x.shadowOffsetX=0;x.shadowOffsetY=0}
+
+/* ---------- VINYL ---------- */
+(function(){const cx=512,cy=866,r=118;
+ x.save();shadow(28,10,14,.6);x.beginPath();x.arc(cx,cy,r,0,7);
+ let g=x.createRadialGradient(cx-30,cy-30,10,cx,cy,r);g.addColorStop(0,'#2a2826');g.addColorStop(1,'#0b0a0a');x.fillStyle=g;x.fill();noShadow();
+ x.beginPath();x.arc(cx,cy,r,0,7);x.clip();
+ for(let k=46;k<r-3;k+=1.6){x.beginPath();x.arc(cx,cy,k,0,7);x.strokeStyle=`rgba(255,255,255,${.02+R()*.04})`;x.lineWidth=.8;x.stroke()}
+ for(const k of [70,96]){x.beginPath();x.arc(cx,cy,k,0,7);x.strokeStyle='rgba(0,0,0,.8)';x.lineWidth=3;x.stroke()}
+ const cg=x.createConicGradient(-0.6,cx,cy);
+ cg.addColorStop(0,'rgba(255,240,220,0)');cg.addColorStop(.06,'rgba(255,240,220,.22)');cg.addColorStop(.13,'rgba(255,240,220,0)');
+ cg.addColorStop(.5,'rgba(255,240,220,0)');cg.addColorStop(.56,'rgba(255,230,200,.14)');cg.addColorStop(.63,'rgba(255,240,220,0)');cg.addColorStop(1,'rgba(255,240,220,0)');
+ x.fillStyle=cg;x.fillRect(cx-r,cy-r,2*r,2*r);
+ x.beginPath();x.arc(cx,cy,r-1.5,0,7);x.strokeStyle='rgba(255,255,255,.18)';x.lineWidth=2;x.stroke();
+ // label
+ x.beginPath();x.arc(cx,cy,43,0,7);g=x.createRadialGradient(cx-12,cy-14,4,cx,cy,43);g.addColorStop(0,'#d63a32');g.addColorStop(1,'#8c1712');x.fillStyle=g;x.fill();
+ x.beginPath();x.arc(cx,cy,38,0,7);x.strokeStyle='rgba(240,200,120,.8)';x.lineWidth=1.4;x.stroke();
+ x.fillStyle='#f3d38a';x.textAlign='center';x.font='800 26px Montserrat';x.fillText('90-е',cx,cy-6);
+ x.font='800 9px Montserrat';x.fillText('ХИТЫ  •  MIX',cx,cy+22);
+ x.beginPath();x.arc(cx,cy,4.5,0,7);x.fillStyle='#d9c8ad';x.fill();
+ x.restore();
+})();
+
+/* ---------- DISCO BALL ORNAMENT ---------- */
+(function(){const cx=851,cy=876,r=82;const L=[-.55,-.6,.58];
+ x.save();shadow(26,10,14,.6);x.beginPath();x.arc(cx,cy,r,0,7);x.fillStyle='#3a3a40';x.fill();noShadow();
+ x.beginPath();x.arc(cx,cy,r,0,7);x.clip();x.fillStyle='#1a1a1e';x.fillRect(cx-r,cy-r,2*r,2*r);
+ const rows=26,pal=[[225,222,220],[200,198,198],[170,168,170],[140,138,142],[110,108,112],[235,215,190],[200,170,130],[190,90,70]];
+ for(let i=0;i<rows;i++){const a0=-Math.PI/2+i*Math.PI/rows,a1=a0+Math.PI/rows;const am=(a0+a1)/2;
+  const n=Math.max(4,Math.round(52*Math.cos(am)));
+  for(let j=0;j<n;j++){const b0=j*2*Math.PI/n+i*.17,b1=b0+2*Math.PI/n;const bm=(b0+b1)/2;
+   const nz=Math.cos(am)*Math.cos(bm);if(nz<=0.02)continue;
+   const P=(a,b)=>[cx+r*Math.cos(a)*Math.sin(b),cy+r*Math.sin(a)];
+   const gap=.06;const pts=[P(a0+gap*.5/rows*3,b0+gap/n*6),P(a0+gap*.5/rows*3,b1-gap/n*6),P(a1-gap*.5/rows*3,b1-gap/n*6),P(a1-gap*.5/rows*3,b0+gap/n*6)];
+   const nx=Math.cos(am)*Math.sin(bm),ny=Math.sin(am);
+   let d=Math.max(0,nx*L[0]+ny*L[1]+nz*L[2]);let q=R();let col=pal[q<.82?Math.floor(R()*5):5+Math.floor(R()*3)];
+   let k=.18+.9*d;let spec=Math.pow(d,10)*1.1;if(R()<.035)spec+=.8;
+   const cc=col.map(v=>Math.min(255,v*k+255*spec));
+   x.beginPath();x.moveTo(...pts[0]);for(const p of pts.slice(1))x.lineTo(...p);x.closePath();
+   x.fillStyle=`rgb(${cc.map(Math.round).join(',')})`;x.fill();}}
+ let g=x.createRadialGradient(cx-25,cy-28,5,cx,cy,r);g.addColorStop(0,'rgba(255,255,255,.25)');g.addColorStop(.55,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(10,5,0,.65)');
+ x.fillStyle=g;x.fillRect(cx-r,cy-r,2*r,2*r);
+ // sparkle
+ x.restore();
+ x.save();x.globalCompositeOperation='lighter';
+ for(const [sx,sy,s] of [[822,842,20],[878,905,10]]){let sg=x.createRadialGradient(sx,sy,0,sx,sy,s);sg.addColorStop(0,'rgba(255,255,240,.95)');sg.addColorStop(1,'rgba(255,255,240,0)');x.fillStyle=sg;x.fillRect(sx-s,sy-s,2*s,2*s);
+  x.strokeStyle='rgba(255,255,240,.8)';x.lineWidth=1.2;x.beginPath();x.moveTo(sx-s*1.6,sy);x.lineTo(sx+s*1.6,sy);x.moveTo(sx,sy-s*1.6);x.lineTo(sx,sy+s*1.6);x.stroke()}
+ x.restore();
+ // gold cap + wire loop
+ x.save();x.strokeStyle='#b9b4aa';x.lineWidth=2.4;x.beginPath();x.ellipse(851,770,11,15,0,0,7);x.stroke();
+ shadow(6,2,3,.4);g=x.createLinearGradient(831,0,871,0);g.addColorStop(0,'#7a5216');g.addColorStop(.35,'#f6dc92');g.addColorStop(.6,'#c48e34');g.addColorStop(1,'#6d4810');
+ x.fillStyle=g;x.beginPath();x.moveTo(833,782);x.lineTo(869,782);x.lineTo(874,803);x.quadraticCurveTo(851,810,828,803);x.closePath();x.fill();noShadow();
+ x.strokeStyle='rgba(90,60,15,.6)';x.lineWidth=1;for(let i=0;i<7;i++){const xx=836+i*5.2;x.beginPath();x.moveTo(xx,783);x.lineTo(xx-1+i*.3,805);x.stroke()}
+ x.restore();
+})();
+
+/* ---------- MICROPHONE ---------- */
+(function(){x.save();x.translate(386,1125);x.rotate(.2);
+ // handle
+ shadow(22,10,14,.55);
+ let g=x.createLinearGradient(-24,0,24,0);g.addColorStop(0,'#0c0c0c');g.addColorStop(.3,'#4a4a4a');g.addColorStop(.45,'#1e1e1e');g.addColorStop(1,'#050505');
+ x.fillStyle=g;x.beginPath();x.moveTo(-26,-20);x.lineTo(26,-20);x.lineTo(16,150);x.quadraticCurveTo(0,158,-16,150);x.closePath();x.fill();noShadow();
+ // switch
+ x.fillStyle='#2b2b2b';x.fillRect(-7,40,14,26);x.fillStyle='#c9c9c9';x.fillRect(-4,44,8,9);
+ // collar
+ g=x.createLinearGradient(-32,0,32,0);g.addColorStop(0,'#555');g.addColorStop(.3,'#f2f2f2');g.addColorStop(.55,'#9a9a9a');g.addColorStop(1,'#3c3c3c');
+ x.fillStyle=g;x.beginPath();x.moveTo(-32,-44);x.lineTo(32,-44);x.lineTo(27,-16);x.lineTo(-27,-16);x.closePath();x.fill();
+ x.strokeStyle='rgba(0,0,0,.35)';x.lineWidth=1;for(const yy of [-38,-30,-22]){x.beginPath();x.moveTo(-30,yy);x.lineTo(30,yy);x.stroke()}
+ // head
+ const hr=60,hy=-92;shadow(18,6,10,.45);
+ g=x.createRadialGradient(-22,hy-24,6,0,hy,hr);g.addColorStop(0,'#ffffff');g.addColorStop(.35,'#c9c9c9');g.addColorStop(.8,'#5d5d5d');g.addColorStop(1,'#2a2a2a');
+ x.fillStyle=g;x.beginPath();x.arc(0,hy,hr,0,7);x.fill();noShadow();
+ x.save();x.beginPath();x.arc(0,hy,hr-2,0,7);x.clip();
+ x.strokeStyle='rgba(30,30,30,.45)';x.lineWidth=1.1;
+ for(let t=-hr;t<hr;t+=5.5){x.beginPath();x.moveTo(t-hr,hy-hr);x.lineTo(t+hr,hy+hr);x.stroke();x.beginPath();x.moveTo(t+hr,hy-hr);x.lineTo(t-hr,hy+hr);x.stroke()}
+ g=x.createRadialGradient(0,hy,hr*.5,0,hy,hr);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.45)');x.fillStyle=g;x.fillRect(-hr,hy-hr,2*hr,2*hr);
+ x.restore();
+ // equator band
+ g=x.createLinearGradient(-hr,0,hr,0);g.addColorStop(0,'#444');g.addColorStop(.3,'#fafafa');g.addColorStop(.6,'#8d8d8d');g.addColorStop(1,'#333');
+ x.fillStyle=g;x.beginPath();x.ellipse(0,hy+8,hr,9,0,0,7);x.fill();
+ x.globalCompositeOperation='lighter';let sg=x.createRadialGradient(-24,hy-28,0,-24,hy-28,22);sg.addColorStop(0,'rgba(255,255,255,.8)');sg.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=sg;x.fillRect(-50,hy-54,52,52);
+ x.restore();
+})();
+
+/* warm photo grading + grain on props */
+x.save();x.globalCompositeOperation='source-atop';x.fillStyle='rgba(255,170,90,.10)';x.fillRect(0,0,1200,1600);
+const id=x.getImageData(250,700,720,600),d=id.data;for(let i=0;i<d.length;i+=4){if(d[i+3]){const n=(R()-.5)*14;d[i]+=n;d[i+1]+=n;d[i+2]+=n}}x.putImageData(id,250,700);
+x.restore();
+document.body.dataset.done=1;}
+</script></body></html>
