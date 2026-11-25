@@ -71,23 +71,25 @@ tile=np.tile(hp,(H//hp.shape[0]+1,W//hp.shape[1]+1,1))[:H,:W]
 f=cv2.GaussianBlur(nm.astype(np.float32),(0,0),4)[...,None]/255
 cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+im*(1-f),0,255).astype(np.uint8))
 
-# --- glove layer above stamp + erase old stamp-hat remnant ---
-im=cv2.imread(P+'bg_dossier2.png');hsv=cv2.cvtColor(im,cv2.COLOR_BGR2HSV)
+# --- glove layer above stamp (taken from the untouched original photo) + erase old stamp-hat ---
+im=cv2.imread(P+'bg_dossier2.png');orig=cv2.imread(P+'ref6.jpg')
+hsv=cv2.cvtColor(orig,cv2.COLOR_BGR2HSV)
 def poly(p):m=np.zeros((H,W),np.uint8);cv2.fillPoly(m,[np.array(p)],255);return m>0
-hat=poly([(462,402),(548,414),(612,436),(606,505),(495,508),(493,480),(479,454),(458,428)])
-region=poly([(290,320),(560,320),(560,530),(290,530)])
-red=((hsv[...,0]<12)|(hsv[...,0]>168))&(hsv[...,1]>110)&(hsv[...,2]>40)
+hat=poly([(462,401),(528,421),(552,408),(578,414),(602,425),(628,452),(624,478),(570,472),(520,480),(496,486),(492,468),(472,428)])
+pom=np.zeros((H,W),np.uint8);cv2.circle(pom,(430,512),19,255,-1);hat|=pom>0
+region=poly([(40,40),(580,40),(580,540),(40,540)])
+red=((hsv[...,0]<14)|(hsv[...,0]>165))&(hsv[...,1]>90)&(hsv[...,2]>35)
 gm=(red&region&~hat).astype(np.uint8)*255
-gm=cv2.morphologyEx(gm,cv2.MORPH_CLOSE,np.ones((9,9),np.uint8))
+gm=cv2.morphologyEx(gm,cv2.MORPH_CLOSE,np.ones((5,5),np.uint8))
 n,l,st,_=cv2.connectedComponentsWithStats(gm);keep=np.zeros_like(gm)
 for i in range(1,n):
-    if st[i][4]>800:keep[l==i]=255
+    if st[i][4]>3000:keep[l==i]=255
 cnts,_=cv2.findContours(keep,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE);cv2.drawContours(keep,cnts,-1,255,-1)
-keep[hat]=0
-a=cv2.GaussianBlur(keep,(0,0),0.9)
-g=cv2.cvtColor(im,cv2.COLOR_BGR2BGRA);g[...,3]=a;cv2.imwrite(P+'glove_layer.png',g)
-# erase hat remnant (outside glove) with kraft
-hm=(hat&(keep==0)).astype(np.uint8)*255;hm=cv2.dilate(hm,np.ones((5,5),np.uint8))&~cv2.dilate(keep,np.ones((3,3),np.uint8))
+keep[hat|poly([(459,394),(482,394),(484,422),(462,420)])]=0
+keep=cv2.morphologyEx(keep,cv2.MORPH_OPEN,np.ones((3,3),np.uint8))
+a=cv2.GaussianBlur(keep,(0,0),0.8)
+g=cv2.cvtColor(orig,cv2.COLOR_BGR2BGRA);g[...,3]=a;cv2.imwrite(P+'glove_layer.png',g)
+hm=((hat|poly([(452,392),(640,392),(640,528),(436,528),(436,500)])|poly([(330,505),(440,505),(440,540),(330,540)]))&(keep==0)).astype(np.uint8)*255;hm=hm&~cv2.dilate(keep,np.ones((3,3),np.uint8))
 imf=im.astype(np.float32)
 sm=cv2.resize(im,(W//4,H//4),interpolation=cv2.INTER_AREA);ms=cv2.resize(cv2.dilate(hm|keep,np.ones((7,7),np.uint8)),(W//4,H//4),interpolation=cv2.INTER_NEAREST)
 low=cv2.GaussianBlur(cv2.resize(cv2.inpaint(sm,ms,5,cv2.INPAINT_TELEA),(W,H),interpolation=cv2.INTER_CUBIC).astype(np.float32),(0,0),5)
