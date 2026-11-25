@@ -1,0 +1,43 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Unbounded:wght@800;900&family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:900px;height:1200px;overflow:hidden}
+.p{position:relative;width:900px;height:1200px;overflow:hidden}
+.bg{position:absolute;left:0;top:0;width:900px;height:1200px}
+.fit{position:absolute;left:0;top:0;white-space:nowrap;color:#fde8e8;transform-origin:0 0;
+ text-shadow:0 0 1px rgba(255,255,255,.4),0 6px 18px rgba(60,0,0,.45)}
+.l1{font:700 100px/1 'Oswald',sans-serif;letter-spacing:1px}
+.l2{font:900 100px/1 'Unbounded',sans-serif;letter-spacing:-2px}
+.logo{position:absolute;right:34px;top:28px;display:flex;align-items:center;gap:10px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+.logo img{height:46px}
+.logo .a{font:300 12.5px 'Montserrat';letter-spacing:1px;line-height:1}
+.logo .b{font:700 20px 'Montserrat';line-height:1;margin-top:4px}
+.date{position:absolute;right:34px;top:88px;text-align:right;color:#fde8e8;font:700 17px 'Montserrat';letter-spacing:3px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+.date span{display:block;font:600 13px 'Montserrat';letter-spacing:4px;opacity:.85;margin-top:3px}
+</style></head><body><div class="p">
+<img class="bg" src="bg_ball.png">
+<div class="logo"><img src="brics_emblem_white.png"><div><div class="a">УНИВЕРСИТЕТСКИЙ</div><div class="b">КОЛЛЕДЖ БРИКС</div></div></div>
+<div class="date">31 ДЕКАБРЯ<span>ДО УТРА</span></div>
+<div class="fit l1" data-y="308,382" data-side="L">НОВОГОДНЯЯ</div><div class="fit l1" data-y="308,382" data-side="R">ДИСКОТЕКА</div>
+<div class="fit l2" data-y="402,452" data-side="L">ХИТЫ</div><div class="fit l2" data-y="402,452" data-side="R">90-Х</div>
+<img class="bg" src="ribbon.png" style="filter:drop-shadow(2px 3px 3px rgba(40,0,0,.45))">
+<svg class="bg" width="900" height="1200" style="filter:drop-shadow(0 6px 14px rgba(60,0,0,.45))">
+ <defs><path id="arc" d="M 78 800 A 372 372 0 0 0 822 800"/></defs>
+ <text font-family="Unbounded" font-weight="900" font-size="52" fill="#fde8e8" letter-spacing="1">
+  <textPath href="#arc" startOffset="50%" text-anchor="middle">ВРУБАЙ НА ПОЛНУЮ</textPath></text>
+</svg>
+</div>
+<script>
+document.fonts.ready.then(()=>{
+ const RL=436,RR=474,XL=96,XR=806;
+ const els=[...document.querySelectorAll('.fit')];const groups={};els.forEach(e=>(groups[e.dataset.y]??=[]).push(e));
+ for(const y in groups){const [y0,y1]=y.split(',').map(Number);
+  const ms=groups[y].map(e=>{const c=document.createElement('canvas').getContext('2d');const cs=getComputedStyle(e);c.font=`${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;c.letterSpacing=cs.letterSpacing;return [e,c.measureText(e.textContent),parseFloat(cs.fontSize)]});
+  const sx=Math.min(...ms.map(([e,m])=>{const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight;return (e.dataset.side=='L'?RL-XL:XR-RR)/w}));
+  for(const [e,m,fs] of ms){const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight,h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;const sy=(y1-y0)/h;
+   const top=(fs-(m.fontBoundingBoxAscent+m.fontBoundingBoxDescent))/2+m.fontBoundingBoxAscent-m.actualBoundingBoxAscent;
+   const x=e.dataset.side=='L'?RL-w*sx:RR;
+   e.style.transform=`translate(${x-m.actualBoundingBoxLeft*sx}px,${y0-top*sy}px) scale(${sx},${sy})`}}
+ document.body.dataset.done=1});
+</script></body></html>
