@@ -31,6 +31,13 @@ body{width:1200px;height:1500px;overflow:hidden}
 .logo2{right:34px;top:26px;display:flex;align-items:center;gap:10px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
 .logo2 img{height:48px;filter:brightness(0) invert(1)}
 .logo2 .t1{font:300 12.5px 'Montserrat';letter-spacing:1px}.logo2 .t2{font:700 21px 'Montserrat';margin-top:3px}
+
+.tape{left:-60px;right:-60px;top:1352px;height:86px;transform:rotate(-4deg);background:linear-gradient(180deg,#c2262a,#a51b1f);
+ box-shadow:0 10px 18px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.18),inset 0 -2px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;gap:26px;
+ font:900 46px/1 'Montserrat';letter-spacing:2px;color:#fff6ec;text-shadow:0 2px 0 rgba(80,0,0,.45);filter:url(#ink)}
+.tape i{font-style:normal;color:#ffd36b;font-size:30px}
+.tape:before,.tape:after{content:"";position:absolute;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,#fff6ec 0 22px,transparent 22px 34px);opacity:.85}
+.tape:before{top:8px}.tape:after{bottom:8px}
 </style></head><body><div class="p">
 <svg width="0" height="0" style="position:absolute">
  <filter id="rubber" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".06 .1" numOctaves="4" seed="11" result="n"/>
@@ -56,6 +63,6 @@ body{width:1200px;height:1500px;overflow:hidden}
 <div>— Дед Мороз и Снегурочка</div>
 <div>— дискотека под легендарные хиты 90-х</div>
 <div class="r2">На входе каждый студент получит билет<br>(350 шт.). В финале обладатели 5 счастливых<br>билетов получат подарки от Деда Мороза!</div></div>
+<div class="a tape">14 ДЕКАБРЯ<i>●</i>18:30<i>●</i>КЛУБ PRAVDA</div>
 <div class="a logo2"><img src="brics_emblem.png"><div><div class="t1">УНИВЕРСИТЕТСКИЙ</div><div class="t2">КОЛЛЕДЖ БРИКС</div></div></div>
-<div class="a foot">14 ДЕКАБРЯ<span>●</span>18:30<span>●</span>КЛУБ PRAVDA</div>
 </div><script>document.fonts.ready.then(()=>document.body.dataset.done=1)</script></body></html>

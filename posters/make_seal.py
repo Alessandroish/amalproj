@@ -155,3 +155,14 @@ dy=60;M=np.float32([[1,0,0],[0,1,dy]])
 oldS=cv2.warpAffine(old,M,(W,H));nmS=cv2.warpAffine(nm,M,(W,H))
 f=cv2.GaussianBlur(nmS.astype(np.float32),(0,0),3)[...,None]/255
 cv2.imwrite(P+'bg_dossier2_note.png',np.clip(oldS*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- remove the wax seal completely (both variants) ---
+for name in ['bg_dossier2.png','bg_dossier2_note.png']:
+    im=cv2.imread(P+name);imf=im.astype(np.float32)
+    sm_=np.zeros((H,W),np.uint8);cv2.circle(sm_,(838,815),80,255,-1)
+    s4=cv2.resize(im,(W//2,H//2),interpolation=cv2.INTER_AREA);m4=cv2.resize(sm_,(W//2,H//2),interpolation=cv2.INTER_NEAREST)
+    low=cv2.GaussianBlur(cv2.resize(cv2.inpaint(s4,m4,8,cv2.INPAINT_TELEA),(W,H),interpolation=cv2.INTER_CUBIC).astype(np.float32),(0,0),3)
+    src=imf[600:700,580:700];hp=src-cv2.GaussianBlur(src,(0,0),3)
+    t=np.concatenate([hp,hp[:,::-1]],1);t=np.concatenate([t,t[::-1]],0);tile=np.tile(t,(H//t.shape[0]+1,W//t.shape[1]+1,1))[:H,:W]
+    f=cv2.GaussianBlur(sm_.astype(np.float32),(0,0),4)[...,None]/255
+    cv2.imwrite(P+name,np.clip((low+tile*.8)*f+imf*(1-f),0,255).astype(np.uint8))
