@@ -146,3 +146,12 @@ t=np.concatenate([hp,hp[:,::-1]],1);t=np.concatenate([t,t[::-1]],0);tile=np.tile
 fill=col+tile*.8
 f=cv2.GaussianBlur(pm.astype(np.float32),(0,0),3)[...,None]
 cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- variant B: put the middle sticky note back (shifted down 60px) ---
+im=cv2.imread(P+'bg_dossier2.png').astype(np.float32);old=cv2.imread(P+'bg_dossier.png').astype(np.float32)
+nm=np.zeros((H,W),np.uint8);cv2.fillPoly(nm,[np.array([(512,925),(640,884),(808,876),(834,1080),(814,1138),(562,1154)])],255)
+nm=cv2.dilate(nm,np.ones((15,15),np.uint8))
+dy=60;M=np.float32([[1,0,0],[0,1,dy]])
+oldS=cv2.warpAffine(old,M,(W,H));nmS=cv2.warpAffine(nm,M,(W,H))
+f=cv2.GaussianBlur(nmS.astype(np.float32),(0,0),3)[...,None]/255
+cv2.imwrite(P+'bg_dossier2_note.png',np.clip(oldS*f+im*(1-f),0,255).astype(np.uint8))
