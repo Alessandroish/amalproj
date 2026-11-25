@@ -1,0 +1,63 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,800;1,800&family=Oswald:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:1600px;overflow:hidden}
+.p{position:relative;width:1200px;height:1600px;overflow:hidden}
+.bg{position:absolute;inset:0}
+.rb{position:absolute;right:80px;text-align:right;font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-1px;color:#141a14;mix-blend-mode:multiply;filter:url(#ink)}
+.l1{top:150px;font-size:76px;line-height:1}
+.l2{top:224px;font-size:98px;line-height:1;font-style:italic;color:#8d1a1c}
+.l3{top:318px;font-size:74px;line-height:1}
+.l4{top:398px;font-size:26px;font-weight:500;letter-spacing:0;line-height:1}
+.l4 b{font-weight:800}
+.dash{display:inline-block;vertical-align:middle;height:2px;background:#141a14;margin-right:16px;position:relative;top:-6px}
+.dash.red{background:#8d1a1c;top:-4px}
+.dash.red:after{content:"";position:absolute;right:-2px;top:-4px;border-left:9px solid #8d1a1c;border-top:5px solid transparent;border-bottom:5px solid transparent}
+</style></head><body><div class="p">
+<svg width="0" height="0" style="position:absolute"><filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" result="d"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.95" result="sp"/><feComposite in="sp" in2="d" operator="in" result="spi"/>
+<feMerge><feMergeNode in="d"/><feMergeNode in="spi"/></feMerge></filter>
+<filter id="photo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1.03 .03 0 0 0  .01 1 .01 0 0  0 .02 .93 0 0  0 0 0 1 0"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="5"/><feColorMatrix type="saturate" values="0"/></filter>
+<filter id="stamp2"><feTurbulence type="fractalNoise" baseFrequency=".05 .09" numOctaves="3" seed="8" result="n"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -.7 1.25" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+<filter id="stamp"><feTurbulence type="fractalNoise" baseFrequency=".05 .09" numOctaves="3" seed="8" result="n"/>
+<feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 1.45" result="m"/>
+<feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
+<img class="bg" src="bg5_paper.png">
+<div style="position:absolute;left:30px;top:1385px;width:1150px;height:60px;border-radius:50%;background:rgba(55,32,14,.6);filter:blur(18px);transform:rotate(1.6deg)"></div>
+<div style="position:absolute;left:40px;top:1400px;width:1130px;height:22px;border-radius:50%;background:rgba(30,16,6,.7);filter:blur(6px);transform:rotate(1.6deg)"></div>
+<img class="bg" src="boombox3d.png" style="width:1200px;height:1600px;filter:url(#photo)">
+<svg class="bg" width="1200" height="1600" style="opacity:.07;mix-blend-mode:overlay;pointer-events:none"><rect width="1200" height="1600" filter="url(#grain)"/></svg>
+
+<div class="rb l1"><span class="dash" style="width:62px"></span>дискотека</div>
+<div class="rb l2">90-х</div>
+<div class="rb l3">до утра</div>
+<div class="rb l4"><span class="dash red" style="width:64px"></span><b>31</b> декабря</div>
+
+<svg class="bg" width="1200" height="1600" style="filter:drop-shadow(-4px 10px 10px rgba(50,25,8,.45))">
+ <defs>
+  <radialGradient id="disc" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f4ede2"/><stop offset="1" stop-color="#ddd2c2"/></radialGradient>
+  <path id="top" d="M 38 1352 A 112 112 0 0 1 262 1352"/>
+  <path id="bot" d="M 52 1352 A 98 98 0 0 0 248 1352"/>
+ </defs>
+ <g transform="rotate(-12 150 1352)">
+  <circle cx="150" cy="1352" r="150" fill="url(#disc)"/>
+  <g fill="none" stroke="#a3211a" filter="url(#stamp2)"><circle cx="150" cy="1352" r="141" stroke-width="5"/><circle cx="150" cy="1352" r="88" stroke-width="3"/></g>
+  <g fill="#a3211a" font-family="Oswald" font-weight="600" letter-spacing="2" filter="url(#stamp2)">
+   <text font-size="38" text-anchor="middle"><textPath href="#top" startOffset="50%">ХИТЫ 90-Х</textPath></text>
+   <text font-size="38" text-anchor="middle" dominant-baseline="hanging"><textPath href="#bot" startOffset="50%">ДО УТРА</textPath></text>
+   <path filter="none" d="M150 1290 l22 30 h-10 l26 30 h-12 l28 30 h-108 l28 -30 h-12 l26 -30 h-10z M142 1380 h16 v18 h-16z"/>
+   <path d="M28 1352 l5 -12 5 12 -12 -7 h14z M260 1352 l5 -12 5 12 -12 -7 h14z" />
+  </g>
+ </g>
+</svg>
+<div style="position:absolute;left:0;right:0;top:30px;display:flex;justify-content:center;align-items:center;gap:14px;filter:url(#ink)">
+ <img src="brics_emblem.png" style="height:68px;filter:brightness(0);opacity:.92;mix-blend-mode:multiply">
+ <div style="font-family:'Montserrat',sans-serif;color:#141414;mix-blend-mode:multiply;line-height:1">
+  <div style="font-weight:300;font-size:19px;letter-spacing:1px">УНИВЕРСИТЕТСКИЙ</div>
+  <div style="font-weight:600;font-size:30px;letter-spacing:.5px;margin-top:6px">КОЛЛЕДЖ БРИКС</div>
+ </div>
+</div>
+</div></body></html>

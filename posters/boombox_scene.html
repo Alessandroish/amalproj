@@ -1,0 +1,175 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head><body>
+<script type="importmap">{"imports":{"three":"./three.js","three/addons/":"./addons/"}}</script>
+<script type="module">
+import * as T from 'three';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+await document.fonts.load('700 20px Montserrat');await document.fonts.load('600 20px Oswald');await document.fonts.load('500 20px Montserrat');
+const W=1200,H=1600;
+const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+r.setPixelRatio(window.devicePixelRatio);r.setSize(W,H);r.setClearColor(0,0);
+r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.0;r.outputColorSpace=T.SRGBColorSpace;
+r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;document.body.appendChild(r.domElement);
+const S=new T.Scene();
+const D=4000;const cam=new T.PerspectiveCamera(2*Math.atan(800/D)*180/Math.PI,W/H,10,10000);cam.position.set(600,-800,D);cam.lookAt(600,-800,0);
+const pm=new T.PMREMGenerator(r);S.environment=pm.fromScene(new RoomEnvironment(),0.04).texture;S.environmentIntensity=.55;
+const key=new T.DirectionalLight(0xfff0dc,2.4);key.position.set(600-700,-1080+1100,1300);key.target.position.set(600,-1080,0);
+key.castShadow=true;key.shadow.mapSize.set(4096,4096);Object.assign(key.shadow.camera,{left:-900,right:900,top:900,bottom:-900,near:100,far:5000});key.shadow.radius=10;key.shadow.blurSamples=25;key.shadow.bias=-.0004;key.shadow.normalBias=1;
+S.add(key,key.target);
+const fill=new T.DirectionalLight(0xffd9b0,.5);fill.position.set(1800,-600,1500);S.add(fill);
+S.add(new T.HemisphereLight(0xfff6e8,0x8a6a48,.35));
+
+const tex=(w,h,fn,srgb=true)=>{const c=document.createElement('canvas');c.width=w;c.height=h;fn(c.getContext('2d'),w,h);const t=new T.CanvasTexture(c);if(srgb)t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;return t};
+let sd=7;const R=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};
+
+/* ---------- materials ---------- */
+const wear=tex(1024,1024,(c,w,h)=>{c.fillStyle='#8a8a8a';c.fillRect(0,0,w,h);for(let i=0;i<4000;i++){c.fillStyle=`rgba(${R()<.5?255:0},${R()<.5?255:0},${R()<.5?255:0},.05)`;c.fillRect(R()*w,R()*h,1+R()*3,1+R()*3)}
+ c.strokeStyle='rgba(255,255,255,.18)';for(let i=0;i<60;i++){c.lineWidth=.5+R();c.beginPath();const x=R()*w,y=R()*h;c.moveTo(x,y);c.lineTo(x+(R()-.5)*120,y+(R()-.5)*30);c.stroke()}},false);
+const bodyMat=new T.MeshPhysicalMaterial({envMapIntensity:.6,color:0x15244a,roughness:.5,roughnessMap:wear,clearcoat:.35,clearcoatRoughness:.35,metalness:0});
+const chrome=new T.MeshStandardMaterial({color:0xe9e9e9,metalness:1,roughness:.14});
+const brushed=tex(1024,256,(c,w,h)=>{c.fillStyle='#b9b9b6';c.fillRect(0,0,w,h);for(let y=0;y<h;y++){c.fillStyle=`rgba(${R()<.5?255:60},${R()<.5?255:60},${R()<.5?255:60},${.05+R()*.08})`;c.fillRect(0,y,w,1)}});
+const alu=new T.MeshStandardMaterial({map:brushed,metalness:.85,roughness:.38});
+const blackPl=new T.MeshStandardMaterial({color:0x121212,roughness:.55});
+const darkPl=new T.MeshStandardMaterial({color:0x1b1b1d,roughness:.7});
+
+/* ---------- root ---------- */
+const B=new T.Group();B.position.set(600,-1062,0);B.rotation.set(.13,-.16,0);S.add(B);
+const BW=1130,BH=640,BD=250;
+// body built as shell with window hole: use 4 boxes around window + backs
+const FZ=BD/2;const WX=440,WY=392,WCY=-22,depth=118;
+{const bev=16;const w=BW/2-bev,h=BH/2-bev,rr=12;const sh=new T.Shape();
+ sh.moveTo(-w+rr,-h);sh.lineTo(w-rr,-h);sh.quadraticCurveTo(w,-h,w,-h+rr);sh.lineTo(w,h-rr);sh.quadraticCurveTo(w,h,w-rr,h);sh.lineTo(-w+rr,h);sh.quadraticCurveTo(-w,h,-w,h-rr);sh.lineTo(-w,-h+rr);sh.quadraticCurveTo(-w,-h,-w+rr,-h);
+ const hb=WX/2+bev,hh=WY/2+bev;const hole=new T.Path();hole.moveTo(-hb,WCY-hh);hole.lineTo(-hb,WCY+hh);hole.lineTo(hb,WCY+hh);hole.lineTo(hb,WCY-hh);hole.lineTo(-hb,WCY-hh);
+ // front shell (thin, with hole)
+ const g1=new T.ExtrudeGeometry((()=>{const s2=sh.clone();s2.holes=[hole];return s2})(),{depth:30-2*bev+bev,bevelEnabled:true,bevelThickness:bev,bevelSize:bev,bevelSegments:8,curveSegments:24});
+ g1.translate(0,0,FZ-30);
+ const front=new T.Mesh(g1,bodyMat);front.castShadow=true;front.receiveShadow=true;B.add(front);
+ // rear solid part
+ const g2=new T.ExtrudeGeometry(sh,{depth:BD-30-depth-2*bev,bevelEnabled:true,bevelThickness:bev,bevelSize:bev,bevelSegments:8,curveSegments:24});
+ g2.translate(0,0,-BD/2+bev);const rear=new T.Mesh(g2,bodyMat);rear.castShadow=true;rear.receiveShadow=true;B.add(rear);
+ // middle sides (box ring between front shell and rear around compartment)
+ const mid=new T.Mesh(new T.BoxGeometry(BW-2,BH-2,depth+20),bodyMat);mid.position.z=FZ-30-(depth+20)/2+6;
+ // carve: we instead add 4 blocks around compartment
+ const zc=FZ-24-depth/2,dz=depth+14;
+ const blocks=[[BW-6,(BH/2)-(WCY+WY/2)-4,0,(WCY+WY/2+BH/2)/2],[BW-6,(WCY-WY/2)+BH/2-4,0,(WCY-WY/2-BH/2)/2],[(BW/2-WX/2)-4,WY+2,-(BW/2+WX/2)/2,WCY],[(BW/2-WX/2)-4,WY+2,(BW/2+WX/2)/2,WCY]];
+ for(const [bw,bh,bx,by] of blocks){const m=new T.Mesh(new T.BoxGeometry(bw,bh,dz),bodyMat);m.position.set(bx,by,zc);m.castShadow=true;B.add(m)}
+}
+// cut illusion: black recess box drawn slightly in front of body front then toys plane inside
+const recess=new T.Group();recess.position.set(0,WCY,FZ+.5);B.add(recess);
+// cover body front in window area with recess interior: inner walls
+const wallM=new T.MeshStandardMaterial({color:0x2a2620,roughness:.85});
+const mk=(g,m,x,y,z,rx=0,ry=0)=>{const o=new T.Mesh(g,m);o.position.set(x,y,z);o.rotation.set(rx,ry,0);o.receiveShadow=true;return o};
+// to "open" the body we place a dark box covering and then overlay: simplest — compartment protrudes as frame, interior rendered via planes in front with depth illusion
+const toys=await new T.TextureLoader().loadAsync('toys.png');toys.colorSpace=T.SRGBColorSpace;toys.anisotropy=8;
+const back=mk(new T.PlaneGeometry(WX,WY),new T.MeshStandardMaterial({map:toys,roughness:.9,emissive:0xffffff,emissiveMap:toys,emissiveIntensity:.42}),0,0,-depth);recess.add(back);
+recess.add(mk(new T.PlaneGeometry(depth,WY),wallM,-WX/2,0,-depth/2,0,Math.PI/2));
+recess.add(mk(new T.PlaneGeometry(depth,WY),wallM,WX/2,0,-depth/2,0,-Math.PI/2));
+recess.add(mk(new T.PlaneGeometry(WX,depth),wallM,0,WY/2,-depth/2,Math.PI/2,0));
+recess.add(mk(new T.PlaneGeometry(WX,depth),wallM,0,-WY/2,-depth/2,-Math.PI/2,0));
+// hide body front behind window using stencil-free trick: draw recess with depthTest against a "hole" -> instead push body front back: render body with a clipping box? use clipping planes on body material
+bodyMat.clippingPlanes=[];r.localClippingEnabled=true;
+{ // build body front with a hole: replace body by frame pieces when inside window region -> use a custom shape extrude
+}
+// chrome frame
+const fr=10;for(const [w,h,x,y] of [[WX+2*fr,fr,0,WY/2+fr/2],[WX+2*fr,fr,0,-WY/2-fr/2],[fr,WY,-WX/2-fr/2,0],[fr,WY,WX/2+fr/2,0]]){const o=new T.Mesh(new T.BoxGeometry(w,h,8),chrome);o.position.set(x,y,4);o.castShadow=true;recess.add(o)}
+// glass
+const glare=tex(512,512,(c,w,h)=>{c.fillStyle='#000';c.fillRect(0,0,w,h);const g=c.createLinearGradient(0,0,w,h);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.28,'rgba(255,255,255,0)');g.addColorStop(.33,'rgba(255,255,255,.3)');g.addColorStop(.42,'rgba(255,255,255,.07)');g.addColorStop(.5,'rgba(255,255,255,0)');g.addColorStop(.62,'rgba(255,255,255,0)');g.addColorStop(.66,'rgba(255,255,255,.14)');g.addColorStop(.7,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(0,0,w,h)});
+const glass=mk(new T.PlaneGeometry(WX,WY),new T.MeshPhysicalMaterial({color:0xffffff,transparent:true,opacity:1,alphaMap:glare,roughness:.05,metalness:0,envMapIntensity:1.5,depthWrite:false}),0,0,2);recess.add(glass);
+const tint=mk(new T.PlaneGeometry(WX,WY),new T.MeshPhysicalMaterial({color:0x99aabb,transparent:true,opacity:.07,roughness:.02,depthWrite:false}),0,0,1.5);recess.add(tint);
+
+/* ---------- speakers ---------- */
+const holes=tex(1024,1024,(c,w,h)=>{c.fillStyle='#fff';c.fillRect(0,0,w,h);c.fillStyle='#000';const s=15;for(let y=0;y<h+s;y+=s*.866)for(let x=0;x<w+s;x+=s){const ox=(Math.round(y/(s*.866))%2)*s/2;c.beginPath();c.arc(x+ox,y,4.8,0,7);c.fill()}},false);
+const grilleM=new T.MeshStandardMaterial({color:0xc9ccd2,metalness:.9,roughness:.32,alphaMap:holes,alphaTest:.5,side:T.DoubleSide});
+for(const sx of [-402,402]){const g=new T.Group();g.position.set(sx,-40,FZ);B.add(g);
+ const rec=new T.Mesh(new T.CylinderGeometry(140,140,40,96,1,true),darkPl);rec.rotation.x=Math.PI/2;rec.position.z=-15;g.add(rec);
+ const pts=[];for(let i=0;i<=20;i++){const t=i/20;pts.push(new T.Vector2(28+t*110,-34+t*28))}
+ const cone=new T.Mesh(new T.LatheGeometry(pts,96),new T.MeshStandardMaterial({color:0x2d2b29,roughness:.95,side:T.DoubleSide}));cone.rotation.x=Math.PI/2;cone.position.z=-6;g.add(cone);
+ const capS=new T.Mesh(new T.SphereGeometry(30,48,24,0,Math.PI*2,0,Math.PI/2),new T.MeshStandardMaterial({color:0x1c1c1c,roughness:.5}));capS.rotation.x=Math.PI/2;capS.position.z=-40;g.add(capS);
+ const back2=new T.Mesh(new T.CircleGeometry(140,96),new T.MeshStandardMaterial({color:0x0c0c0c}));back2.position.z=-34;g.add(back2);
+ const grille=new T.Mesh(new T.CircleGeometry(140,128),grilleM);grille.position.z=4;grille.castShadow=true;g.add(grille);
+ // slight dome via second scale
+ const ring=new T.Mesh(new T.TorusGeometry(144,7,24,128),chrome);ring.position.z=5;ring.castShadow=true;g.add(ring);
+ const ring2=new T.Mesh(new T.TorusGeometry(154,3,16,128),new T.MeshStandardMaterial({color:0x10182c,roughness:.4}));ring2.position.z=2;g.add(ring2);
+ // badge
+ const bd=tex(256,64,(c,w,h)=>{c.fillStyle='#d8d8d8';c.fillRect(0,0,w,h);c.fillStyle='#222';c.font='600 30px Oswald';c.textAlign='center';c.fillText('2-WAY',w/2,44)});
+ const badge=new T.Mesh(new T.PlaneGeometry(64,16),new T.MeshStandardMaterial({map:bd,metalness:.6,roughness:.35}));badge.position.set(0,-108,7);g.add(badge);
+}
+
+/* ---------- top control band ---------- */
+const band=new T.Mesh(new RoundedBoxGeometry(1080,118,14,3,5),alu);band.position.set(0,236,FZ+2);band.castShadow=true;B.add(band);
+// VU meters
+const vu=tex(512,300,(c,w,h)=>{let g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#f6d792');g.addColorStop(1,'#e2a94c');c.fillStyle=g;c.fillRect(0,0,w,h);
+ c.strokeStyle='#2a1a08';c.lineWidth=4;c.beginPath();c.arc(w/2,h*1.05,h*.8,-2.3,-0.84);c.stroke();
+ c.strokeStyle='#b51f14';c.lineWidth=10;c.beginPath();c.arc(w/2,h*1.05,h*.8,-1.15,-0.84);c.stroke();
+ for(let i=0;i<=10;i++){const a=-2.3+i*(1.46/10);c.strokeStyle=i>7?'#b51f14':'#2a1a08';c.lineWidth=3;c.beginPath();c.moveTo(w/2+Math.cos(a)*h*.8,h*1.05+Math.sin(a)*h*.8);c.lineTo(w/2+Math.cos(a)*h*.9,h*1.05+Math.sin(a)*h*.9);c.stroke()}
+ c.fillStyle='#2a1a08';c.font='700 34px Montserrat';c.textAlign='center';c.fillText('VU',w/2,h*.72);
+ c.strokeStyle='#111';c.lineWidth=4;c.beginPath();c.moveTo(w/2,h*1.05);const a=-1.25;c.lineTo(w/2+Math.cos(a)*h*.95,h*1.05+Math.sin(a)*h*.95);c.stroke();
+ const sh=c.createRadialGradient(w/2,h*.4,10,w/2,h*.5,w*.7);sh.addColorStop(0,'rgba(0,0,0,0)');sh.addColorStop(1,'rgba(60,30,0,.45)');c.fillStyle=sh;c.fillRect(0,0,w,h)});
+for(const vx of [-460,-330]){const m=new T.Mesh(new T.PlaneGeometry(108,64),new T.MeshStandardMaterial({map:vu,emissive:0xffb050,emissiveMap:vu,emissiveIntensity:.5,roughness:.6}));m.position.set(vx,236,FZ+10.4);B.add(m);
+ const bez=new T.Mesh(new RoundedBoxGeometry(120,76,6,2,4),blackPl);bez.position.set(vx,236,FZ+7);B.add(bez)}
+// tuning dial
+const dial=tex(1024,160,(c,w,h)=>{c.fillStyle='#141414';c.fillRect(0,0,w,h);c.fillStyle='#e8e2d0';c.font='500 22px Montserrat';c.textAlign='center';
+ const fm=[88,92,96,100,104,108];fm.forEach((f,i)=>{const x=110+i*160;c.fillText(f,x,52);c.fillRect(x-1,62,2,14)});
+ const am=[530,600,800,1000,1400,1600];am.forEach((f,i)=>{const x=110+i*160;c.fillText(f,x,130);c.fillRect(x-1,94,2,14)});
+ c.fillStyle='#c9c3b0';for(let x=110;x<=910;x+=16){c.fillRect(x,70,1.5,6);c.fillRect(x,94,1.5,6)}
+ c.fillStyle='#f0a040';c.font='700 22px Montserrat';c.textAlign='left';c.fillText('FM',20,52);c.fillText('AM',20,130);
+ c.fillStyle='#e63322';c.fillRect(612,18,5,124)});
+const dm=new T.Mesh(new T.PlaneGeometry(400,62),new T.MeshStandardMaterial({map:dial,emissive:0xffffff,emissiveMap:dial,emissiveIntensity:.35,roughness:.25}));dm.position.set(-20,236,FZ+10.4);B.add(dm);
+const dbez=new T.Mesh(new RoundedBoxGeometry(414,76,6,2,4),blackPl);dbez.position.set(-20,236,FZ+7);B.add(dbez);
+// knobs
+const knurl=tex(512,64,(c,w,h)=>{c.fillStyle='#ddd';c.fillRect(0,0,w,h);c.fillStyle='#555';for(let x=0;x<w;x+=6)c.fillRect(x,0,2,h)});
+for(const [kx,kr] of [[300,30],[385,30],[470,30]]){const k=new T.Mesh(new T.CylinderGeometry(kr,kr+2,30,64),[new T.MeshStandardMaterial({map:knurl,metalness:1,roughness:.3}),new T.MeshStandardMaterial({color:0xd9d9d9,metalness:1,roughness:.22}),chrome]);
+ k.rotation.x=Math.PI/2;k.position.set(kx,236,FZ+24);k.castShadow=true;B.add(k);
+ const dot=new T.Mesh(new T.BoxGeometry(3,16,2),new T.MeshStandardMaterial({color:0x222}));dot.position.set(kx,248,FZ+40);B.add(dot)}
+const lbl=tex(512,64,(c,w,h)=>{c.fillStyle='#202020';c.font='600 26px Montserrat';c.textAlign='center';c.fillText('VOLUME',80,40);c.fillText('TONE',256,40);c.fillText('TUNING',432,40)});
+const lm=new T.Mesh(new T.PlaneGeometry(260,30),new T.MeshBasicMaterial({map:lbl,transparent:true}));lm.position.set(385,195,FZ+9.6);B.add(lm);
+// LED
+const led=new T.Mesh(new T.SphereGeometry(5,16,16),new T.MeshStandardMaterial({color:0xff2a10,emissive:0xff2a10,emissiveIntensity:2.5}));led.position.set(-245,262,FZ+11);B.add(led);
+
+/* ---------- bottom print ---------- */
+const prt=tex(1024,64,(c,w,h)=>{c.fillStyle='#d9d4c8';c.font='600 30px Montserrat';c.textAlign='center';c.fillText('STEREO RADIO CASSETTE RECORDER',w/2,42)});
+const pm2=new T.Mesh(new T.PlaneGeometry(420,26),new T.MeshBasicMaterial({map:prt,transparent:true}));pm2.position.set(0,-246,FZ+.8);B.add(pm2);
+const brand=tex(512,96,(c,w,h)=>{c.fillStyle='#e9e6dc';c.font='800 66px Montserrat';c.textAlign='center';c.fillText('DISCO 90',w/2,72)});
+const bm=new T.Mesh(new T.PlaneGeometry(170,32),new T.MeshStandardMaterial({map:brand,transparent:true,metalness:.5,roughness:.3}));bm.position.set(0,-284,FZ+.8);B.add(bm);
+
+/* ---------- top: keys, handle, antenna ---------- */
+const TY=BH/2;
+const keyLbl=['REC','PLAY','REW','FF','STOP','PAUSE'];
+keyLbl.forEach((t,i)=>{const kx=-165+i*66;const g=new T.Group();g.position.set(kx,TY+8,FZ-40);B.add(g);
+ const kt=tex(128,256,(c,w,h)=>{c.fillStyle=i==0?'#b8261c':'#cfcfcf';c.fillRect(0,0,w,h);c.fillStyle=i==0?'#fff':'#222';c.font='700 26px Montserrat';c.textAlign='center';c.fillText(t,w/2,h-30)});
+ const k=new T.Mesh(new RoundedBoxGeometry(58,22,86,2,4),new T.MeshStandardMaterial({map:kt,metalness:i==0?0:.7,roughness:.3}));k.castShadow=true;g.add(k)});
+// handle
+const hMat=chrome;const posts=[-330,330];
+for(const px of posts){const p=new T.Mesh(new T.CylinderGeometry(13,16,96,32),hMat);p.position.set(px,TY+46,-20);p.castShadow=true;B.add(p);
+ const base=new T.Mesh(new T.CylinderGeometry(26,28,10,32),blackPl);base.position.set(px,TY+4,-20);B.add(base)}
+const curve=new T.CatmullRomCurve3([new T.Vector3(-330,TY+90,-20),new T.Vector3(-300,TY+122,-20),new T.Vector3(0,TY+128,-20),new T.Vector3(300,TY+122,-20),new T.Vector3(330,TY+90,-20)]);
+const tube=new T.Mesh(new T.TubeGeometry(curve,96,13,24,false),hMat);tube.castShadow=true;B.add(tube);
+const grip=new T.Mesh(new T.CylinderGeometry(19,19,300,48),new T.MeshStandardMaterial({color:0x151515,roughness:.75}));grip.rotation.z=Math.PI/2;grip.position.set(0,TY+127,-20);grip.castShadow=true;B.add(grip);
+// antenna
+{const g=new T.Group();g.position.set(500,TY+14,-90);g.rotation.z=.55;B.add(g);
+ const hinge=new T.Mesh(new T.SphereGeometry(16,24,24),chrome);g.add(hinge);
+ let y=0;[[8,80],[6.5,76],[5,72],[3.8,68]].forEach(([rad,len])=>{const s=new T.Mesh(new T.CylinderGeometry(rad,rad,len,24),chrome);s.position.y=y+len/2;s.castShadow=true;g.add(s);y+=len-6});
+ const tip=new T.Mesh(new T.SphereGeometry(8,24,24),chrome);tip.position.y=y+4;g.add(tip)}
+// feet
+for(const fx of [-470,470]){const f=new T.Mesh(new T.CylinderGeometry(30,32,16,32),blackPl);f.position.set(fx,-BH/2-6,40);f.castShadow=true;B.add(f)}
+// trim strip line
+const trim=new T.Mesh(new T.BoxGeometry(1100,4,3),chrome);trim.position.set(0,170,FZ+1);B.add(trim);
+
+/* ---------- body front hole: mask body front inside window via a dark-occluder trick ---------- */
+// carve: draw body again with stencil? Simpler: render interior on top by giving recess meshes polygonOffset and depthFunc ALWAYS for back/walls in window region
+
+glass.renderOrder=8;tint.renderOrder=7;recess.children.filter(o=>o.material===chrome).forEach(o=>o.renderOrder=9);
+// shadow-ish inner ambient occlusion overlay
+const ao=tex(512,512,(c,w,h)=>{c.clearRect(0,0,w,h);for(const [x0,y0,x1,y1] of [[0,0,0,h],[0,0,w,0]]){}
+ const g1=c.createLinearGradient(0,0,0,h);g1.addColorStop(0,'rgba(0,0,0,.65)');g1.addColorStop(.22,'rgba(0,0,0,0)');g1.addColorStop(.88,'rgba(0,0,0,0)');g1.addColorStop(1,'rgba(0,0,0,.35)');c.fillStyle=g1;c.fillRect(0,0,w,h);
+ const g2=c.createLinearGradient(0,0,w,0);g2.addColorStop(0,'rgba(0,0,0,.5)');g2.addColorStop(.15,'rgba(0,0,0,0)');g2.addColorStop(.85,'rgba(0,0,0,0)');g2.addColorStop(1,'rgba(0,0,0,.25)');c.fillStyle=g2;c.fillRect(0,0,w,h)});
+const aom=mk(new T.PlaneGeometry(WX,WY),new T.MeshBasicMaterial({map:ao,transparent:true,depthWrite:false}),0,0,-depth+1);aom.renderOrder=6;recess.add(aom);
+
+/* ---------- floor shadow catcher ---------- */
+const fl=new T.Mesh(new T.PlaneGeometry(4000,4000),new T.ShadowMaterial({opacity:.5,color:0x3a2210}));fl.rotation.x=-Math.PI/2;
+fl.position.set(600,0,0);B.updateMatrixWorld();const footW=new T.Vector3(0,-BH/2-14,0).applyMatrix4(B.matrixWorld);fl.position.y=footW.y;fl.receiveShadow=true;
+
+r.render(S,cam);document.body.dataset.done=1;
+</script></body></html>
