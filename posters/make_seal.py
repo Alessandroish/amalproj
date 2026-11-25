@@ -75,7 +75,7 @@ cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+im*(1-f),0,255).astype(np.u
 im=cv2.imread(P+'bg_dossier2.png');orig=cv2.imread(P+'ref6.jpg')
 hsv=cv2.cvtColor(orig,cv2.COLOR_BGR2HSV)
 def poly(p):m=np.zeros((H,W),np.uint8);cv2.fillPoly(m,[np.array(p)],255);return m>0
-hat=poly([(462,401),(528,421),(552,408),(578,414),(602,425),(628,452),(624,478),(570,472),(520,480),(496,486),(492,468),(472,428)])
+hat=poly([(452,392),(528,421),(552,408),(578,414),(602,425),(628,452),(624,478),(570,472),(520,480),(496,486),(491,468),(470,430),(461,413)])
 pom=np.zeros((H,W),np.uint8);cv2.circle(pom,(430,512),19,255,-1);hat|=pom>0
 region=poly([(40,40),(580,40),(580,540),(40,540)])
 red=((hsv[...,0]<14)|(hsv[...,0]>165))&(hsv[...,1]>90)&(hsv[...,2]>35)
@@ -85,9 +85,13 @@ n,l,st,_=cv2.connectedComponentsWithStats(gm);keep=np.zeros_like(gm)
 for i in range(1,n):
     if st[i][4]>3000:keep[l==i]=255
 cnts,_=cv2.findContours(keep,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE);cv2.drawContours(keep,cnts,-1,255,-1)
-keep[hat|poly([(459,394),(482,394),(484,422),(462,420)])]=0
+keep[hat]=0
+keep[poly([(325,492),(455,492),(455,548),(325,548)])&~(red&(hsv[...,2]>60))]=0
 keep=cv2.morphologyEx(keep,cv2.MORPH_OPEN,np.ones((3,3),np.uint8))
 a=cv2.GaussianBlur(keep,(0,0),0.8)
+dn=(hsv[...,2]<110)&~red
+a2=cv2.GaussianBlur(cv2.erode(keep,np.ones((5,5),np.uint8)),(0,0),5)
+a=np.where(dn,np.minimum(a,a2),a).astype(np.uint8)
 g=cv2.cvtColor(orig,cv2.COLOR_BGR2BGRA);g[...,3]=a;cv2.imwrite(P+'glove_layer.png',g)
 hm=((hat|poly([(452,392),(640,392),(640,528),(436,528),(436,500)])|poly([(330,505),(440,505),(440,540),(330,540)]))&(keep==0)).astype(np.uint8)*255;hm=hm&~cv2.dilate(keep,np.ones((3,3),np.uint8))
 imf=im.astype(np.float32)
@@ -115,4 +119,30 @@ t=np.concatenate([hp,hp[:,::-1]],1);t=np.concatenate([t,t[::-1]],0)
 tile=np.tile(t,(H//t.shape[0]+1,W//t.shape[1]+1,1))[:H,:W]
 fill=low+tile*.9+nz[...,None]*np.array([.6,.8,1.0],np.float32)
 f=cv2.GaussianBlur(area.astype(np.float32),(0,0),6)[...,None]
+cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- final cleanup around fingertips: stray streaks, red slivers, pale/red halo ---
+im=cv2.imread(P+'bg_dossier2.png');hsv=cv2.cvtColor(im,cv2.COLOR_BGR2HSV)
+ga=cv2.imread(P+'glove_layer.png',cv2.IMREAD_UNCHANGED)[...,3]>40
+zone=poly([(318,455),(450,388),(620,410),(640,600),(318,600)])
+paperish=cv2.GaussianBlur(zone.astype(np.float32),(0,0),1)>0
+red=((hsv[...,0]<12)|(hsv[...,0]>165))&(hsv[...,1]>70)
+dark=hsv[...,2]<120
+ring=cv2.dilate(ga.astype(np.uint8),np.ones((13,13),np.uint8))>0
+bad=zone&~ga&(poly([(452,388),(500,388),(505,440),(455,438)])|(red|dark)|(ring&(hsv[...,1]>40)&((hsv[...,0]<8)|(hsv[...,0]>160))))
+bad=cv2.dilate(bad.astype(np.uint8)*255,np.ones((5,5),np.uint8))&~(ga.astype(np.uint8)*255)
+r=cv2.inpaint(im,bad,7,cv2.INPAINT_TELEA).astype(np.float32)
+nz=np.random.default_rng(5).normal(0,3,(H,W,1)).astype(np.float32)
+f=cv2.GaussianBlur(bad.astype(np.float32),(0,0),1.2)[...,None]/255
+cv2.imwrite(P+'bg_dossier2.png',np.clip((r+nz)*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- flat paper fill for small leftover patches next to fingertips ---
+im=cv2.imread(P+'bg_dossier2.png').astype(np.float32)
+ga=cv2.imread(P+'glove_layer.png',cv2.IMREAD_UNCHANGED)[...,3]>20
+pm=(poly([(450,386),(508,386),(512,442),(452,440)])|poly([(318,478),(470,470),(520,478),(520,505),(470,548),(318,548)]))&~cv2.dilate(ga.astype(np.uint8),np.ones((3,3),np.uint8)).astype(bool)
+ref=im[440:470,520:600].reshape(-1,3);col=np.median(ref,0)
+src=im[560:660,420:560];hp=src-cv2.GaussianBlur(src,(0,0),3)
+t=np.concatenate([hp,hp[:,::-1]],1);t=np.concatenate([t,t[::-1]],0);tile=np.tile(t,(H//t.shape[0]+1,W//t.shape[1]+1,1))[:H,:W]
+fill=col+tile*.8
+f=cv2.GaussianBlur(pm.astype(np.float32),(0,0),3)[...,None]
 cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
