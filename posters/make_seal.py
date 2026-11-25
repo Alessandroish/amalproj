@@ -97,3 +97,22 @@ src=imf[1000:1110,330:520];hp=src-cv2.GaussianBlur(src,(0,0),5)
 tile=np.tile(hp,(H//hp.shape[0]+1,W//hp.shape[1]+1,1))[:H,:W]
 f=cv2.GaussianBlur(hm.astype(np.float32),(0,0),1.5)[...,None]/255
 cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+imf*(1-f),0,255).astype(np.uint8))
+
+# --- rebuild clean paper under the stamp/fingers ---
+im=cv2.imread(P+'bg_dossier2.png').astype(np.float32);orig=cv2.imread(P+'ref6.jpg').astype(np.float32)
+area=poly([(312,470),(372,408),(520,378),(705,418),(712,650),(312,650)])
+ring=cv2.dilate(area.astype(np.uint8),np.ones((41,41),np.uint8))>0
+hsvc=cv2.cvtColor(im.astype(np.uint8),cv2.COLOR_BGR2HSV)
+paper=ring&~area&(hsvc[...,0]>=8)&(hsvc[...,0]<=30)&(hsvc[...,1]>40)&(hsvc[...,2]>120)
+ys,xs=np.nonzero(paper);X=np.stack([np.ones_like(xs),xs,ys,xs*xs,ys*ys,xs*ys],1).astype(np.float64)/1.0
+X[:,1:3]/=1000;X[:,3:]/=1e6
+coef=[np.linalg.lstsq(X,im[ys,xs,c],rcond=None)[0] for c in range(3)]
+yy,xx=np.mgrid[0:H,0:W];A=np.stack([np.ones_like(xx),xx/1000,yy/1000,xx*xx/1e6,yy*yy/1e6,xx*yy/1e6],-1)
+low=np.stack([A@c for c in coef],-1).astype(np.float32)
+src=orig[1005:1105,325:515];hp=src-cv2.GaussianBlur(src,(0,0),2.5)
+nz=cv2.GaussianBlur(np.random.default_rng(7).normal(0,1,(H,W)).astype(np.float32),(0,0),14);nz=nz/nz.std()*5
+t=np.concatenate([hp,hp[:,::-1]],1);t=np.concatenate([t,t[::-1]],0)
+tile=np.tile(t,(H//t.shape[0]+1,W//t.shape[1]+1,1))[:H,:W]
+fill=low+tile*.9+nz[...,None]*np.array([.6,.8,1.0],np.float32)
+f=cv2.GaussianBlur(area.astype(np.float32),(0,0),6)[...,None]
+cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
