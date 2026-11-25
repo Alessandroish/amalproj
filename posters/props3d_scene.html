@@ -1,0 +1,96 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style></head><body>
+<script type="importmap">{"imports":{"three":"./three.js"}}</script>
+<script type="module">
+import * as T from 'three';
+await document.fonts.load('800 40px Montserrat');
+const W=1200,H=1600;
+const r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+r.setPixelRatio(2);r.setSize(W,H);r.setClearColor(0,0);
+r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.05;r.outputColorSpace=T.SRGBColorSpace;
+r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;
+document.body.appendChild(r.domElement);
+const S=new T.Scene();
+const cam=new T.OrthographicCamera(0,W,0,-H,-2000,2000);cam.position.z=1000;
+const P=(x,y)=>[x,-y];
+// env from poster image
+const tex=await new T.TextureLoader().loadAsync('env.png');tex.mapping=T.EquirectangularReflectionMapping;tex.colorSpace=T.SRGBColorSpace;
+const pm=new T.PMREMGenerator(r);S.environment=pm.fromEquirectangular(tex).texture;
+S.add(new T.HemisphereLight(0xfff1dc,0x6b4a2a,.35));
+const key=new T.DirectionalLight(0xffe2bf,2.6);key.target.position.set(600,-950,0);key.position.set(600-190,-950+260,1200);
+key.castShadow=true;key.shadow.mapSize.set(4096,4096);Object.assign(key.shadow.camera,{left:-900,right:900,top:900,bottom:-900,near:10,far:4000});key.shadow.radius=22;key.shadow.blurSamples=25;key.shadow.bias=-0.0005;
+S.add(key,key.target);
+const fill=new T.DirectionalLight(0xffd0a0,.6);fill.position.set(600,-200,500);S.add(fill);
+// shadow catcher behind props (tissue)
+const sc=new T.Mesh(new T.PlaneGeometry(2400,3200),new T.ShadowMaterial({opacity:.55,color:0x3a1f0a}));sc.position.set(600,-800,-95);sc.receiveShadow=true;S.add(sc);
+
+/* ---------- DISCO BALL ---------- */
+{const g=new T.Group();const R=80;const [px,py]=P(851,878);g.position.set(px,py,0);S.add(g);
+ const core=new T.Mesh(new T.SphereGeometry(R*.975,64,48),new T.MeshStandardMaterial({color:0x111111,roughness:.6}));core.castShadow=true;g.add(core);
+ const rows=24;const tiles=[];
+ for(let i=0;i<rows;i++){const lat=-Math.PI/2+(i+.5)*Math.PI/rows;const n=Math.max(3,Math.round(2*rows*Math.cos(lat)));
+  for(let j=0;j<n;j++){tiles.push([lat,(j+.5+(i%2)*.5)*2*Math.PI/n,n])}}
+ const geo=new T.BoxGeometry(1,1,1);
+ const mat=new T.MeshStandardMaterial({color:0xe8e8e8,metalness:1,roughness:.12,envMapIntensity:1.4});
+ const im=new T.InstancedMesh(geo,mat,tiles.length);im.castShadow=true;
+ const m=new T.Matrix4(),q=new T.Quaternion(),e=new T.Euler(),sv=new T.Vector3(),pv=new T.Vector3();
+ tiles.forEach(([lat,lon,n],k)=>{const w=2*Math.PI*R*Math.cos(lat)/n*.86,h=Math.PI*R/rows*.86;
+  pv.set(R*Math.cos(lat)*Math.sin(lon),R*Math.sin(lat),R*Math.cos(lat)*Math.cos(lon));
+  e.set(-lat+(Math.random()-.5)*.08,lon+(Math.random()-.5)*.08,0,'YXZ');q.setFromEuler(e);
+  sv.set(w,h,1.4);m.compose(pv,q,sv);im.setMatrixAt(k,m)});
+ g.add(im);g.rotation.set(.25,.3,0);
+ // cap + loop
+ const gold=new T.MeshStandardMaterial({color:0xd9a54e,metalness:1,roughness:.28});
+ const cap=new T.Mesh(new T.CylinderGeometry(14,17,22,48,1),gold);cap.position.set(px,py+R+8,10);cap.castShadow=true;S.add(cap);
+ for(let a=0;a<24;a++){const rib=new T.Mesh(new T.BoxGeometry(1.6,22,1.6),gold);const an=a/24*Math.PI*2;rib.position.set(px+Math.sin(an)*16,py+R+8,10+Math.cos(an)*16);rib.lookAt(px,py+R+8,10);S.add(rib)}
+ const rim=new T.Mesh(new T.TorusGeometry(16.5,2,12,48),gold);rim.rotation.x=Math.PI/2;rim.position.set(px,py+R-2,10);S.add(rim);
+ const loop=new T.Mesh(new T.TorusGeometry(10,1.4,12,40),new T.MeshStandardMaterial({color:0xcfcfcf,metalness:1,roughness:.3}));loop.position.set(px,py+R+28,10);loop.castShadow=true;S.add(loop);
+}
+
+/* ---------- VINYL ---------- */
+{const R=118;const [px,py]=P(512,868);
+ const cv=document.createElement('canvas');cv.width=cv.height=1024;const c=cv.getContext('2d');
+ c.fillStyle='#050505';c.fillRect(0,0,1024,1024);
+ for(let k=170;k<506;k+=2.2){c.beginPath();c.arc(512,512,k,0,7);c.strokeStyle=`rgba(255,255,255,${.025+Math.random()*.03})`;c.lineWidth=1;c.stroke()}
+ for(const k of [270,390]){c.beginPath();c.arc(512,512,k,0,7);c.strokeStyle='#000';c.lineWidth=7;c.stroke()}
+ let gr=c.createRadialGradient(470,470,20,512,512,180);gr.addColorStop(0,'#d8382f');gr.addColorStop(1,'#8f1610');
+ c.beginPath();c.arc(512,512,178,0,7);c.fillStyle=gr;c.fill();
+ c.beginPath();c.arc(512,512,160,0,7);c.strokeStyle='#e9c47a';c.lineWidth=4;c.stroke();
+ c.fillStyle='#f6d98e';c.textAlign='center';c.font='800 104px Montserrat';c.fillText('90-е',512,520);
+ c.font='800 34px Montserrat';c.fillText('ХИТЫ • MIX',512,610);
+ c.beginPath();c.arc(512,512,14,0,7);c.fillStyle='#ddd0b8';c.fill();
+ c.save();c.beginPath();c.arc(512,512,506,0,7);c.arc(512,512,182,0,7,true);c.clip();
+ for(const [a0,a1,al] of [[-2.5,-1.9,.22],[0.65,1.2,.16]]){const cg=c.createConicGradient(a0,512,512);cg.addColorStop(0,'rgba(255,240,215,0)');cg.addColorStop((a1-a0)/(2*Math.PI)/2,`rgba(255,240,215,${al})`);cg.addColorStop((a1-a0)/(2*Math.PI),'rgba(255,240,215,0)');cg.addColorStop(1,'rgba(255,240,215,0)');c.fillStyle=cg;c.fillRect(0,0,1024,1024)}
+ c.restore();
+ const t=new T.CanvasTexture(cv);t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.center.set(.5,.5);t.rotation=Math.PI/2;
+ // bump for grooves
+ const bc=document.createElement('canvas');bc.width=bc.height=1024;const b=bc.getContext('2d');b.fillStyle='#808080';b.fillRect(0,0,1024,1024);
+ for(let k=180;k<506;k+=2.2){b.beginPath();b.arc(512,512,k,0,7);b.strokeStyle=k%4.4<2.2?'#9a9a9a':'#666';b.lineWidth=1.1;b.stroke()}
+ const bt=new T.CanvasTexture(bc);
+ const top=new T.MeshPhysicalMaterial({map:t,roughness:.32,clearcoat:.9,clearcoatRoughness:.18,bumpMap:bt,bumpScale:.6,envMapIntensity:.7});
+ const side=new T.MeshStandardMaterial({color:0x080808,roughness:.4});
+ const v=new T.Mesh(new T.CylinderGeometry(R,R,3.5,128),[side,top,side]);
+ v.rotation.set(Math.PI/2-.55,.05,.12);v.position.set(px,py,0);v.castShadow=true;S.add(v);
+}
+
+/* ---------- MICROPHONE ---------- */
+{const g=new T.Group();const [px,py]=P(378,1112);g.position.set(px,py,10);g.rotation.set(.25,0,-.2);g.scale.setScalar(1.08);S.add(g);
+ const hr=56,hy=88;
+ // grille alpha
+ const gc=document.createElement('canvas');gc.width=1024;gc.height=512;const x=gc.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,1024,512);
+ x.fillStyle='#3a3a3a';for(let i=0;i<1024;i+=16)for(let j=0;j<512;j+=16){x.save();x.translate(i+8,j+8);x.rotate(Math.PI/4);x.fillRect(-4.6,-4.6,9.2,9.2);x.restore()}
+ const at=new T.CanvasTexture(gc);at.wrapS=at.wrapT=T.RepeatWrapping;at.repeat.set(1,1);at.colorSpace=T.SRGBColorSpace;at.anisotropy=8;
+ const chrome=new T.MeshStandardMaterial({color:0xdadada,metalness:1,roughness:.22});
+ const grille=new T.Mesh(new T.SphereGeometry(hr,96,64),new T.MeshStandardMaterial({color:0xd8d8d8,map:at,metalness:1,roughness:.32,bumpMap:at,bumpScale:1.5}));
+ grille.position.y=hy;grille.castShadow=true;g.add(grille);
+ const foam=new T.Mesh(new T.SphereGeometry(hr*.9,48,32),new T.MeshStandardMaterial({color:0x1a1a1a,roughness:.9}));foam.position.y=hy;g.add(foam);
+ const band=new T.Mesh(new T.CylinderGeometry(hr*1.005,hr*1.005,12,96,1,true),chrome);band.position.y=hy-4;g.add(band);
+ const collar=new T.Mesh(new T.CylinderGeometry(33,27,30,64),chrome);collar.position.y=hy-hr-6;collar.castShadow=true;g.add(collar);
+ const ring=new T.Mesh(new T.TorusGeometry(29,1.6,10,64),new T.MeshStandardMaterial({color:0x333333,metalness:.6,roughness:.4}));ring.rotation.x=Math.PI/2;ring.position.y=hy-hr-18;g.add(ring);
+ const handle=new T.Mesh(new T.CylinderGeometry(26,16,175,64),new T.MeshStandardMaterial({color:0x151515,metalness:.35,roughness:.38}));handle.position.y=hy-hr-20-87;handle.castShadow=true;g.add(handle);
+ const sw=new T.Mesh(new T.BoxGeometry(12,22,6),new T.MeshStandardMaterial({color:0x2a2a2a,roughness:.5}));sw.position.set(0,hy-hr-60,24);g.add(sw);
+ const swk=new T.Mesh(new T.BoxGeometry(7,8,4),chrome);swk.position.set(0,hy-hr-56,27.5);g.add(swk);
+}
+r.render(S,cam);document.body.dataset.done=1;
+</script></body></html>
