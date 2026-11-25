@@ -59,3 +59,14 @@ num=cv2.GaussianBlur(im*w[...,None],(0,0),4);den=cv2.GaussianBlur(w,(0,0),4)[...
 fill=num/den+np.random.default_rng(2).normal(0,2,(H,W,1))
 f=cv2.GaussianBlur(m.astype(np.float32),(0,0),1.2)[...,None]
 cv2.imwrite(P+'bg_dossier2.png',np.clip(fill*f+im*(1-f),0,255).astype(np.uint8))
+
+# --- remove middle sticky note (replaced by typed program) ---
+im=cv2.imread(P+'bg_dossier2.png').astype(np.float32)
+nm=np.zeros((H,W),np.uint8);cv2.fillPoly(nm,[np.array([(512,925),(640,884),(808,876),(834,1080),(814,1138),(562,1154)])],255)
+nm=cv2.dilate(nm,np.ones((9,9),np.uint8))
+sm=cv2.resize(im,(W//4,H//4),interpolation=cv2.INTER_AREA).astype(np.uint8);ms=cv2.resize(nm,(W//4,H//4),interpolation=cv2.INTER_NEAREST)
+low=cv2.GaussianBlur(cv2.resize(cv2.inpaint(sm,ms,6,cv2.INPAINT_TELEA),(W,H),interpolation=cv2.INTER_CUBIC).astype(np.float32),(0,0),8)
+src=im[1000:1110,330:520];hp=src-cv2.GaussianBlur(src,(0,0),5)
+tile=np.tile(hp,(H//hp.shape[0]+1,W//hp.shape[1]+1,1))[:H,:W]
+f=cv2.GaussianBlur(nm.astype(np.float32),(0,0),4)[...,None]/255
+cv2.imwrite(P+'bg_dossier2.png',np.clip((low+tile)*f+im*(1-f),0,255).astype(np.uint8))

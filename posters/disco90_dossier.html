@@ -1,5 +1,5 @@
 <!doctype html><html lang="ru"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@300;700;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@300;700;900&family=Caveat:wght@600;700&family=PT+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{width:1200px;height:1500px;overflow:hidden}
@@ -24,20 +24,35 @@ body{width:1200px;height:1500px;overflow:hidden}
  background:radial-gradient(circle at 40% 35%,#f3d27a 0,#d9a545 45%,#a8741f 100%);box-shadow:inset 0 0 0 4px rgba(120,80,20,.35),inset 3px 4px 8px rgba(255,235,170,.6),inset -4px -6px 10px rgba(90,55,10,.6);
  display:flex;align-items:center;justify-content:center;transform:rotate(-8deg)}
 .seal b{font:900 34px 'Montserrat';color:#c99a3c;text-shadow:-1px -1px 1px rgba(255,236,180,.95),2px 2px 2px rgba(90,50,10,.8)}
+
+.dos{left:318px;top:1004px;width:500px;transform:rotate(9deg);transform-origin:left top;font:700 17px/1.34 'PT Mono',monospace;color:#16202e;mix-blend-mode:multiply;filter:url(#type)}
+.dos .h{font-weight:700;font-size:20px;letter-spacing:3px;color:#9d1c1e;border-bottom:2px solid rgba(157,28,30,.7);display:inline-block;margin-bottom:5px}
+.dos .r2{margin-top:8px;color:#9d1c1e;font-size:15.5px}
+.logo2{right:34px;top:26px;display:flex;align-items:center;gap:10px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.logo2 img{height:48px;filter:brightness(0) invert(1)}
+.logo2 .t1{font:300 12.5px 'Montserrat';letter-spacing:1px}.logo2 .t2{font:700 21px 'Montserrat';margin-top:3px}
 </style></head><body><div class="p">
 <svg width="0" height="0" style="position:absolute">
  <filter id="rubber" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".06 .1" numOctaves="4" seed="11" result="n"/>
   <feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.5 1.55" result="m"/>
   <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="f"/><feDisplacementMap in="SourceGraphic" in2="f" scale="2.5" result="d"/>
   <feComposite in="d" in2="m" operator="in"/></filter>
- <filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.2"/></filter>
+ <filter id="type"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="6" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/>
+<feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="2" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -.5 1.25" result="bm"/><feComposite in="d" in2="bm" operator="in"/></filter>
+<filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.2"/></filter>
 </svg>
 <img class="bg" src="bg_dossier2.png">
 <div class="a stamp"><div class="s1">ДИСКОТЕКА</div><hr><div class="s2">90-Х</div></div>
 <div class="a sub"><span class="r">Кто</span> <span class="n">вытянет</span><br><span class="n">счастливый</span><br><span class="r">билет?</span></div>
 <div class="a note" style="left:62px;top:900px;width:210px;font-size:36px;line-height:1;transform:rotate(6deg)">Счастливый<br>билет<br>…</div>
-<div class="a note" style="left:572px;top:958px;width:230px;font-size:38px;transform:rotate(-9deg)">5 подарков<br>от Деда<br>Мороза!!!</div>
 <div class="a note" style="left:1060px;top:310px;width:130px;font-size:30px;transform:rotate(9deg)">Дед Мороз</div>
-<div class="a brand"><img src="brics_emblem.png"><div><div class="t1">УНИВЕРСИТЕТСКИЙ</div><div class="t2">КОЛЛЕДЖ БРИКС</div></div></div>
+<div class="a dos"><div class="h">ПЛАН ОПЕРАЦИИ:</div>
+<div>— живая музыка и танцевальные выступления</div>
+<div>— интерактивные игры и командные батлы</div>
+<div>— сладости и подарки из 90-х</div>
+<div>— Дед Мороз и Снегурочка</div>
+<div>— дискотека под легендарные хиты 90-х</div>
+<div class="r2">На входе каждый студент получит билет<br>(350 шт.). В финале обладатели 5 счастливых<br>билетов получат подарки от Деда Мороза!</div></div>
+<div class="a logo2"><img src="brics_emblem.png"><div><div class="t1">УНИВЕРСИТЕТСКИЙ</div><div class="t2">КОЛЛЕДЖ БРИКС</div></div></div>
 <div class="a foot">31 ДЕКАБРЯ<span>●</span>ДИСКОТЕКА 90-Х ДО УТРА</div>
 </div><script>document.fonts.ready.then(()=>document.body.dataset.done=1)</script></body></html>
